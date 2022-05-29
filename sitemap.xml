@@ -2,24 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/</loc>
+    <loc>http://chunni98.github.io/</loc>
     <lastmod>2022-05-29T13:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/markdown/</loc>
+    <loc>http://chunni98.github.io/tags/markdown/</loc>
     <lastmod>2022-05-29T13:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/markdown-syntax/</loc>
+    <loc>http://chunni98.github.io/posts/markdown-syntax/</loc>
     <lastmod>2022-05-29T13:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>http://chunni98.github.io/posts/</loc>
     <lastmod>2022-05-29T13:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://chunni98.github.io/tags/</loc>
     <lastmod>2022-05-29T13:00:49+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/about/</loc>
+    <loc>http://chunni98.github.io/about/</loc>
     <lastmod>2022-05-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://chunni98.github.io/categories/</loc>
   </url>
 </urlset>
