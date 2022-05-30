@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Chunni&#39;s blog</title>
-    <link>https://chunni98.github.io/posts/</link>
-    <description>Recent content in Posts on Chunni&#39;s blog</description>
+    <title>weekly on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/weekly/</link>
+    <description>Recent content in weekly on Chunni&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Mon, 30 May 2022 22:27:11 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 May 2022 22:27:11 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/weekly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2022 年第 21 周总结</title>
       <link>https://chunni98.github.io/posts/weekly/2221/</link>
@@ -20,16 +20,6 @@
 生活 生活很平淡，每天早起准备小花带去公司的饭，然后八点钟出发去上班，晚上六点下班，回家吃饭、洗衣服。除了手机，没有任何娱乐。不过就算这样还是总是晚睡，总是感觉时间过得很快，因此原来计划的每日健身环运动也没做了，过度劳累又剧烈运动，怕猝死。周末基本只能休一天，会做点好吃的，这周做了牛肉火锅，牛肉我没怎么吃，倒是牛肉丸真好吃！
 工作 没什么好聊的，我对这份工作的唯一期望就是能够按时给我发工资，当然要是没有周末加班就更好了，我一点都不想加班，我觉得毫无意义。
 工作虽然不是什么好工作，但是得认真做，这周开会，公司向我们强调，CMA 会对我们公司进行监管，严禁弄虚作假，否则将面临刑事责任。本来就不是什么特别好的工作，要是因为它还坐牢了，就太不值了。我现在的工作目标就是“不求有功，但求无错”，工资低点没关系，能安安稳稳让我待到打算离开的那一天就行了。</description>
-    </item>
-    
-    <item>
-      <title>Markdown 语法测试</title>
-      <link>https://chunni98.github.io/posts/markdown-syntax/</link>
-      <pubDate>Sun, 29 May 2022 13:00:49 +0800</pubDate>
-      
-      <guid>https://chunni98.github.io/posts/markdown-syntax/</guid>
-      <description>前言 1 基本语法  1.1 标题 1.2 段落 1.3 换行 1.4 强调 1.5 引用 1.6 列表 1.7 代码 1.8 分割线 1.9 链接 1.10 图片 1.11 转义字符 1.12 内嵌 HTML 标签   2 扩展语法  2.1 表格 2.2 脚注 2.3 标题编号 2.4 todo list 2.5 其他    前言 前前后后搭建博客也有很多次了，静态网站生成器用过 hexo，vuepress，hugo，还是觉得 hugo 最好用：速度快、安装方便、跨平台、热更新，最重要的是使用起来比较简单。
-之前使用 hugo 搭建博客，主题用过 even ，但感觉用的人太多了，用过时间比较久的是 loveit ，是个很不错的主题，中文文档也很全，使用起来很方便，但是现在我想要更简洁一点的主题，王垠 的博客主题我就觉得很不错，还有偶然间发现的无求备斋笔记 ，本来这次搭建博客是想用 无求备斋笔记 的样式，可是这个主题是基于 jekyll 的，我尝试用了用 jekyll ，感觉不太好用，不如 hugo，等以后有时间研究下怎么写主题，然后把它转换成 hugo 的模板吧，现在懒得折腾。在 github 上找了两个比较喜欢的主题：Fuji 和 Archie，最终我选择了Archie，因为它看起来更简洁一些。</description>
     </item>
     
   </channel>

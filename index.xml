@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Sun, 29 May 2022 13:00:49 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 May 2022 22:27:11 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2022 年第 21 周总结</title>
+      <link>https://chunni98.github.io/posts/weekly/2221/</link>
+      <pubDate>Mon, 30 May 2022 22:27:11 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/weekly/2221/</guid>
+      <description>学习 最近在学“计算机组成原理”，可是自制力不够，基本只有在公司抽空学习一下，回家后实在太累了，就只想躺在床上玩手机。
+这周花了点时间把小花废弃不用的笔记本稍微改造了一下，装上了 ubuntu 22.04 ，基本能够满足日常使用了，就是电源好像出了点问题，长时间不操作就会自动开始”关机 -&amp;gt; 重启 -&amp;gt; 关机 -&amp;gt; 重启 -&amp;gt; …… ”的循环。
+阅读 最近阅读量少得可怜，以后计划少花点时间在手机上，多去学习，多去阅读。
+生活 生活很平淡，每天早起准备小花带去公司的饭，然后八点钟出发去上班，晚上六点下班，回家吃饭、洗衣服。除了手机，没有任何娱乐。不过就算这样还是总是晚睡，总是感觉时间过得很快，因此原来计划的每日健身环运动也没做了，过度劳累又剧烈运动，怕猝死。周末基本只能休一天，会做点好吃的，这周做了牛肉火锅，牛肉我没怎么吃，倒是牛肉丸真好吃！
+工作 没什么好聊的，我对这份工作的唯一期望就是能够按时给我发工资，当然要是没有周末加班就更好了，我一点都不想加班，我觉得毫无意义。
+工作虽然不是什么好工作，但是得认真做，这周开会，公司向我们强调，CMA 会对我们公司进行监管，严禁弄虚作假，否则将面临刑事责任。本来就不是什么特别好的工作，要是因为它还坐牢了，就太不值了。我现在的工作目标就是“不求有功，但求无错”，工资低点没关系，能安安稳稳让我待到打算离开的那一天就行了。</description>
+    </item>
+    
     <item>
       <title>Markdown 语法测试</title>
       <link>https://chunni98.github.io/posts/markdown-syntax/</link>
@@ -24,7 +38,8 @@
       <pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://chunni98.github.io/about/</guid>
-      <description>自我介绍 一个前程序员，目标是成为一个优秀的开发者，能为创造更加美好的世界做出一点贡献。
+      <description>自我介绍 只是一个普通的工人。
+目标是成为一个优秀的工程师，能为创造更加美好的世界做出一点贡献。
 邮箱：guok.zhao.life@outlook.com
 关于本站 本站使用 hugo 静态网站生成器构建，主题是：archie，使用 github pages 托管。
 留言或评论请使用 Github Issues。</description>
