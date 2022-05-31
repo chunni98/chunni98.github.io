@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Chunni&#39;s blog</title>
-    <link>https://chunni98.github.io/posts/</link>
-    <description>Recent content in Posts on Chunni&#39;s blog</description>
+    <title>规范 on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/%E8%A7%84%E8%8C%83/</link>
+    <description>Recent content in 规范 on Chunni&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Tue, 31 May 2022 21:59:37 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 21:59:37 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>文档书写规范</title>
       <link>https://chunni98.github.io/posts/how-to-write-document/</link>
@@ -23,20 +23,6 @@
 (2) xxx
 (3) xxx
  避免出现孤立编号。 标题名避免重复。 目录只显示二级标题、三级标题。  2 文本  全角中文字符与半角英文字符之间，应有一个半角空格。 全角中文字符与半角阿拉伯数字之间，应有一个半角空格，半角的百分号，视同阿拉伯数字。 数字与单位之间需要增加空格。 全角标点符号不用和半角符号之间留空格。 不使用全角空格。 不连续出现两个及以上空格。 中文使用全角标点。 区分“的”、“地”、“得”。 阿拉伯数字一律使用半角形式，不得使用全角形式。 数值为千位以上，应添加千分号（半角逗号）。 货币应为阿拉伯数字，并在数字前写出货币符号，或在数字后写出货币中文名称。 中文语句的标点符号，均应该采取全角符号， 句子末尾用括号加注时，句号应在括号之外。 英文句子中，并列词语之间使用半角逗号（,）分隔。 补充说明时，使用全角圆括号（（）），括号前后不加空格。 表示时间时，应使用半角冒号（:）。 句子内部表示并列，应使用全角顿号，并列词是英语也是如此。  3 段落  段落开头不建议缩进，顶格开始即可。 引用第三方内容时，应注明出处。 不连续出现两行及以上空行。 避免“一逗到底”。  4 其他  文件名不得含有空格。 建议使用空格键而不是 tab 键对齐。 不混用 tab 和空格。 一个 tab 为四个半角空格。 文档目录可以通过各级标题自动生成。  参考资料   阮一峰-中文技术文档的写作规范</description>
-    </item>
-    
-    <item>
-      <title>2022 年第 21 周总结</title>
-      <link>https://chunni98.github.io/posts/weekly/2221/</link>
-      <pubDate>Mon, 30 May 2022 22:27:11 +0800</pubDate>
-      
-      <guid>https://chunni98.github.io/posts/weekly/2221/</guid>
-      <description>学习 最近在学“计算机组成原理”，可是自制力不够，基本只有在公司抽空学习一下，回家后实在太累了，就只想躺在床上玩手机。
-这周花了点时间把小花废弃不用的笔记本稍微改造了一下，装上了 ubuntu 22.04 ，基本能够满足日常使用了，就是电源好像出了点问题，长时间不操作就会自动开始”关机 -&amp;gt; 重启 -&amp;gt; 关机 -&amp;gt; 重启 -&amp;gt; …… ”的循环。
-阅读 最近阅读量少得可怜，以后计划少花点时间在手机上，多去学习，多去阅读。
-生活 生活很平淡，每天早起准备小花带去公司的饭，然后八点钟出发去上班，晚上六点下班，回家吃饭、洗衣服。除了手机，没有任何娱乐。不过就算这样还是总是晚睡，总是感觉时间过得很快，因此原来计划的每日健身环运动也没做了，过度劳累又剧烈运动，怕猝死。周末基本只能休一天，会做点好吃的，这周做了牛肉火锅，牛肉我没怎么吃，倒是牛肉丸真好吃！
-工作 没什么好聊的，我对这份工作的唯一期望就是能够按时给我发工资，当然要是没有周末加班就更好了，我一点都不想加班，我觉得毫无意义。
-工作虽然不是什么好工作，但是得认真做，这周开会，公司向我们强调，CMA 会对我们公司进行监管，严禁弄虚作假，否则将面临刑事责任。本来就不是什么特别好的工作，要是因为它还坐牢了，就太不值了。我现在的工作目标就是“不求有功，但求无错”，工资低点没关系，能安安稳稳让我待到打算离开的那一天就行了。</description>
     </item>
     
     <item>

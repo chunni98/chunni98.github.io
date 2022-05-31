@@ -7,7 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Mon, 30 May 2022 22:27:11 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 May 2022 21:59:37 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>文档书写规范</title>
+      <link>https://chunni98.github.io/posts/how-to-write-document/</link>
+      <pubDate>Tue, 31 May 2022 21:59:37 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-document/</guid>
+      <description>有研究顯示，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在 34 歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。
+—— 為什麼你們就是不能加個空格呢？
+  前言 1 标题 2 文本 3 段落 4 其他 参考资料  前言 我希望自己写的文章都最少能够做到：可读性高、结构良好、条理清晰、风格统一，于是在参考了一些资料后整理了一份学习笔记，就当是自己的“文档书写规范”了，供自己今后参考。
+1 标题 文档中使用标题最多不超过四级。
+三级标题下建议使用如下结构：
+**(1) xxx** **(2) xxx** **(3) xxx** (1) xxx
+(2) xxx
+(3) xxx
+ 避免出现孤立编号。 标题名避免重复。 目录只显示二级标题、三级标题。  2 文本  全角中文字符与半角英文字符之间，应有一个半角空格。 全角中文字符与半角阿拉伯数字之间，应有一个半角空格，半角的百分号，视同阿拉伯数字。 数字与单位之间需要增加空格。 全角标点符号不用和半角符号之间留空格。 不使用全角空格。 不连续出现两个及以上空格。 中文使用全角标点。 区分“的”、“地”、“得”。 阿拉伯数字一律使用半角形式，不得使用全角形式。 数值为千位以上，应添加千分号（半角逗号）。 货币应为阿拉伯数字，并在数字前写出货币符号，或在数字后写出货币中文名称。 中文语句的标点符号，均应该采取全角符号， 句子末尾用括号加注时，句号应在括号之外。 英文句子中，并列词语之间使用半角逗号（,）分隔。 补充说明时，使用全角圆括号（（）），括号前后不加空格。 表示时间时，应使用半角冒号（:）。 句子内部表示并列，应使用全角顿号，并列词是英语也是如此。  3 段落  段落开头不建议缩进，顶格开始即可。 引用第三方内容时，应注明出处。 不连续出现两行及以上空行。 避免“一逗到底”。  4 其他  文件名不得含有空格。 建议使用空格键而不是 tab 键对齐。 不混用 tab 和空格。 一个 tab 为四个半角空格。 文档目录可以通过各级标题自动生成。  参考资料   阮一峰-中文技术文档的写作规范</description>
+    </item>
+    
     <item>
       <title>2022 年第 21 周总结</title>
       <link>https://chunni98.github.io/posts/weekly/2221/</link>
@@ -43,6 +60,19 @@
 邮箱：guok.zhao.life@outlook.com
 关于本站 本站使用 hugo 静态网站生成器构建，主题是：archie，使用 github pages 托管。
 留言或评论请使用 Github Issues。</description>
+    </item>
+    
+    <item>
+      <title>伪代码书写规范</title>
+      <link>https://chunni98.github.io/posts/how-to-write-pseudocode/</link>
+      <pubDate>Sat, 23 Jan 2021 01:15:48 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-pseudocode/</guid>
+      <description>1 前言 2 伪代码书写规范  2.1 说明信息 2.2 注意事项 2.3 注释 2.4 变量 2.5 代数运算 2.6 分支/选择 2.7 循环/迭代 2.8 函数   3 实例 4 参考资料  1 前言  伪代码（英语： pseudocode），又称为虚拟代码，是高层次描述算法的一种方法。它不是一种现实存在的编程语言。它以编程语言的书写形式指明算法的职能。伪代码可以用于帮助人们理解解释代码的语法、规则、内涵和结构。 ——维基百科
+ 本篇文章作为以后书写伪代码的规范。
+2 伪代码书写规范 2.1 说明信息 首先在一开始写下伪代码的作用、目的和作者，日期等基本信息。例：
+算法：KMP 算法的实现 作者：rong 时间：2021-01-01 20:34 Input: output: 2.2 注意事项  每行只写一条语句。 有效使用空白和缩进。 使用简单的术语。 描述清楚所有事物，但不要过度描述与主要问题无关的细节。 遇到难以用此规范表达的算法时，使用陈述句描述或借用语法。  2.3 注释 // 此为注释，注释使用 C++ 风格的注释 2.4 变量 变量名以单个字符为主，小写字母可以有多个，大写字母最好只有一个。
+变量可以为整数、实数、字符、字符串 或 指针。</description>
     </item>
     
   </channel>
