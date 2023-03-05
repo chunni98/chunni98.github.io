@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/c/</link>
+    <description>Recent content in C on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Sun, 05 Mar 2023 22:48:06 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/c/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单通用链表 demo</title>
+      <link>https://chunni98.github.io/posts/learn-linux-list/</link>
+      <pubDate>Sun, 05 Mar 2023 22:48:06 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/learn-linux-list/</guid>
+      <description>以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：
+后续继续学习后再做补充。
+klist.h
+#ifndef _KLINK_LIST #define _KLINK_LIST /**************************************************************************** * @file : incl/klinklist.h * @brief : 通用链表 * @author : shachi * @email : shachi1758@outlook.com * @details : * @version : 0.1.0 * @history : * 2023-03-02 16:29:52 创建文件 * 2023-03-05 15:11:19 实现初始化、头插法。 ****************************************************************************/ #include &amp;lt;stdint.h&amp;gt; #include &amp;lt;stddef.h&amp;gt; /** * @brief 通用头节点 */ struct klist_head{ struct klist_head *prev; struct klist_head *next; }; /** * @brief: 通用链表初始化 * @param1: l，链表头 * * 前驱和后继都指向自己。 * */ inline void klist_init(struct klist_head *head) { head-&amp;gt;next = head; head-&amp;gt;prev = head; } /** * @brief: 头插法插入节点 * @param1: new，要插入的节点 * @param2: l，要插入的链表 * * @return: -1，插入失败 * 0，插入成功 * */ int32_t klist_add(struct klist_head *new,struct klist_head *head); /** * @brief: 删除节点。 * @param1: head，待删除的节点。 * * 删除链表上的节点，只是从链表中删除，不会释放空间。 * * @return: -1 失败 * 0 成功 */ int32_t klist_del(struct klist_head *head); #endif // _KLINK_LIST klist.</description>
+    </item>
+    
+    <item>
+      <title>C 简易编程规范</title>
+      <link>https://chunni98.github.io/posts/cjmyibmiggvfj/</link>
+      <pubDate>Sun, 26 Feb 2023 16:18:10 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/cjmyibmiggvfj/</guid>
+      <description>前言 1 编码 1.1 排版 1.2 命名 1.3 头文件防卫式声明 1.4 函数 1.5 其他 2 注释 2.1 条件编译 2.2 TODO 注释 2.3 文件头注释 2.4 函数注释 2.5 结构体注释 2.6 变量注释 3 参考 前言 C 语言学习之路，道阻且跻，为了不让我自己写代码时轻易迷失在指针和函数的海洋以及提高自己编程的质量和效率，我收集了一些资料，整理归纳并稍作修改，整理出这篇编程规范和注释风格，希望自己能好好遵守，以后写出越来越容易理解和阅读的代码。
+操作系统：ubuntu18.04
+编辑器：Vim 8.0
+1 编码 1.1 排版 缩进为 4 个空格。 每行不超过 80 列。 文件用UTF-8 编码。 括号采用K &amp;amp; R 风格。 逗号、分号在后面加空格。 比较操作符，赋值操作符、算术操作符、逻辑操作符、位域操作符等双目操作符的前后加空格。 取反、异或、自增、自减、取地址等单目操作符前后不加空格。 -&amp;gt;、. 前后不加空格。 if、switch、else、for、do、while 等关键字后要加一个空格。 不要在小括号里的表达式两侧加空格。 表达式换行要保持换行的一致性，操作符放行末。 1.2 命名 变量：全小写，_ 分隔。 文件：全小写，_ 分隔。 宏：全大写，_分隔。 goto 标签：和宏一致。 常量：k 开头，大小写混合。如：const int kDaysInAWeek=7。 枚举元素：与常量或宏一致：kEnumName 或 ENUM_NAME。 函数： 动作类函数使用动宾结构：add_user()。 判断型函数：is_working()。 数据型函数：get_loacal_count()。 tyepdef 自定义类型：加 _t 后缀。 静态变量：加 s_前缀。 全局变量：加 g_前缀。 bool 变量：加 b_前缀。 指针变量：加 p_ 前缀。 较短的单词可通过去掉“元音”形成缩写；较长的单词可取单词的头几个字母形成缩写，避免使人产生误解。 _ 开头的函数或变量用来命名不希望被外部调用的函数（静态函数）、特殊变量。 1.</description>
+    </item>
+    
+    <item>
+      <title>简易 C 日志宏</title>
+      <link>https://chunni98.github.io/posts/my-logger/</link>
+      <pubDate>Fri, 24 Feb 2023 12:50:26 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/my-logger/</guid>
+      <description>klogger.h
+#ifndef _SHACHI_LOGGER_H #define _SHACHI_LOGGER_H // \brief : 自定义的日志宏，以供调试。 // \author : shachi // \email : shachi1758@outlook.com // \details : 定义宏 NDEBUG 关闭。 // \version : 0.1.0 // \log : // 2023-02-24 09:53:10 创建文件 // 日志模块开关 #ifndef NDEBUG #include &amp;lt;time.h&amp;gt; #include &amp;lt;stdio.h&amp;gt; #define COLOR_RED &amp;#34;\033[1;31m&amp;#34; #define COLOR_BLUE &amp;#34;\033[1;34m&amp;#34; #define COLOR_NONE &amp;#34;\033[0m&amp;#34; #define KINFO(fmt, args...)\ do{\ time_t t;\ struct tm *ti;\ time(&amp;amp;t);\ ti = localtime(&amp;amp;t);\ printf(&amp;#34;%d-%d-%d %d:%d:%d &amp;#34;,ti-&amp;gt;tm_year + 1900,ti-&amp;gt;tm_mon+1,ti-&amp;gt;tm_mday,ti-&amp;gt;tm_hour,ti-&amp;gt;tm_min,ti-&amp;gt;tm_sec);\ printf(&amp;#34;[%s:%d-&amp;gt;%s] &amp;#34;, __FILE__,__LINE__,__func__);\ printf(COLOR_BLUE &amp;#34;INFO:&amp;#34; COLOR_NONE);\ printf(fmt, ##args);\ }while(0) #define KERROR(fmt, args.</description>
+    </item>
+    
+  </channel>
+</rss>

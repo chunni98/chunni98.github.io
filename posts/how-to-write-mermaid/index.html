@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>How to Write Mermaid - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="1 节点 2 文本节点 3 图 4 方向 5 节点形状 5.1 圆角矩形 5.2 体育场节点 5.3 子程序 5.4 数据库 5.5 圆形 5.6 不对称节点 5.7 菱形 5.8 六边形 5.9 平行四边形 5.10 梯形 5.11 双圆 6 节点之间的连接 6.1 箭头线 6.2 无箭头的链接 6.3 带文本的链接 6.4 带文本的箭头 6.5 虚线箭头 6.6 带文本的虚线 6.7 粗体链接 6.8 粗体带文本 6.9 连接链 6.10 新箭头 6.11 双向箭头 6.12 添加更多的短划线让链接更长 7 特殊字符 8 子图 8.2 子图之间的连接 8.3 子图的方向 1 节点 flowchart LR 这是一个描述性文本 2 文本节点 flowchart LR id[这是一个文本节点] 3 图 graph TD start --&gt; stop 4 方向 TB BT RL LR 5 节点形状 5." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="How to Write Mermaid" />
+<meta property="og:description" content="1 节点 2 文本节点 3 图 4 方向 5 节点形状 5.1 圆角矩形 5.2 体育场节点 5.3 子程序 5.4 数据库 5.5 圆形 5.6 不对称节点 5.7 菱形 5.8 六边形 5.9 平行四边形 5.10 梯形 5.11 双圆 6 节点之间的连接 6.1 箭头线 6.2 无箭头的链接 6.3 带文本的链接 6.4 带文本的箭头 6.5 虚线箭头 6.6 带文本的虚线 6.7 粗体链接 6.8 粗体带文本 6.9 连接链 6.10 新箭头 6.11 双向箭头 6.12 添加更多的短划线让链接更长 7 特殊字符 8 子图 8.2 子图之间的连接 8.3 子图的方向 1 节点 flowchart LR 这是一个描述性文本 2 文本节点 flowchart LR id[这是一个文本节点] 3 图 graph TD start --&gt; stop 4 方向 TB BT RL LR 5 节点形状 5." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/how-to-write-mermaid/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-21T21:47:47+08:00" />
+<meta property="article:modified_time" content="2023-02-21T21:47:47+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Write Mermaid"/>
+<meta name="twitter:description" content="1 节点 2 文本节点 3 图 4 方向 5 节点形状 5.1 圆角矩形 5.2 体育场节点 5.3 子程序 5.4 数据库 5.5 圆形 5.6 不对称节点 5.7 菱形 5.8 六边形 5.9 平行四边形 5.10 梯形 5.11 双圆 6 节点之间的连接 6.1 箭头线 6.2 无箭头的链接 6.3 带文本的链接 6.4 带文本的箭头 6.5 虚线箭头 6.6 带文本的虚线 6.7 粗体链接 6.8 粗体带文本 6.9 连接链 6.10 新箭头 6.11 双向箭头 6.12 添加更多的短划线让链接更长 7 特殊字符 8 子图 8.2 子图之间的连接 8.3 子图的方向 1 节点 flowchart LR 这是一个描述性文本 2 文本节点 flowchart LR id[这是一个文本节点] 3 图 graph TD start --&gt; stop 4 方向 TB BT RL LR 5 节点形状 5."/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">How to Write Mermaid</h1>
+			<div class="meta">Posted on Feb 21, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			
+		</div>
+
+		<section class="body">
+			<ul>
+<li><a href="#1-%E8%8A%82%E7%82%B9">1 节点</a></li>
+<li><a href="#2-%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9">2 文本节点</a></li>
+<li><a href="#3-%E5%9B%BE">3 图</a></li>
+<li><a href="#4-%E6%96%B9%E5%90%91">4 方向</a></li>
+<li><a href="#5-%E8%8A%82%E7%82%B9%E5%BD%A2%E7%8A%B6">5 节点形状</a>
+<ul>
+<li><a href="#51-%E5%9C%86%E8%A7%92%E7%9F%A9%E5%BD%A2">5.1 圆角矩形</a></li>
+<li><a href="#52-%E4%BD%93%E8%82%B2%E5%9C%BA%E8%8A%82%E7%82%B9">5.2 体育场节点</a></li>
+<li><a href="#53-%E5%AD%90%E7%A8%8B%E5%BA%8F">5.3 子程序</a></li>
+<li><a href="#54-%E6%95%B0%E6%8D%AE%E5%BA%93">5.4 数据库</a></li>
+<li><a href="#55-%E5%9C%86%E5%BD%A2">5.5 圆形</a></li>
+<li><a href="#56-%E4%B8%8D%E5%AF%B9%E7%A7%B0%E8%8A%82%E7%82%B9">5.6 不对称节点</a></li>
+<li><a href="#57-%E8%8F%B1%E5%BD%A2">5.7 菱形</a></li>
+<li><a href="#58-%E5%85%AD%E8%BE%B9%E5%BD%A2">5.8 六边形</a></li>
+<li><a href="#59-%E5%B9%B3%E8%A1%8C%E5%9B%9B%E8%BE%B9%E5%BD%A2">5.9 平行四边形</a></li>
+<li><a href="#510-%E6%A2%AF%E5%BD%A2">5.10 梯形</a></li>
+<li><a href="#511-%E5%8F%8C%E5%9C%86">5.11 双圆</a></li>
+</ul>
+</li>
+<li><a href="#6-%E8%8A%82%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E6%8E%A5">6 节点之间的连接</a>
+<ul>
+<li><a href="#61-%E7%AE%AD%E5%A4%B4%E7%BA%BF">6.1 箭头线</a></li>
+<li><a href="#62-%E6%97%A0%E7%AE%AD%E5%A4%B4%E7%9A%84%E9%93%BE%E6%8E%A5">6.2 无箭头的链接</a></li>
+<li><a href="#63-%E5%B8%A6%E6%96%87%E6%9C%AC%E7%9A%84%E9%93%BE%E6%8E%A5">6.3 带文本的链接</a></li>
+<li><a href="#64-%E5%B8%A6%E6%96%87%E6%9C%AC%E7%9A%84%E7%AE%AD%E5%A4%B4">6.4 带文本的箭头</a></li>
+<li><a href="#65-%E8%99%9A%E7%BA%BF%E7%AE%AD%E5%A4%B4">6.5 虚线箭头</a></li>
+<li><a href="#66-%E5%B8%A6%E6%96%87%E6%9C%AC%E7%9A%84%E8%99%9A%E7%BA%BF">6.6 带文本的虚线</a></li>
+<li><a href="#67-%E7%B2%97%E4%BD%93%E9%93%BE%E6%8E%A5">6.7 粗体链接</a></li>
+<li><a href="#68-%E7%B2%97%E4%BD%93%E5%B8%A6%E6%96%87%E6%9C%AC">6.8 粗体带文本</a></li>
+<li><a href="#69-%E8%BF%9E%E6%8E%A5%E9%93%BE">6.9 连接链</a></li>
+<li><a href="#610-%E6%96%B0%E7%AE%AD%E5%A4%B4">6.10 新箭头</a></li>
+<li><a href="#611-%E5%8F%8C%E5%90%91%E7%AE%AD%E5%A4%B4">6.11 双向箭头</a></li>
+<li><a href="#612-%E6%B7%BB%E5%8A%A0%E6%9B%B4%E5%A4%9A%E7%9A%84%E7%9F%AD%E5%88%92%E7%BA%BF%E8%AE%A9%E9%93%BE%E6%8E%A5%E6%9B%B4%E9%95%BF">6.12 添加更多的短划线让链接更长</a></li>
+</ul>
+</li>
+<li><a href="#7-%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">7 特殊字符</a></li>
+<li><a href="#8-%E5%AD%90%E5%9B%BE">8 子图</a>
+<ul>
+<li><a href="#82-%E5%AD%90%E5%9B%BE%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E6%8E%A5">8.2 子图之间的连接</a></li>
+<li><a href="#83-%E5%AD%90%E5%9B%BE%E7%9A%84%E6%96%B9%E5%90%91">8.3 子图的方向</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-节点">1 节点</h2>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  这是一个描述性文本
+</span></span></code></pre></div><h2 id="2-文本节点">2 文本节点</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[这是一个文本节点]
+</span></span></code></pre></div><h2 id="3-图">3 图</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>graph TD
+</span></span><span style="display:flex;"><span>  start --&gt; stop
+</span></span></code></pre></div><h2 id="4-方向">4 方向</h2>
+<ul>
+<li>TB</li>
+<li>BT</li>
+<li>RL</li>
+<li>LR</li>
+</ul>
+<h2 id="5-节点形状">5 节点形状</h2>
+<h3 id="51-圆角矩形">5.1 圆角矩形</h3>
+<p>开始或结束。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id(圆角矩形)
+</span></span></code></pre></div><h3 id="52-体育场节点">5.2 体育场节点</h3>
+<p>开始或结束。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id([体育场节点])
+</span></span></code></pre></div><h3 id="53-子程序">5.3 子程序</h3>
+<p>已经定义过的程序、流程，不在图表中详细列出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[[子程序]]
+</span></span></code></pre></div><h3 id="54-数据库">5.4 数据库</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[(数据库)]
+</span></span></code></pre></div><h3 id="55-圆形">5.5 圆形</h3>
+<p>表示同一页内流程图引用另一个流程图，页内引用。</p>
+<p>流程图之间的接口。</p>
+<p>圈内有一个字母或数字。在相互联系的流程图内，连接符号使用同样的字母或数字，以表示各个过程是如何连接的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id((1)) --- id2((1))
+</span></span></code></pre></div><h3 id="56-不对称节点">5.6 不对称节点</h3>
+<p>文档输入、输出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id&gt;不对称节点]
+</span></span></code></pre></div><h3 id="57-菱形">5.7 菱形</h3>
+<p>分支判断。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id1{菱形}
+</span></span></code></pre></div><h3 id="58-六边形">5.8 六边形</h3>
+<p>表示初始化或预处理的过程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id{{六边形}}
+</span></span></code></pre></div><h3 id="59-平行四边形">5.9 平行四边形</h3>
+<p>数据输入或输出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[/平行四边形/]
+</span></span><span style="display:flex;"><span>  id2[\平行四边形\]
+</span></span></code></pre></div><h3 id="510-梯形">5.10 梯形</h3>
+<p>表示手动操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[/梯形\]
+</span></span><span style="display:flex;"><span>  id2[\梯形/]
+</span></span></code></pre></div><h3 id="511-双圆">5.11 双圆</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id(((双圆)))
+</span></span></code></pre></div><h2 id="6-节点之间的连接">6 节点之间的连接</h2>
+<h3 id="61-箭头线">6.1 箭头线</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A --&gt; B
+</span></span></code></pre></div><h3 id="62-无箭头的链接">6.2 无箭头的链接</h3>
+<p>批注连接线。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A --- B
+</span></span></code></pre></div><h3 id="63-带文本的链接">6.3 带文本的链接</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -- 文本 --- B
+</span></span></code></pre></div><h3 id="64-带文本的箭头">6.4 带文本的箭头</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -- 文本 --&gt; B
+</span></span></code></pre></div><h3 id="65-虚线箭头">6.5 虚线箭头</h3>
+<p>流程的可选分支。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -.-&gt; B
+</span></span></code></pre></div><h3 id="66-带文本的虚线">6.6 带文本的虚线</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -. 文本 .-&gt; B
+</span></span></code></pre></div><h3 id="67-粗体链接">6.7 粗体链接</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A ==&gt; B
+</span></span></code></pre></div><h3 id="68-粗体带文本">6.8 粗体带文本</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A == 文本 ==&gt; B
+</span></span></code></pre></div><h3 id="69-连接链">6.9 连接链</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -- text --&gt; B --&gt; C
+</span></span><span style="display:flex;"><span>  D --&gt; E &amp; F --&gt; G
+</span></span><span style="display:flex;"><span>  I &amp; J --&gt; K &amp; L
+</span></span><span style="display:flex;"><span>  W --&gt; Y
+</span></span><span style="display:flex;"><span>  W --&gt; Z
+</span></span><span style="display:flex;"><span>  X --&gt; Y
+</span></span><span style="display:flex;"><span>  X --&gt; Z
+</span></span></code></pre></div><h3 id="610-新箭头">6.10 新箭头</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A --o B --&gt; C
+</span></span></code></pre></div><h3 id="611-双向箭头">6.11 双向箭头</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A o--o B
+</span></span><span style="display:flex;"><span>  B &lt;--&gt; C
+</span></span><span style="display:flex;"><span>  C x--x D
+</span></span></code></pre></div><h3 id="612-添加更多的短划线让链接更长">6.12 添加更多的短划线让链接更长</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart TB
+</span></span><span style="display:flex;"><span>  A[开始] --&gt; B{是吗}
+</span></span><span style="display:flex;"><span>  B -- yes--&gt; C[ok]
+</span></span><span style="display:flex;"><span>  C --&gt; D[反思] --&gt; B
+</span></span><span style="display:flex;"><span>  B -- No ---&gt; E[结束]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart TB
+</span></span><span style="display:flex;"><span>  A[开始] --&gt; B{是吗}
+</span></span><span style="display:flex;"><span>  B -- yes--&gt; C[ok]
+</span></span><span style="display:flex;"><span>  C --&gt; D[反思] --&gt; B
+</span></span><span style="display:flex;"><span>  B -- No --&gt; E[结束]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  A -.-&gt; B
+</span></span><span style="display:flex;"><span>  B -..-&gt; C -...-&gt; D
+</span></span><span style="display:flex;"><span>  E --- F ---- G ----- H
+</span></span></code></pre></div><h2 id="7-特殊字符">7 特殊字符</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  id[&#34;现在可以打出？、：”了！&#34;]
+</span></span></code></pre></div><h2 id="8-子图">8 子图</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart TB
+</span></span><span style="display:flex;"><span>  subgraph one
+</span></span><span style="display:flex;"><span>    a1 --&gt; a2
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>  subgraph two
+</span></span><span style="display:flex;"><span>    b1 --&gt; b2
+</span></span><span style="display:flex;"><span>  end
+</span></span><span style="display:flex;"><span>  subgraph three
+</span></span><span style="display:flex;"><span>    c1 --&gt; a2 &amp; c2
+</span></span><span style="display:flex;"><span>  end
+</span></span></code></pre></div><h3 id="82-子图之间的连接">8.2 子图之间的连接</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart TB
+</span></span><span style="display:flex;"><span>  subgraph one
+</span></span><span style="display:flex;"><span>    A --&gt; B
+</span></span><span style="display:flex;"><span>    end
+</span></span><span style="display:flex;"><span>  subgraph two
+</span></span><span style="display:flex;"><span>    C --&gt; D
+</span></span><span style="display:flex;"><span>    end
+</span></span><span style="display:flex;"><span>  subgraph three
+</span></span><span style="display:flex;"><span>    E --&gt; F
+</span></span><span style="display:flex;"><span>    end
+</span></span><span style="display:flex;"><span>  one --&gt; two
+</span></span></code></pre></div><h3 id="83-子图的方向">8.3 子图的方向</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>flowchart LR
+</span></span><span style="display:flex;"><span>  subgraph TOP
+</span></span><span style="display:flex;"><span>    direction TB
+</span></span><span style="display:flex;"><span>    subgraph B1
+</span></span><span style="display:flex;"><span>      direction RL
+</span></span><span style="display:flex;"><span>      i1 --&gt; f1
+</span></span><span style="display:flex;"><span>      end
+</span></span><span style="display:flex;"><span>    subgraph B2
+</span></span><span style="display:flex;"><span>      direction BT
+</span></span><span style="display:flex;"><span>      i2 --&gt; f2
+</span></span><span style="display:flex;"><span>      end
+</span></span><span style="display:flex;"><span>    B1 --&gt; B2
+</span></span><span style="display:flex;"><span>    end
+</span></span><span style="display:flex;"><span>  A --&gt; TOP --&gt; B
+</span></span></code></pre></div><hr>
+<p><a href="https://mermaid.js.org/syntax/flowchart.html#styling-and-classes">mermaid 官方文档</a></p>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/markdown">markdown</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

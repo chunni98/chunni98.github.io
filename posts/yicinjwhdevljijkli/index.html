@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>一次难忘的装机经历 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="国庆期间，我和小花组装了第一台属于我们的 PC。" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="一次难忘的装机经历" />
+<meta property="og:description" content="国庆期间，我和小花组装了第一台属于我们的 PC。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/yicinjwhdevljijkli/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-10T21:15:04+08:00" />
+<meta property="article:modified_time" content="2022-10-10T21:15:04+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="一次难忘的装机经历"/>
+<meta name="twitter:description" content="国庆期间，我和小花组装了第一台属于我们的 PC。"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">一次难忘的装机经历</h1>
+			<div class="meta">Posted on Oct 10, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			装机的过程很流畅，没有出现什么差池，一次点亮，反倒是装系统和生产力软件过程大费周章。（windows11 和 wsl2 的安装与配置）
+		</div>
+
+		<section class="body">
+			<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#0-%E5%87%86%E5%A4%87">0 准备</a></li>
+<li><a href="#1-%E8%A3%85%E6%9C%BA">1 装机</a></li>
+<li><a href="#2-%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">2 安装操作系统</a>
+<ul>
+<li><a href="#21-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%89%E6%8B%A9">2.1 操作系统的选择</a></li>
+<li><a href="#22-%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B">2.2 安装过程</a></li>
+</ul>
+</li>
+<li><a href="#3-%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-wsl2">3 配置操作系统以及安装配置 wsl2</a>
+<ul>
+<li><a href="#31-%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">3.1 配置操作系统</a></li>
+<li><a href="#32-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-wsl2">3.2 安装配置 wsl2</a></li>
+</ul>
+</li>
+<li><a href="#4-%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85">4 其他软件的安装</a></li>
+<li><a href="#5-%E6%80%BB%E7%BB%93">5 总结</a></li>
+</ul>
+<h2 id="前言">前言</h2>
+<p>我的 Laptop 被我拆坏了，小花的 Laptop 实在难用，win10 都装不了，装了个 ubuntu 勉强能用，但是老是死机，国庆假期没事做，心血来潮，就组了一台自己的 PC。</p>
+<h2 id="0-准备">0 准备</h2>
+<p><strong>CPU：</strong> <a href="https://www.intel.cn/content/www/cn/zh/products/sku/134591/intel-core-i712700-processor-25m-cache-up-to-4-90-ghz/specifications.html">intel i712700</a>，8（性能核） + 4（能效核） 核，20 线程，集成显卡：英特尔® 超核芯显卡 770</p>
+<p><strong>主板：</strong> <a href="https://www.asus.com.cn/Motherboards-Components/Motherboards/TUF-Gaming/TUF-GAMING-B660M-PLUS-WIFI-D4/">Asus TUF-GAMING-B660M-PLUS-WIFI-D4</a></p>
+<p><strong>显示器：</strong> <a href="https://www.envision.cn/envision/Portal/ProductInfo?id=2234&amp;ParentSym=PRODUCT&amp;Sym=E27Q56#2">ENVISION E27Q56</a></p>
+<p><strong>电源：</strong> <a href="http://coolermaster.com.cn/pages/GXGold/550.aspx">CoolerMaster GX 550W</a>，GOLD、全模组</p>
+<p><strong>机箱：</strong> <a href="https://www.jonsbo.com/products/D30heise.html">Jonsbo D30 黑色</a></p>
+<p><strong>音箱：</strong> <a href="https://item.lenovo.com.cn/product/1009303.html">Lenovo USB 长条音箱 BMS09</a></p>
+<p><strong>SSD：</strong> <a href="https://www.kingston.com.cn/cn/ssd/nv2-nvme-pcie-ssd">Kingston NV2 PCIe 4.0 NVMe SSD</a>，500 GB</p>
+<p><strong>内存条：</strong> <a href="https://www.kingston.com.cn/cn/memory/gaming/kingston-fury-beast-ddr4-memory">Kingston FURY Beast DDR4</a>，16 GB * 2， 3200 频</p>
+<p><strong>散热器：</strong> <a href="http://www.thermalright.com/product/peerless-assassin-120/">Thermalright Peerless Assassin 120</a></p>
+<p><strong>机箱风扇：</strong> <a href="http://www.idcooling.com.cn/Product/detail/id/213/name/XF-12025-SD-K">ID-COOLING XF-12025-SD-K 无光版单体风扇</a> * 4</p>
+<p><strong>HDD：</strong> <a href="http://www.toshiba.com.cn/">TOSHIBA</a>、<a href="https://www.seagate.com/cn/zh/">SEAGATE</a>，拆自旧笔记本，各 500 GB</p>
+<p><strong>其他：</strong> 网线一根、桌子一个、椅子一个。</p>
+<p>装机配置参考<a href="https://www.zhihu.com">知乎</a>专栏：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/217881116">2022年10月装机电脑配置推荐</a></p>
+<p><img src="/img/yicinjwhdevljijkli/01.jpg" alt="01"></p>
+<p><img src="/img/yicinjwhdevljijkli/02.jpg" alt="02"></p>
+<h2 id="1-装机">1 装机</h2>
+<p>第一次装机，在网上做了很多功课，主要参考了 <a href="https://www.bilibili.com">bilibili</a> 的两个视频教程：</p>
+<p><a href="https://space.bilibili.com/151155077">天才赵德柱</a> ：<a href="https://www.bilibili.com/video/BV1UU4y1c74o/?spm_id_from=333.337.search-card.all.click&amp;vd_source=cfa43071210a0b811239d619ff31c952">装机不求人之：史上最详细传说级装机教程，零基础新手一站式装机攻略。内含AMD、Intel双平台DIY组装教程。</a></p>
+<p><a href="https://space.bilibili.com/14871346">硬件茶谈</a> ： <a href="https://www.bilibili.com/video/BV1jE411e7hw/?spm_id_from=333.337.search-card.all.click&amp;vd_source=cfa43071210a0b811239d619ff31c952">【装机教程】这可能是你能在网上找到最详细的装机教程</a></p>
+<p>装机过程中反反复复看视频教程，反反复复看说明书，生怕有失误，结果就是从中午装机装到晚上。最后一次点亮，还是蛮开心的。</p>
+<p><img src="/img/yicinjwhdevljijkli/03.jpg" alt="03"></p>
+<p><img src="/img/yicinjwhdevljijkli/04.jpg" alt="04"></p>
+<h2 id="2-安装操作系统">2 安装操作系统</h2>
+<p>我本以为装系统是最简单的的一步，没成想，装系统反而是我花了最多时间的步骤。</p>
+<h3 id="21-操作系统的选择">2.1 操作系统的选择</h3>
+<p>当然是 windows 11 啦，而且我买的 CPU 有大小核，听说 win10 和 Linux 对 12 代 CPU 的大小核的调度支持不好，所以最佳搭配就是 win11 + 12 代 intel。</p>
+<h3 id="22-安装过程">2.2 安装过程</h3>
+<p>我此前装机一直使用的是 <a href="https://rufus.ie/zh/">rufus</a>，可是这次我没有 windows 操作系统，只有一个 ubuntu 系统，而 rufus 没有 linux 版本，所以我选择了 <a href="https://www.ventoy.net/cn/index.html">ventoy</a>。</p>
+<p>麻烦来了，启动开机后显示找不到设备驱动程序：</p>
+<p><img src="/img/yicinjwhdevljijkli/05.jpg" alt="05"></p>
+<p>后来找到了原因，是因为 intel 的快速启动技术，于是我打开了 BIOS 上的 intel 快速存储技术，照着 Asus 的教程，安装了 <a href="https://www.intel.cn/content/www/cn/zh/download/15667/intel-rapid-storage-technology-intel-rst-user-interface-and-driver.html">IRST 驱动程序</a>。</p>
+<p><a href="https://www.asus.com.cn/support/FAQ/1044458/">[Notebook] 疑难解答 - 如何解决安装Windows 11/10时找不到磁盘驱动器</a></p>
+<p><img src="/img/yicinjwhdevljijkli/06.jpg" alt="06"></p>
+<p>可是新的问题又出现了，驱动安装不上，我从 Asus 给的链接下载了一个，装不上，又去 intel 官网下载了一个，还是装不上。我有点恼火了，怀疑可能是启动盘的问题。我只能在 Ubuntu 里安装了个 windows8 虚拟机，在虚拟机里用微软的 <a href="https://www.microsoft.com/zh-cn/software-download/windows11">mediacreationtool.exe</a> 制作了启动盘。启动后，终于装上驱动了！</p>
+<p><img src="/img/yicinjwhdevljijkli/07.jpg" alt="07"></p>
+<p><img src="/img/yicinjwhdevljijkli/08.jpg" alt="08"></p>
+<p>系统安装成功！</p>
+<p><img src="/img/yicinjwhdevljijkli/09.jpg" alt="09"></p>
+<p>可惜第二天我重新打开机器后，坏了，直接就进入了 BIOS，显示找不到启动盘，这下好了，昨天白忙活了。</p>
+<p>又是一顿查资料，试了几个小时，没办法解决，又去找了两次华硕客服。结果还是无功而返，最终只能选择重装系统了。原因初步估计是因为我打开了 BIOS 上的 intel 快速存储技术，之前下载 <a href="https://www.intel.cn/content/www/cn/zh/download/15667/intel-rapid-storage-technology-intel-rst-user-interface-and-driver.html">IRST 驱动程序</a> 的时候，有看到 intel 的声明：</p>
+<blockquote>
+<p>详细说明</p>
+<p>英特尔® 快速存储技术和英特尔® 傲腾™内存应用程序已停产。请在 此处 查看更多信息。</p>
+</blockquote>
+<blockquote>
+<p>注意： 英特尔建议最终用户使用其系统制造商/提供商提供的、或通过 Windows 更新提供的驱动程序更新，以消除加载非自定义驱动程序所造成的潜在影响。系统制造商定期对英特尔通用驱动程序进行定制，以满足其特定系统设计的需求。在这种情况下，不建议使用英特尔通用驱动程序更新。</p>
+</blockquote>
+<p>可是当时没放在心上，一心只想快点安装是系统，结果吃了大亏。在网上搜索 intel 快速存储技术相关讨论，了解到这是个过时的技术，使用 SSD 加速 HDD。我使用纯固态硬盘作为系统盘，不需要开启intel 快速存储技术。于是我又把 BIOS 上的 intel 快速存储技术关掉了。</p>
+<p>要重装系统了，可是我前一天装好系统后，我就把硬盘里的 Ubuntu 和 启动盘给格式化了，家里也没有可用的电脑。倒霉，只能出去网吧里自己重新做一个系统盘了，这次网吧之行也是一路坎坷，后来还发现因为在网吧里登陆过邮箱账号，结果当天就被泰国佬把我的 Steam 账号给盗了，真是让我欲哭无泪。</p>
+<p>说会正题，我在网吧一开始使用的是微软的 <a href="https://www.microsoft.com/zh-cn/software-download/windows11">mediacreationtool.exe</a>，结果发现速度实在太慢了。好吧，只能走野路子，在 <a href="https://next.itellyou.cn">msdn</a> 下载了 win11 镜像，使用 <a href="https://rufus.ie/zh/">rufus</a> 做了启动盘。回家使用 <a href="https://rufus.ie/zh/">rufus</a> 安装后再自行下载 <a href="https://www.microsoft.com/zh-cn/software-download/windows11">mediacreationtool.exe</a> 重新制作启动盘再次安装，虽然麻烦了点，但是还是要安全第一。</p>
+<p>安装成功后重启若干次，使用 <a href="http://www.tbtool.cn/">图吧工具箱</a> 测试后，没有出现问题。装系统的工作算是彻底完成了。</p>
+<h2 id="3-配置操作系统以及安装配置-wsl2">3 配置操作系统以及安装配置 wsl2</h2>
+<h3 id="31-配置操作系统">3.1 配置操作系统</h3>
+<p>对系统做一些简单的配置：</p>
+<ul>
+<li>在 Asus 官网下载并安装驱动。</li>
+<li>关闭“快速启动”设置。使用 SSD 作为系统盘，不太需要这个功能。</li>
+<li>使用 <code>powercfg -h off</code> 命令关闭休眠功能。（<code>powercfg /a</code> 列出系统可用的睡眠状态。）</li>
+</ul>
+<h3 id="32-安装配置-wsl2">3.2 安装配置 wsl2</h3>
+<p><strong>安装方法一</strong></p>
+<p>这是我一开始的安装方法，步骤如下：</p>
+<ul>
+<li>启用 windows 功能：Windows 虚拟机监控程序平台、适用于 Linux 的 Windows 子系统、虚拟机平台，重启电脑。</li>
+<li>打开微软商店（Microsoft Store）搜索“Ubuntu”，下载安装没有版本号的 Ubuntu。这是 Ubuntu 首次发布后的最新 LTS 版本。它将保持 Ubuntu 22.04 直到 Ubuntu 的第一个版本，例如 22.04.1。</li>
+<li>配置 Ubuntu。（这一步出现问题，Ubunt WSL 打开后一片空白，没有选项，就像下面这样：</li>
+</ul>
+<p><img src="/img/yicinjwhdevljijkli/10.jpg" alt="10"></p>
+<p>难搞，最终在 Github 上找到了解决方案，原因似乎是一些字体或者配置文件缺失，强制使用 text ui 打开即可。</p>
+<p>原文在这儿：<a href="https://github.com/microsoft/WSL/issues/8525">Ubuntu 22.04 WSL2 opens to GUI with blank screen #8525</a></p>
+<p>步骤如下：</p>
+<ol>
+<li>
+<p>从微软商店安装 Ununtu。</p>
+</li>
+<li>
+<p>启动 Ubuntu 22.04.</p>
+</li>
+<li>
+<p>当显示空白的 “ubuntu WSL” 窗口时，关闭窗口。</p>
+</li>
+<li>
+<p>打开 <code>PowerShell</code> 运行下面的命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> wsl --shutdown
+</span></span><span style="display:flex;"><span> wsl --unregister Ubuntu
+</span></span><span style="display:flex;"><span> ubuntu.exe --ui<span style="color:#f92672">=</span>tui
+</span></span></code></pre></div></li>
+</ol>
+<p>现在可以进入 text ui 设置 Ubuntu 了。</p>
+<p><img src="/img/yicinjwhdevljijkli/11.jpg" alt="11"></p>
+<p><img src="/img/yicinjwhdevljijkli/12.jpg" alt="12"></p>
+<p>进入界面后，需要创建用户名和密码，创建完后重启 Ubuntu。</p>
+<p><img src="/img/yicinjwhdevljijkli/13.jpg" alt="13"></p>
+<p><img src="/img/yicinjwhdevljijkli/14.jpg" alt="14"></p>
+<p>安装完成后，使用 <code>sudo apt update</code> 和 <code>sudo apt upgrade</code> 更新系统。</p>
+<p><strong>踩坑：</strong></p>
+<ul>
+<li><strong>设置好 windows 功能，重启电脑后，使用 <code>wsl install</code> 无法正常安装 Ubuntu，按照建议，使用 <code>wsl --update</code> 命令更新内核后，成功，使用 <code>wsl --status</code> 可查看状态。</strong></li>
+<li><strong>卸载 Ubuntu 后，使用 <code>wsl -l</code> 仍能看到。需要使用 <code>wsl --unregister Ubuntu-22.04</code> 注销掉子系统。</strong></li>
+</ul>
+<p>感谢 <a href="https://github.com/gnsmrky">gnsmrky</a> ！我也很庆幸我上学时有好好学过英语，能大概看懂 <a href="https://github.com/gnsmrky">gnsmrky</a> 在说什么。</p>
+<p>安装方法参考：</p>
+<ul>
+<li><a href="https://bbs.huaweicloud.com/blogs/350759">Win11使用WSL2安装Ubuntu22.04并启用GUI应用</a></li>
+<li><a href="https://blog.51cto.com/u_15309736/5388067">超详细Windows10/Windows11 子系统（WSL2）安装Ubuntu20.04（带桌面环境）</a></li>
+</ul>
+<p><strong>安装方法二</strong></p>
+<p>后来我重装系统后，没有使用方法一，而是参考了微软的官方文档：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">使用 WSL 在 Windows 上安装 Linux</a></p>
+<p>具体操作如下（<code>wsl --install</code> 默认安装 <code>Ubuntu</code>）：</p>
+<p><img src="/img/yicinjwhdevljijkli/15.jpg" alt="15"></p>
+<p>安装好后就可以在 Windows Termianl 里打开 Ubuntu 了。</p>
+<p><img src="/img/yicinjwhdevljijkli/16.jpg" alt="16"></p>
+<p><strong>常用 wsl 命令</strong></p>
+<ul>
+<li><code>wsl --install</code> 安装适用于 Linux 发行版的 Windows 子系统。</li>
+<li><code>wsl --help</code> 显示帮助信息。</li>
+<li><code>wsl --install -d &lt;发行版&gt;</code> 安装指定的发行版。</li>
+<li><code>wsl --shutdown</code> 立即终止所有正在运行的发行版和 wsl2。</li>
+<li><code>wsl --status</code> 显示子系统的状态。</li>
+<li><code>wsl --unregister &lt;发行版&gt;</code> 注销子系统并删除根文件系统。</li>
+<li><code>wsl --update</code> 更新子系统。</li>
+<li><code>wsl -v</code> 查看详细信息。</li>
+<li><code>wsl --export Ubuntu E:\Backups\wsl2\Ubuntu20.04LTS.tar</code> 导出 wsl2。</li>
+</ul>
+<p>更多可见微软官方文档：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands?source=recommendations">WSL 的基本命令</a></p>
+<p><strong>配置 Ubuntu</strong></p>
+<ol>
+<li>使用清华大学 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">Ubutnu 镜像</a>：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo sed -i <span style="color:#e6db74">&#34;s@http://.*archive.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g&#34;</span> /etc/apt/sources.list
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#e6db74">&#34;s@http://.*security.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g&#34;</span> /etc/apt/sources.list
+</span></span></code></pre></div></li>
+<li><code>sudo apt update</code> 、<code>sudo apt upgrade</code></li>
+<li>安装 <code>zsh</code>。</li>
+<li>下载安装 <code>oh-my-zsh</code>。</li>
+<li>下载插件：<code>zsh-syntax-highlighting</code> 、<code>zsh-autosuggestions</code>。</li>
+<li>安装 <code>hugo</code>。</li>
+</ol>
+<p>安装出现网络问题，我选择了国内镜像安装：</p>
+<ul>
+<li><a href="https://gitee.com/mirrors/oh-my-zsh">Gitee 极速下载 / oh-my-zsh</a></li>
+<li><a href="https://gitee.com/Annihilater/zsh-syntax-highlighting">Annihilater / zsh-syntax-highlighting</a></li>
+<li><a href="https://gitee.com/zsh-users/zsh-autosuggestions">zsh-users / zsh-autosuggestions</a></li>
+</ul>
+<p>安装 <code>oh-my-zsh</code> 时需要修改一下 <code>install.sh</code> ：</p>
+<p><img src="/img/yicinjwhdevljijkli/17.jpg" alt="17"></p>
+<h2 id="4-其他软件的安装">4 其他软件的安装</h2>
+<ul>
+<li><a href="https://code.visualstudio.com/">MiscroSoft Visual Studio Code</a></li>
+<li><a href="https://www.google.cn/intl/zh-CN/chrome/">Google Chrome</a></li>
+<li><a href="https://www.jianguoyun.com/">坚果云</a></li>
+<li><a href="https://weixin.qq.com/">微信</a></li>
+<li><a href="https://zh.snipaste.com/">Snipaste</a></li>
+<li><a href="https://www.wps.cn/">WPS</a></li>
+<li><a href="http://pan.baidu.com/">百度网盘</a></li>
+</ul>
+<h2 id="5-总结">5 总结</h2>
+<p>人生第一次装机，虽然遇到了不少问题，还是令人兴奋啊！以后要好好使用，好好学习，天天向上！</p>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

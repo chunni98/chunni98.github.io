@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>随笔 on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 随笔 on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Mon, 10 Oct 2022 21:15:04 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一次难忘的装机经历</title>
+      <link>https://chunni98.github.io/posts/yicinjwhdevljijkli/</link>
+      <pubDate>Mon, 10 Oct 2022 21:15:04 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/yicinjwhdevljijkli/</guid>
+      <description>前言 0 准备 1 装机 2 安装操作系统 2.1 操作系统的选择 2.2 安装过程 3 配置操作系统以及安装配置 wsl2 3.1 配置操作系统 3.2 安装配置 wsl2 4 其他软件的安装 5 总结 前言 我的 Laptop 被我拆坏了，小花的 Laptop 实在难用，win10 都装不了，装了个 ubuntu 勉强能用，但是老是死机，国庆假期没事做，心血来潮，就组了一台自己的 PC。
+0 准备 CPU： intel i712700，8（性能核） + 4（能效核） 核，20 线程，集成显卡：英特尔® 超核芯显卡 770
+主板： Asus TUF-GAMING-B660M-PLUS-WIFI-D4
+显示器： ENVISION E27Q56
+电源： CoolerMaster GX 550W，GOLD、全模组
+机箱： Jonsbo D30 黑色
+音箱： Lenovo USB 长条音箱 BMS09
+SSD： Kingston NV2 PCIe 4.0 NVMe SSD，500 GB</description>
+    </item>
+    
+    <item>
+      <title>开始学习 Python 和 Flutter </title>
+      <link>https://chunni98.github.io/posts/learn-python-and-flutter/</link>
+      <pubDate>Thu, 29 Sep 2022 13:36:23 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/learn-python-and-flutter/</guid>
+      <description>本月初，一个小学同学（现在是中学信息技术老师）求助我为她做一个 Python 项目，她想拿去和学生一起参加学校的编程比赛，自从她当上中学老师后每年都要来问我一遍，至今已经是第三次了。但此前我不会 Python，我也爱莫能助。不过这次她来问我，我有点兴趣了，我最近被生活压得喘不过气来，正在寻找改变的途径，我就想，借着这个契机，把 Python 学了吧。我虽然现在并没有从事程序开发相关的工作，但是我从来没放弃过对计算机业界的关注，据我的了解，Python 目前已经是最流行的编程语言。
+截至写这篇文章的当天，Tiobe 排行榜上 Pyhton 仍然以 15.74% 的市场份额高居第一，并且增长率高达 4.07% ：
+无论是作为主要开发语言还是辅助工具，Python 都完全可以胜任，在 2022 年，作为一个开发者，去学习 Python 是百利而无一害的，无论是做 Web 开发还是数据分析、编写脚本，Python 都能胜任，而且可以做得很好。
+我不想盲目学习，学习之后我得用 Python 做个东西出来，这样才好把握自己学习的方向。我参考了 JetBrains 的2021 年开发者生态系统现状：
+我打算用 Python 做一个应用，Pyhton 作为后台，框架选择 FastApi（Django 实在太笨重了，不想学），前端的话，就选择 Flutter ，我实在不喜欢用 Javascript，我喜欢 Flutter 的口号： “为所有屏幕创造精彩”。只不过使用 Flutter 的话也是需要从头学习，还好现在 Flutter 的生态好了很多了，学习资源也不算难找。同时学习两个技术，比较着学速度应该快点。我选择的都是比较新的技术，毕竟只是个人小项目，新框架做起来更快，更有新鲜感和成就感，当然，某种程度上也更有挑战性（生态不成熟）。
+道阻且长，还需努力啊。学习 Python 的过程中，脑袋里有很多想法，我觉得都很有趣，我会努力实现它们。
+留言或评论请使用 Github Issues。</description>
+    </item>
+    
+  </channel>
+</rss>

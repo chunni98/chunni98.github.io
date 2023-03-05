@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/markdown/</link>
+    <description>Recent content in markdown on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Tue, 21 Feb 2023 21:47:47 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Write Mermaid</title>
+      <link>https://chunni98.github.io/posts/how-to-write-mermaid/</link>
+      <pubDate>Tue, 21 Feb 2023 21:47:47 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-mermaid/</guid>
+      <description>1 节点 2 文本节点 3 图 4 方向 5 节点形状 5.1 圆角矩形 5.2 体育场节点 5.3 子程序 5.4 数据库 5.5 圆形 5.6 不对称节点 5.7 菱形 5.8 六边形 5.9 平行四边形 5.10 梯形 5.11 双圆 6 节点之间的连接 6.1 箭头线 6.2 无箭头的链接 6.3 带文本的链接 6.4 带文本的箭头 6.5 虚线箭头 6.6 带文本的虚线 6.7 粗体链接 6.8 粗体带文本 6.9 连接链 6.10 新箭头 6.11 双向箭头 6.12 添加更多的短划线让链接更长 7 特殊字符 8 子图 8.2 子图之间的连接 8.3 子图的方向 1 节点 flowchart LR 这是一个描述性文本 2 文本节点 flowchart LR id[这是一个文本节点] 3 图 graph TD start --&amp;gt; stop 4 方向 TB BT RL LR 5 节点形状 5.</description>
+    </item>
+    
+    <item>
+      <title>Markdown 语法测试</title>
+      <link>https://chunni98.github.io/posts/markdown-syntax/</link>
+      <pubDate>Sun, 29 May 2022 13:00:49 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/markdown-syntax/</guid>
+      <description>前言 1 基本语法 1.1 标题 1.2 段落 1.3 换行 1.4 强调 1.5 引用 1.6 列表 1.7 代码 1.8 分割线 1.9 链接 1.10 图片 1.11 转义字符 1.12 内嵌 HTML 标签 2 扩展语法 2.1 表格 2.2 脚注 2.3 标题编号 2.4 todo list 2.5 其他 前言 前前后后搭建博客也有很多次了，静态网站生成器用过 hexo，vuepress，hugo，还是觉得 hugo 最好用：速度快、安装方便、跨平台、热更新，最重要的是使用起来比较简单。
+之前使用 hugo 搭建博客，主题用过 even ，但感觉用的人太多了，用过时间比较久的是 loveit ，是个很不错的主题，中文文档也很全，使用起来很方便，但是现在我想要更简洁一点的主题，王垠 的博客主题我就觉得很不错，还有偶然间发现的无求备斋笔记 ，本来这次搭建博客是想用 无求备斋笔记 的样式，可是这个主题是基于 jekyll 的，我尝试用了用 jekyll ，感觉不太好用，不如 hugo，等以后有时间研究下怎么写主题，然后把它转换成 hugo 的模板吧，现在懒得折腾。在 github 上找了两个比较喜欢的主题：Fuji 和 Archie，最终我选择了Archie，因为它看起来更简洁一些。</description>
+    </item>
+    
+  </channel>
+</rss>

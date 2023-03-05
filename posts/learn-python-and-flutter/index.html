@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>开始学习 Python 和 Flutter  - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="写写关于自己最近在自学 Pyhton 和 Flutter 过程中的感想。" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="开始学习 Python 和 Flutter " />
+<meta property="og:description" content="写写关于自己最近在自学 Pyhton 和 Flutter 过程中的感想。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/learn-python-and-flutter/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-29T13:36:23+08:00" />
+<meta property="article:modified_time" content="2022-09-29T13:36:23+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="开始学习 Python 和 Flutter "/>
+<meta name="twitter:description" content="写写关于自己最近在自学 Pyhton 和 Flutter 过程中的感想。"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">开始学习 Python 和 Flutter </h1>
+			<div class="meta">Posted on Sep 29, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			开始学习 Python(fast api) &#43; Flutter。
+		</div>
+
+		<section class="body">
+			<p>本月初，一个小学同学（现在是中学信息技术老师）求助我为她做一个 <code>Python</code> 项目，她想拿去和学生一起参加学校的编程比赛，自从她当上中学老师后每年都要来问我一遍，至今已经是第三次了。但此前我不会 <code>Python</code>，我也爱莫能助。不过这次她来问我，我有点兴趣了，我最近被生活压得喘不过气来，正在寻找改变的途径，我就想，借着这个契机，把 <code>Python</code> 学了吧。我虽然现在并没有从事程序开发相关的工作，但是我从来没放弃过对计算机业界的关注，据我的了解，<code>Python</code> 目前已经是最流行的编程语言。</p>
+<p>截至写这篇文章的当天，<a href="https://www.tiobe.com/tiobe-index/">Tiobe</a> 排行榜上 <code>Pyhton</code> 仍然以 15.74% 的市场份额高居第一，并且增长率高达 4.07% ：</p>
+<p><img src="/img/learn-python-and-flutter/tiobe-sep.png" alt="Tiobe" title="Tiobe"></p>
+<p>无论是作为主要开发语言还是辅助工具，<code>Python</code> 都完全可以胜任，在 2022 年，作为一个开发者，去学习 <code>Python</code> 是百利而无一害的，无论是做 Web 开发还是数据分析、编写脚本，<code>Python</code> 都能胜任，而且可以做得很好。</p>
+<p>我不想盲目学习，学习之后我得用 <code>Python</code> 做个东西出来，这样才好把握自己学习的方向。我参考了 JetBrains 的<a href="https://www.jetbrains.com/zh-cn/lp/devecosystem-2021/python/">2021 年开发者生态系统现状</a>：</p>
+<p><img src="/img/learn-python-and-flutter/use-python.png" alt="use-python" title="use python"></p>
+<p>我打算用 <code>Python</code> 做一个应用，<code>Pyhton</code> 作为后台，框架选择 <code>FastApi</code>（<code>Django</code> 实在太笨重了，不想学），前端的话，就选择 <code>Flutter</code> ，我实在不喜欢用 <code>Javascript</code>，我喜欢 <code>Flutter</code> 的口号： “为所有屏幕创造精彩”。只不过使用 <code>Flutter</code> 的话也是需要从头学习，还好现在 <code>Flutter</code> 的生态好了很多了，学习资源也不算难找。同时学习两个技术，比较着学速度应该快点。我选择的都是比较新的技术，毕竟只是个人小项目，新框架做起来更快，更有新鲜感和成就感，当然，某种程度上也更有挑战性（生态不成熟）。</p>
+<p><img src="/img/learn-python-and-flutter/python-frame.png" alt="Python 框架" title="python 框架"></p>
+<p>道阻且长，还需努力啊。学习 <code>Python</code> 的过程中，脑袋里有很多想法，我觉得都很有趣，我会努力实现它们。</p>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构 on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 数据结构 on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Sun, 05 Mar 2023 22:48:06 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单通用链表 demo</title>
+      <link>https://chunni98.github.io/posts/learn-linux-list/</link>
+      <pubDate>Sun, 05 Mar 2023 22:48:06 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/learn-linux-list/</guid>
+      <description>以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：
+后续继续学习后再做补充。
+klist.h
+#ifndef _KLINK_LIST #define _KLINK_LIST /**************************************************************************** * @file : incl/klinklist.h * @brief : 通用链表 * @author : shachi * @email : shachi1758@outlook.com * @details : * @version : 0.1.0 * @history : * 2023-03-02 16:29:52 创建文件 * 2023-03-05 15:11:19 实现初始化、头插法。 ****************************************************************************/ #include &amp;lt;stdint.h&amp;gt; #include &amp;lt;stddef.h&amp;gt; /** * @brief 通用头节点 */ struct klist_head{ struct klist_head *prev; struct klist_head *next; }; /** * @brief: 通用链表初始化 * @param1: l，链表头 * * 前驱和后继都指向自己。 * */ inline void klist_init(struct klist_head *head) { head-&amp;gt;next = head; head-&amp;gt;prev = head; } /** * @brief: 头插法插入节点 * @param1: new，要插入的节点 * @param2: l，要插入的链表 * * @return: -1，插入失败 * 0，插入成功 * */ int32_t klist_add(struct klist_head *new,struct klist_head *head); /** * @brief: 删除节点。 * @param1: head，待删除的节点。 * * 删除链表上的节点，只是从链表中删除，不会释放空间。 * * @return: -1 失败 * 0 成功 */ int32_t klist_del(struct klist_head *head); #endif // _KLINK_LIST klist.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>规范 on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/%E8%A7%84%E8%8C%83/</link>
+    <description>Recent content in 规范 on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Sun, 26 Feb 2023 16:18:10 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C 简易编程规范</title>
+      <link>https://chunni98.github.io/posts/cjmyibmiggvfj/</link>
+      <pubDate>Sun, 26 Feb 2023 16:18:10 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/cjmyibmiggvfj/</guid>
+      <description>前言 1 编码 1.1 排版 1.2 命名 1.3 头文件防卫式声明 1.4 函数 1.5 其他 2 注释 2.1 条件编译 2.2 TODO 注释 2.3 文件头注释 2.4 函数注释 2.5 结构体注释 2.6 变量注释 3 参考 前言 C 语言学习之路，道阻且跻，为了不让我自己写代码时轻易迷失在指针和函数的海洋以及提高自己编程的质量和效率，我收集了一些资料，整理归纳并稍作修改，整理出这篇编程规范和注释风格，希望自己能好好遵守，以后写出越来越容易理解和阅读的代码。
+操作系统：ubuntu18.04
+编辑器：Vim 8.0
+1 编码 1.1 排版 缩进为 4 个空格。 每行不超过 80 列。 文件用UTF-8 编码。 括号采用K &amp;amp; R 风格。 逗号、分号在后面加空格。 比较操作符，赋值操作符、算术操作符、逻辑操作符、位域操作符等双目操作符的前后加空格。 取反、异或、自增、自减、取地址等单目操作符前后不加空格。 -&amp;gt;、. 前后不加空格。 if、switch、else、for、do、while 等关键字后要加一个空格。 不要在小括号里的表达式两侧加空格。 表达式换行要保持换行的一致性，操作符放行末。 1.2 命名 变量：全小写，_ 分隔。 文件：全小写，_ 分隔。 宏：全大写，_分隔。 goto 标签：和宏一致。 常量：k 开头，大小写混合。如：const int kDaysInAWeek=7。 枚举元素：与常量或宏一致：kEnumName 或 ENUM_NAME。 函数： 动作类函数使用动宾结构：add_user()。 判断型函数：is_working()。 数据型函数：get_loacal_count()。 tyepdef 自定义类型：加 _t 后缀。 静态变量：加 s_前缀。 全局变量：加 g_前缀。 bool 变量：加 b_前缀。 指针变量：加 p_ 前缀。 较短的单词可通过去掉“元音”形成缩写；较长的单词可取单词的头几个字母形成缩写，避免使人产生误解。 _ 开头的函数或变量用来命名不希望被外部调用的函数（静态函数）、特殊变量。 1.</description>
+    </item>
+    
+    <item>
+      <title>文档书写规范</title>
+      <link>https://chunni98.github.io/posts/how-to-write-document/</link>
+      <pubDate>Tue, 31 May 2022 21:59:37 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-document/</guid>
+      <description>有研究顯示，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在 34 歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。
+—— 為什麼你們就是不能加個空格呢？
+前言 1 标题 2 文本 3 段落 4 其他 参考资料 前言 我希望自己写的文章都最少能够做到：可读性高、结构良好、条理清晰、风格统一，于是在参考了一些资料后整理了一份学习笔记，就当是自己的“文档书写规范”了，供自己今后参考。
+1 标题 文档中使用标题最多不超过四级。
+三级标题下建议使用如下结构：
+**(1) xxx** **(2) xxx** **(3) xxx** (1) xxx
+(2) xxx
+(3) xxx
+避免出现孤立编号。 标题名避免重复。 目录只显示二级标题、三级标题。 2 文本 全角中文字符与半角英文字符之间，应有一个半角空格。 全角中文字符与半角阿拉伯数字之间，应有一个半角空格，半角的百分号，视同阿拉伯数字。 数字与单位之间需要增加空格。 全角标点符号不用和半角符号之间留空格。 不使用全角空格。 不连续出现两个及以上空格。 中文使用全角标点。 区分“的”、“地”、“得”。 阿拉伯数字一律使用半角形式，不得使用全角形式。 数值为千位以上，应添加千分号（半角逗号）。 货币应为阿拉伯数字，并在数字前写出货币符号，或在数字后写出货币中文名称。 中文语句的标点符号，均应该采取全角符号， 句子末尾用括号加注时，句号应在括号之外。 英文句子中，并列词语之间使用半角逗号（,）分隔。 补充说明时，使用全角圆括号（（）），括号前后不加空格。 表示时间时，应使用半角冒号（:）。 句子内部表示并列，应使用全角顿号，并列词是英语也是如此。 3 段落 段落开头不建议缩进，顶格开始即可。 引用第三方内容时，应注明出处。 不连续出现两行及以上空行。 避免“一逗到底”。 4 其他 文件名不得含有空格。 建议使用空格键而不是 tab 键对齐。 不混用 tab 和空格。 一个 tab 为四个半角空格。 文档目录可以通过各级标题自动生成。 参考资料 阮一峰-中文技术文档的写作规范</description>
+    </item>
+    
+    <item>
+      <title>Markdown 语法测试</title>
+      <link>https://chunni98.github.io/posts/markdown-syntax/</link>
+      <pubDate>Sun, 29 May 2022 13:00:49 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/markdown-syntax/</guid>
+      <description>前言 1 基本语法 1.1 标题 1.2 段落 1.3 换行 1.4 强调 1.5 引用 1.6 列表 1.7 代码 1.8 分割线 1.9 链接 1.10 图片 1.11 转义字符 1.12 内嵌 HTML 标签 2 扩展语法 2.1 表格 2.2 脚注 2.3 标题编号 2.4 todo list 2.5 其他 前言 前前后后搭建博客也有很多次了，静态网站生成器用过 hexo，vuepress，hugo，还是觉得 hugo 最好用：速度快、安装方便、跨平台、热更新，最重要的是使用起来比较简单。
+之前使用 hugo 搭建博客，主题用过 even ，但感觉用的人太多了，用过时间比较久的是 loveit ，是个很不错的主题，中文文档也很全，使用起来很方便，但是现在我想要更简洁一点的主题，王垠 的博客主题我就觉得很不错，还有偶然间发现的无求备斋笔记 ，本来这次搭建博客是想用 无求备斋笔记 的样式，可是这个主题是基于 jekyll 的，我尝试用了用 jekyll ，感觉不太好用，不如 hugo，等以后有时间研究下怎么写主题，然后把它转换成 hugo 的模板吧，现在懒得折腾。在 github 上找了两个比较喜欢的主题：Fuji 和 Archie，最终我选择了Archie，因为它看起来更简洁一些。</description>
+    </item>
+    
+    <item>
+      <title>伪代码书写规范</title>
+      <link>https://chunni98.github.io/posts/how-to-write-pseudocode/</link>
+      <pubDate>Sat, 23 Jan 2021 01:15:48 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-pseudocode/</guid>
+      <description>1 前言 2 伪代码书写规范 2.1 说明信息 2.2 注意事项 2.3 注释 2.4 变量 2.5 代数运算 2.6 分支/选择 2.7 循环/迭代 2.8 函数 3 实例 4 参考资料 1 前言 伪代码（英语： pseudocode），又称为虚拟代码，是高层次描述算法的一种方法。它不是一种现实存在的编程语言。它以编程语言的书写形式指明算法的职能。伪代码可以用于帮助人们理解解释代码的语法、规则、内涵和结构。 ——维基百科
+本篇文章作为以后书写伪代码的规范。
+2 伪代码书写规范 2.1 说明信息 首先在一开始写下伪代码的作用、目的和作者，日期等基本信息。例：
+算法：KMP 算法的实现 作者：rong 时间：2021-01-01 20:34 Input: output: 2.2 注意事项 每行只写一条语句。 有效使用空白和缩进。 使用简单的术语。 描述清楚所有事物，但不要过度描述与主要问题无关的细节。 遇到难以用此规范表达的算法时，使用陈述句描述或借用语法。 2.3 注释 // 此为注释，注释使用 C++ 风格的注释 2.4 变量 变量名以单个字符为主，小写字母可以有多个，大写字母最好只有一个。
+变量可以为整数、实数、字符、字符串 或 指针。
+x ← 1 y ← 2 z ← 3 w ← y+1 a &amp;lt;-&amp;gt; b //交换 a 和 b 的值 2.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>简易 C 日志宏 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="参考实现一个在 C 程序中打印日志的宏，通过包装 printf() 实现。" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="简易 C 日志宏" />
+<meta property="og:description" content="参考实现一个在 C 程序中打印日志的宏，通过包装 printf() 实现。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/my-logger/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-24T12:50:26+08:00" />
+<meta property="article:modified_time" content="2023-02-24T12:50:26+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="简易 C 日志宏"/>
+<meta name="twitter:description" content="参考实现一个在 C 程序中打印日志的宏，通过包装 printf() 实现。"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">简易 C 日志宏</h1>
+			<div class="meta">Posted on Feb 24, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			参考实现一个在 C 程序中打印日志的宏，通过包装 printf() 实现。
+		</div>
+
+		<section class="body">
+			<p><code>klogger.h</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef _SHACHI_LOGGER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define _SHACHI_LOGGER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// \brief       : 自定义的日志宏，以供调试。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// \author      : shachi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// \email       : shachi1758@outlook.com
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// \details     : 定义宏 NDEBUG 关闭。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// \version     : 0.1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// \log         :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     2023-02-24 09:53:10 创建文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 日志模块开关
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#ifndef NDEBUG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;time.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define COLOR_RED &#34;\033[1;31m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define COLOR_BLUE &#34;\033[1;34m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define COLOR_NONE &#34;\033[0m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define KINFO(fmt, args...)\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">do{\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    time_t t;\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    struct tm *ti;\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    time(&amp;t);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    ti = localtime(&amp;t);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(&#34;%d-%d-%d %d:%d:%d &#34;,ti-&gt;tm_year + 1900,ti-&gt;tm_mon+1,ti-&gt;tm_mday,ti-&gt;tm_hour,ti-&gt;tm_min,ti-&gt;tm_sec);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(&#34;[%s:%d-&gt;%s] &#34;, __FILE__,__LINE__,__func__);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(COLOR_BLUE &#34;INFO:&#34; COLOR_NONE);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(fmt, ##args);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}while(0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define KERROR(fmt, args...)\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">do{\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    time_t t;\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    struct tm *ti;\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    time(&amp;t);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    ti = localtime(&amp;t);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(&#34;%d-%d-%d %d:%d:%d &#34;,ti-&gt;tm_year + 1900,ti-&gt;tm_mon+1,ti-&gt;tm_mday,ti-&gt;tm_hour,ti-&gt;tm_min,ti-&gt;tm_sec);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(&#34;[%s:%d-&gt;%s] &#34;, __FILE__,__LINE__,__func__);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(COLOR_RED &#34;ERROR:&#34; COLOR_NONE);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(fmt, ##args);\
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">}while(0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 裸机简易 LOG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#define kdebug(fmt,args...) printf (fmt ,##args)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define kdebugX(level,fmt,args...) if (DEBUG&gt;=level) printf(fmt,##args);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define KINFO(fmt,args...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define KERROR(fmt, args...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define kdebug(fmt,args...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define kdebugX(level,fmt,args...)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">// __KLOG
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">// _SHACHI_LOGGER_H
+</span></span></span></code></pre></div><hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/c">C</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

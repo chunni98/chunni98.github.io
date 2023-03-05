@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>简单通用链表 demo - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：
+后续继续学习后再做补充。
+klist.h
+#ifndef _KLINK_LIST #define _KLINK_LIST /**************************************************************************** * @file : incl/klinklist.h * @brief : 通用链表 * @author : shachi * @email : shachi1758@outlook.com * @details : * @version : 0.1.0 * @history : * 2023-03-02 16:29:52 创建文件 * 2023-03-05 15:11:19 实现初始化、头插法。 ****************************************************************************/ #include &lt;stdint.h&gt; #include &lt;stddef.h&gt; /** * @brief 通用头节点 */ struct klist_head{ struct klist_head *prev; struct klist_head *next; }; /** * @brief: 通用链表初始化 * @param1: l，链表头 * * 前驱和后继都指向自己。 * */ inline void klist_init(struct klist_head *head) { head-&gt;next = head; head-&gt;prev = head; } /** * @brief: 头插法插入节点 * @param1: new，要插入的节点 * @param2: l，要插入的链表 * * @return: -1，插入失败 * 0，插入成功 * */ int32_t klist_add(struct klist_head *new,struct klist_head *head); /** * @brief: 删除节点。 * @param1: head，待删除的节点。 * * 删除链表上的节点，只是从链表中删除，不会释放空间。 * * @return: -1 失败 * 0 成功 */ int32_t klist_del(struct klist_head *head); #endif // _KLINK_LIST klist." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="简单通用链表 demo" />
+<meta property="og:description" content="以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：
+后续继续学习后再做补充。
+klist.h
+#ifndef _KLINK_LIST #define _KLINK_LIST /**************************************************************************** * @file : incl/klinklist.h * @brief : 通用链表 * @author : shachi * @email : shachi1758@outlook.com * @details : * @version : 0.1.0 * @history : * 2023-03-02 16:29:52 创建文件 * 2023-03-05 15:11:19 实现初始化、头插法。 ****************************************************************************/ #include &lt;stdint.h&gt; #include &lt;stddef.h&gt; /** * @brief 通用头节点 */ struct klist_head{ struct klist_head *prev; struct klist_head *next; }; /** * @brief: 通用链表初始化 * @param1: l，链表头 * * 前驱和后继都指向自己。 * */ inline void klist_init(struct klist_head *head) { head-&gt;next = head; head-&gt;prev = head; } /** * @brief: 头插法插入节点 * @param1: new，要插入的节点 * @param2: l，要插入的链表 * * @return: -1，插入失败 * 0，插入成功 * */ int32_t klist_add(struct klist_head *new,struct klist_head *head); /** * @brief: 删除节点。 * @param1: head，待删除的节点。 * * 删除链表上的节点，只是从链表中删除，不会释放空间。 * * @return: -1 失败 * 0 成功 */ int32_t klist_del(struct klist_head *head); #endif // _KLINK_LIST klist." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/learn-linux-list/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-05T22:48:06+08:00" />
+<meta property="article:modified_time" content="2023-03-05T22:48:06+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="简单通用链表 demo"/>
+<meta name="twitter:description" content="以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：
+后续继续学习后再做补充。
+klist.h
+#ifndef _KLINK_LIST #define _KLINK_LIST /**************************************************************************** * @file : incl/klinklist.h * @brief : 通用链表 * @author : shachi * @email : shachi1758@outlook.com * @details : * @version : 0.1.0 * @history : * 2023-03-02 16:29:52 创建文件 * 2023-03-05 15:11:19 实现初始化、头插法。 ****************************************************************************/ #include &lt;stdint.h&gt; #include &lt;stddef.h&gt; /** * @brief 通用头节点 */ struct klist_head{ struct klist_head *prev; struct klist_head *next; }; /** * @brief: 通用链表初始化 * @param1: l，链表头 * * 前驱和后继都指向自己。 * */ inline void klist_init(struct klist_head *head) { head-&gt;next = head; head-&gt;prev = head; } /** * @brief: 头插法插入节点 * @param1: new，要插入的节点 * @param2: l，要插入的链表 * * @return: -1，插入失败 * 0，插入成功 * */ int32_t klist_add(struct klist_head *new,struct klist_head *head); /** * @brief: 删除节点。 * @param1: head，待删除的节点。 * * 删除链表上的节点，只是从链表中删除，不会释放空间。 * * @return: -1 失败 * 0 成功 */ int32_t klist_del(struct klist_head *head); #endif // _KLINK_LIST klist."/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">简单通用链表 demo</h1>
+			<div class="meta">Posted on Mar 5, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			自己实现的通用链表 demo
+		</div>
+
+		<section class="body">
+			<p>以下是参考Linux链表实现的简易通用链表，目前水平有限，只能理解大概思想，做一个玩具 demo：</p>
+<p>后续继续学习后再做补充。</p>
+<p><code>klist.h</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef _KLINK_LIST
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define _KLINK_LIST
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/****************************************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @file        : incl/klinklist.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @brief       : 通用链表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @author      : shachi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @email       : shachi1758@outlook.com
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @details     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @version     : 0.1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @history     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*      2023-03-02 16:29:52 创建文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*      2023-03-05 15:11:19 实现初始化、头插法。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">****************************************************************************/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stddef.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief 通用头节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> klist_head{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>prev;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief: 通用链表初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param1: l，链表头
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 前驱和后继都指向自己。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">klist_init</span>(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>head)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief: 头插法插入节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param1: new，要插入的节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param2: l，要插入的链表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return: -1，插入失败
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *           0，插入成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int32_t</span> <span style="color:#a6e22e">klist_add</span>(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>new,<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>head);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @brief: 删除节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param1: head，待删除的节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 删除链表上的节点，只是从链表中删除，不会释放空间。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return: -1 失败
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *           0 成功
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int32_t</span> <span style="color:#a6e22e">klist_del</span>(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>head);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif </span><span style="color:#75715e">//  _KLINK_LIST
+</span></span></span></code></pre></div><p><code>klist.c</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/****************************************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @file        : ./src/klink_list.c
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @brief       :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @author      : shachi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @email       : shachi1758@outlook.com
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @details     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @version     : 0.1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @history     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*      2023-03-05 14:53:47 创建文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*      2023-03-05 15:11:19 实现初始化、头插法。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">****************************************************************************/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;klinklist.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int32_t</span> <span style="color:#a6e22e">klist_add</span>(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>new, <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>head)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>head <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>new) <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 原来的第一个节点前驱指针指向新节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> new;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 新节点的后继指针指向原来的第一个节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    new<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 头节点的后继指针指向新节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> new;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 新节点的前驱指针指向头节点。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    new<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int32_t</span> <span style="color:#a6e22e">klist_del</span>(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>head)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>head) <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 后继节点前驱指针指向待删除节点前一个
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 前驱节点后继指针指向待删除节点后一个
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    head<span style="color:#f92672">-&gt;</span>prev<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 被删除节点的前驱后继指向 NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    head<span style="color:#f92672">-&gt;</span>prev<span style="color:#f92672">=</span>NULL;
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">=</span>NULL;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>main.c</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/****************************************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @file        : ./src/main.c
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @brief       :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @author      : shachi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @email       : shachi1758@outlook.com
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @details     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @version     : 0.1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* @history     :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*      2023-03-05 14:17:41 创建文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">****************************************************************************/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;malloc.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stddef.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdbool.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;klinklist.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;klogger.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> student{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> klist_head head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int32_t</span> id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int32_t</span> age;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>st_head <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>) <span style="color:#a6e22e">malloc</span> (<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> student));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化学生信息链表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">klist_init</span>((<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>)st_head);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 插入六个学生信息。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">size_t</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>; <span style="color:#f92672">++</span> i){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>ptr <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> student<span style="color:#f92672">*</span>) <span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> student));
+</span></span><span style="display:flex;"><span>        ptr<span style="color:#f92672">-&gt;</span>id <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>        ptr<span style="color:#f92672">-&gt;</span>age <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">15</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">klist_add</span>((<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>) ptr,(<span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>) st_head);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 打印学生信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>ptr <span style="color:#f92672">=</span> st_head<span style="color:#f92672">-&gt;</span>head.next;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(ptr<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> st_head<span style="color:#f92672">-&gt;</span>head.next) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;id:%d,age:%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,((<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>)ptr)<span style="color:#f92672">-&gt;</span>id,((<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>)ptr)<span style="color:#f92672">-&gt;</span>age);
+</span></span><span style="display:flex;"><span>        ptr <span style="color:#f92672">=</span> ptr<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 删除一些学生信息。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>ptr2 <span style="color:#f92672">=</span> st_head<span style="color:#f92672">-&gt;</span>head.next;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>ptr_del;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(ptr2<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> st_head<span style="color:#f92672">-&gt;</span>head.next){
+</span></span><span style="display:flex;"><span>        ptr_del <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>)ptr2;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(ptr_del<span style="color:#f92672">-&gt;</span>age <span style="color:#f92672">==</span> <span style="color:#ae81ff">16</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;id:%d,age:%d is deleted.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ptr_del<span style="color:#f92672">-&gt;</span>id,ptr_del<span style="color:#f92672">-&gt;</span>age);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>tmp <span style="color:#f92672">=</span> ptr2<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">klist_del</span>(ptr2);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 释放空间。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">free</span>(ptr2);
+</span></span><span style="display:flex;"><span>            ptr2 <span style="color:#f92672">=</span> tmp;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ptr2 <span style="color:#f92672">=</span> ptr2<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 打印删除后的链表。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> klist_head <span style="color:#f92672">*</span>pt <span style="color:#f92672">=</span> st_head<span style="color:#f92672">-&gt;</span>head.next;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(pt<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> st_head<span style="color:#f92672">-&gt;</span>head.next) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;id:%d,age:%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,((<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>)pt)<span style="color:#f92672">-&gt;</span>id,((<span style="color:#66d9ef">struct</span> student <span style="color:#f92672">*</span>)pt)<span style="color:#f92672">-&gt;</span>age);
+</span></span><span style="display:flex;"><span>        pt <span style="color:#f92672">=</span> pt<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>参考：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/dongxb/p/14154987.html">拒绝造轮子！如何移植并使用Linux内核的通用链表（附完整代码实现）</a></li>
+<li><a href="https://blog.csdn.net/liebao_han/article/details/53956609">通用（内核）链表详解</a></li>
+</ul>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/c">c</a></li>
+					
+					<li><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></li>
+					
+					<li><a href="/tags/linux">linux</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

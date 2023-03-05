@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>伪代码 on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/%E4%BC%AA%E4%BB%A3%E7%A0%81/</link>
+    <description>Recent content in 伪代码 on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Sat, 23 Jan 2021 01:15:48 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/%E4%BC%AA%E4%BB%A3%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>伪代码书写规范</title>
+      <link>https://chunni98.github.io/posts/how-to-write-pseudocode/</link>
+      <pubDate>Sat, 23 Jan 2021 01:15:48 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-write-pseudocode/</guid>
+      <description>1 前言 2 伪代码书写规范 2.1 说明信息 2.2 注意事项 2.3 注释 2.4 变量 2.5 代数运算 2.6 分支/选择 2.7 循环/迭代 2.8 函数 3 实例 4 参考资料 1 前言 伪代码（英语： pseudocode），又称为虚拟代码，是高层次描述算法的一种方法。它不是一种现实存在的编程语言。它以编程语言的书写形式指明算法的职能。伪代码可以用于帮助人们理解解释代码的语法、规则、内涵和结构。 ——维基百科
+本篇文章作为以后书写伪代码的规范。
+2 伪代码书写规范 2.1 说明信息 首先在一开始写下伪代码的作用、目的和作者，日期等基本信息。例：
+算法：KMP 算法的实现 作者：rong 时间：2021-01-01 20:34 Input: output: 2.2 注意事项 每行只写一条语句。 有效使用空白和缩进。 使用简单的术语。 描述清楚所有事物，但不要过度描述与主要问题无关的细节。 遇到难以用此规范表达的算法时，使用陈述句描述或借用语法。 2.3 注释 // 此为注释，注释使用 C++ 风格的注释 2.4 变量 变量名以单个字符为主，小写字母可以有多个，大写字母最好只有一个。
+变量可以为整数、实数、字符、字符串 或 指针。
+x ← 1 y ← 2 z ← 3 w ← y+1 a &amp;lt;-&amp;gt; b //交换 a 和 b 的值 2.</description>
+    </item>
+    
+  </channel>
+</rss>
