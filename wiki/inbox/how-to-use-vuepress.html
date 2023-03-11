@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 Vuepress 构建静态网站 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.6fa58d98.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/25.76674e85.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.28d26af6.js"><link rel="prefetch" href="/wiki/assets/js/11.6f44258c.js"><link rel="prefetch" href="/wiki/assets/js/12.4be69fc0.js"><link rel="prefetch" href="/wiki/assets/js/13.7c88b737.js"><link rel="prefetch" href="/wiki/assets/js/14.f1eb2b54.js"><link rel="prefetch" href="/wiki/assets/js/15.be1edf05.js"><link rel="prefetch" href="/wiki/assets/js/16.53c091db.js"><link rel="prefetch" href="/wiki/assets/js/17.3ea6495f.js"><link rel="prefetch" href="/wiki/assets/js/18.a3f40d98.js"><link rel="prefetch" href="/wiki/assets/js/19.161c16d0.js"><link rel="prefetch" href="/wiki/assets/js/20.5222b799.js"><link rel="prefetch" href="/wiki/assets/js/21.d43bafe3.js"><link rel="prefetch" href="/wiki/assets/js/22.07ad1d39.js"><link rel="prefetch" href="/wiki/assets/js/23.2b5499a7.js"><link rel="prefetch" href="/wiki/assets/js/24.fef90a53.js"><link rel="prefetch" href="/wiki/assets/js/26.df578930.js"><link rel="prefetch" href="/wiki/assets/js/27.feb65e4b.js"><link rel="prefetch" href="/wiki/assets/js/28.89c97315.js"><link rel="prefetch" href="/wiki/assets/js/3.4b540cc1.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/7.2b4da95a.js"><link rel="prefetch" href="/wiki/assets/js/8.4462ab3f.js"><link rel="prefetch" href="/wiki/assets/js/9.f2499e42.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  数据库
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  python
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/inbox/.html#" class="nav-link">
+  x86汇编
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  数据库
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/inbox/.html#" class="nav-link">
+  python
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/inbox/.html#" class="nav-link">
+  x86汇编
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>使用 Vuepress 构建静态网站</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/inbox/how-to-use-vuepress.html#_1-安装下载" class="sidebar-link">1 安装下载</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/inbox/how-to-use-vuepress.html#_2-目录结构" class="sidebar-link">2 目录结构</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/inbox/how-to-use-vuepress.html#_3-配置" class="sidebar-link">3 配置</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/inbox/how-to-use-vuepress.html#_3-运行和编译" class="sidebar-link">3 运行和编译</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/inbox/how-to-use-vuepress.html#_4-参考" class="sidebar-link">4 参考</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>环境为：windows。</p> <h2 id="_1-安装下载"><a href="#_1-安装下载" class="header-anchor">#</a> 1 安装下载</h2> <p><strong>（1）安装nodesjs</strong></p> <p><a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">nodejs 下载<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，建议安装 nodejs 17 之前的版本，亲测使用 nodejs 18 会有错误：<code>digital envelope routines::unsupported</code>。（2023-03-10）</p> <p><strong>（2）安装 vuepress</strong></p> <p>官方不再推荐全局安装，但是我把 vuepress 安装为本地依赖总是有问题，最终还是安装全局依赖。</p> <p>打开终端，运行以下命令即可安装：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> vuepress
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_2-目录结构"><a href="#_2-目录结构" class="header-anchor">#</a> 2 目录结构</h2> <p>创建目录，并在目录打开终端对目录进行初始化：</p> <p><code>npm init -y</code></p> <p>推荐的目录结构如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.
+├── docs/
+│   ├── .vuepress/
+|   |   |
+│   │   ├── public/
+│   │   ├── config.js
+│   │
+│   │
+│   ├── README.md
+│
+└── package.json
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>我的目录结构如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>docs/
+│  guide.md
+│  README.md
+│
+├─.vuepress
+│  │  config.js
+│  │
+│  └─public
+│      │  avatar.jpg
+│      │  favicon.ico
+│      │
+│      ├─c
+│      │      64位内存布局.jpg
+│      │      内存映像.png
+│      │      栈增长.png
+│      │
+│      └─dist
+├─c
+│  │  c-style.md
+│  │  ccollections.md
+│  │  learn-c.md
+│  │  README.md
+│  │
+│  └─kandrc
+│          kandrc01.md
+│          kandrc02.md
+│          README.md
+│
+├─data-structure
+│      index.md
+│      README.md
+│
+├─inbox
+│      how-to-use-vuepress.md
+│      README.md
+│
+└─Linux
+        learn-linux.md
+        linux-collections.md
+        README.md
+
+config.js
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><p>其中：</p> <p><code>docs/.vuepress</code>: 用于存放全局的配置、组件、静态资源等。
+<code>docs/.vuepress/public</code>: 静态资源目录。。
+<code>docs/.vuepress/config.js</code>: 配置文件的入口文件，也可以是 YML 或 toml。</p> <p>修改 <code>pakage.json</code> 内容：</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;notes&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;docs:dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress dev docs&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;docs:build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress build docs&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;vue-template-compiler&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.7.14&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><strong>页面路由</strong></p> <table><thead><tr><th style="text-align:center;">文件相对路径</th> <th style="text-align:center;">页面路由地址</th></tr></thead> <tbody><tr><td style="text-align:center;"><code>/README.md</code></td> <td style="text-align:center;"><code>/</code></td></tr> <tr><td style="text-align:center;"><code>C语言/README.md</code></td> <td style="text-align:center;"><code>/C语言/</code></td></tr> <tr><td style="text-align:center;"><code>C语言/基础知识.md</code></td> <td style="text-align:center;"><code>/C语言/基础知识.html</code></td></tr></tbody></table> <p>所以主页面的内容就写在 <code>docs/README.md</code>:</p> <div class="language-md line-numbers-mode"><pre class="language-md"><code><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml">home: true
+heroImage: /favicon.ico
+actionText: open
+actionLink: /guide/
+lang: zh-CN</span>
+<span class="token punctuation">---</span></span>
+
+\`\`\`c {5}
+int main(int argc, char *argv[])
+{
+    while(!is_death(me)) {
+        reading();
+        studying();
+        coding();
+        sharing();
+    }
+
+<span class="token code keyword">    return EXIT_SUCCESS;</span>
+}
+\`\`\`
+
+::: slot footer
+MIT Licensed | Copyright © 2023 <span class="token url">[<span class="token content">shachi</span>](<span class="token url">https://chunni98.github.io</span>)</span>
+:::
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h2 id="_3-配置"><a href="#_3-配置" class="header-anchor">#</a> 3 配置</h2> <p><code>config.js</code> 内是全局配置：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 站点标题</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'CS Wiki'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 站点描述</span>
+  <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'shachi 的 CS 知识库'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 输出根目录</span>
+  <span class="token literal-property property">dest</span><span class="token operator">:</span> <span class="token string">'./dist'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 站点目录</span>
+  <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">'/cs-wiki/'</span><span class="token punctuation">,</span>
+  <span class="token comment">// Markdown 代码块行号</span>
+  <span class="token literal-property property">markdown</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">lineNumbers</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 默认主题的配置</span>
+  <span class="token literal-property property">themeConfig</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 导航栏的图标</span>
+    <span class="token literal-property property">logo</span><span class="token operator">:</span> <span class="token string">'/favicon.ico'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 导航栏的链接</span>
+    <span class="token literal-property property">nav</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'Home'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'Guide'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/guide/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/c/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'Linux'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/linux/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'计算机基础'</span><span class="token punctuation">,</span>
+        <span class="token comment">// ariaLabel: 'Language Menu',</span>
+        <span class="token literal-property property">items</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'理论'</span><span class="token punctuation">,</span> <span class="token literal-property property">items</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'数据结构'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/data-structure/'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'计算机网络'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'计算机组成原理'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'操作系统'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'数据库'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'工具'</span><span class="token punctuation">,</span> <span class="token literal-property property">items</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'gcc'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'gdb'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'makefile'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'shell'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'正则表达式'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'git'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'python'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'嵌入式'</span><span class="token punctuation">,</span> <span class="token literal-property property">items</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'x86汇编'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'#'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'Blog'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'https://chunni98.github.io'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// 侧边栏配置</span>
+    <span class="token comment">//sidebar: 'auto', // 自动生成仅包含当前页面的侧边栏</span>
+    <span class="token literal-property property">sidebar</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string-property property">'/c/'</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'inbox'</span><span class="token punctuation">,</span> <span class="token comment">// 组名</span>
+          <span class="token literal-property property">collapsable</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 不可折叠</span>
+          <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'/c/c-style'</span><span class="token punctuation">,</span>
+            <span class="token string">'learn-c'</span><span class="token punctuation">,</span>
+            <span class="token string">'ccollections'</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'K&amp;R C'</span><span class="token punctuation">,</span> <span class="token comment">// 组名</span>
+          <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/c/kandrc/'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">collapsable</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'/c/kandrc/kandrc01'</span><span class="token punctuation">,</span>
+            <span class="token string">'/c/kandrc/kandrc02'</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">'/Linux/'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">''</span><span class="token punctuation">,</span>
+        <span class="token string">'learn-linux'</span><span class="token punctuation">,</span>
+        <span class="token string">'linux-collections'</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">lastUpdated</span><span class="token operator">:</span> <span class="token string">'最后更新'</span><span class="token punctuation">,</span><span class="token comment">// 最后更新的时间，基于 git</span>
+    <span class="token comment">// 上/下一篇链接</span>
+    <span class="token literal-property property">nextLinks</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">prevLinks</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// 页面滚动</span>
+    <span class="token literal-property property">smoothScroll</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br></div></div><h2 id="_3-运行和编译"><a href="#_3-运行和编译" class="header-anchor">#</a> 3 运行和编译</h2> <p>在目录下打开终端：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># 运行输入这个命令</span>
+<span class="token function">npm</span> run docs:dev
+
+<span class="token comment"># 编译输入这个命令</span>
+<span class="token function">npm</span> run docs:build
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>运行后可在 <code>localhost:8080</code> 预览，vuepress 支持热重载。</p> <p>运行命令可能出现错误：<code>Error: Cannot find module ‘vue-template-compiler’</code></p> <p>在目录下运行命令: <code>npm install vue-template-compiler</code> 安装缺失的包即可。</p> <p>最终效果如下：</p> <p><img src="/inbox/Snipaste_2023-03-11_12-11-04.png" alt=""></p> <h2 id="_4-参考"><a href="#_4-参考" class="header-anchor">#</a> 4 参考</h2> <ul><li><a href="https://vuepress.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Vuepress 官方文档<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://www.cnblogs.com/hmy-666/p/16949982.html" target="_blank" rel="noopener noreferrer">nodejs 新版本问题<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/wq_ocean_/article/details/109220650" target="_blank" rel="noopener noreferrer">Vuepress 侧边栏配置<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2023/3/11 18:04:47</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.6fa58d98.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/25.76674e85.js" defer></script>
+  </body>
+</html>
