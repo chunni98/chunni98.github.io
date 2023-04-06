@@ -7,7 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Sun, 12 Mar 2023 19:16:53 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 19:59:15 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 keil 创建 stm32 项目</title>
+      <link>https://chunni98.github.io/posts/howto-build-stm32-project/</link>
+      <pubDate>Thu, 06 Apr 2023 19:59:15 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/howto-build-stm32-project/</guid>
+      <description>1 前言 搭建 stm32 开发环境，并创建第一个项目，进行编译、烧录、调试、拟真操作。
+2 准备工作 0. 设备
+stm32f103RCt6 开发板一块，ST-LINK V2 一个。
+1. MDK-ARM下载
+我下载的是：MDK-538A。
+2. stm32 支持包下载
+我的开发板处理器是 stm32f103RCT6，我下载了 Keil.STM32F1xx_DFP.2.4.0.pack。
+想要在国内如何快速下载 keil 的 pack 文件包，可以先在 keil 的 pack 官网查找自己想要的 pack，然后添加到 http://keilpack.azureedge.net/pack/ 末尾，如：http://keilpack.azureedge.net/pack/ARM.V2M_MPS3_SSE_300_BSP.1.1.0.pack
+3. 手册下载
+意法半导体官网下载芯片对应的手册：
+参考手册 数据手册 编程手册 产品原理图 可在意法半导体官网或者 STMCU 中文官网 搜索下载。
+4. 下载标准库
+我的开发板处理器是 stm32f103RCT6，我下载了 STM32F10x_StdPeriph_Lib_v3.6.0。
+步骤如下：
+3 搭建工程环境框架 3.1 项目结构 项目目录 demo 下新建目录：apps、doc、drivers、libs、project。
+从标准库 \STM32F10x_StdPeriph_Lib_V3.6.0\Project\STM32F10x_StdPeriph_Examples\GPIO\IOToggle 中复制文件到 apps 目录下。
+从标准库 \STM32F10x_StdPeriph_Lib_V3.6.0\Libraries 下复制目录 CMSIS、STM32F10x_StdPeriph_Driver 到 libs 目录下。</description>
+    </item>
+    
     <item>
       <title>C99之复合字面量</title>
       <link>https://chunni98.github.io/posts/c99fuhezimmll/</link>

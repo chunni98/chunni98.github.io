@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>使用 keil 创建 stm32 项目 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="使用 keil 创建第一个 stm32 项目" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="使用 keil 创建 stm32 项目" />
+<meta property="og:description" content="使用 keil 创建第一个 stm32 项目" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/howto-build-stm32-project/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-06T19:59:15+08:00" />
+<meta property="article:modified_time" content="2023-04-06T19:59:15+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 keil 创建 stm32 项目"/>
+<meta name="twitter:description" content="使用 keil 创建第一个 stm32 项目"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/wiki/">Wiki</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">使用 keil 创建 stm32 项目</h1>
+			<div class="meta">Posted on Apr 6, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			使用 keil 创建一个 stm32 项目，并编译、烧录、调试。
+		</div>
+
+		<section class="body">
+			<h2 id="1-前言">1 前言</h2>
+<p>搭建 stm32 开发环境，并创建第一个项目，进行编译、烧录、调试、拟真操作。</p>
+<h2 id="2-准备工作">2 准备工作</h2>
+<p><strong>0. 设备</strong></p>
+<p>stm32f103RCt6 开发板一块，ST-LINK V2 一个。</p>
+<p><strong>1. MDK-ARM下载</strong></p>
+<p>我下载的是：MDK-538A。</p>
+<p><img src="/img/stm32-project/keil%E4%B8%8B%E8%BD%BD.png" alt=""></p>
+<p><strong>2. stm32 支持包下载</strong></p>
+<p>我的开发板处理器是 stm32f103RCT6，我下载了 <code>Keil.STM32F1xx_DFP.2.4.0.pack</code>。</p>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BDstm32f1pack.png" alt=""></p>
+<p>想要在国内如何快速下载 keil 的 pack 文件包，可以先在 keil 的 pack 官网查找自己想要的 pack，然后添加到 <code>http://keilpack.azureedge.net/pack/</code> 末尾，如：<code>http://keilpack.azureedge.net/pack/ARM.V2M_MPS3_SSE_300_BSP.1.1.0.pack</code></p>
+<p><strong>3. 手册下载</strong></p>
+<p>意法半导体官网下载芯片对应的手册：</p>
+<ol>
+<li>参考手册</li>
+<li>数据手册</li>
+<li>编程手册</li>
+<li>产品原理图</li>
+</ol>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BD%E6%89%8B%E5%86%8C.png" alt=""></p>
+<p>可在意法半导体官网或者 <a href="https://www.stmcu.com.cn/design_resource">STMCU 中文官网</a> 搜索下载。</p>
+<p><strong>4. 下载标准库</strong></p>
+<p>我的开发板处理器是 stm32f103RCT6，我下载了 <code>STM32F10x_StdPeriph_Lib_v3.6.0</code>。</p>
+<p><img src="/img/stm32-project/stm32f1%E6%A0%87%E5%87%86%E5%BA%93.png" alt=""></p>
+<p>步骤如下：</p>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BD%E6%A0%87%E5%87%86%E5%BA%931.png" alt=""></p>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BD%E6%A0%87%E5%87%86%E5%BA%932.png" alt=""></p>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BD%E6%A0%87%E5%87%86%E5%BA%933.png" alt=""></p>
+<p><img src="/img/stm32-project/%E4%B8%8B%E8%BD%BD%E6%A0%87%E5%87%86%E5%BA%934.png" alt=""></p>
+<h2 id="3-搭建工程环境框架">3 搭建工程环境框架</h2>
+<h3 id="31-项目结构">3.1 项目结构</h3>
+<p>项目目录 demo 下新建目录：apps、doc、drivers、libs、project。</p>
+<p>从标准库 <code>\STM32F10x_StdPeriph_Lib_V3.6.0\Project\STM32F10x_StdPeriph_Examples\GPIO\IOToggle</code> 中复制文件到 apps 目录下。</p>
+<p>从标准库 <code>\STM32F10x_StdPeriph_Lib_V3.6.0\Libraries</code> 下复制目录 <code>CMSIS</code>、<code>STM32F10x_StdPeriph_Driver</code> 到 libs 目录下。</p>
+<p>程序的执行是从“main.c”文件开始的，其中必须包含有头文件“stm32f10x.h”。</p>
+<p>&ldquo;stm32f10x_conf.h&quot;文件相当于一个开关文件，如果要用到STM32固件库驱动标准外设，则外设驱动头文件是必不可少的，如“stm32f10x_gpio.h”。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>demo/
+</span></span><span style="display:flex;"><span>|-- apps/
+</span></span><span style="display:flex;"><span>|   |-- stm32f1xx_conf.h
+</span></span><span style="display:flex;"><span>|   |-- stm32f1xx_it.c
+</span></span><span style="display:flex;"><span>|   |-- stm32f1xx_it.h
+</span></span><span style="display:flex;"><span>|   |-- main.c
+</span></span><span style="display:flex;"><span>|-- doc/
+</span></span><span style="display:flex;"><span>|   |-- README.md
+</span></span><span style="display:flex;"><span>|-- drivers/
+</span></span><span style="display:flex;"><span>|   |-- incl/
+</span></span><span style="display:flex;"><span>|   |-- src/
+</span></span><span style="display:flex;"><span>|-- libs/
+</span></span><span style="display:flex;"><span>|   |-- CMSIS/
+</span></span><span style="display:flex;"><span>|   |-- STM32F10x_StdPeriph_Driver/
+</span></span><span style="display:flex;"><span>|-- porject/
+</span></span></code></pre></div><ul>
+<li>apps，用来存放应用层文件。</li>
+<li>doc，用来存放文档。
+<ul>
+<li>README.md，项目文档。</li>
+</ul>
+</li>
+<li>drivers，用来存放片外外设驱动程序。
+<ul>
+<li>src/incl，外设驱动程序的头文件和源码。</li>
+</ul>
+</li>
+<li>libs，用来存放标准外设库移植过来的文件。
+<ul>
+<li>CMSIS，Cortex™ 微控制器软件接口标准。</li>
+<li>STM32F10x_StdPeriph_Driver</li>
+</ul>
+</li>
+<li>project，用来存放我们开发环境所生成的文件（可执行文件等，新建的工程也保存在此目录下）。</li>
+</ul>
+<h3 id="32-创建新工程">3.2 创建新工程</h3>
+<p>keil 中：</p>
+<ul>
+<li>Project -&gt; New uVision Project。</li>
+<li>定位到 demo/project 目录，在此存放工程文件 demo。</li>
+<li>选择处理器型号：<code>STM32F103RC</code>，点击 ok。</li>
+</ul>
+<p><img src="/img/stm32-project/%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B.png" alt=""></p>
+<h3 id="33-管理工程">3.3 管理工程</h3>
+<p>添加文件到各组。</p>
+<p><img src="/img/stm32-project/%E7%AE%A1%E7%90%86%E5%B7%A5%E7%A8%8B.png" alt=""></p>
+<p><strong>启动文件的选择</strong></p>
+<p><img src="/img/stm32-project/%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6.png" alt=""></p>
+<h3 id="34-头文件路径配置">3.4 头文件路径配置</h3>
+<p>头文件只需要设置路径即可，无需添加到各组。</p>
+<p><img src="/img/stm32-project/%E5%A4%B4%E6%96%87%E4%BB%B6.png" alt=""></p>
+<h3 id="35-定义宏">3.5 定义宏</h3>
+<p>STM32F10X_HD 表示大容量芯片，要根据不同型号进行不同配置。</p>
+<p>USE_STDPERIPH_DRIVER 表示要使用标准库，不定义则表示不使用。</p>
+<p><img src="/img/stm32-project/%E5%AE%8F.png" alt=""></p>
+<h3 id="36-配置输出">3.6 配置输出</h3>
+<p><img src="/img/stm32-project/%E9%85%8D%E7%BD%AE%E8%BE%93%E5%87%BA.png" alt=""></p>
+<p>如果使用 JLINK/STLINK 烧录，则必须使用bin文件，而不能使用hex文件。bin 文件需要 keil 自带的 fromelf.exe 工具来生成。方法是输入命令：<code>D:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin Objects\Template.axf -o Objects\Template.bin</code></p>
+<p><img src="/img/stm32-project/%E9%85%8D%E7%BD%AE%E8%BE%93%E5%87%BA2.png" alt=""></p>
+<h2 id="4-烧录">4 烧录</h2>
+<h3 id="41-isp">4.1 ISP</h3>
+<p>ISP（在系统编程）是通过ST在芯片生产线上写入内嵌的自举程序到芯片系统存储器中，启动时从系统存储器中运行这个自举程序，它通过USART1串口来将我们的程序写入闪存存储器中。</p>
+<p>注意下载时要将开发板上的boot开关打到ISP模式，ISP模式下载完成后可以立即执行程序。而如果要单独启动程序，则必须将boot开关打到RUN运行模式。</p>
+<h3 id="42-st-link">4.2 ST-LINK</h3>
+<p>连接 ST-LINk 和 开发板：GND、SWCLK、SWDIO、VCC。</p>
+<p>boot 开关打到 RUN 模式。</p>
+<p>在 Debug 选项卡中，选择“ST-Link Debugger”。在选择完调试器之后，点击右边的 Setting 按钮，</p>
+<p>默认情况选择的是 JTAG 调试方式，速度是 1.12Mhz。JTAG 模式和 SWD 模式使用方法都是一样的，不同的是，SWD 接口调试更加节省端口。为了节省更多的资源，用 SWD 模式仿真。</p>
+<h2 id="5-踩坑">5 踩坑</h2>
+<h3 id="51-keil打开工程时解决loading-pdsc-debug-description-failed错误">5.1 Keil打开工程时，解决“Loading PDSC Debug Description Failed”错误</h3>
+<p>keil 版本和固件库版本不一致导致，下载符合 keil 版本的固件库即可。</p>
+<h3 id="52-keil5遇到-target-xxx-uses-arm-compiler-default-compiler-version-5-which-is-not-available">5.2 Keil5遇到：*** Target ‘xxx‘ uses ARM-Compiler ‘Default Compiler Version 5‘ which is not available.</h3>
+<p>原因是 armcc5 编译器在Keil 5.37以后就不再默认安装了，从这个版本开始，Keil 默认安装的是 armclang 6。</p>
+<p>在 Target一栏选择：Version 6 （或6.18）的编译器，点击Ok退出。重新编译就可以了。</p>
+<h3 id="53-最新版keil-error-non-asm-statement-in-naked-function-is-not-supported或者-__static_inline">5.3 最新版KEIL error: non-ASM statement in naked function is not supported或者 ‘__STATIC_INLINE‘</h3>
+<p>原因是最新的KEIL5版本使用的默认的 armclang6 的编译器，而固件库还是支持 armcc5 的编译器。</p>
+<p>最好的方法是改用 HAL 库，放弃使用不再被维护的标准固件库。</p>
+<p>如果一定要使用标准库，可以去 arm 官网下载 armcc 编译器，最新版本 5.06。</p>
+<p><img src="/img/stm32-project/armcc01.png" alt=""></p>
+<p><img src="/img/stm32-project/armcc02.png" alt=""></p>
+<p>keil 安装目录下 arm 目录下新建 armcc 目录。</p>
+<p><img src="/img/stm32-project/armcc03.png" alt=""></p>
+<p><img src="/img/stm32-project/armcc04.png" alt=""></p>
+<p>配置项目，添加 armcc 编译器。</p>
+<p><img src="/img/stm32-project/armcc05.png" alt=""></p>
+<p><img src="/img/stm32-project/armcc06.png" alt=""></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://blog.csdn.net/liming0931/article/details/117379963">国内如何快速下载keil的pack文件包（干货）</a></li>
+<li><a href="http://www.hqyj.com/">华清远见</a></li>
+<li><a href="https://blog.csdn.net/qq_31073871/article/details/100766479">Keil打开工程时，解决“Loading PDSC Debug Description Failed”错误</a></li>
+<li><a href="https://blog.csdn.net/qq_41754202/article/details/126052978">Keil5遇到：*** Target ‘xxx‘ uses ARM-Compiler ‘Default Compiler Version 5‘ which is not available.</a></li>
+<li><a href="https://blog.csdn.net/ZhonyC/article/details/120453947">ARM compiler 5/6 的安装和选择</a></li>
+<li><a href="https://blog.csdn.net/mikusure/article/details/124899626">Arm compiler version 5 的安装与配置</a></li>
+<li><a href="https://blog.csdn.net/weixin_44807874/article/details/128627528">《 Arm Compiler 5.06 》__ARM编译器官网下载、安装和使用说明（小白也能懂）</a></li>
+</ul>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/stm32">stm32</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>
