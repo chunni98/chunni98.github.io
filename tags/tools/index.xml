@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on Chunni&#39;s blog</title>
+    <link>https://chunni98.github.io/tags/tools/</link>
+    <description>Recent content in tools on Chunni&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Mon, 17 Apr 2023 22:00:44 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>keil 设置 Debug Stlink settings 闪退问题</title>
+      <link>https://chunni98.github.io/posts/keil-problem/</link>
+      <pubDate>Mon, 17 Apr 2023 22:00:44 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/keil-problem/</guid>
+      <description>今天使用 Keil + STlink 调试，结果总是闪退，一点到 Debug 选项卡 的 Settings 按钮，就卡死，然后一会儿就闪退。
+在网上看了很多文章，试了很多方法，换了好几个 STlink 都没用，甚至都开始怀疑是 MCU 的问题。
+但幸好最后在这篇文章找到了答案：
+keil5.38 debug配置STlink调试，软件闪退
+是因为 STlink 的驱动问题。
+ARM 官方的文档解释是：
+Keil MDK v5.38 and v5.38a contain a new ST-Link debugger driver, which can cause µVision IDE to crash, if in your Windows OS there are some existing COM ports, whose &amp;ldquo;Device Instance Path&amp;rdquo; value has a string longer than 32 characters in its last pattern.
+Documentation - Arm Developer</description>
+    </item>
+    
+  </channel>
+</rss>

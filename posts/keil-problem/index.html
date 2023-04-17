@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>keil 设置 Debug Stlink settings 闪退问题 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="记录一次 keil 使用 stlink 调试的问题。" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="keil 设置 Debug Stlink settings 闪退问题" />
+<meta property="og:description" content="记录一次 keil 使用 stlink 调试的问题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/keil-problem/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-17T22:00:44+08:00" />
+<meta property="article:modified_time" content="2023-04-17T22:00:44+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="keil 设置 Debug Stlink settings 闪退问题"/>
+<meta name="twitter:description" content="记录一次 keil 使用 stlink 调试的问题。"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/wiki/">Wiki</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">keil 设置 Debug Stlink settings 闪退问题</h1>
+			<div class="meta">Posted on Apr 17, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			keil 使用 stlink 调试，点击 debug settings 闪退，原因是 keilV5.38 自带的 stlink 驱动问题。
+		</div>
+
+		<section class="body">
+			<p>今天使用 Keil + STlink 调试，结果总是闪退，一点到 Debug 选项卡 的 Settings 按钮，就卡死，然后一会儿就闪退。</p>
+<p>在网上看了很多文章，试了很多方法，换了好几个 STlink 都没用，甚至都开始怀疑是 MCU 的问题。</p>
+<p>但幸好最后在这篇文章找到了答案：</p>
+<p><a href="https://blog.csdn.net/weixin_41542513/article/details/129462111?spm=1001.2014.3001.5502%E2%80%8Bblog.csdn.net/weixin_41542513/article/details/129462111?spm=1001.2014.3001.5502">keil5.38 debug配置STlink调试，软件闪退</a></p>
+<p>是因为 STlink 的驱动问题。</p>
+<p>ARM 官方的文档解释是：</p>
+<p>Keil MDK v5.38 and v5.38a contain a new ST-Link debugger driver, which can cause µVision IDE to crash, if in your Windows OS there are some existing COM ports, whose &ldquo;Device Instance Path&rdquo; value has a string longer than 32 characters in its last pattern.</p>
+<p><a href="%E2%80%8Bdeveloper.arm.com/documentation/ka005381/1-0?lang=en&amp;rev=">Documentation - Arm Developer</a></p>
+<p>也就是说这是 Keil MDK v5.38 和 v5.38a 包含的新的 ST-Link 调试器驱动程序引起的问题。</p>
+<p>要解决此问题，可下载附加的 STLinkUSBDriver.dll 文件，并将其复制到 MDK 安装目录的子文件夹中。</p>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/tools">tools</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>
