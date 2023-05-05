@@ -69,7 +69,9 @@
 <p><a href="https://blog.csdn.net/weixin_41542513/article/details/129462111?spm=1001.2014.3001.5502%E2%80%8Bblog.csdn.net/weixin_41542513/article/details/129462111?spm=1001.2014.3001.5502">keil5.38 debug配置STlink调试，软件闪退</a></p>
 <p>是因为 STlink 的驱动问题。</p>
 <p>ARM 官方的文档解释是：</p>
+<blockquote>
 <p>Keil MDK v5.38 and v5.38a contain a new ST-Link debugger driver, which can cause µVision IDE to crash, if in your Windows OS there are some existing COM ports, whose &ldquo;Device Instance Path&rdquo; value has a string longer than 32 characters in its last pattern.</p>
+</blockquote>
 <p><a href="%E2%80%8Bdeveloper.arm.com/documentation/ka005381/1-0?lang=en&amp;rev=">Documentation - Arm Developer</a></p>
 <p>也就是说这是 Keil MDK v5.38 和 v5.38a 包含的新的 ST-Link 调试器驱动程序引起的问题。</p>
 <p>要解决此问题，可下载附加的 STLinkUSBDriver.dll 文件，并将其复制到 MDK 安装目录的子文件夹中。</p>

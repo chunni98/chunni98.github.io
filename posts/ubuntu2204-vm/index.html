@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>vmware 安装 ubuntu server 22.04.2 LTS记录 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="记录使用 vmware 安装 ubuntu server 22.04.2 LTS 的过程" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="vmware 安装 ubuntu server 22.04.2 LTS记录" />
+<meta property="og:description" content="记录使用 vmware 安装 ubuntu server 22.04.2 LTS 的过程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://chunni98.github.io/posts/ubuntu2204-vm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-05T14:13:39+08:00" />
+<meta property="article:modified_time" content="2023-05-05T14:13:39+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vmware 安装 ubuntu server 22.04.2 LTS记录"/>
+<meta name="twitter:description" content="记录使用 vmware 安装 ubuntu server 22.04.2 LTS 的过程"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Archives</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/stories">Stories</a>
+		
+		<a href="/wiki/">Wiki</a>
+		
+		<a href="/about">About</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">vmware 安装 ubuntu server 22.04.2 LTS记录</h1>
+			<div class="meta">Posted on May 5, 2023</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			记录使用 vmware 安装 ubuntu server 22.04.2 LTS 的过程
+		</div>
+
+		<section class="body">
+			<ul>
+<li><a href="#1-%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F">1 下载镜像</a></li>
+<li><a href="#2-%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA">2 安装虚拟机</a>
+<ul>
+<li><a href="#21-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA">2.1 创建虚拟机</a></li>
+<li><a href="#22-%E5%AE%89%E8%A3%85-ubuntu">2.2 安装 ubuntu</a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE">3 简单配置</a>
+<ul>
+<li><a href="#31-%E6%9B%B4%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90">3.1 更换软件源</a></li>
+<li><a href="#32-%E6%9B%B4%E6%96%B0">3.2 更新</a></li>
+<li><a href="#33-%E5%AE%89%E8%A3%85%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7">3.3 安装一些工具</a></li>
+<li><a href="#34-%E9%85%8D%E7%BD%AE">3.4 配置</a></li>
+</ul>
+</li>
+<li><a href="#4-%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98">4 一些问题</a>
+<ul>
+<li><a href="#41-used-fallback-datasource">4.1 Used fallback datasource</a></li>
+<li><a href="#42-daemons-using-outdated-libraries">4.2 Daemons using outdated libraries</a></li>
+<li><a href="#43-this-system-has-been-minimized">4.3 This system has been minimized</a></li>
+<li><a href="#44-the-following-packages-have-been-kept-back">4.4 The following packages have been kept back</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%8F%82%E8%80%83">5 参考</a></li>
+</ul>
+<h2 id="1-下载镜像">1 下载镜像</h2>
+<p>下载源：<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源镜像站</a></p>
+<p><img src="/img/ubuntu2204/000-1.png" alt=""></p>
+<p>点击「下载链接」，然后点击「22.04.2 (amd64, Server)」，下载镜像。</p>
+<h2 id="2-安装虚拟机">2 安装虚拟机</h2>
+<h3 id="21-创建虚拟机">2.1 创建虚拟机</h3>
+<p>选用「典型」方式安装，创建虚拟机后虚拟机设置如下：</p>
+<p><img src="/img/ubuntu2204/000-2.png" alt=""></p>
+<p><img src="/img/ubuntu2204/000-3.png" alt=""></p>
+<p>注意，创建虚拟机后先不要启动，取消勾选「创建后开启此虚拟机」选项。</p>
+<h3 id="22-安装-ubuntu">2.2 安装 ubuntu</h3>
+<p>默认选中「Try or Install Ubuntu Server」安装选项，回车（或等待 30 秒后），等待系统镜像自检并进行安装初始化。</p>
+<p><strong>1. 选择语言：</strong></p>
+<p><img src="/img/ubuntu2204/001.png" alt=""></p>
+<p><strong>2. 版本可更新</strong></p>
+<p>提示有新版本（23.04.2 版本）可用，询问是否更新到新版本（Update to the new installer），
+或者不更新并继续安装当前版本（Continue without updating），这里选默认的「Continue without updating」，回车确认：</p>
+<p><img src="/img/ubuntu2204/002.png" alt=""></p>
+<p><strong>3. 选择键盘布局</strong></p>
+<p>键盘配置，选择「Identify keyboard」可让系统自动识别键盘布局，这里默认并回车确认：</p>
+<p><img src="/img/ubuntu2204/003.png" alt=""></p>
+<p><strong>4. 选择安装方式</strong></p>
+<p>这里选择最小安装「Ubuntu Server (minimized) 」：</p>
+<p><img src="/img/ubuntu2204/004.png" alt=""></p>
+<p><strong>5. 配置网络</strong></p>
+<p>默认是 DHCP 自动获取 IP 地址，图中的「192.168.242.129」即为自动获取的 IP。</p>
+<p>但我选择了桥接模式，我想设置为静态 IP，方便 ssh 连接，选中「ens32 eth - ▶」，
+按空格键或回车弹出修改「Edit IPv4」选项，选中。</p>
+<p><img src="/img/ubuntu2204/005.png" alt=""></p>
+<p>选择「manual」，即手动设置。</p>
+<p><img src="/img/ubuntu2204/006.png" alt=""></p>
+<p>然后依次输入：网络号、IP 地址、网关、域名服务器（即 DNS ），然后保存。</p>
+<p><img src="/img/ubuntu2204/007.png" alt=""></p>
+<p><strong>6. 配置代理</strong></p>
+<p>默认。</p>
+<p><img src="/img/ubuntu2204/008.png" alt=""></p>
+<p><strong>7. 配置存档镜像</strong></p>
+<p>保持默认，也可以替换为「<a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">清华大学镜像</a>」</p>
+<p><img src="/img/ubuntu2204/009.png" alt=""></p>
+<p><strong>8. 引导式存储布局配置</strong></p>
+<p>即分区配置，保持默认.</p>
+<p><img src="/img/ubuntu2204/010.png" alt=""></p>
+<p><img src="/img/ubuntu2204/011.png" alt=""></p>
+<p>什么都不做，选择「Continue」。</p>
+<p><img src="/img/ubuntu2204/012.png" alt=""></p>
+<p><strong>9. 个人信息设置</strong></p>
+<p>依次设置名字、服务器名、用户名、用户密码。</p>
+<p><img src="/img/ubuntu2204/013.png" alt=""></p>
+<p><strong>10. 升级到 ubuntu pro</strong></p>
+<p>不知道是什么，skip。</p>
+<p><img src="/img/ubuntu2204/014.png" alt=""></p>
+<p><strong>11. SSH 配置</strong></p>
+<p>勾选「Install OpenSSH Server」，</p>
+<p><img src="/img/ubuntu2204/015.png" alt=""></p>
+<p><strong>12. 可选的服务器软件包</strong></p>
+<p>什么都不安装。</p>
+<p><img src="/img/ubuntu2204/016.png" alt=""></p>
+<p><strong>13. 开始安装</strong></p>
+<p>配置完成，开始安装系统。</p>
+<p><img src="/img/ubuntu2204/017.png" alt=""></p>
+<p>安装过程中出现错误，按下 ENTER 回车键让它继续。</p>
+<p><img src="/img/ubuntu2204/019.png" alt=""></p>
+<p><strong>14. 安装成功</strong></p>
+<p>输入用户名和密码即可登录。</p>
+<p><img src="/img/ubuntu2204/020.png" alt=""></p>
+<p>最后设置虚拟机里，移除「CD/DVD (IDE)」设备，或取消「启动时连接(O)」。</p>
+<h2 id="3-简单配置">3 简单配置</h2>
+<h3 id="31-更换软件源">3.1 更换软件源</h3>
+<p>替换为<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学镜像</a>，版本选择
+22.04 LTS</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 备份原来的文件</span>
+</span></span><span style="display:flex;"><span>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改 sources.list 为以下内容：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span>
+</span></span><span style="display:flex;"><span>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 预发布软件源，不建议启用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span>
+</span></span></code></pre></div><h3 id="32-更新">3.2 更新</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt upgrade -y
+</span></span><span style="display:flex;"><span>sudo unminimize
+</span></span></code></pre></div><h3 id="33-安装一些工具">3.3 安装一些工具</h3>
+<p><strong>1. 安装 vim</strong></p>
+<p><code>sudo apt install vim</code>，vim 版本 8.2，更高版本 vim 可编译安装。</p>
+<p><strong>2. 安装 net-tools</strong></p>
+<p>为了使用 ifconfig 命令。</p>
+<p><code>sudo apt-get install net-tools</code></p>
+<p><strong>3. 安装 zsh 并更改终端</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt install zsh
+</span></span><span style="display:flex;"><span>chsh -s /bin/zsh
+</span></span></code></pre></div><p><strong>4. 安装 git</strong></p>
+<p><code>sudo apt install git</code></p>
+<p><strong>5. 安装 oh-my-zsh</strong></p>
+<p><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></p>
+<p><strong>6. 安装 zsh 插件</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>9. git clone https://github.com/zsh-users/zsh-autosuggestions <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-autosuggestions
+</span></span><span style="display:flex;"><span>10. git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-syntax-highlighting
+</span></span></code></pre></div><p><strong>7. 安装 C/C++ 开发工具包</strong></p>
+<p>```sudo apt install build-essential`</p>
+<p><strong>8. 安装 vim 中文帮助</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget https://sourceforge.net/projects/vimcdoc/files/vimcdoc/vimcdoc-2.4.0.tar.gz
+</span></span><span style="display:flex;"><span>./vimdoc.sh -i
+</span></span></code></pre></div><p><strong>9. 安装一些小工具</strong></p>
+<ul>
+<li>cowsay</li>
+<li>tree</li>
+<li>fortunes</li>
+<li>fortunes-zh</li>
+<li>cppman</li>
+<li>manpages-posix-dev</li>
+<li>samba</li>
+<li>tftp</li>
+<li>nfs</li>
+<li>python3-pip</li>
+<li>sqlite3、libsqlite3-dev</li>
+<li>plocate</li>
+</ul>
+<p><strong>10. 安装 ctags 和 gtags</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install global
+</span></span><span style="display:flex;"><span>git clone https://github.com/universal-ctags/ctags.git
+</span></span><span style="display:flex;"><span>sudo apt-get install autoconf automake
+</span></span><span style="display:flex;"><span>sudo apt-get install pkg-config
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 编译安装 universal-ctags</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
+</span></span></code></pre></div><h3 id="34-配置">3.4 配置</h3>
+<p><strong>拷贝 .vimrc 和 .zshrc</strong></p>
+<p>拷贝准备好的 vim 配置文件和 zsh 配置文件。</p>
+<p>下载安装 <a href="https://draculatheme.com/vim">Dracula for Vim</a>。</p>
+<h2 id="4-一些问题">4 一些问题</h2>
+<h3 id="41-used-fallback-datasource">4.1 Used fallback datasource</h3>
+<p>启动虚拟机后会出现这个界面，但不影响登录，查询后应该是云服务器cloud-init初始化工具的问题。</p>
+<p><img src="/img/ubuntu2204/warn1.png" alt=""></p>
+<p>详见：</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/1321968/ubuntu-server-20-04-2-lts-hangs-after-bootup-cloud-init-1781-yyyy-mm-dd-h">WARNING: Used fallback datasource</a></li>
+<li><a href="https://sysin.org/blog/disable-ubuntu-cloud-init/">禁用或者移除 Ubuntu 中的 cloud-init</a></li>
+<li><a href="https://www.jianshu.com/p/5c2a63220027">云服务器cloud-init初始化工具的使用与配置</a></li>
+<li><a href="https://stackoverflow.com/questions/64486060/cloud-init-not-executing-vra-cloud-config-script">Cloud-init not executing vRA cloud-config script?</a></li>
+</ul>
+<h3 id="42-daemons-using-outdated-libraries">4.2 Daemons using outdated libraries</h3>
+<p>这是  Ubuntu 22.04 的新特性，现在是 apt-get 安装过程的一个步骤，是由 needrestart 命令触发，默认情况是交互性质的，也就是会中断在这里需要手动要处理提示。</p>
+<p>修改 <code>/etc/needrestart/needrestart.conf</code> 文件，将 <code>#$nrconf{restart} = 'i';</code> 这行去掉注释，按照需要改成以下两种方式之一：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#如果需要自动重启不提示的话，修改成a</span>
+</span></span><span style="display:flex;"><span>$nrconf<span style="color:#f92672">{</span>restart<span style="color:#f92672">}</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#只是列出需要重启的服务,修改成l</span>
+</span></span><span style="display:flex;"><span>$nrconf<span style="color:#f92672">{</span>restart<span style="color:#f92672">}</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;l&#39;</span>;
+</span></span></code></pre></div><p>另外一种简单的方式是直接运行这个命令即可：</p>
+<p><code>sudo NEEDRESTART_MODE=a apt-get dist-upgrade --yes</code></p>
+<h3 id="43-this-system-has-been-minimized">4.3 This system has been minimized</h3>
+<p>使用 man 手册上时出现该错误，原因是选择了最小化安装，删除了不需要的包和内容。
+运行 <code>sudo unminimize</code> 命令即可完整安装。</p>
+<h3 id="44-the-following-packages-have-been-kept-back">4.4 The following packages have been kept back</h3>
+<p>如果对已安装的某个软件包的依赖关系发生了更改，因此必须安装新的软件包才能执行升级，则该软件包将列为“保留”。</p>
+<p>运行命令 <code>apt-get install &lt;list of packages kept back&gt;</code> 即可。</p>
+<h2 id="5-参考">5 参考</h2>
+<ul>
+<li><a href="https://blog.csdn.net/u010308917/article/details/125157774">VMware 虚拟机图文安装和配置 Ubuntu Server 22.04 LTS 教程</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/595839267">Windows-Hyper安装Ubuntu 22.04 server教程</a></li>
+<li><a href="https://d.cellmean.com/p/4cb49cd6ab01">【解决】Ubuntu 22.04 停止显示 Daemons using outdated libraries</a></li>
+<li><a href="https://qastack.cn/ubuntu/601/the-following-packages-have-been-kept-back-why-and-how-do-i-solve-it">“以下软件包已被保留：”为什么以及如何解决？</a></li>
+<li><a href="https://www.cnblogs.com/henryau/archive/2013/01/06/ubuntu_vim.html">Ubuntu 安装vim与中文帮助文档</a></li>
+<li><a href="https://www.linuxmi.com/plocate-locate.html">忘记 locate 命令，plocate 才是更好的选择</a></li>
+</ul>
+<hr>
+<p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/linux">linux</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div class="footer-info">
+    2023  © 春泥 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

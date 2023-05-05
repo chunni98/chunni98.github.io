@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Sun, 05 Mar 2023 22:48:06 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 May 2023 14:13:39 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vmware 安装 ubuntu server 22.04.2 LTS记录</title>
+      <link>https://chunni98.github.io/posts/ubuntu2204-vm/</link>
+      <pubDate>Fri, 05 May 2023 14:13:39 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/ubuntu2204-vm/</guid>
+      <description>1 下载镜像 2 安装虚拟机 2.1 创建虚拟机 2.2 安装 ubuntu 3 简单配置 3.1 更换软件源 3.2 更新 3.3 安装一些工具 3.4 配置 4 一些问题 4.1 Used fallback datasource 4.2 Daemons using outdated libraries 4.3 This system has been minimized 4.4 The following packages have been kept back 5 参考 1 下载镜像 下载源：清华大学开源镜像站
+点击「下载链接」，然后点击「22.04.2 (amd64, Server)」，下载镜像。
+2 安装虚拟机 2.1 创建虚拟机 选用「典型」方式安装，创建虚拟机后虚拟机设置如下：
+注意，创建虚拟机后先不要启动，取消勾选「创建后开启此虚拟机」选项。
+2.2 安装 ubuntu 默认选中「Try or Install Ubuntu Server」安装选项，回车（或等待 30 秒后），等待系统镜像自检并进行安装初始化。
+1. 选择语言：</description>
+    </item>
+    
     <item>
       <title>简单通用链表 demo</title>
       <link>https://chunni98.github.io/posts/learn-linux-list/</link>
