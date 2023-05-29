@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>stm32 标准固件库 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.cf734400.css" as="style"><link rel="preload" href="/wiki/assets/js/app.a9cbc012.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/37.22e9ddb1.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.023c6faa.js"><link rel="prefetch" href="/wiki/assets/js/11.7b506b9b.js"><link rel="prefetch" href="/wiki/assets/js/12.a18f7714.js"><link rel="prefetch" href="/wiki/assets/js/13.5355cffb.js"><link rel="prefetch" href="/wiki/assets/js/14.9a8f8fbb.js"><link rel="prefetch" href="/wiki/assets/js/15.b6b239d3.js"><link rel="prefetch" href="/wiki/assets/js/16.5cdec6d2.js"><link rel="prefetch" href="/wiki/assets/js/17.58c9759b.js"><link rel="prefetch" href="/wiki/assets/js/18.be401e1c.js"><link rel="prefetch" href="/wiki/assets/js/19.6f274486.js"><link rel="prefetch" href="/wiki/assets/js/20.a7a052f3.js"><link rel="prefetch" href="/wiki/assets/js/21.d3737ebb.js"><link rel="prefetch" href="/wiki/assets/js/22.0234a233.js"><link rel="prefetch" href="/wiki/assets/js/23.a887dc83.js"><link rel="prefetch" href="/wiki/assets/js/24.b72aebf9.js"><link rel="prefetch" href="/wiki/assets/js/25.bf72279a.js"><link rel="prefetch" href="/wiki/assets/js/26.48a912b9.js"><link rel="prefetch" href="/wiki/assets/js/27.d5457a55.js"><link rel="prefetch" href="/wiki/assets/js/28.2bd842a0.js"><link rel="prefetch" href="/wiki/assets/js/29.e9d02bfe.js"><link rel="prefetch" href="/wiki/assets/js/3.347cffd3.js"><link rel="prefetch" href="/wiki/assets/js/30.710f9039.js"><link rel="prefetch" href="/wiki/assets/js/31.6ddefe52.js"><link rel="prefetch" href="/wiki/assets/js/32.647383cd.js"><link rel="prefetch" href="/wiki/assets/js/33.6b5bbc55.js"><link rel="prefetch" href="/wiki/assets/js/34.cc3c8896.js"><link rel="prefetch" href="/wiki/assets/js/35.ed09c55f.js"><link rel="prefetch" href="/wiki/assets/js/36.a076c949.js"><link rel="prefetch" href="/wiki/assets/js/38.dc95d115.js"><link rel="prefetch" href="/wiki/assets/js/39.d795a7ba.js"><link rel="prefetch" href="/wiki/assets/js/4.e3173cf0.js"><link rel="prefetch" href="/wiki/assets/js/40.199dc79b.js"><link rel="prefetch" href="/wiki/assets/js/41.0d9b8a87.js"><link rel="prefetch" href="/wiki/assets/js/42.7f0c852a.js"><link rel="prefetch" href="/wiki/assets/js/43.69a0a51c.js"><link rel="prefetch" href="/wiki/assets/js/44.892f6327.js"><link rel="prefetch" href="/wiki/assets/js/45.ce6f0ee1.js"><link rel="prefetch" href="/wiki/assets/js/46.dcc656cd.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.18290f0f.js"><link rel="prefetch" href="/wiki/assets/js/9.2bb47d5a.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.cf734400.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/emebedded/stm32/" aria-current="page" class="sidebar-link">stm32 学习</a></li><li><a href="/wiki/emebedded/stm32/jxkj.html" class="sidebar-link">stm32 江科大自动协教程笔记</a></li><li><a href="/wiki/emebedded/stm32/1.html" class="sidebar-link">stm32（一）</a></li><li><a href="/wiki/emebedded/stm32/2.html" class="sidebar-link">stm32（二）</a></li><li><a href="/wiki/emebedded/stm32/stdlib.html" aria-current="page" class="active sidebar-link">stm32 标准固件库</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/stdlib.html#_1-apb2-时钟控制" class="sidebar-link">1 APB2 时钟控制</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/stdlib.html#_2-gpio-配置" class="sidebar-link">2 GPIO 配置</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/stdlib.html#afio-配置" class="sidebar-link">AFIO 配置</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/stdlib.html#exti-配置" class="sidebar-link">EXTI 配置</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/stdlib.html#nvic-配置" class="sidebar-link">NVIC 配置</a></li></ul></li><li><a href="/wiki/emebedded/stm32/fs.html" class="sidebar-link">fs stm32（一）</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-apb2-时钟控制"><a href="#_1-apb2-时钟控制" class="header-anchor">#</a> 1 APB2 时钟控制</h2> <h3 id="_1-1-rcc-apb2-外设时钟控制"><a href="#_1-1-rcc-apb2-外设时钟控制" class="header-anchor">#</a> 1.1 RCC APB2 外设时钟控制</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">/**
+  * @brief  Enables or disables the High Speed APB (APB2) peripheral clock.
+  * @param  RCC_APB2Periph: specifies the APB2 peripheral to gates its clock.
+  *   This parameter can be any combination of the following values:
+  *     @arg RCC_APB2Periph_AFIO, RCC_APB2Periph_GPIOA, RCC_APB2Periph_GPIOB,
+  *          RCC_APB2Periph_GPIOC, RCC_APB2Periph_GPIOD, RCC_APB2Periph_GPIOE,
+  *          RCC_APB2Periph_GPIOF, RCC_APB2Periph_GPIOG, RCC_APB2Periph_ADC1,
+  *          RCC_APB2Periph_ADC2, RCC_APB2Periph_TIM1, RCC_APB2Periph_SPI1,
+  *          RCC_APB2Periph_TIM8, RCC_APB2Periph_USART1, RCC_APB2Periph_ADC3,
+  *          RCC_APB2Periph_TIM15, RCC_APB2Periph_TIM16, RCC_APB2Periph_TIM17,
+  *          RCC_APB2Periph_TIM9, RCC_APB2Periph_TIM10, RCC_APB2Periph_TIM11
+  * @param  NewState: new state of the specified peripheral clock.
+  *   This parameter can be: ENABLE or DISABLE.
+  * @retval None
+  */</span>
+<span class="token keyword">void</span> <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> RCC_AHBPeriph<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h3 id="_1-2-rcc-ahb-外设时钟控制"><a href="#_1-2-rcc-ahb-外设时钟控制" class="header-anchor">#</a> 1.2 RCC AHB 外设时钟控制</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">RCC_AHBPeriphClockCmd</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> RCC_AHBPeriph<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_1-3-rcc-apb1-外设时钟控制"><a href="#_1-3-rcc-apb1-外设时钟控制" class="header-anchor">#</a> 1.3 RCC APB1 外设时钟控制</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">RCC_APB1PeriphClockCmd</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> RCC_APB1Periph<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="_2-gpio-配置"><a href="#_2-gpio-配置" class="header-anchor">#</a> 2 GPIO 配置</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">/**
+  * @brief  Initializes the GPIOx peripheral according to the specified
+  *         parameters in the GPIO_InitStruct.
+  * @param  GPIOx: where x can be (A..G) to select the GPIO peripheral.
+  * @param  GPIO_InitStruct: pointer to a GPIO_InitTypeDef structure that
+  *         contains the configuration information for the specified GPIO peripheral.
+  * @retval None
+  */</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> GPIO_InitTypeDef<span class="token operator">*</span> GPIO_InitStruct<span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>GPIO_InitTypedef 定义如下：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">/**
+  * @brief  GPIO Init structure definition
+  */</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span>
+<span class="token punctuation">{</span>
+  <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">;</span>             <span class="token comment">/*!&lt; Specifies the GPIO pins to be configured.
+                                      This parameter can be any value of @ref GPIO_pins_define */</span>
+
+  GPIOSpeed_TypeDef GPIO_Speed<span class="token punctuation">;</span>  <span class="token comment">/*!&lt; Specifies the speed for the selected pins.
+                                      This parameter can be a value of @ref GPIOSpeed_TypeDef */</span>
+
+  GPIOMode_TypeDef GPIO_Mode<span class="token punctuation">;</span>    <span class="token comment">/*!&lt; Specifies the operating mode for the selected pins.
+                                      This parameter can be a value of @ref GPIOMode_TypeDef */</span>
+<span class="token punctuation">}</span>GPIO_InitTypeDef<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span>
+<span class="token punctuation">{</span> GPIO_Mode_AIN <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">,</span>            <span class="token comment">// Analog In 模拟输入</span>
+  GPIO_Mode_IN_FLOATING <span class="token operator">=</span> <span class="token number">0x04</span><span class="token punctuation">,</span>   <span class="token comment">// 浮空输入</span>
+  GPIO_Mode_IPD <span class="token operator">=</span> <span class="token number">0x28</span><span class="token punctuation">,</span>           <span class="token comment">// in pull down 下拉输入</span>
+  GPIO_Mode_IPU <span class="token operator">=</span> <span class="token number">0x48</span><span class="token punctuation">,</span>           <span class="token comment">// in pull up 上拉输入</span>
+  GPIO_Mode_Out_OD <span class="token operator">=</span> <span class="token number">0x14</span><span class="token punctuation">,</span>        <span class="token comment">// out open drain 开漏输出</span>
+  GPIO_Mode_Out_PP <span class="token operator">=</span> <span class="token number">0x10</span><span class="token punctuation">,</span>        <span class="token comment">// out push pull 通用推挽输出</span>
+  GPIO_Mode_AF_OD <span class="token operator">=</span> <span class="token number">0x1C</span><span class="token punctuation">,</span>         <span class="token comment">// Atl open drain 复用开漏</span>
+  GPIO_Mode_AF_PP <span class="token operator">=</span> <span class="token number">0x18</span>          <span class="token comment">// Atl push pull 复用推挽</span>
+<span class="token punctuation">}</span>GPIOMode_TypeDef<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span>
+<span class="token punctuation">{</span>
+  GPIO_Speed_10MHz <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  GPIO_Speed_2MHz<span class="token punctuation">,</span>
+  GPIO_Speed_50MHz
+<span class="token punctuation">}</span>GPIOSpeed_TypeDef<span class="token punctuation">;</span>
+
+<span class="token comment">/** @defgroup GPIO_pins_define
+  * @{
+  */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_0</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0001</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 0 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_1</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0002</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 1 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_2</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0004</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 2 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_3</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0008</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 3 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_4</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0010</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 4 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_5</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0020</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 5 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_6</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0040</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 6 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_7</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0080</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 7 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_8</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0100</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 8 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_9</span>                 <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0200</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 9 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_10</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0400</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 10 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_11</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x0800</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 11 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_12</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x1000</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 12 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_13</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x2000</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 13 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_14</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x4000</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 14 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_15</span>                <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0x8000</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; Pin 15 selected */</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIO_Pin_All</span>               <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span><span class="token punctuation">)</span><span class="token number">0xFFFF</span><span class="token punctuation">)</span>  </span><span class="token comment">/*!&lt; All pins selected */</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br></div></div><h3 id="_2-1-gpio-初始化"><a href="#_2-1-gpio-初始化" class="header-anchor">#</a> 2.1 GPIO 初始化</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// GPIO 外设复位</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_DeInit</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// AFI 外设复位</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_AFIODeInit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 用结构体参数初始化 GPIO口</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> GPIO_InitTypeDef<span class="token operator">*</span> GPIO_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给 GPIO 结构体一个默认值</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_StructInit</span><span class="token punctuation">(</span>GPIO_InitTypeDef<span class="token operator">*</span> GPIO_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="_2-2-gpio读写"><a href="#_2-2-gpio读写" class="header-anchor">#</a> 2.2 GPIO读写</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 读取输入数据寄存器某一个端口的输入值</span>
+<span class="token class-name">uint8_t</span> <span class="token function">GPIO_ReadInputDataBit</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 读取整个输入寄存器</span>
+<span class="token class-name">uint16_t</span> <span class="token function">GPIO_ReadInputData</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 读取输出寄存器的某一个位</span>
+<span class="token class-name">uint8_t</span> <span class="token function">GPIO_ReadOutputDataBit</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 读取整个输出寄存器</span>
+<span class="token class-name">uint16_t</span> <span class="token function">GPIO_ReadOutputData</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_SetBits</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_ResetBits</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Bit Val 指定写入的数据值</span>
+<span class="token comment">// Bit_RESET 清除端口值，置低电平</span>
+<span class="token comment">// Bit_SET  置低电平</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_WriteBit</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">,</span> BitAction BitVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 同时对 16 个端口进入写操作</span>
+<span class="token comment">// 指定写到输出寄存器的值。</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_Write</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> PortVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h2 id="afio-配置"><a href="#afio-配置" class="header-anchor">#</a> AFIO 配置</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 复位 AFIO 外设，清除 AFIO 外设所有配置。</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_AFIODeInit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 锁定某引脚的配置，防止意外更改</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_PinLockConfig</span><span class="token punctuation">(</span>GPIO_TypeDef<span class="token operator">*</span> GPIOx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> GPIO_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 配置 AFIO 的事件输出功能</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_EventOutputConfig</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> GPIO_PortSource<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> GPIO_PinSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_EventOutputCmd</span><span class="token punctuation">(</span>FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 进行引脚重映射</span>
+<span class="token comment">// GPIO_Remap 重映射的方式</span>
+<span class="token comment">// NewState 新的状态</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_PinRemapConfig</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> GPIO_Remap<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 配置 AFIO 的数据选择器，选择想要的中断引脚</span>
+<span class="token comment">/**
+  * @brief  Selects the GPIO pin used as EXTI Line.选择 GPIO 引脚作为外部中断线
+  * @param  GPIO_PortSource: selects the GPIO port to be used as source for EXTI lines. 设置某个 GPIO 外设作为外部中断源
+  *   This parameter can be GPIO_PortSourceGPIOx where x can be (A..G).
+  * @param  GPIO_PinSource: specifies the EXTI line to be configured. 指定要配置的外部中断线。
+  *   This parameter can be GPIO_PinSourcex where x can be (0..15).
+  * @retval None
+  */</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_EXTILineConfig</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> GPIO_PortSource<span class="token punctuation">,</span> <span class="token class-name">uint8_t</span> GPIO_PinSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 以太网相关</span>
+<span class="token keyword">void</span> <span class="token function">GPIO_ETH_MediaInterfaceConfig</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> GPIO_ETH_MediaInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="exti-配置"><a href="#exti-配置" class="header-anchor">#</a> EXTI 配置</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 把 EXTI 配置都清除，恢复成上电默认</span>
+<span class="token keyword">void</span> <span class="token function">EXTI_DeInit</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 根据结构体参数配置 EXTI 外设</span>
+<span class="token comment">/**
+  * @brief  Initializes the EXTI peripheral according to the specified
+  *         parameters in the EXTI_InitStruct.
+  * @param  EXTI_InitStruct: pointer to a EXTI_InitTypeDef structure
+  *         that contains the configuration information for the EXTI peripheral.
+  * @retval None
+  */</span>
+<span class="token comment">/**
+  * @brief  EXTI Init Structure definition
+  */</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span>
+<span class="token punctuation">{</span>
+  <span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">;</span>               <span class="token comment">/*!&lt; Specifies the EXTI lines to be enabled or disabled.
+                                         This parameter can be any combination of @ref EXTI_Lines */</span>
+
+  EXTIMode_TypeDef EXTI_Mode<span class="token punctuation">;</span>       <span class="token comment">/*!&lt; Specifies the mode for the EXTI lines.
+                                         This parameter can be a value of @ref EXTIMode_TypeDef */</span>
+
+  EXTITrigger_TypeDef EXTI_Trigger<span class="token punctuation">;</span> <span class="token comment">/*!&lt; Specifies the trigger signal active edge for the EXTI lines.
+                                         This parameter can be a value of @ref EXTIMode_TypeDef */</span>
+
+  FunctionalState EXTI_LineCmd<span class="token punctuation">;</span>     <span class="token comment">/*!&lt; Specifies the new state of the selected EXTI lines.
+                                         This parameter can be set either to ENABLE or DISABLE */</span>
+<span class="token punctuation">}</span>EXTI_InitTypeDef<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span>
+<span class="token punctuation">{</span>
+  EXTI_Mode_Interrupt <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token comment">// 中断</span>
+  EXTI_Mode_Event <span class="token operator">=</span> <span class="token number">0x04</span>      <span class="token comment">// 事件</span>
+<span class="token punctuation">}</span>EXTIMode_TypeDef<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span>
+<span class="token punctuation">{</span>
+  EXTI_Trigger_Rising <span class="token operator">=</span> <span class="token number">0x08</span><span class="token punctuation">,</span>     <span class="token comment">// 上升沿触发</span>
+  EXTI_Trigger_Falling <span class="token operator">=</span> <span class="token number">0x0C</span><span class="token punctuation">,</span>    <span class="token comment">// 下降沿触发</span>
+  EXTI_Trigger_Rising_Falling <span class="token operator">=</span> <span class="token number">0x10</span>  <span class="token comment">//双边沿触发</span>
+<span class="token punctuation">}</span>EXTITrigger_TypeDef<span class="token punctuation">;</span>
+
+
+<span class="token keyword">void</span> <span class="token function">EXTI_Init</span><span class="token punctuation">(</span>EXTI_InitTypeDef<span class="token operator">*</span> EXTI_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给 EXTI 结构体一个默认值</span>
+<span class="token keyword">void</span> <span class="token function">EXTI_StructInit</span><span class="token punctuation">(</span>EXTI_InitTypeDef<span class="token operator">*</span> EXTI_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 软件触发外部中断，参数指定一个中断线</span>
+<span class="token keyword">void</span> <span class="token function">EXTI_GenerateSWInterrupt</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 获取指定标志位的值，看是否被置 1</span>
+FlagStatus <span class="token function">EXTI_GetFlagStatus</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 对置 1 的标志位进行清除</span>
+<span class="token keyword">void</span> <span class="token function">EXTI_ClearFlag</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 有的在置标志位后会触发中断</span>
+<span class="token comment">// 在中断函数内查看中断标志位</span>
+ITStatus <span class="token function">EXTI_GetITStatus</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 在中断函数内清除置 1 的中断挂起标志位</span>
+<span class="token keyword">void</span> <span class="token function">EXTI_ClearITPendingBit</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> EXTI_Line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br></div></div><h2 id="nvic-配置"><a href="#nvic-配置" class="header-anchor">#</a> NVIC 配置</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 中断分组</span>
+<span class="token comment">/**
+  * @brief  Configures the priority grouping: pre-emption priority and subpriority.
+  * @param  NVIC_PriorityGroup: specifies the priority grouping bits length.
+  *   This parameter can be one of the following values:
+  *     @arg NVIC_PriorityGroup_0: 0 bits for pre-emption priority
+  *                                4 bits for subpriority
+  *     @arg NVIC_PriorityGroup_1: 1 bits for pre-emption priority
+  *                                3 bits for subpriority
+  *     @arg NVIC_PriorityGroup_2: 2 bits for pre-emption priority
+  *                                2 bits for subpriority
+  *     @arg NVIC_PriorityGroup_3: 3 bits for pre-emption priority
+  *                                1 bits for subpriority
+  *     @arg NVIC_PriorityGroup_4: 4 bits for pre-emption priority
+  *                                0 bits for subpriority
+  * @retval None
+  */</span>
+<span class="token comment">// 注意：整个芯片只能用一种分组方式，该函应该数只执行一次。</span>
+<span class="token keyword">void</span> <span class="token function">NVIC_PriorityGroupConfig</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> NVIC_PriorityGroup<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 根据结构体里指定的参数初始化 NVIC</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span>
+<span class="token punctuation">{</span>
+  <span class="token class-name">uint8_t</span> NVIC_IRQChannel<span class="token punctuation">;</span>                    <span class="token comment">/*!&lt; Specifies the IRQ channel to be enabled or disabled. IRQ 通道
+                                                   This parameter can be a value of @ref IRQn_Type
+                                                   (For the complete STM32 Devices IRQ Channels list, please
+                                                    refer to stm32f10x.h file) */</span>
+
+  <span class="token class-name">uint8_t</span> NVIC_IRQChannelPreemptionPriority<span class="token punctuation">;</span>  <span class="token comment">/*!&lt; Specifies the pre-emption priority for the IRQ channel 抢占优先级
+                                                   specified in NVIC_IRQChannel. This parameter can be a value
+                                                   between 0 and 15 as described in the table @ref NVIC_Priority_Table */</span>
+
+  <span class="token class-name">uint8_t</span> NVIC_IRQChannelSubPriority<span class="token punctuation">;</span>         <span class="token comment">/*!&lt; Specifies the subpriority level for the IRQ channel specified 响应优先级
+                                                   in NVIC_IRQChannel. This parameter can be a value
+                                                   between 0 and 15 as described in the table @ref NVIC_Priority_Table */</span>
+
+  FunctionalState NVIC_IRQChannelCmd<span class="token punctuation">;</span>         <span class="token comment">/*!&lt; Specifies whether the IRQ channel defined in NVIC_IRQChannel
+                                                   will be enabled or disabled.
+                                                   This parameter can be set either to ENABLE or DISABLE */</span>
+<span class="token punctuation">}</span> NVIC_InitTypeDef<span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span> <span class="token punctuation">{</span>DISABLE <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> ENABLE <span class="token operator">=</span> <span class="token operator">!</span>DISABLE<span class="token punctuation">}</span> FunctionalState<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">NVIC_Init</span><span class="token punctuation">(</span>NVIC_InitTypeDef<span class="token operator">*</span> NVIC_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 设置中断向量表</span>
+<span class="token keyword">void</span> <span class="token function">NVIC_SetVectorTable</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> NVIC_VectTab<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> Offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 系统低功耗配置</span>
+<span class="token keyword">void</span> <span class="token function">NVIC_SystemLPConfig</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> LowPowerMode<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">SysTick_CLKSourceConfig</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> SysTick_CLKSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2023/4/19 20:48:31</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/emebedded/stm32/2.html" class="prev">
+        stm32（二）
+      </a></span> <span class="next"><a href="/wiki/emebedded/stm32/fs.html">
+        fs stm32（一）
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.a9cbc012.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/37.22e9ddb1.js" defer></script>
+  </body>
+</html>

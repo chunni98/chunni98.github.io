@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C99之复合字面量 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C99之复合字面量 - Chunni&#39;s Blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="语法 C99 允许采用 type-name{initializer-list} 这样类似 C&#43;&#43; 的构造函数的形式构造匿名的结构体，即复合文字特性。如(int[]){1,3},(int){1}，复合字面量是匿名的，所以不能先创建然后再使用，必须在创建的同时使用。
 复合字面量的值类别是左值（能取其地址）。
 若复合字面量出现于文件作用域，则其求值所得的无名对象拥有静态存储期，若复合字面量出现于块作用域，则该对象拥有自动存储期（此情况下对象的生存期结束于外围块的结尾）。
@@ -31,8 +31,14 @@ int main() { int total; total = sum((int[]) { 4, 4, 4, 5, 5, 5 }, 6); return 0; 
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.d902908ac6e0fab67957de5db5aea1b6455b19ae2ca98eac4c95a4a0fdc02238.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.c95c5dcf5f32f8b67bd36f7dab66680e068fce2b303087294114aabf7a7c080b.css"  disabled />
+	
+
+	
+	
+
+	
 	
 	
 	
@@ -40,7 +46,7 @@ int main() { int total; total = sum((int[]) { 4, 4, 4, 5, 5, 5 }, 6); return 0; 
 <body>
         <div class="content"><header>
 	<div class="main">
-		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+		<a href="https://chunni98.github.io/">Chunni&#39;s Blog</a>
 	</div>
 	<nav>
 		
@@ -56,7 +62,7 @@ int main() { int total; total = sum((int[]) { 4, 4, 4, 5, 5, 5 }, 6); return 0; 
 		
 		<a href="/about">About</a>
 		
-		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
 		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
 		
 	</nav>
@@ -154,10 +160,13 @@ int main() { int total; total = sum((int[]) { 4, 4, 4, 5, 5, 5 }, 6); return 0; 
 			
 			
 		</div>
-	</article>
+		</article>
 </main>
 <footer>
-  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://space.bilibili.com/11612100" rel="me" title="bilibili"><i data-feather="link"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" rel="me" title="douban"><i data-feather="link"></i></a>
+    <a class="border"></a></div>
   <div class="footer-info">
     2023  © 春泥 |  <a
       href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>vmware 安装 ubuntu server 22.04.2 LTS记录 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>vmware 安装 ubuntu server 22.04.2 LTS记录 - Chunni&#39;s Blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="记录使用 vmware 安装 ubuntu server 22.04.2 LTS 的过程" />
 	<meta property="og:image" content=""/>
 	<meta property="og:title" content="vmware 安装 ubuntu server 22.04.2 LTS记录" />
@@ -19,8 +19,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.d902908ac6e0fab67957de5db5aea1b6455b19ae2ca98eac4c95a4a0fdc02238.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.c95c5dcf5f32f8b67bd36f7dab66680e068fce2b303087294114aabf7a7c080b.css"  disabled />
+	
+
+	
+	
+
+	
 	
 	
 	
@@ -28,7 +34,7 @@
 <body>
         <div class="content"><header>
 	<div class="main">
-		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+		<a href="https://chunni98.github.io/">Chunni&#39;s Blog</a>
 	</div>
 	<nav>
 		
@@ -44,7 +50,7 @@
 		
 		<a href="/about">About</a>
 		
-		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
 		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
 		
 	</nav>
@@ -85,6 +91,7 @@
 <li><a href="#42-daemons-using-outdated-libraries">4.2 Daemons using outdated libraries</a></li>
 <li><a href="#43-this-system-has-been-minimized">4.3 This system has been minimized</a></li>
 <li><a href="#44-the-following-packages-have-been-kept-back">4.4 The following packages have been kept back</a></li>
+<li><a href="#45-error-runing-comman-cppman--c">4.5 error runing comman cppman -c</a></li>
 </ul>
 </li>
 <li><a href="#5-%E5%8F%82%E8%80%83">5 参考</a></li>
@@ -197,8 +204,8 @@
 <p><strong>5. 安装 oh-my-zsh</strong></p>
 <p><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code></p>
 <p><strong>6. 安装 zsh 插件</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>9. git clone https://github.com/zsh-users/zsh-autosuggestions <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-autosuggestions
-</span></span><span style="display:flex;"><span>10. git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-syntax-highlighting
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/zsh-users/zsh-autosuggestions <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-autosuggestions
+</span></span><span style="display:flex;"><span>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span style="color:#e6db74">${</span>ZSH_CUSTOM<span style="color:#66d9ef">:-</span>~/.oh-my-zsh/custom<span style="color:#e6db74">}</span>/plugins/zsh-syntax-highlighting
 </span></span></code></pre></div><p><strong>7. 安装 C/C++ 开发工具包</strong></p>
 <p>```sudo apt install build-essential`</p>
 <p><strong>8. 安装 vim 中文帮助</strong></p>
@@ -257,6 +264,10 @@
 <h3 id="44-the-following-packages-have-been-kept-back">4.4 The following packages have been kept back</h3>
 <p>如果对已安装的某个软件包的依赖关系发生了更改，因此必须安装新的软件包才能执行升级，则该软件包将列为“保留”。</p>
 <p>运行命令 <code>apt-get install &lt;list of packages kept back&gt;</code> 即可。</p>
+<h3 id="45-error-runing-comman-cppman--c">4.5 error runing comman cppman -c</h3>
+<p>运行 <code>cppman -c</code> 出现 Error caching。</p>
+<p>解决方法：通过 <code>pip3</code> 下载 cppman。</p>
+<p><code>sudo pip3 install cppman</code></p>
 <h2 id="5-参考">5 参考</h2>
 <ul>
 <li><a href="https://blog.csdn.net/u010308917/article/details/125157774">VMware 虚拟机图文安装和配置 Ubuntu Server 22.04 LTS 教程</a></li>
@@ -265,6 +276,7 @@
 <li><a href="https://qastack.cn/ubuntu/601/the-following-packages-have-been-kept-back-why-and-how-do-i-solve-it">“以下软件包已被保留：”为什么以及如何解决？</a></li>
 <li><a href="https://www.cnblogs.com/henryau/archive/2013/01/06/ubuntu_vim.html">Ubuntu 安装vim与中文帮助文档</a></li>
 <li><a href="https://www.linuxmi.com/plocate-locate.html">忘记 locate 命令，plocate 才是更好的选择</a></li>
+<li><a href="https://github.com/aitjcize/cppman/issues/105">error runing comman cppman -c</a></li>
 </ul>
 <hr>
 <p>留言或评论请使用 <a href="https://github.com/chunni98/chunni98.github.io/issues">Github Issues</a>。</p>
@@ -284,10 +296,13 @@
 			
 			
 		</div>
-	</article>
+		</article>
 </main>
 <footer>
-  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://space.bilibili.com/11612100" rel="me" title="bilibili"><i data-feather="link"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" rel="me" title="douban"><i data-feather="link"></i></a>
+    <a class="border"></a></div>
   <div class="footer-info">
     2023  © 春泥 |  <a
       href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>

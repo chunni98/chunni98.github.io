@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>stm32 江科大自动协教程笔记 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.cf734400.css" as="style"><link rel="preload" href="/wiki/assets/js/app.a9cbc012.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/36.a076c949.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.023c6faa.js"><link rel="prefetch" href="/wiki/assets/js/11.7b506b9b.js"><link rel="prefetch" href="/wiki/assets/js/12.a18f7714.js"><link rel="prefetch" href="/wiki/assets/js/13.5355cffb.js"><link rel="prefetch" href="/wiki/assets/js/14.9a8f8fbb.js"><link rel="prefetch" href="/wiki/assets/js/15.b6b239d3.js"><link rel="prefetch" href="/wiki/assets/js/16.5cdec6d2.js"><link rel="prefetch" href="/wiki/assets/js/17.58c9759b.js"><link rel="prefetch" href="/wiki/assets/js/18.be401e1c.js"><link rel="prefetch" href="/wiki/assets/js/19.6f274486.js"><link rel="prefetch" href="/wiki/assets/js/20.a7a052f3.js"><link rel="prefetch" href="/wiki/assets/js/21.d3737ebb.js"><link rel="prefetch" href="/wiki/assets/js/22.0234a233.js"><link rel="prefetch" href="/wiki/assets/js/23.a887dc83.js"><link rel="prefetch" href="/wiki/assets/js/24.b72aebf9.js"><link rel="prefetch" href="/wiki/assets/js/25.bf72279a.js"><link rel="prefetch" href="/wiki/assets/js/26.48a912b9.js"><link rel="prefetch" href="/wiki/assets/js/27.d5457a55.js"><link rel="prefetch" href="/wiki/assets/js/28.2bd842a0.js"><link rel="prefetch" href="/wiki/assets/js/29.e9d02bfe.js"><link rel="prefetch" href="/wiki/assets/js/3.347cffd3.js"><link rel="prefetch" href="/wiki/assets/js/30.710f9039.js"><link rel="prefetch" href="/wiki/assets/js/31.6ddefe52.js"><link rel="prefetch" href="/wiki/assets/js/32.647383cd.js"><link rel="prefetch" href="/wiki/assets/js/33.6b5bbc55.js"><link rel="prefetch" href="/wiki/assets/js/34.cc3c8896.js"><link rel="prefetch" href="/wiki/assets/js/35.ed09c55f.js"><link rel="prefetch" href="/wiki/assets/js/37.22e9ddb1.js"><link rel="prefetch" href="/wiki/assets/js/38.dc95d115.js"><link rel="prefetch" href="/wiki/assets/js/39.d795a7ba.js"><link rel="prefetch" href="/wiki/assets/js/4.e3173cf0.js"><link rel="prefetch" href="/wiki/assets/js/40.199dc79b.js"><link rel="prefetch" href="/wiki/assets/js/41.0d9b8a87.js"><link rel="prefetch" href="/wiki/assets/js/42.7f0c852a.js"><link rel="prefetch" href="/wiki/assets/js/43.69a0a51c.js"><link rel="prefetch" href="/wiki/assets/js/44.892f6327.js"><link rel="prefetch" href="/wiki/assets/js/45.ce6f0ee1.js"><link rel="prefetch" href="/wiki/assets/js/46.dcc656cd.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.18290f0f.js"><link rel="prefetch" href="/wiki/assets/js/9.2bb47d5a.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.cf734400.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/emebedded/stm32/" aria-current="page" class="sidebar-link">stm32 学习</a></li><li><a href="/wiki/emebedded/stm32/jxkj.html" aria-current="page" class="active sidebar-link">stm32 江科大自动协教程笔记</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_1-stm32-简介" class="sidebar-link">1 stm32 简介</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_2-开发环境安装" class="sidebar-link">2 开发环境安装</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_3-工程建立" class="sidebar-link">3 工程建立</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_3-gpio-输出" class="sidebar-link">3 GPIO 输出</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_4-gpio-输入" class="sidebar-link">4 GPIO 输入</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_5-oled-调试工具" class="sidebar-link">5 OLED 调试工具</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_6-exti-外部中断" class="sidebar-link">6 EXTI 外部中断</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_7-外设中断编程" class="sidebar-link">7 外设中断编程</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#_8-tim-定时中断" class="sidebar-link">8 TIM 定时中断</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/jxkj.html#inbox" class="sidebar-link">inbox</a></li></ul></li><li><a href="/wiki/emebedded/stm32/1.html" class="sidebar-link">stm32（一）</a></li><li><a href="/wiki/emebedded/stm32/2.html" class="sidebar-link">stm32（二）</a></li><li><a href="/wiki/emebedded/stm32/stdlib.html" class="sidebar-link">stm32 标准固件库</a></li><li><a href="/wiki/emebedded/stm32/fs.html" class="sidebar-link">fs stm32（一）</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-stm32-简介"><a href="#_1-stm32-简介" class="header-anchor">#</a> 1 stm32 简介</h2> <ul><li>STM32是ST公司基于ARM Cortex-M内核开发的32位微控制器</li> <li>STM32常应用在嵌入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制、娱乐电子产品等</li> <li>STM32功能强大、性能优异、片上资源丰富、功耗低，是一款经典的嵌入式微控制器</li></ul> <h3 id="_1-1-arm-介绍"><a href="#_1-1-arm-介绍" class="header-anchor">#</a> 1.1 ARM 介绍</h3> <ul><li>ARM既指ARM公司，也指ARM处理器内核</li> <li>ARM公司是全球领先的半导体知识产权（IP）提供商，全世界超过95%的智能手机和平板电脑都采用ARM架构</li> <li>ARM公司设计ARM内核，半导体厂商完善内核周边电路并生产芯片</li></ul> <p>stm 32 有高性能、主流、低功耗、无线四个系列。</p> <p>A 系列适用高端应用型的领域，如手机芯片、电脑芯片。</p> <p>R、M 系列适用于嵌入式领域，R 系列注重 real-time，应用场景如：硬盘控制器等，M 系列主要用于单片机领域。</p> <h3 id="_1-2-芯片介绍"><a href="#_1-2-芯片介绍" class="header-anchor">#</a> 1.2 芯片介绍</h3> <p>stm32f103rct6，是通用增强型，64 位引脚，48kb RAM,256k ROM， LQFP 封装，工作在 -40 摄氏度 至 85 摄氏度的芯片。</p> <p>stm32f103c8t6，主流系列，M3 内核，主频 72Mhz，48 引脚，20k RAM（SRAM），64k ROM（Flash）,LQFP 封装。</p> <h3 id="_1-3-片上资源-外设"><a href="#_1-3-片上资源-外设" class="header-anchor">#</a> 1.3 片上资源/外设</h3> <p><img src="/jxkj/1.png" alt=""></p> <p><code>NVIC</code> 和 <code>SysTick</code> 是 M3 的资源。其余是内核外的资源。</p> <p><code>SysTick</code> 可以给 rtos、ucos 等操作系统提供定时来进行任务切换功能。</p> <p>上图是 Stm32F1 的所有外设，芯片具体有哪些外设，需要查询数据手册。</p> <p>操作外设，必须先使能时钟。</p> <p>DMA 帮助 CPU 搬运大量数据。</p> <p>USART 同步/异步 串口。</p> <p>当单片机因为电磁干扰死机或者程序设计不合理而死循环时，看门狗可以及时复位芯片，保持系统稳定。</p> <p>stm32f103c8t6外设如下：</p> <p><img src="/jxkj/3.png" alt=""></p> <p>stm32f103rct6 外设如下：</p> <p><img src="/jxkj/2.png" alt=""></p> <h3 id="_1-4-命名规则"><a href="#_1-4-命名规则" class="header-anchor">#</a> 1.4 命名规则</h3> <p>查看参考手册：STM32 系列产品命名规则</p> <p><img src="/stm32/3.png" alt=""></p> <h3 id="_1-5-系统结构"><a href="#_1-5-系统结构" class="header-anchor">#</a> 1.5 系统结构</h3> <p>详细模块框架图见数据手册 第 2 节。</p> <p>简略框架图见参考手册 2.1 节。</p> <p><img src="/stm32/27.png" alt=""></p> <p>1 是主动单元，2 是被动单元。</p> <p>Icode 指令总线，连接flash闪存，加载程序指令</p> <p>DCode 数据总线，加载数据</p> <p>System 系统总线，连接 sram，FSMC 等。</p> <p>AHB 先进高性能主线，挂在最基本的以及性能较高的外设，如 SDIO、复位和时钟控制。</p> <p>APB 先进外设主线，用于连接一般外设，APB2 性能比 APB1 高，次要外设连接到 APB1 上，需要桥接转换和转存数据。</p> <p>APB2 72MHz，APB1 36MHz</p> <p>DMA 通过 DMA 总线与总线矩阵相连，用于数据搬运。外设可直接向 DMA 发起 DMA 请求。</p> <h3 id="_1-6-引脚定义"><a href="#_1-6-引脚定义" class="header-anchor">#</a> 1.6 引脚定义</h3> <p>查看 参考手册 第 3 节</p> <p>stm32f103c8 引脚分布如下：</p> <p><img src="/jxkj/4.png" alt=""></p> <p>stm32f103rc 引脚分布如下：</p> <p><img src="/jxkj/5.png" alt=""></p> <p>引脚定义中，主功能代表上电后默认功能，默认复用功能是 I/O 口上同时连接的外设功能引脚。
+配置 I/O 口的时候可以选择是通用 I/O 口还是复用功能。</p> <p>重定义功能即如果有两个功能同时复用在一个 I/O 口上，而需要同时用到两个功能，可以把其中一个复用功能
+重映射到其他端口上。</p> <p>以 stm32f103c8 为例：</p> <p>1 号引脚，VBAT 是电池供电引脚，可以接 3V 电池，系统电源断电时，备用电池给内部 RTC 时钟和备份寄存器提供电源。</p> <p>2 号引脚 PC13/TAMPER-RTC是 I/O 口或侵入检测或者 RTC。I/O 口可以根据程序输出或读取高低电平。侵入检测可以做安全保障功能。
+RTC 引脚可以用来输出 RTC 校准时钟，RTC 闹钟脉冲或者秒脉冲。</p> <p>3、4 号引脚 PC14/OSC32_IN、PC15/OSC_OUT 是 I/O 口或者接 32.768Khz 的 RTC 晶振。</p> <p>5、6 号引脚 OSC_IN、OSC_OUT 接系统主晶振，一般 8MHz，可以倍频到 72 MHz，作为系统的主时钟。</p> <p>7 号引脚 NRST 代表复位引脚，N 代表低电平复位。</p> <p>8、9 号引脚 VSS、VDD 是内部模拟部分的电源，如 ADC、RC 震荡器等。</p> <p>10 号引脚 I/O 口或者 PA0-WKUP 可以唤醒待机模式的 stm32 。</p> <p>20 号引脚是 I/O 口或 BOOT1 引脚，用来配置启动模式。</p> <p>23、24 号引脚 VSS_1、VDD_1 是系统的主电源口</p> <p>VSS_2 /VSS_3 都是系统主电源口，stm32 采用了分区供电的方式。</p> <p>vss 都接 3.3v，vdd 都接地即可。</p> <p>34、37、38、39、40 号，是 I/O 口或者调试端口，默认主功能是调试端口。用于调试和下载程序
+stm32 支持 JTAG 和 SWD 两种调试方式，SWD 需要两根线，JTAG 需要 5 根线。
+swd 占用 SWDIO、SWCLK 两个口。使用 swd 调试方式时，PA15、PB3、PB4 可配置为普通 I/O 口使用。</p> <p>44 号引脚是 BOOT0，用于启动配置。</p> <h3 id="_1-7-启动配置"><a href="#_1-7-启动配置" class="header-anchor">#</a> 1.7 启动配置</h3> <p>stm32F10xxx 中可以通过 <code>BOOT[1:0]</code> 选择三种不同启动模式：</p> <p>查询参考手册 2.4 小结，可得知 stm32f10xxx 的启动配置：</p> <p><img src="/stm32/17.png" alt=""></p> <p>根据选定的启动模式，主闪存存储器、系统存储器或SRAM可以按照以下方式访问：</p> <ul><li>从主闪存存储器启动：主闪存存储器被映射到启动空间(0x0000 0000)，但仍然能够在它原有的地址(0x0800 0000)访问它，即闪存存储器的内容可以在两个地址区域访问，0x00000000或0x0800 0000。用于存储用户程序。</li> <li>从系统存储器启动：系统存储器被映射到启动空间(0x0000 0000)，但仍然能够在它原有的地址(0x1FFF F000)访问它。存储有预烧录的启动程序 Bootloader。</li> <li>从内置SRAM启动：只能在0x2000 0000开始的地址区访问SRAM，掉电消失，不能永久存储。</li></ul> <p>ISP 下载即选择系统存储器启动，Bootloader接收串口数据，刷新到主闪存中。</p> <p>内嵌的自举程序用于通过USART1串行接口对闪存存储器进行重新编程。这个程序位于系统存
+储器中，由ST在生产线上写入。</p> <p>BOOT 引脚的值是在上电复位后一瞬间有效，之后就不再有效。如 20 号引脚上电瞬间是 BOOT1 功能，第四个时钟过后就是 PB2 的功能。</p> <h3 id="_1-8-最小系统电路"><a href="#_1-8-最小系统电路" class="header-anchor">#</a> 1.8 最小系统电路</h3> <p>保证 MCU 正常工作的最小电路组成单元。</p> <ul><li>主控芯片</li> <li>供电电路</li> <li>晶振电路</li> <li>下载调试电路</li> <li>BOOT 启动电路</li> <li>复位电路</li></ul> <p><img src="/jxkj/6.png" alt=""></p> <p>时钟是单片机运行的基础，时钟信号推动单片机内各个部分执行相应的指令。</p> <p>如果需要 RTC 实时时钟功能的话可以接上 32.769Khz 的晶振于 3、4 号引脚。
+osc32 就是 32.768 Khz。</p> <p>RTC 时钟主要作用是记录设备关机时的时间以及设备开机时提供时间基准。</p> <p>如果使用内部RC振荡器而不使用外部晶振，请按照下面方法处理：</p> <ol><li>对于100脚或144脚的产品，OSC_IN 应接地，OSC_OUT 应悬空。</li> <li>对于少于100脚的产品，有2种接法：
+<ol><li>OSC_IN和OSC_OUT分别通过10K电阻接地。此方法可提高EMC性能。</li> <li>分别重映射OSC_IN和OSC_OUT至PD0和PD1，再配置PD0和PD1为推挽输出并输出'0'。此方法可以减小功耗并(相对上面2.1)节省2个外部电阻。</li></ol></li></ol> <h2 id="_2-开发环境安装"><a href="#_2-开发环境安装" class="header-anchor">#</a> 2 开发环境安装</h2> <p>手册：原理图、数据手册、参考手册、编程手册、固件库使用手册、外设手册</p> <h3 id="_2-1-keil-安装"><a href="#_2-1-keil-安装" class="header-anchor">#</a> 2.1 keil 安装</h3> <p>官网下载。</p> <h3 id="_2-2-安装器件支持包"><a href="#_2-2-安装器件支持包" class="header-anchor">#</a> 2.2 安装器件支持包</h3> <p>官网下载或者软件中在线安装。</p> <h3 id="_2-3-安装-st-link-驱动"><a href="#_2-3-安装-st-link-驱动" class="header-anchor">#</a> 2.3 安装 ST-LINK 驱动</h3> <p>KEIL 安装目录就有：</p> <p><code>ARM/STLink/USBDriver</code> 下dpinst_amd64.exe。</p> <h3 id="_2-4-安装-usb-转串口驱动"><a href="#_2-4-安装-usb-转串口驱动" class="header-anchor">#</a> 2.4 安装 USB 转串口驱动</h3> <p>CH340</p> <h2 id="_3-工程建立"><a href="#_3-工程建立" class="header-anchor">#</a> 3 工程建立</h2> <p>开发方式：</p> <ol><li>基于寄存器方式。</li> <li>基于标准库方式。</li> <li>基于 HAL 库方式。</li></ol> <h3 id="_3-1-下载固件库"><a href="#_3-1-下载固件库" class="header-anchor">#</a> 3.1 下载固件库</h3> <p>官网下载固件库 <code>STM32F10x_StdPeriph_Lib_V3.5.0</code>。</p> <h3 id="_3-2-创建工程文件夹"><a href="#_3-2-创建工程文件夹" class="header-anchor">#</a> 3.2 创建工程文件夹</h3> <p>复制 <code>STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm</code> 目录下的启动文件。</p> <p>stm32 启动最先执行的就是该文件。</p> <p>到项目目录下的 <code>startup</code> 目录下。</p> <p>接着回到固件库的 <code>Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x</code> 文件夹，</p> <p>目录下有：</p> <ul><li><code>stm32f10x.h</code>，stm32 的外设寄存器描述文件，描述 stm32 的寄存器和对应地址。</li> <li><code>system_stm32f10x.c</code>，用来配置时钟的，stm32 主频 72 Mhz 就是该文件配置的。</li> <li><code>system_stm32f10x.h</code></li></ul> <p>复制该三个文件，粘贴到 startup 文件夹下。</p> <p>因为 stm32 是内核和内核外围的设备组成的，这个内核的寄存器描述和外围设备的描述文件不是在一起的。</p> <p>打开固件库的 <code>Libraries\CMSIS\CM3\CoreSupport</code> 目录下。</p> <p>目录下的 <code>core_cm3.c</code>，<code>core_cm3.h</code> 就是内核的寄存器描述(.h) 和一些内核的配置函数(.c)。</p> <p>复制该两个文件，粘贴到 Startup 文件夹下。</p> <p>工程中把 Startup 目录下所有文件添加到分组 Startup 中。</p> <p>Target 里 ARM Complier 选择 V5.06 update7(build96) 需自行下载，因为 keil 最新版已不再 安装 armcc，改为 armlang。
+而标准库不支持 armlang，如果要使用 armlang ，使用 HAL 库。</p> <p>Output 中勾选 Create Hex，
+C/C++ 里勾选 C99 Mode，并且选择头文件路径。编译优化选择 -O0。</p> <p>debug settings，勾上 <code>reset and run</code>。</p> <p>项目文件夹下新建 User 文件夹，工程里新建 User 组，新建 User/main.c 文件并添加到 User 组里。</p> <p>有些烧录工具需要 bin 格式的文件，可以使用以下命令产生。</p> <p><code>fromelf.exe --bin -o .\Objects\demo.bin .\Objects\demo.axf</code></p> <p>ST-Link 烧录需要 <code>.axf</code> 文件，ISP 烧录需要 <code>.hex</code> 文件。</p> <p>新建 system 文件夹，用于存放 系统资源</p> <p>新建 drivers 文件夹，用于存放驱动文件。</p> <h3 id="_3-3-创建工程"><a href="#_3-3-创建工程" class="header-anchor">#</a> 3.3 创建工程</h3> <p>代码以 stm32f103rc 为例</p> <p><strong>寄存器方式</strong></p> <p>参考参考手册、原理图编写</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span>                  <span class="token comment">// Device header</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+注意最后一行要是空行，不然会报警告。
+
+hex 文件通过串口调试工具下载到 mcu。
+
+新建 beep、delay
+
+观察原理图，BEEP 低电平，三极管导通，蜂鸣器有电流流过，蜂鸣器鸣叫。
+
+BEEP 高电平，三极管截止，蜂鸣器停止鸣叫。
+
+beep<span class="token punctuation">.</span>h
+
+```c
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">_BEEP_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_BEEP_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">beep_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 打开蜂鸣器：ODR[9] 清 0</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">BEEP_ON</span><span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token keyword">do</span> <span class="token punctuation">{</span> GPIOC<span class="token operator">-&gt;</span>BSRR <span class="token operator">|=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">25</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></span></span>
+
+<span class="token comment">// 关闭蜂鸣器</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">BEEP_OFF</span><span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">do</span> <span class="token punctuation">{</span> GPIOC<span class="token operator">-&gt;</span>ODR <span class="token operator">|=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GPIOC_CRH</span> <span class="token expression"><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">volatile</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">0x40011000</span> <span class="token operator">+</span> <span class="token number">0x04</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><p>beep.c</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;beep.h&quot;</span></span>
+
+<span class="token comment">// BEEP - PC9，低电平蜂鸣器鸣叫</span>
+<span class="token comment">// PC9 是 GPIOC 外设的第 9 个 IO 口（从 0 数起）</span>
+
+<span class="token keyword">void</span> <span class="token function">beep_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token comment">// 使能 GPIOC 的时钟</span>
+	<span class="token comment">// void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState)</span>
+	<span class="token comment">//RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);</span>
+    <span class="token comment">// APB2外设时钟使能寄存器</span>
+    RCC<span class="token operator">-&gt;</span>APB2ENR <span class="token operator">|=</span> <span class="token number">0x00000010</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// 配置 PC9 为通用推挽输出，输出速度为 50MHz</span>
+	<span class="token comment">// CRL 管理 IO0~IO7，CRH 管理 IO8~IO15</span>
+	<span class="token comment">// ~(0xF &lt;&lt; 4)</span>
+	<span class="token comment">//GPIOC-&gt;CRH &amp;= ~(0xF &lt;&lt; 4);   // 对 CRH[7:4] 位清 0</span>
+	<span class="token comment">// CRH[7:4] = 0b0011</span>
+	<span class="token comment">//GPIOC-&gt;CRH |= 0x3 &lt;&lt; 4;</span>
+
+	<span class="token comment">// 直接使用地址值来操作</span>
+	<span class="token comment">// GPIOC-&gt;CRH 的地址是 0x40011000 + 0x04</span>
+	<span class="token comment">// *((volatile unsigned int *)(0x40011000 + 0x04)) &amp;= ~(0xF &lt;&lt; 4);</span>
+	<span class="token comment">// #define GPIOC_CRH *((volatile unsigned int *)(0x40011000 + 0x04))</span>
+    GPIOC_CRH <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span><span class="token number">0xF</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	GPIOC_CRH <span class="token operator">|=</span> <span class="token number">0x3</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// 关闭蜂鸣器</span>
+	<span class="token function">BEEP_OFF</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><p>delay.h</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">_DELAY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_DELAY_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;inttypes.h&gt;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">delay</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>delay.c</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;delay.h&quot;</span></span>
+
+<span class="token comment">// 延时函数</span>
+<span class="token keyword">void</span> <span class="token function">delay</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> count<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> count<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>main.c</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span>                  <span class="token comment">// Device header</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;beep.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;delay.h&quot;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">beep_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">BEEP_ON</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">BEEP_OFF</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>代码简洁但是麻烦。</p> <p><strong>标准库方式</strong></p> <p>1 将<code>STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver</code> 下 inc 和 src 目录下文件拷贝到 项目目录下的 libs 目录下。</p> <p>其中 <code>misc.c</code> 是内核的库函数，其他是片上外设的库函数。</p> <p>2 keil 新建组，并添加所有的库函数文件，配置 keil 头文件路径。</p> <p>3 将 <code>STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template</code> 下的</p> <p><code>stm32f10x_conf.h</code>，配置库函数头文件包含关系，并且有一个用来参数检查的定义，是所有库函数都需要的。
+它包含了所有的库函数头文件。<code>stm32f10x.h</code> 的最后包含了 <code>stm32f10x_conf.h</code>。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">/* Exported types ------------------------------------------------------------*/</span>
+<span class="token comment">/* Exported constants --------------------------------------------------------*/</span>
+<span class="token comment">/* Uncomment the line below to expanse the &quot;assert_param&quot; macro in the
+   Standard Peripheral Library drivers code */</span>
+<span class="token comment">/* #define USE_FULL_ASSERT    1 */</span>
+
+<span class="token comment">/* Exported macro ------------------------------------------------------------*/</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span>  <span class="token expression">USE_FULL_ASSERT</span></span>
+
+<span class="token comment">/**
+  * @brief  The assert_param macro is used for function's parameters check.
+  * @param  expr: If expr is false, it calls assert_failed function which reports
+  *         the name of the source file and the source line number of the call
+  *         that failed. If expr is true, it returns no value.
+  * @retval None
+  */</span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">assert_param</span><span class="token expression"><span class="token punctuation">(</span>expr<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>expr<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token number">0</span> <span class="token operator">:</span> <span class="token function">assert_failed</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token constant">__FILE__</span><span class="token punctuation">,</span> <span class="token constant">__LINE__</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+<span class="token comment">/* Exported functions ------------------------------------------------------- */</span>
+  <span class="token keyword">void</span> <span class="token function">assert_failed</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span><span class="token operator">*</span> file<span class="token punctuation">,</span> <span class="token class-name">uint32_t</span> line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">assert_param</span><span class="token expression"><span class="token punctuation">(</span>expr<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token number">0</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* USE_FULL_ASSERT */</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p><code>stm32f10x_it.c</code></p> <p><code>stm32f10x_it.h</code></p> <p>上面两个文件存放 <code>interrupt</code> 中断函数的。</p> <p>4 三个文件复制到项目目录下的 user 目录下，在 keil 组中 ，添加三个文件。</p> <p>5 观察外设寄存器描述文件<code>stm32f10x.h</code> 第 8296 行</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">USE_STDPERIPH_DRIVER</span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x_conf.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>所以为了 <code>stm32f10x_conf.h</code> 能正常生效，才能包含标准外设库，使用标准外设驱动，需要定义全局的宏。</p> <p>keil c/c++ 中定义宏 <code>USE_STDPERIPH_DRIVER</code></p> <p>有些工程会同时声明宏：<code>STM32F10X_HD</code> 或 <code>STM32F10X_MD</code> 根据芯片型号选择。
+但 keil5 会自动声明。</p> <h3 id="_3-4-启动文件选择"><a href="#_3-4-启动文件选择" class="header-anchor">#</a> 3.4 启动文件选择</h3> <p>汇编文件选择，stm32f103rc 选择 hd.s，stm32103c8t6 选择 md.s</p> <p><img src="/jxkj/7.png" alt=""></p> <h3 id="_3-5-工程架构"><a href="#_3-5-工程架构" class="header-anchor">#</a> 3.5 工程架构</h3> <p><img src="/jxkj/8.png" alt=""></p> <p><code>startup_stm32f10x_hd.s</code></p> <p>该文件主要实现目的：</p> <ol><li>设置初始 sp</li> <li>设置初始 PC=Reset_Handler</li> <li>设置向量表入口地址，并初始化向量表</li> <li>调用 Systeminit，把系统时钟配置成 72M，Systeminit 在 system31f10x.c 中定义</li> <li>跳转到标号 _main，最终来到 main 函数。</li></ol> <p>文件中 146 行：</p> <div class="language-asm line-numbers-mode"><pre class="language-text"><code>; Reset handler
+Reset_Handler   PROC
+                EXPORT  Reset_Handler             [WEAK]
+                IMPORT  __main
+                IMPORT  SystemInit
+                LDR     R0, =SystemInit
+                BLX     R0
+                LDR     R0, =__main
+                BX      R0
+                ENDP
+
+; Dummy Exception Handlers (infinite loops which can be modified)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>启动文件还定义了 stm32 的所有其他中断，达到触发条件就会自动执行。中断函数定义就在 <code>stm32f103x_it.c</code> 里</p> <p>st 建议将中断也写到 <code>stm32f103x_it.c</code> 中。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">/******************************************************************************/</span>
+<span class="token comment">/*                 STM32F10x Peripherals Interrupt Handlers                   */</span>
+<span class="token comment">/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */</span>
+<span class="token comment">/*  available peripheral interrupt handler's name please refer to the startup */</span>
+<span class="token comment">/*  file (startup_stm32f10x_xx.s).                                            */</span>
+<span class="token comment">/******************************************************************************/</span>
+
+<span class="token comment">/**
+  * @brief  This function handles PPP interrupt request.
+  * @param  None
+  * @retval None
+  */</span>
+<span class="token comment">/*void PPP_IRQHandler(void)
+{
+}*/</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h2 id="_3-gpio-输出"><a href="#_3-gpio-输出" class="header-anchor">#</a> 3 GPIO 输出</h2> <h3 id="_3-1-简介"><a href="#_3-1-简介" class="header-anchor">#</a> 3.1 简介</h3> <ul><li>GPIO（General Purpose Input Output）通用输入输出口</li> <li>可配置为8种输入输出模式</li> <li>引脚电平：0V~3.3V，部分引脚可容忍5V</li> <li>输出模式下可控制端口输出高低电平，用以驱动LED、控制蜂鸣器、模拟通信协议输出时序等</li> <li>输入模式下可读取端口的高低电平或电压，用于读取按键输入、外接模块电平信号输入、ADC电压采集、模拟通信协议接收数据等</li></ul> <h3 id="_3-2-gpio-基本结构"><a href="#_3-2-gpio-基本结构" class="header-anchor">#</a> 3.2 GPIO 基本结构</h3> <p><img src="/jxkj/9.png" alt=""></p> <p>所有的 GPIO 都是挂载到 APB2 外设总线上。</p> <p>每个 GPIO 外设有 16 个引脚。</p> <p>每个 GPIO 模块内包含寄存器和驱动器。寄存器是一段特殊的存储器，内核可以通过 APB2 总线对寄存器进行读写。</p> <p>寄存器每一位对应一个引脚，但是 stm32 内部寄存器都是有 32 位，所以只有低 16 位有效。</p> <p>输出寄存器写 1，对应引脚就会输出高电平，输入寄存器读 0，则代表对应端口是低电平。</p> <p>寄存器只负责存储数据，驱动器负责增大驱动能力。</p> <h3 id="_3-3-gpio-位结构"><a href="#_3-3-gpio-位结构" class="header-anchor">#</a> 3.3 GPIO 位结构</h3> <p>下图取自参考手册 8.1 GPIO功能描述 一节</p> <p><img src="/jxkj/10.png" alt=""></p> <p>左边是寄存器，中间是驱动器，右边是 I/O 引脚。</p> <p>上面是输入部分，下面是输出部分。</p> <p><strong>I/O 引脚</strong></p> <p>保护二极管，对输入电路进行保护，避免过高电压对内部电路产生伤害。</p> <p><strong>输入驱动器</strong></p> <p>为了避免引脚悬空导致的输入数据不确定，加上了弱上拉电阻/弱拉电阻。</p> <p>引脚悬空（引脚什么都不接），通过弱上拉/弱下拉电阻保证引脚的高/低电平。</p> <p>上拉/下拉就是默认为高电平/低电平的输入模式。</p> <p>弱上拉/弱下拉可尽量避免正常的输入操作。</p> <p><strong>施密特触发器</strong></p> <p>如果输入电压小于某一阈值，输出值就会瞬间降为低电平，输入电压大于某一阈值，输出值就会瞬间升为高电平。</p> <p>对输入电压进行整形，有效避免信号波动造成的输出抖动现象。</p> <p>整形后的波形就可以直接写入输入数据寄存器了。</p> <p><strong>输入数据寄存器</strong></p> <p>读取输入数据寄存器某一位的数据就可以知道端口的输入电平了。</p> <p><strong>输入至片上外设</strong></p> <p>模拟输入连接到 ADC 模数转换上，进入施密特触发器前就接入。</p> <p>复用功能输入连接到其他需要读取端口的外设上，比如串口的输入引脚。</p> <p><strong>输出部分</strong></p> <p>输出控制可以由输出数据寄存器或片上外设控制，两种控制方式通过数据选择器接到了输出控制部分。
+如果选择通过输出数据寄存器控制，就是普通的 I/O 口输出，写寄存器的某一位就可以操作对应的某个端口
+了。</p> <p>位设置/清除寄存器可用来单独操作输出数据寄存器的某一位，而不影响其他位。数据输出寄存器同时控制 16
+个端口，只能整体读写，所以想要单独控制某一个端口而不影响其他端口的话，需要一些特殊的操作方式：</p> <ol><li>先读出寄存器，通过位运算操作更改某一位。再将更改后的数据写回去，麻烦，效率低。</li> <li>设置位设置/清除寄存器。如果需要对某一位置1，在位设置寄存器的对应位写1，其余不需要操作的位写 0 即可。
+想要对某一位清0，就在位清除寄存器对应位写 1，不需要操作的位置 0。</li> <li>读写位带区域，stm32 中专门分配了一段地址区域，位带别名区，这段地址映射了 RAM 和外设寄存器所有的位，读写
+这段地址中的数据，就相当于读写所映射位置的某一位。对位带别名区的一个字（32位）的操作，可以实现操
+作对应的的位带区域的一个位。</li></ol> <p><strong>输出驱动器</strong></p> <p>两个 MOS 管就是电子开关，信号控制开关的导通和关闭开关负责将 I/O 口接入到 VDD 或 VSS。</p> <p>有推挽、开漏、关闭三种输出方式。</p> <p>推挽输出模式下，也叫强推输出模式，两个 mos 管均有效，数据寄存器为 1 ，上管导通，数据寄存器为
+0时，下管导通，输出输出电平。高低电平均有较强的驱动能力。这种模式下，stm32 对 I/O 口有绝对的控
+制权。</p> <p>开漏输出下，P-MOS 无效，这种模式下，只有低电平有驱动能力，高电平没驱动能力，数据寄存器为 1 ，输
+出相当于端口，也就是高阻模式。可以作为通信协议的驱动方式，如 IIC 的引脚，可以避免多机通信下各个
+设备的相互干扰。还可以用用于输出 5V 的电平信号，在 I/O 口接一个上拉电阻到 5V 的电源，用于兼容
+一些 5V 电平的设备。一般用于线与和电流型驱动。</p> <p>关闭模式，两个 MOS 管都无效，输出关闭，端口的电平由外部信号来控制。</p> <h3 id="_3-4-gpio-的模式"><a href="#_3-4-gpio-的模式" class="header-anchor">#</a> 3.4 GPIO 的模式</h3> <p><img src="/jxkj/11.png" alt=""></p> <p>设置为浮空输入的时候，端口一定要接入一个连续的驱动源，不能出现悬空的状态。配置为输入时，输出驱动
+是断开的，只能输入不能输出。</p> <p>模拟输入是 ADC 模数转换器的专属配置，此时输入的施密特触发器也是关闭的无效状态。</p> <p>输出模式下，输入也是有效的，一个端口只能有一个输出，但是可以有多个输入。</p> <p>复用输出，引脚电平由片上外设控制，不连接输出数据寄存器，引脚控制权转移到片上外设，由片上外设控制。
+此时片上外设也可以读取引脚的电平，因为输入是有效的。</p> <p>只有模拟输入会关闭数字输入功能，其他模式下输入都是有效的。</p> <p>GPIO 的输出速度设计是为了低功耗和稳定性，可以限制输出引脚的最大翻转速度，一般为 50MHz。</p> <p>GPIO 的寄存器使用可查阅参考手册 8.2 节</p> <p>共有 7 个寄存器：</p> <ol><li>端口配置低寄存器</li> <li>端口配置高寄存器</li> <li>端口输入数据寄存器</li> <li>端口输出数据寄存器</li> <li>端口位设置/清除寄存器</li> <li>端口位清除寄存器</li> <li>端口配置锁定寄存器</li></ol> <h3 id="_3-5-硬件电路"><a href="#_3-5-硬件电路" class="header-anchor">#</a> 3.5 硬件电路</h3> <h3 id="_3-6-led-和-蜂鸣器"><a href="#_3-6-led-和-蜂鸣器" class="header-anchor">#</a> 3.6 LED 和 蜂鸣器</h3> <ul><li>LED：发光二极管，正向通电点亮，反向通电不亮</li> <li>有源蜂鸣器：内部自带振荡源，将正负极接上直流电压即可持续发声，频率固定</li> <li>无源蜂鸣器：内部不带振荡源，需要控制器提供振荡脉冲才可发声，调整提供振荡脉冲的频率，可发出不同频率的声音</li></ul> <p><img src="/jxkj/12.png" alt=""></p> <p><img src="/jxkj/13.png" alt=""></p> <p>单片机一般倾向使用低电平驱动，很多单片机或芯片都使用了高电平弱驱动，低电平强驱动的规则。
+上面是低电平驱动，下面是高电平驱动。</p> <p>三极管连接引脚的是基极，带箭头的是发射极，剩下的是集电极。三极管的通断需要在发射极和基极之间产生
+一定的开启电压。</p> <h3 id="_3-7-面包板"><a href="#_3-7-面包板" class="header-anchor">#</a> 3.7 面包板</h3> <h2 id="_4-gpio-输入"><a href="#_4-gpio-输入" class="header-anchor">#</a> 4 GPIO 输入</h2> <h3 id="_4-1-按键"><a href="#_4-1-按键" class="header-anchor">#</a> 4.1 按键</h3> <p>按键：常见的输入设备，按下导通，松手断开</p> <p>按键抖动：由于按键内部使用的是机械式弹簧片来进行通断的，所以在按下和松手的瞬间会伴随有一连串的抖动</p> <p><img src="/jxkj/14.png" alt=""></p> <h3 id="_4-2-传感器"><a href="#_4-2-传感器" class="header-anchor">#</a> 4.2 传感器</h3> <p>传感器模块：传感器元件（光敏电阻/热敏电阻/红外接收管等）的电阻会随外界模拟量的变化而变化，通过与定值电阻分压即可得到模拟电压输出，再通过电压比较器进行二值化即可得到数字电压输出</p> <p>江协科技：</p> <p><img src="/jxkj/15.png" alt=""></p> <p>华清远见：</p> <p><img src="/jxkj/16.png" alt=""></p> <p>电路中一端接在电路中，一端接地的可能是滤波电容，用来保证电路稳定，并不是电路主要框架。</p> <p>定值电阻和传感器的分压电路。</p> <p>分析传感器电阻的阻值变化对输出电压的影响。</p> <h3 id="_4-3-硬件电路"><a href="#_4-3-硬件电路" class="header-anchor">#</a> 4.3 硬件电路</h3> <p><strong>按键</strong></p> <p>江协科技：</p> <p><img src="/jxkj/18.png" alt=""></p> <p>1 需要设置 IO口为上拉输入。</p> <p>2 引脚不会出现悬空状态，可以设置为 上拉输入或者浮空输入。</p> <p>3 需要设置为下拉输入。</p> <p>4 引脚不会出现悬空状态，可以设置为 下拉输入或者浮空输入。</p> <p>华清：</p> <p><img src="/jxkj/17.png" alt=""></p> <p>K1 按下，PA0 得到低电平，K1 松开，PA0 得到高电平。</p> <p><strong>传感器</strong></p> <p>江协科技：</p> <p><img src="/jxkj/20.png" alt=""></p> <p>DO 数字输出，接 PA 0</p> <p>AO 模拟输出</p> <p>华清：</p> <p><img src="/jxkj/19.png" alt=""></p> <h3 id="_4-4-按键控制和光敏传感器控制"><a href="#_4-4-按键控制和光敏传感器控制" class="header-anchor">#</a> 4.4 按键控制和光敏传感器控制</h3> <p>stm32f103rc 光敏传感器需要使用 ADC。</p> <p>TODO:</p> <h2 id="_5-oled-调试工具"><a href="#_5-oled-调试工具" class="header-anchor">#</a> 5 OLED 调试工具</h2> <h3 id="_5-1-调试方式"><a href="#_5-1-调试方式" class="header-anchor">#</a> 5.1 调试方式</h3> <ul><li>串口调试，通过串口通信，将调试信息发送到电脑端，电脑使用串口助手显示调试信息。</li> <li>显示屏调式，直接将显示屏连接到单片机，将调试信息打印在显示屏上。</li> <li>keil 调试模式，借助Keil软件的调试模式，可使用单步运行、设置断点、查看寄存器及变量等功能。</li></ul> <h3 id="_5-2-oled-显示屏"><a href="#_5-2-oled-显示屏" class="header-anchor">#</a> 5.2 OLED 显示屏</h3> <ul><li>OLED（Organic Light Emitting Diode）：有机发光二极管</li> <li>OLED显示屏：性能优异的新型显示屏，具有功耗低、相应速度快、宽视角、轻薄柔韧等特点</li> <li>0.96寸OLED模块：小巧玲珑、占用接口少、简单易用，是电子设计中非常常见的显示屏模块</li> <li>供电：3~5.5V，通信协议：I2C/SPI，分辨率：128*64</li></ul> <p><img src="/jxkj/21.png" alt=""></p> <p>分为四针脚和七针脚的版本，四针脚一般是 iic 协议，七针脚一般是 spi 协议。</p> <h3 id="_5-3-硬件电路"><a href="#_5-3-硬件电路" class="header-anchor">#</a> 5.3 硬件电路</h3> <p><strong>华清</strong>：</p> <p><img src="/jxkj/22.png" alt="">`</p> <p><strong>江协科技</strong>：</p> <p><img src="/jxkj/23.png" alt=""></p> <p>SCL 和 SDA 是 IIC 的通信引脚。</p> <h3 id="_5-4-江协科技-oled-驱动函数"><a href="#_5-4-江协科技-oled-驱动函数" class="header-anchor">#</a> 5.4 江协科技 OLED 驱动函数</h3> <p><img src="/jxkj/24.png" alt=""></p> <h2 id="_6-exti-外部中断"><a href="#_6-exti-外部中断" class="header-anchor">#</a> 6 EXTI 外部中断</h2> <h3 id="_6-1-中断系统"><a href="#_6-1-中断系统" class="header-anchor">#</a> 6.1 中断系统</h3> <p><strong>1. 中断</strong></p> <p>在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行。</p> <p><strong>中断优先级</strong></p> <p>当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源。</p> <p><strong>中断嵌套</strong></p> <p>当一个中断程序正在运行时，又有新的更高优先级的中断源申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回。</p> <h3 id="_6-2-中断执行流程"><a href="#_6-2-中断执行流程" class="header-anchor">#</a> 6.2 中断执行流程</h3> <p><img src="/jxkj/25.png" alt=""></p> <h3 id="_6-3-stm32-中断"><a href="#_6-3-stm32-中断" class="header-anchor">#</a> 6.3 stm32 中断</h3> <p>68个可屏蔽中断通道，是 F1 系列最多的中断源，包含EXTI外部中断、TIM定时器、ADC模数转换器、USART串口、SPI通信、I2C通信、RTC 实时时钟等多个外设</p> <p>使用NVIC统一管理中断，每个中断通道都拥有<strong>16</strong>个可编程的优先等级，可对优先级进行分组，进一步设置抢占优先级和响应优先级</p> <p>概念：中断向量表（汇编）。</p> <p>中断列表可以查看参考手册 9.1 中断和异常向量，表55 其它STM32F10xxx产品(小容量、中容量和大容量)的向量表。</p> <p>灰色部分是内核中断。</p> <p>看门狗中断：程序卡死了，没有及时喂狗，看门狗就会申请中断。</p> <p>PVD 中断：电源电压检测中断，如果供电不足，PVD 电路就会申请中断</p> <p>中断地址：由于程序中的函数的地址是由编译器分配的，不固定，但是我们的中断跳转，由于硬件的限制，只能跳到固定的地址执行程序，所以为了
+能让硬件跳转到不固定的地址执行，就需要在内存中定义一个地址的列表，列表中地址是固定的，中断发生后，就跳转到这个固定位置，然后再由
+编译器加上一条跳转到中断函数的代码，这样中断函数就可以跳转到任意位置了。这个中断地址的列表就叫中断向量表。</p> <p><strong>NVIC</strong> 嵌套中断向量控制器，是同一分配和管理中断的，NVIC 是一个内核外设，一个外设可能有多个中断，但 NVIC 只有一个输出口，
+NVIC 根据每个中断的优先级分配中断的先后顺序，之后通过输出口告诉 CPU 处理哪个中断。</p> <p>NVIC 基本结构如下：</p> <p><img src="/jxkj/26.png" alt=""></p> <p><strong>NVIC 优先级分组</strong></p> <ul><li>NVIC的中断优先级由优先级寄存器的4位（0~15）决定，这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级</li> <li>抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队，抢占优先级和响应优先级均相同的按中断号排队</li></ul> <p><img src="/jxkj/27.png" alt=""></p> <p>优先级，值越小优先级越高。</p> <h3 id="_6-4-exti"><a href="#_6-4-exti" class="header-anchor">#</a> 6.4 EXTI</h3> <ul><li>Extern Interrupt 外部中断</li> <li>EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序</li> <li>支持的触发方式：上边沿/下边沿/双边沿/软件触发</li> <li>支持的 GPIO 口： 所有 GPIO 口，但相同的 Pin 不能同时触发中断。</li> <li>通道数：16 个 GPIO_Pin，外加 PVD 输出、RTC 闹钟、USB 唤醒、以太网唤醒。</li> <li>触发方式：中断响应/事件响应</li></ul> <p>外部中断有个功能：就是从低功耗模式的停止模式下唤醒 stm32，对于 PVD 电源电压检测，
+当电源从电压过低恢复时，就需要 PVD 借助一下外部中断退出停止模式。对 RTC 来说，有时为了省电，
+RTC 定了一个闹钟后，stm32 会进入停止模式，等到闹钟响的时候再唤醒，这也需要借助外部中断。</p> <p>事件响应：外部中断的信号不会通向 CPU，而是通向其他外设，用来触发其他外设的操作，比如触发 ADC 转换，
+触发 DMA 等。</p> <p>中断响应是正常的流程：引脚电平变化触发中断，事件响应不会触发中断，而是触发别的外设操作，属于外设之间的联合操作。</p> <p>NVIC 的相关说明可以查看 编程手册。</p> <h3 id="_6-5-exti-基本结构"><a href="#_6-5-exti-基本结构" class="header-anchor">#</a> 6.5 EXTI 基本结构</h3> <p><img src="/jxkj/28.png" alt=""></p> <p>要注意的是 EXTI 5 - 9 触发同一个中断函数,EXTI 10 - 15 触发同一个中断函数。</p> <h3 id="_6-6-afio-复用-i-o-口"><a href="#_6-6-afio-复用-i-o-口" class="header-anchor">#</a> 6.6 AFIO 复用 I/O 口</h3> <p><img src="/jxkj/29.png" alt=""></p> <p>从 PA0/PB0 ... /PG0 中选择一个。</p> <ul><li>AFIO主要用于引脚复用功能的选择和重定义</li> <li>在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择</li></ul> <h3 id="_6-6-exti-框图"><a href="#_6-6-exti-框图" class="header-anchor">#</a> 6.6 EXTI 框图</h3> <p><img src="/jxkj/30.png" alt=""></p> <p>触发中断首先会置一个挂起寄存器，这相当于是一个中断标志位了，可以读取该寄存器判断是哪个通道触发的中断。
+然后在通过中断控制寄存器的控制，中断控制寄存器输出为 1 才执行中断，否则，相当于屏蔽中断。</p> <p>事件响应也会有一个事件屏蔽寄存器进行控制。最后通过一个脉冲发生器，到其他外设。脉冲发生器的作用就是
+给一个电平脉冲，用来触发其他外设的动作。</p> <h3 id="_6-7-什么时候需要使用外部中断"><a href="#_6-7-什么时候需要使用外部中断" class="header-anchor">#</a> 6.7 什么时候需要使用外部中断？</h3> <p><strong>使用外部中断的特性</strong></p> <p>想要获取的信号是外部驱动的很快的突发信号。信号是突发的，是外部驱动的，stm32 只能被动读取，且信号非常快。</p> <p>如旋转编码器、红外摄像头。</p> <p>但是按键除外，因为外部中断不好处理按键抖动和松手检测的问题，而且按键的输出波形也不是转瞬即逝的。
+可以在主循环循环读取或者定时器中断读取方式。</p> <h3 id="_6-8-旋转编码器"><a href="#_6-8-旋转编码器" class="header-anchor">#</a> 6.8 旋转编码器</h3> <p>旋转编码器：用来测量位置、速度或旋转方向的装置，当其旋转轴旋转时，其输出端可以输出与旋转速度和方向对应的方波信号，读取方波信号的频率和相位信息即可得知旋转轴的速度和方向</p> <p>类型：机械触点式/霍尔传感器式/光栅式</p> <p><img src="/jxkj/31.png" alt=""></p> <p>单相输出不能测方向。</p> <p>带正交波形信号输出的编码器，是可以用来测方向的。</p> <p>触点接触形式的编码器一般用于调节音量等，不适合电机这种高速旋转的地方。</p> <p>非接触的霍尔传感器式类可以用于电机测速。</p> <p><strong>硬件电路</strong></p> <p><img src="/jxkj/32.png" alt=""></p> <p>旋转轴旋转时，两个触点以相位相差 90 度的方式交替导通，配合外围电路输出高低电平。</p> <p>A、B接了外拉电阻，默认没旋转的时候，是高电平。旋转时，被拉低到 GND，通过 R3 输出，就是低电平。</p> <p>R3 是输出限流电阻，为了防止模块引脚电流过大的。</p> <p>C1 是输出滤波电容，防止一些输出信号抖动。</p> <h3 id="_6-9-编程手册和参考手册"><a href="#_6-9-编程手册和参考手册" class="header-anchor">#</a> 6.9 编程手册和参考手册</h3> <p>内核相关的如 NVIC 可在编程手册内查看，介绍了 NVIC 的一些寄存器如中断使能寄存器、中断清除使能寄存器等。
+中断分组的配置在 SCB 章节里，SCB_AIRCR 中可以配置中断分组。</p> <p>中断向量表、EXTI、中断线路映像、外部中断的寄存器描述等可在参考手册里找到。</p> <h2 id="_7-外设中断编程"><a href="#_7-外设中断编程" class="header-anchor">#</a> 7 外设中断编程</h2> <h3 id="_7-1-配置-rcc"><a href="#_7-1-配置-rcc" class="header-anchor">#</a> 7.1 配置 RCC</h3> <ol><li>配置 GPIO 时钟使能。</li> <li>配置 AFIO 时钟使能。</li></ol> <div class="language-c line-numbers-mode"><pre class="language-c"><code>    <span class="token comment">// GPIO 14</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOB<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// AFIO 时钟</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_AFIO<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>EXTI 和 NVIC 的时钟一直都是打开的，EXTI 直接由 NVIC 模块控制，并不需要单独的外设时钟。</p> <p>NVIC 是内核的外设，内核外设是不需要开启时钟的。RCC 管的都是内核外的外设。</p> <h3 id="_7-2-配置-gpio"><a href="#_7-2-配置-gpio" class="header-anchor">#</a> 7.2 配置 GPIO</h3> <p>查看参考手册第 8 节 图 31，可知道 EXTI，推荐配置为：上拉输入，浮空输入，下拉输入。这里我配置为上拉输入。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>    <span class="token comment">// 配置 GPIO</span>
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// GPIO14</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_14<span class="token punctuation">;</span>
+    <span class="token comment">// 浮空输入</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IPU<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Speed <span class="token operator">=</span> GPIO_Speed_50MHz<span class="token punctuation">;</span>
+    <span class="token comment">// 初始化</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOB<span class="token punctuation">,</span> <span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_7-3-配置-afio-选择-gpio-连接到-exti。"><a href="#_7-3-配置-afio-选择-gpio-连接到-exti。" class="header-anchor">#</a> 7.3 配置 AFIO，选择 GPIO，连接到 EXTI。</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code>    <span class="token comment">// 配置 AFIO 外部中断引脚选择配置</span>
+    <span class="token comment">// 现在 PB14 引脚的电平信号可以顺利通过 AFIO 进入到 EXTI 电路了。（EXTI14）</span>
+    <span class="token function">GPIO_EXTILineConfig</span><span class="token punctuation">(</span>GPIO_PortSourceGPIOB<span class="token punctuation">,</span> GPIO_PinSource14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_7-4-配置-exti-选择边沿触发方式和触发响应方式。"><a href="#_7-4-配置-exti-选择边沿触发方式和触发响应方式。" class="header-anchor">#</a> 7.4 配置 EXTI，选择边沿触发方式和触发响应方式。</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code>    EXTI_InitTypeDef EXTI_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 外部中断引脚是 Pin14</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Line <span class="token operator">=</span> EXTI_Line14<span class="token punctuation">;</span>
+    <span class="token comment">// 下降沿触发</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Trigger <span class="token operator">=</span> EXTI_Trigger_Falling<span class="token punctuation">;</span>
+    <span class="token comment">// 使能中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_LineCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+    <span class="token comment">// 中断类型：中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Mode <span class="token operator">=</span> EXTI_Mode_Interrupt<span class="token punctuation">;</span>
+    <span class="token function">EXTI_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>EXTI_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_7-5-配置-nvic-给中断选择一个合适的优先级。"><a href="#_7-5-配置-nvic-给中断选择一个合适的优先级。" class="header-anchor">#</a> 7.5 配置 NVIC，给中断选择一个合适的优先级。</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code>    <span class="token comment">// NVIC 配置</span>
+    <span class="token comment">// 两位抢占，两位响应</span>
+    <span class="token function">NVIC_PriorityGroupConfig</span><span class="token punctuation">(</span>NVIC_PriorityGroup_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    NVIC_InitTypeDef NVIC_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 指定通道为 15_10</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannel <span class="token operator">=</span> EXTI15_10_IRQn<span class="token punctuation">;</span>
+    <span class="token comment">// 使能通道</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+    <span class="token comment">// 设置抢占优先级 1</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelPreemptionPriority <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置响应优先级 1</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelSubPriority <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>NVIC_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>写中断函数，中断函数名从启动文件复制。</p> <p>中断函数不需要声明，因为是不需要调用的，自动执行。</p> <p>如果出现数据乱跳的现象，可再次判断引脚电平，以避免抖动。</p> <p>多个中断可以设置优先级</p> <p>格式：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">EXTI15_10_IRQHandler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 执行中断程序</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">EXTI_GetITStatus</span><span class="token punctuation">(</span>EXTI_Line14<span class="token punctuation">)</span> <span class="token operator">==</span> SET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">++</span>count<span class="token punctuation">;</span>
+        <span class="token comment">// 清除中断标志位。</span>
+        <span class="token function">EXTI_ClearITPendingBit</span><span class="token punctuation">(</span>EXTI_Line14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>中断函数注意点：</p> <ol><li>中断函数要简短快速，中断是处理突发的事件。</li> <li>最好不要再中断函数和主函数调用同一个函数或者操作同一个硬件，多用变量和标志位，减少代码的耦合性，让
+各部分代码相互独立。</li> <li>记得最后清除中断标志位。</li></ol> <h2 id="_8-tim-定时中断"><a href="#_8-tim-定时中断" class="header-anchor">#</a> 8 TIM 定时中断</h2> <h2 id="inbox"><a href="#inbox" class="header-anchor">#</a> inbox</h2> <h3 id="任意组合多个外设"><a href="#任意组合多个外设" class="header-anchor">#</a> 任意组合多个外设</h3> <p>初始化外设可以用 <code>|</code> 一次性初始化多个外设，也可以一次性初始化多个时钟。</p> <p>例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOC<span class="token operator">|</span>RCC_APB2Periph_GPIOB<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">GPIO_ResetBits</span><span class="token punctuation">(</span>GPIOC<span class="token punctuation">,</span>GPIO_Pin_13<span class="token operator">|</span>GPIO_Pin_12<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="引脚不初始化"><a href="#引脚不初始化" class="header-anchor">#</a> 引脚不初始化</h3> <p>stm32 引脚上电后，如果不初始化，默认是浮空输入模式。引脚不会输出电平。</p> <h3 id="需要哪些手册"><a href="#需要哪些手册" class="header-anchor">#</a> 需要哪些手册？</h3> <ol><li>数据手册</li> <li>参考手册</li> <li>编程手册，内核和内核外设的详细介绍。</li> <li>原理图</li> <li>外设手册</li></ol> <h3 id="keil5-38-debug配置stlink调试-软件闪退"><a href="#keil5-38-debug配置stlink调试-软件闪退" class="header-anchor">#</a> keil5.38 debug配置STlink调试，软件闪退</h3> <p>下载旧版本的 ST-Link 覆盖 keil 目录下即可。</p> <p>https://blog.csdn.net/sinat_29891353/article/details/82778695</p> <p>问题:https://developer.arm.com/documentation/ka005381/1-0?lang=en&amp;rev=</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2023/5/9 10:39:11</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/emebedded/stm32/" class="prev router-link-active">
+        stm32 学习
+      </a></span> <span class="next"><a href="/wiki/emebedded/stm32/1.html">
+        stm32（一）
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.a9cbc012.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/36.a076c949.js" defer></script>
+  </body>
+</html>

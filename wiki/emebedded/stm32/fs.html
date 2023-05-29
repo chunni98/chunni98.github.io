@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>fs stm32（一） | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.cf734400.css" as="style"><link rel="preload" href="/wiki/assets/js/app.a9cbc012.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/35.ed09c55f.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.023c6faa.js"><link rel="prefetch" href="/wiki/assets/js/11.7b506b9b.js"><link rel="prefetch" href="/wiki/assets/js/12.a18f7714.js"><link rel="prefetch" href="/wiki/assets/js/13.5355cffb.js"><link rel="prefetch" href="/wiki/assets/js/14.9a8f8fbb.js"><link rel="prefetch" href="/wiki/assets/js/15.b6b239d3.js"><link rel="prefetch" href="/wiki/assets/js/16.5cdec6d2.js"><link rel="prefetch" href="/wiki/assets/js/17.58c9759b.js"><link rel="prefetch" href="/wiki/assets/js/18.be401e1c.js"><link rel="prefetch" href="/wiki/assets/js/19.6f274486.js"><link rel="prefetch" href="/wiki/assets/js/20.a7a052f3.js"><link rel="prefetch" href="/wiki/assets/js/21.d3737ebb.js"><link rel="prefetch" href="/wiki/assets/js/22.0234a233.js"><link rel="prefetch" href="/wiki/assets/js/23.a887dc83.js"><link rel="prefetch" href="/wiki/assets/js/24.b72aebf9.js"><link rel="prefetch" href="/wiki/assets/js/25.bf72279a.js"><link rel="prefetch" href="/wiki/assets/js/26.48a912b9.js"><link rel="prefetch" href="/wiki/assets/js/27.d5457a55.js"><link rel="prefetch" href="/wiki/assets/js/28.2bd842a0.js"><link rel="prefetch" href="/wiki/assets/js/29.e9d02bfe.js"><link rel="prefetch" href="/wiki/assets/js/3.347cffd3.js"><link rel="prefetch" href="/wiki/assets/js/30.710f9039.js"><link rel="prefetch" href="/wiki/assets/js/31.6ddefe52.js"><link rel="prefetch" href="/wiki/assets/js/32.647383cd.js"><link rel="prefetch" href="/wiki/assets/js/33.6b5bbc55.js"><link rel="prefetch" href="/wiki/assets/js/34.cc3c8896.js"><link rel="prefetch" href="/wiki/assets/js/36.a076c949.js"><link rel="prefetch" href="/wiki/assets/js/37.22e9ddb1.js"><link rel="prefetch" href="/wiki/assets/js/38.dc95d115.js"><link rel="prefetch" href="/wiki/assets/js/39.d795a7ba.js"><link rel="prefetch" href="/wiki/assets/js/4.e3173cf0.js"><link rel="prefetch" href="/wiki/assets/js/40.199dc79b.js"><link rel="prefetch" href="/wiki/assets/js/41.0d9b8a87.js"><link rel="prefetch" href="/wiki/assets/js/42.7f0c852a.js"><link rel="prefetch" href="/wiki/assets/js/43.69a0a51c.js"><link rel="prefetch" href="/wiki/assets/js/44.892f6327.js"><link rel="prefetch" href="/wiki/assets/js/45.ce6f0ee1.js"><link rel="prefetch" href="/wiki/assets/js/46.dcc656cd.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.18290f0f.js"><link rel="prefetch" href="/wiki/assets/js/9.2bb47d5a.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.cf734400.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  python
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link router-link-active">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/emebedded/stm32/" aria-current="page" class="sidebar-link">stm32 学习</a></li><li><a href="/wiki/emebedded/stm32/jxkj.html" class="sidebar-link">stm32 江科大自动协教程笔记</a></li><li><a href="/wiki/emebedded/stm32/1.html" class="sidebar-link">stm32（一）</a></li><li><a href="/wiki/emebedded/stm32/2.html" class="sidebar-link">stm32（二）</a></li><li><a href="/wiki/emebedded/stm32/stdlib.html" class="sidebar-link">stm32 标准固件库</a></li><li><a href="/wiki/emebedded/stm32/fs.html" aria-current="page" class="active sidebar-link">fs stm32（一）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_1-day1" class="sidebar-link">1 day1</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_2-day2" class="sidebar-link">2 day2</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_2-4-volatile" class="sidebar-link">2.4 volatile</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_2-5-调试" class="sidebar-link">2.5 调试</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_2-6-重映射" class="sidebar-link">2.6 重映射</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_3-day3" class="sidebar-link">3 day3</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_4-day4" class="sidebar-link">4 day4</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_5-day5" class="sidebar-link">5 day5</a></li><li class="sidebar-sub-header"><a href="/wiki/emebedded/stm32/fs.html#_6-day-6" class="sidebar-link">6 day 6</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-day1"><a href="#_1-day1" class="header-anchor">#</a> 1 day1</h2> <h3 id="_1-1-基本概念"><a href="#_1-1-基本概念" class="header-anchor">#</a> 1.1 基本概念</h3> <p>MCU 微控制器</p> <p>MPU 微处理器（手机芯片）</p> <p>FLASH 闪存，永久保存数据，保存程序</p> <p>RAM 随机存取存储器，临时保存数据</p> <p>JTAG 烧录（下载）、调试程序</p> <p>ROM 只读存储器</p> <p>最小系统组成：主控芯片、晶振电路、供电电路、复位电路、调试下载电路、boot 启动电路</p> <h3 id="_1-2-arm"><a href="#_1-2-arm" class="header-anchor">#</a> 1.2 ARM</h3> <p>Advanced RISC Machine 高级精简指令集机器，是一种体系结构</p> <p>RISC 精简指令集，功耗更低，多数指令可以在单时间周期内执行完成</p> <p>CISC 复杂指令集</p> <p>ARM 英国芯片公司，设计更低功耗、更高性能的芯片。开创 chipless 的先河。</p> <p>设计 ARM 体系结构，设计内核。不生产不销售芯片。通过授权体系结构和内核收费营利。</p> <p>ARM     指令集 ---- 32 位</p> <p>Thumb   指令集 ---- 16 位</p> <p>Thumb-2 指令集 ---- 16/32 位混合</p> <h3 id="_1-3-体系结构与内核、芯片的关系"><a href="#_1-3-体系结构与内核、芯片的关系" class="header-anchor">#</a> 1.3 体系结构与内核、芯片的关系</h3> <p>基于体系结构设计内核</p> <p>基于内核设计芯片</p> <p>每个芯片都关联三个编号：芯片编号、内核编号、体系结构编号</p> <p>如 STM32F103RCT6 是芯片编号，它的内核编号是 Cortex-M3，体系结构编号是 ARMv7M</p> <h3 id="_1-4-三级流水线"><a href="#_1-4-三级流水线" class="header-anchor">#</a> 1.4 三级流水线</h3> <p>执行指令的过程可以分解为：取指、译码、执行，三个阶段。</p> <p>这三个阶段分别由 CPU 内部的不同部件执行。CPU 的执行部件在执行第一条指令时，译码部件可以进行第二条指令的译码，而取指部件则可以对第三条指令进行取指，这样三个部件同时都在工作，不造成浪费。</p> <h3 id="_1-5-独立看门狗和窗口看门狗"><a href="#_1-5-独立看门狗和窗口看门狗" class="header-anchor">#</a> 1.5 独立看门狗和窗口看门狗</h3> <p>看门狗提供一种机制：当系统发生异常程序跑飞，可以自动复位，重新运行。</p> <p>keil 生成 bin：C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o .\Objects\demo.bin .\Objects\demo.axf</p> <h2 id="_2-day2"><a href="#_2-day2" class="header-anchor">#</a> 2 day2</h2> <h3 id="_2-1-交叉开发"><a href="#_2-1-交叉开发" class="header-anchor">#</a> 2.1 交叉开发</h3> <p>软件：keil、mcuisp</p> <p>硬件：usb、st-link、j-link</p> <h3 id="_2-2-准备工作"><a href="#_2-2-准备工作" class="header-anchor">#</a> 2.2 准备工作</h3> <ol><li>环境搭建：keil、板级支持包</li> <li>烧录工具：keil/mcuisp、st-link 等</li> <li>需求：完成的功能、功耗等。</li> <li>资料：原理图、mcu 芯片参考手册、数据手册、内核编程手册、用户手册（固件函数库）、其他外设、传感器手册。</li></ol> <h3 id="_2-3-gpio"><a href="#_2-3-gpio" class="header-anchor">#</a> 2.3 GPIO</h3> <p><strong>通用 I/O 功能</strong></p> <p>GPIO 是 MCU 中的一种设备，通过它可以直接控制 MCU 的 IO 口（引脚）</p> <p>STM32F103RCT6 有 GPIOA, GPIOB, GPIOC, GPIOD 共 4 个 GPIO 接口。</p> <p>每个 GPIO 接口最多可以管理 16 个 IO 口。</p> <p>对 GPIO 接口的控制，可以通过 7 个寄存器来实现：</p> <p>. 两个32位配置寄存器(GPIOx_CRL，GPIOx_CRH)
+. 两个16位数据寄存器(GPIOx_IDR，GPIOx_ODR)
+. 一个32位置位/复位寄存器(GPIOx_BSRR)，
+. 一个16位复位寄存器(GPIOx_BRR)
+. 一个32位锁定寄存器(GPIOx_LCKR)</p> <p><strong>复用功能</strong></p> <p>复用功能：一脚多用（通用功能，外设功能）。比如：</p> <p>14 号引脚，通用 IO 是 PA0，外设功能有：</p> <p>WKUP</p> <p>USART2_CTS</p> <p>ADC123_IN0</p> <p>TIM2_CH1_ETR</p> <p>TIM5_CH1</p> <p>TIM8_ETR</p> <p><strong>输入模式</strong></p> <ol><li>输入浮空</li> <li>输入上拉</li> <li>输入下拉</li> <li>模拟输入</li></ol> <p>输入时，输入状态由外部电路决定，上拉时，如果外部浮空，得到高电平，下拉时，如果外部浮空得到低电平。</p> <p>输出断开。</p> <p><strong>输出模式</strong></p> <ol><li>推挽输出。</li> <li>开漏输出。</li> <li>复用推挽输出。（用于外设）</li> <li>复用开漏输出。（用于外设）</li></ol> <p>开漏输出可以实现：线条与功能、电流型驱动，输出 0，得到低电平，输出 1，IO 口电平由外部电路决定。</p> <p>一般输出数字信号时配置为推挽，需要“线与”功能时配置为开漏。</p> <p>一个 IO 口需要 4 个位来配置模式，16 个 IO 口需要 64 个位，因此共需要两个 32 位寄存器，</p> <p>CRL 寄存器配置 IO0 ~ IO7，CRH 寄存器配置 IO8 ~ IO15。</p> <p>对输出数据寄存器 ODR 写的值，可以通过 ODR 读取。</p> <p>为什么要通过 BSRR 寄存器和 BRR 寄存器来操作 ODR?</p> <p>确保对 ODR 的写入是原子的，中途不会被中断，因此软件不需要因为对 ODR 的写入而禁止中断。</p> <p>当对GPIOx_ODR的个别位编程时，软件不需要禁止中断：在单次APB2写操作里，可以只更改一个或多个位。这是通过对“置位/复位寄存器”(GPIOx_BSRR，复位是 GPIOx_BRR)中想要更改的位写’1’来实现的。没被选择的位将不被更改。</p> <p>标准库中将对寄存器的操作封装在函数中，因此调用标准库函数也就操作了寄存器。</p> <h2 id="_2-4-volatile"><a href="#_2-4-volatile" class="header-anchor">#</a> 2.4 volatile</h2> <p>编译器可能对变量有以下优化：</p> <ol><li>对同一变量的连续多次赋值时，可能只保留最后一次赋值，而优化掉前面几步的赋值。</li> <li>重新排列对变量操作的语句</li> <li>对变量的访问，为了加快速度，将变量保存到高速缓存中，之后从高速缓存中访问这个变量</li></ol> <p>使用 volatile 修饰的变量，编译器就不会进行以上优化。</p> <h2 id="_2-5-调试"><a href="#_2-5-调试" class="header-anchor">#</a> 2.5 调试</h2> <p>使用 keil 逻辑分析仪：</p> <p>Dialog DLL: DARMSTM.DLL</p> <p>Parameter: -pSTM32F103RC</p> <p>点击 setup，如果查看 GPIOC.9 变化情况,则输入 PORTC.9。</p> <p>DisplayType 选择 bit</p> <p>点击 <code>in</code>,<code>out</code>,调节 Grid。</p> <h2 id="_2-6-重映射"><a href="#_2-6-重映射" class="header-anchor">#</a> 2.6 重映射</h2> <p>查看数据手册，得知，56 号引脚 PB4 默认功能为 <code>NJTRST</code>。</p> <p>因为使用 st-link 使用 sw 模式烧录程序，不用 NJTRST，JTDO，所以可以重定义 pb4，pb3 ，pa15 为普通 IO 口。</p> <p>需要打开 AFIO 时钟。</p> <p><code>GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);</code></p> <h2 id="_3-day3"><a href="#_3-day3" class="header-anchor">#</a> 3 day3</h2> <h3 id="_3-1-位带"><a href="#_3-1-位带" class="header-anchor">#</a> 3.1 位带</h3> <p>位带别名区就是为位带区服务的，对位带别名区的操作最终都会反映在位带区上，我们操作位带别名区的时候就等价于在操作位带区地址。</p> <p>有两个位带区域：</p> <table><thead><tr><th style="text-align:center;">位带区域</th> <th style="text-align:center;">位带别名区域</th></tr></thead> <tbody><tr><td style="text-align:center;">0x20000000-0x200FFFFF(1M)</td> <td style="text-align:center;">0x22000000-0x23FFFFFF(32M)  SRAM地址</td></tr> <tr><td style="text-align:center;">0x40000000-0x400FFFFF(1M)</td> <td style="text-align:center;">0x42000000-0x43FFFFFF(32M)  外设寄存器地址</td></tr></tbody></table> <p>stm32 是数据总线宽度是 32 位，字长 4 字节，按字寻址速度最快，所以用一个字映射一位。</p> <p>在位带别名区里，只要最低位是1，那么对应的位带区的位就是1。</p> <p>翻译自编程手册：</p> <p>下列公式展示了别名区如何映射到位带区的：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>bit_word_offset <span class="token operator">=</span> <span class="token punctuation">(</span>byte_offset x <span class="token number">32</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>bit_number x <span class="token number">4</span><span class="token punctuation">)</span>
+bit_word_addr <span class="token operator">=</span> bit_band_base <span class="token operator">+</span> bit_word_offset
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ul><li><code>bit_word_offset</code> 是目标位在位带内存区的位置。</li> <li><code>bit_word_addr</code> 是在位带内存区中映射到目标位的字的地址。</li> <li><code>bit_band_base</code> 是别名区的起始地址。</li> <li><code>byte_offset</code> 是包含目标位的字节在位段里的序号。</li> <li><code>bit_number</code> 是目标位的位置,0~7 中之一。</li></ul> <p>使用示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">BIT_WORD_OFFSET</span><span class="token expression"><span class="token punctuation">(</span>byte_offset<span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span></span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>byte_offset<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">BIT_WORD_ADDR</span><span class="token expression"><span class="token punctuation">(</span>bit_band_base<span class="token punctuation">,</span> byte_offset<span class="token punctuation">,</span> bitnumber<span class="token punctuation">)</span></span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">(</span><span class="token punctuation">(</span>bit_band_base<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">BIT_WORD_OFFSET</span><span class="token punctuation">(</span>byte_offset<span class="token punctuation">,</span> bitnumber<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">ADDR</span><span class="token expression"><span class="token punctuation">(</span>addr<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">volatile</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PAin</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span>PERIPH_BB_BASE<span class="token punctuation">,</span> <span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x08</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PAout</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x0C</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PBin</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOB_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x08</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PBout</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOB_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x0C</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PCin</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOC_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x08</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PCout</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOC_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x0C</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PDin</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOD_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x08</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">PDout</span><span class="token expression"><span class="token punctuation">(</span>bit_number<span class="token punctuation">)</span> <span class="token function">ADDR</span><span class="token punctuation">(</span><span class="token function">BIT_WORD_ADDR</span><span class="token punctuation">(</span><span class="token punctuation">(</span>GPIOA_BASE <span class="token operator">&amp;</span> <span class="token number">0xF0000000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x02000000</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+<span class="token expression"><span class="token punctuation">(</span>GPIOD_BASE <span class="token operator">&amp;</span> <span class="token number">0x000FFFFF</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0x0C</span><span class="token punctuation">,</span> bit_number<span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h3 id="_3-2-启动模式"><a href="#_3-2-启动模式" class="header-anchor">#</a> 3.2 启动模式</h3> <p>三种启动模式：用户闪存存储器，系统存储器，SRAM</p> <p>无论哪一种启动模式，最终都是映射到 0x00000000 地址执行。</p> <p>用户闪存存储器保存我们录到 MCU 的程序。</p> <p>系统存储器保存芯片生产线上烧录的启动程序。</p> <p>SRAM 是将程序复制到其内运行。</p> <p>选择启动模式：</p> <table><thead><tr><th style="text-align:center;">boot1</th> <th style="text-align:center;">boot0</th> <th style="text-align:center;">启动位置</th> <th style="text-align:center;">存储地址</th></tr></thead> <tbody><tr><td style="text-align:center;">x</td> <td style="text-align:center;">0</td> <td style="text-align:center;">用户闪存存储</td> <td style="text-align:center;">0x08000000</td></tr> <tr><td style="text-align:center;">0</td> <td style="text-align:center;">1</td> <td style="text-align:center;">系统存储器</td> <td style="text-align:center;">0x1FFFFFFF</td></tr> <tr><td style="text-align:center;">1</td> <td style="text-align:center;">1</td> <td style="text-align:center;">SRAM</td> <td style="text-align:center;">0x20000000</td></tr></tbody></table> <h3 id="_3-3-启动流程"><a href="#_3-3-启动流程" class="header-anchor">#</a> 3.3 启动流程</h3> <div class="language-s line-numbers-mode"><pre class="language-text"><code>Stack_Size      EQU     0x00000400
+
+                AREA    STACK, NOINIT, READWRITE, ALIGN=3
+Stack_Mem       SPACE   Stack_Size
+__initial_sp
+
+; &lt;h&gt; Heap Configuration
+;   &lt;o&gt;  Heap Size (in Bytes) &lt;0x0-0xFFFFFFFF:8&gt;
+; &lt;/h&gt;
+
+Heap_Size       EQU     0x00000200
+
+                AREA    HEAP, NOINIT, READWRITE, ALIGN=3
+__heap_base
+Heap_Mem        SPACE   Heap_Size
+__heap_limit
+
+                PRESERVE8
+                THUMB
+
+
+; Vector Table Mapped to Address 0 at Reset
+                AREA    RESET, DATA, READONLY
+                EXPORT  __Vectors
+                EXPORT  __Vectors_End
+                EXPORT  __Vectors_Size
+
+__Vectors       DCD     __initial_sp               ; Top of Stack
+                DCD     Reset_Handler              ; Reset Handler
+                DCD     NMI_Handler                ; NMI Handler
+                DCD     HardFault_Handler          ; Hard Fault Handler
+                各种异常、中断处理函数...
+
+; SystemInit() 位于 system_stm32f10x.c 文件中，主要进行系统时钟的配置、闪存、内存的配置。
+Reset_Handler   PROC
+                EXPORT  Reset_Handler             [WEAK]
+                IMPORT  __main
+                IMPORT  SystemInit
+                LDR     R0, =SystemInit
+                BLX     R0
+                LDR     R0, =__main
+                BX      R0
+                ENDP
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><p>0x00000000 地址读取栈顶指针（加载到 SP 寄存器）</p> <p>0x00000004 地址读取复位处理函数 Reset_Handler()，并跳转执行（加载到 PC 寄存器）</p> <p>Reset_Handler() 函数中先调用 SystemInit() 函数，结束后返回；再调用 main() 函数，永不返回。</p> <p>SystemInit() 函数中主要做三件初始化工作：设置系统时钟，配置 FLASH，配置外部 SRAM。</p> <p><code>SystemInit()</code> 函数中执行 <code>SetSysClk()</code> 函数：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>  <span class="token comment">/* Configure the System clock frequency, HCLK, PCLK2 and PCLK1 prescalers */</span>
+  <span class="token comment">/* Configure the Flash Latency cycles and enable prefetch buffer */</span>
+  <span class="token function">SetSysClock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_3-4-复位"><a href="#_3-4-复位" class="header-anchor">#</a> 3.4 复位</h3> <p>三种复位方式：系统复位、电源复位、备份域复位。</p> <p>系统复位将复位除时钟控制寄存器CSR中的复位标志和备份区域中的寄存器以外的所有寄存器</p> <p>当以下事件中的一件发生时，产生一个系统复位：</p> <ol><li>NRST管脚上的低电平(外部复位)</li> <li>窗口看门狗计数终止(WWDG复位)</li> <li>独立看门狗计数终止(IWDG复位)</li> <li>软件复位(SW复位)</li> <li>低功耗管理复位</li></ol> <p>可通过查看RCC_CSR控制状态寄存器中的复位状态标志位识别复位事件来源。</p> <p>其中软件复位：</p> <p>通过将Cortex™-M3中断应用和复位控制寄存器(SCB_AIRCR)中的SYSRESETREQ位置’1’，可实现软件复位。</p> <p>其中低功耗管理复位：</p> <p>在以下两种情况下可产生低功耗管理复位：</p> <ol><li>在进入待机模式时产生低功耗管理复位：通过将用户选择字节中的nRST_STDBY位置’1’将使能该复位。这时，即使执行了进入待机模式的过程，系统将被复位而不是进入待机模式。</li> <li>在进入停止模式时产生低功耗管理复位：通过将用户选择字节中的nRST_STOP位置’1’将使能该复位。这时，即使执行了进入停机模式的过程，系统将被复位而不是进入停机模式。</li></ol> <p>电源复位：</p> <p>当以下事件中之一发生时，产生电源复位：</p> <ol><li>上电/掉电复位(POR/PDR复位)</li> <li>从待机模式中返回</li></ol> <p>电源复位将复位除了备份区域外的所有寄存器。</p> <p>备份域复位：</p> <p>当以下事件中之一发生时，产生备份区域复位。备份域复位只影响备份区域。</p> <ol><li>软件复位，备份区域复位可由设置备份区域控制寄存器RCC_BDCR中的BDRST位产生。</li> <li>在VDD和VBAT两者掉电的前提下，VDD或VBAT上电将引发备份区域复位。</li></ol> <p>core_cm3.h 中定义了以下软件复位函数：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SCB_AIRCR_VECTKEY_Pos</span>     <span class="token expression"><span class="token number">16</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SCB_AIRCR_PRIGROUP_Pos</span>    <span class="token expression"><span class="token number">8</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SCB_AIRCR_PRIGROUP_Msk</span>    <span class="token expression"><span class="token punctuation">(</span><span class="token number">7ul</span> <span class="token operator">&lt;&lt;</span> SCB_AIRCR_PRIGROUP_Pos<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SCB_AIRCR_SYSRESETREQ_Pos</span> <span class="token expression"><span class="token number">2</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SCB_AIRCR_SYSRESETREQ_Msk</span> <span class="token expression"><span class="token punctuation">(</span><span class="token number">1ul</span> <span class="token operator">&lt;&lt;</span> SCB_AIRCR_SYSRESETREQ_Pos<span class="token punctuation">)</span></span></span>
+<span class="token keyword">static</span> __INLINE <span class="token keyword">void</span> <span class="token function">NVIC_SystemReset</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  SCB<span class="token operator">-&gt;</span>AIRCR  <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0x5FA</span> <span class="token operator">&lt;&lt;</span> SCB_AIRCR_VECTKEY_Pos<span class="token punctuation">)</span>      <span class="token operator">|</span> <span class="token comment">/* 对 VECTKEY 域写 0x5FA 关键字 */</span>
+                 <span class="token punctuation">(</span>SCB<span class="token operator">-&gt;</span>AIRCR <span class="token operator">&amp;</span> SCB_AIRCR_PRIGROUP_Msk<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token comment">/* 保持优先级分阻不变 */</span>
+                 SCB_AIRCR_SYSRESETREQ_Msk<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">/* 将 SYSRESETREQ 位置 1 */</span>
+  <span class="token function">__DSB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/* 设置内存屏障，确保之前的变量访问完成 */</span>
+  <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 等待复位 */</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>对 SCB-&gt;AIRCR 寄存器写操作时，必须对高 16 位（VECTKEY域）写 <code>0x5FA</code> 关键字。</p> <h3 id="_3-5-时钟"><a href="#_3-5-时钟" class="header-anchor">#</a> 3.5 时钟</h3> <p>三种不同的时钟源可以被用来驱动系统时钟(sysclk):</p> <ol><li>HSI 内部高速 RC 振荡器时钟 如 8MHz。</li> <li>HSE 外部高速振荡器时钟，如 8MHz。</li> <li>PLL 锁相环时钟，引入时钟源进行倍频产生系统所需的高速时钟。</li></ol> <p>以下设备拥有二级时钟源：</p> <ol><li>40kHz低速内部RC，可以用于驱动独立看门狗和通过程序选择驱动RTC。RTC用于从停机/待机模式下自动唤醒系统。（LSI 内部低速 RC 时钟源）</li> <li>32.768kHz低速外部晶体也可用来通过程序选择驱动RTC(RTCCLK)。（LSE 外部低速晶振时钟源）</li></ol> <p>当不被使用时，任一个时钟源都可被独立地启动或关闭，由此优化系统功耗。</p> <p><code>SystemInit()</code> 函数内调用 <code>SetSysClock()</code> 函数设置系统时钟。</p> <p>又因为定义了 <code>SYSCLK_FREQ_72MHz</code> 宏，所以，最终调用的是 <code>SetSysClockTo72();</code></p> <p><code>SetSysClockTo72()</code> 做了以下工作：</p> <ol><li>使能 HSE</li> <li>等待外部高速时钟 HSE 稳定</li> <li>配置 FLASH</li> <li>配置总线时钟：HCLK = SYSCLK / 1，PCLK2 = HCLK / 1，PCLK1 = HCLK / 2。其中 HCLK 是 AHB 总线时钟，PCLK2 是 APB2 总线时钟，PCLK1 是 APB1 总线时钟</li> <li>配置 PLL 为 HSE 的 9 倍频：PLLCLK = HSE * 9 = 72 MHz</li> <li>使能 PLL</li> <li>等待 PLL 就绪</li> <li>选择 PLL 为系统时钟源 SYSCLK</li> <li>等待 PLL 成为系统时钟源</li></ol> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">SetSysClockTo72</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  __IO <span class="token class-name">uint32_t</span> StartUpCounter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> HSEStatus <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/</span>
+  <span class="token comment">/* Enable HSE */</span> <span class="token comment">// 使能 hse</span>
+  RCC<span class="token operator">-&gt;</span>CR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CR_HSEON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* Wait till HSE is ready and if Time out is reached exit */</span>
+  <span class="token comment">// 等待 HSE 稳定，如果超时就退出</span>
+  <span class="token keyword">do</span>
+  <span class="token punctuation">{</span>
+    HSEStatus <span class="token operator">=</span> RCC<span class="token operator">-&gt;</span>CR <span class="token operator">&amp;</span> RCC_CR_HSERDY<span class="token punctuation">;</span>
+    StartUpCounter<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>HSEStatus <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>StartUpCounter <span class="token operator">!=</span> HSE_STARTUP_TIMEOUT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>RCC<span class="token operator">-&gt;</span>CR <span class="token operator">&amp;</span> RCC_CR_HSERDY<span class="token punctuation">)</span> <span class="token operator">!=</span> RESET<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    HSEStatus <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token number">0x01</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span>
+  <span class="token punctuation">{</span>
+    HSEStatus <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token number">0x00</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>HSEStatus <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token number">0x01</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">/* Enable Prefetch Buffer */</span>
+    FLASH<span class="token operator">-&gt;</span>ACR <span class="token operator">|=</span> FLASH_ACR_PRFTBE<span class="token punctuation">;</span>
+
+    <span class="token comment">/* Flash 2 wait state */</span>
+    <span class="token comment">// 配置 flash</span>
+    FLASH<span class="token operator">-&gt;</span>ACR <span class="token operator">&amp;=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token operator">~</span>FLASH_ACR_LATENCY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    FLASH<span class="token operator">-&gt;</span>ACR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>FLASH_ACR_LATENCY_2<span class="token punctuation">;</span>
+
+
+    <span class="token comment">/* HCLK = SYSCLK */</span>
+    <span class="token comment">// 配置 AHB 时钟</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CFGR_HPRE_DIV1<span class="token punctuation">;</span>
+
+    <span class="token comment">/* PCLK2 = HCLK */</span>
+    <span class="token comment">// 配置 APB2 时钟</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CFGR_PPRE2_DIV1<span class="token punctuation">;</span>
+
+    <span class="token comment">/* PCLK1 = HCLK */</span>
+    <span class="token comment">// 配置 APB1 时钟</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CFGR_PPRE1_DIV2<span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">STM32F10X_CL</span></span>
+    <span class="token comment">/* Configure PLLs ------------------------------------------------------*/</span>
+    <span class="token comment">/* PLL2 configuration: PLL2CLK = (HSE / 5) * 8 = 40 MHz */</span>
+    <span class="token comment">/* PREDIV1 configuration: PREDIV1CLK = PLL2 / 5 = 8 MHz */</span>
+
+    RCC<span class="token operator">-&gt;</span>CFGR2 <span class="token operator">&amp;=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token operator">~</span><span class="token punctuation">(</span>RCC_CFGR2_PREDIV2 <span class="token operator">|</span> RCC_CFGR2_PLL2MUL <span class="token operator">|</span>
+                              RCC_CFGR2_PREDIV1 <span class="token operator">|</span> RCC_CFGR2_PREDIV1SRC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RCC<span class="token operator">-&gt;</span>CFGR2 <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span>RCC_CFGR2_PREDIV2_DIV5 <span class="token operator">|</span> RCC_CFGR2_PLL2MUL8 <span class="token operator">|</span>
+                             RCC_CFGR2_PREDIV1SRC_PLL2 <span class="token operator">|</span> RCC_CFGR2_PREDIV1_DIV5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Enable PLL2 */</span>
+    RCC<span class="token operator">-&gt;</span>CR <span class="token operator">|=</span> RCC_CR_PLL2ON<span class="token punctuation">;</span>
+    <span class="token comment">/* Wait till PLL2 is ready */</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>RCC<span class="token operator">-&gt;</span>CR <span class="token operator">&amp;</span> RCC_CR_PLL2RDY<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment">/* PLL configuration: PLLCLK = PREDIV1 * 9 = 72 MHz */</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">&amp;=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token operator">~</span><span class="token punctuation">(</span>RCC_CFGR_PLLXTPRE <span class="token operator">|</span> RCC_CFGR_PLLSRC <span class="token operator">|</span> RCC_CFGR_PLLMULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span>RCC_CFGR_PLLXTPRE_PREDIV1 <span class="token operator">|</span> RCC_CFGR_PLLSRC_PREDIV1 <span class="token operator">|</span>
+                            RCC_CFGR_PLLMULL9<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+    <span class="token comment">/*  PLL configuration: PLLCLK = HSE * 9 = 72 MHz */</span>
+    <span class="token comment">// 配置 PLL 锁相环为HSE 的倍频，且为 72 Mhz</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">&amp;=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token operator">~</span><span class="token punctuation">(</span>RCC_CFGR_PLLSRC <span class="token operator">|</span> RCC_CFGR_PLLXTPRE <span class="token operator">|</span>
+                                        RCC_CFGR_PLLMULL<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span>RCC_CFGR_PLLSRC_HSE <span class="token operator">|</span> RCC_CFGR_PLLMULL9<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* STM32F10X_CL */</span></span>
+
+    <span class="token comment">/* Enable PLL */</span>
+    <span class="token comment">// 使能 pll 锁相环</span>
+    RCC<span class="token operator">-&gt;</span>CR <span class="token operator">|=</span> RCC_CR_PLLON<span class="token punctuation">;</span>
+
+    <span class="token comment">/* Wait till PLL is ready */</span>
+    <span class="token comment">// 等待 pll 就绪</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>RCC<span class="token operator">-&gt;</span>CR <span class="token operator">&amp;</span> RCC_CR_PLLRDY<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/* Select PLL as system clock source */</span>
+    <span class="token comment">// 选择 PLL 作为时钟源</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">&amp;=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token operator">~</span><span class="token punctuation">(</span>RCC_CFGR_SW<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">|=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CFGR_SW_PLL<span class="token punctuation">;</span>
+
+    <span class="token comment">/* Wait till PLL is used as system clock source */</span>
+    <span class="token comment">// 等待 PLL 被用作时钟源</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>RCC<span class="token operator">-&gt;</span>CFGR <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span>RCC_CFGR_SWS<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token punctuation">(</span><span class="token class-name">uint32_t</span><span class="token punctuation">)</span><span class="token number">0x08</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span>
+  <span class="token punctuation">{</span> <span class="token comment">/* If HSE fails to start-up, the application will have wrong clock
+         configuration. User can add here some code to deal with this error */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br></div></div><p>各总线频率：</p> <p><code>SysClk</code> = 72MHz</p> <p><code>HCLK</code> = 72MHz / 1</p> <p><code>PCLK2</code> = 72MHz / 1</p> <p><code>PCLK1</code> = 72MHz / 2 = 36MHz</p> <h3 id="_3-6-系统滴答定时器-systick"><a href="#_3-6-系统滴答定时器-systick" class="header-anchor">#</a> 3.6 系统滴答定时器 SysTick</h3> <p>参考内核编程手册。</p> <p>处理器拥有 24 位的系统定时器，SysTick，能从重载值倒数到 0，它在下一个时钟边缘时重载 LOAD 寄存器
+里的值，然后在随后的时钟倒计时。</p> <p>SysTick定时器，是一个简单的定时器，对于CM3、CM4内核芯片，都有SysTick定时器。常用来做延时，或者实时系统的心跳时钟。
+这样可以节省MCU资源，不用浪费一个定时器。比如uCOS中，分时复用，需要一个最小的时间戳，一般在STM32+UCOS系统中，都采用SysTick做uCOS心跳时钟。</p> <p>具有自动重载和溢出中断功能。</p> <p>一共4个Systick寄存器</p> <p>CTRL             SysTick 控制和状态寄存器</p> <p>LOAD             SysTick 自动重装载除值寄存器</p> <p>VAL                SysTick 当前值寄存器</p> <p>CALIB            SysTick 校准值寄存器</p> <p><strong>SysTick 控制和状态寄存器 CTRL</strong></p> <p><img src="/fs/1.png" alt=""></p> <p>对于STM32，外部时钟源是 HCLK(AHB总线时钟)的1/8，内核时钟是 HCLK时钟。</p> <p><strong>重装载数值寄存器- LOAD</strong></p> <p><img src="/fs/2.png" alt=""></p> <p><strong>当前值寄存器- VAL</strong></p> <p><img src="/fs/3.png" alt=""></p> <p>使用系统滴答定时器实现的 <code>delay()</code>:</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">_MY_DELAY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_MY_DELAY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stddef.h&gt;</span></span>
+
+<span class="token keyword">enum</span> <span class="token class-name">CLK_SOURCE</span><span class="token punctuation">{</span>
+    AHB_DIV8 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    AHB_DIV1
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">kdelay_init</span><span class="token punctuation">(</span><span class="token keyword">enum</span> <span class="token class-name">CLK_SOURCE</span> clk_source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">kdelay_s</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">kdelay_ms</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> ms<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">kdelay_us</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> us<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span>  <span class="token comment">// _MY_DELAY_H</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;my_delay.h&quot;</span></span>
+
+<span class="token keyword">static</span> <span class="token class-name">size_t</span> us_fac <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment">//&lt; 微秒因子，每微妙计数几次</span>
+
+<span class="token keyword">void</span> <span class="token function">kdelay_init</span><span class="token punctuation">(</span><span class="token keyword">enum</span> <span class="token class-name">CLK_SOURCE</span> clk_source<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 9MHz</span>
+    SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>clk_source <span class="token operator">==</span> AHB_DIV1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 72MHz</span>
+        SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">|=</span> <span class="token number">0x3</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        us_fac <span class="token operator">=</span> <span class="token number">72</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        us_fac <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    SysTick<span class="token operator">-&gt;</span>LOAD <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">;</span>
+    SysTick<span class="token operator">-&gt;</span>VAL <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">kdelay_s</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">kdelay_ms</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">kdelay_ms</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> ms<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>ms<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">kdelay_us</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// us &lt;= 233016 ,1 分频</span>
+<span class="token comment">// us &lt;= 1864135 ,8 分频</span>
+<span class="token keyword">void</span> <span class="token function">kdelay_us</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> us<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    SysTick<span class="token operator">-&gt;</span>VAL <span class="token operator">=</span> <span class="token number">0x0</span><span class="token punctuation">;</span>
+    SysTick<span class="token operator">-&gt;</span>LOAD <span class="token operator">=</span> us <span class="token operator">*</span> us_fac<span class="token punctuation">;</span>
+    <span class="token comment">// 启动定时器。</span>
+    SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">|=</span> <span class="token number">0x1</span><span class="token punctuation">;</span>
+    <span class="token comment">// 读取 countflag 的值，等待计数到 0</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">&amp;</span> <span class="token number">0x1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 关闭定时器并清除到期标志</span>
+    SysTick<span class="token operator">-&gt;</span>CTRL <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0x1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div><h3 id="_3-7-按键去抖动"><a href="#_3-7-按键去抖动" class="header-anchor">#</a> 3.7 按键去抖动</h3> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">key_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOA<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IPU<span class="token punctuation">;</span>   <span class="token comment">//&lt; 上拉输入</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_0<span class="token punctuation">;</span>   <span class="token comment">//&lt; PA0</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> <span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+bool <span class="token function">key_pressed</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GPIO_ReadInputDataBit</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> GPIO_Pin_0<span class="token punctuation">)</span> <span class="token operator">==</span> Bit_RESET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 按键消抖动</span>
+        <span class="token function">kdelay_ms</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">GPIO_ReadInputDataBit</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> GPIO_Pin_0<span class="token punctuation">)</span> <span class="token operator">==</span> Bit_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">kdelay_ms</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h2 id="_4-day4"><a href="#_4-day4" class="header-anchor">#</a> 4 day4</h2> <h3 id="_4-1-usart"><a href="#_4-1-usart" class="header-anchor">#</a> 4.1 USART</h3> <p>处理器与外部设备通信的两种方式：</p> <ol><li>串行通信，速度慢，占用引脚资源少。</li> <li>并行通信，速度快，占用引脚资源多。</li></ol> <p>STM32F103RCT6 最多可提供 5 路串口（USART1，USART2，USART3，UART4，UART5）。</p> <p>串行通信的通信方式</p> <ul><li>同步通信：带时钟同步信号传输。
+<ul><li>SPI，IIC通信接口</li></ul></li> <li>异步通信：不带时钟同步信号。
+<ul><li>UART(通用异步收发器),单总线</li></ul></li></ul> <p>UART 特点：</p> <ul><li>全双工异步通信。</li> <li>小数波特率发生器系统，提供精确的波特率。</li> <li>可编程的数据字长度（8位或者9位）；</li> <li>可配置的停止位（支持1或者2位停止位）；</li> <li>可配置的使用DMA多缓冲器通信。</li> <li>单独的发送器和接收器使能位。</li> <li>检测标志：① 接收缓冲器  ②发送缓冲器空 ③传输结束标志</li> <li>多个带标志的中断源。触发中断。</li> <li>其他：校验控制，四个错误检测标志。</li> <li>多处理器通信 -- 如果地址不匹配，则进入静默模式</li> <li>从静默模式中唤醒（通过空闲总线检测或地址标志检测）</li> <li>两种唤醒接收器的方式：地址位(MSB，第9位)，总线空闲</li></ul> <p>USART 是串行、异步、全双工通信协议。</p> <p>协议包含：起始位，数据字（8 位或 9 位），奇偶校验位，停止位（1，1.5 或 2 位）</p> <p>从起始位到停止位所有位称为一帧。</p> <p>双方通信的速度通过波特率控制，即每秒发送的位数。</p> <p>数据传输速度 = 波特率 / 每帧的位数</p> <p>nCTS 和 nRTS 两个引脚可实现流量控制，接收方 nRTS 与发送方 nCTS 连接，</p> <p>接收方通过 nRTS 高电平通知发送方暂停发送，低电平通知发送，</p> <p>发送方通过读取 nCTS 高电平得知暂停发送，低电平可以发送。</p> <p><strong>帧格式</strong></p> <p>STM32串口异步通信定义的参数传送格式：</p> <ol><li>起始位</li> <li>数据位（8位或者9位）</li> <li>奇偶校验位（第8或第9位）</li> <li>停止位（1,1.5,2位）</li> <li>波特率设置</li></ol> <ul><li>起始位：发送器是通过发送起始位而开始一个字符的传送。起始位使数据线处于“space”状态</li> <li>数据位：起始位之后就传送数据位。在数据位中，低位在前（左），高位在后（右）。由于字符编码方式的不同，数据位可以是5、6、7或8位。</li> <li>奇偶校验位：用于对字符传送作正确性检查，因此奇偶校验位是可选择的，共有3种可能，即奇校验、偶校验和无校验，由用户根据需要选定。</li> <li>停止位：停止位在最后，用以标志一个字符传送的结束，它对应于“mark”状态。停止位可能是1，1.5或2位，在实际应用中根据需要确定。</li></ul> <p>1 baud = 1 bit/s</p> <p>一帧结束后不再传输下一帧，而是维持高电平空闲状态，这称为空闲状态，空闲状态可用于在数据传输完毕时进行数据处理，而避免每收到一个字符就要处理一次，浪费 CPU 资源。</p> <p><strong>流控</strong></p> <p>nCTS 和 nRTS 两个引脚可实现流量控制，接收方 nRTS 与发送方 nCTS 连接，接收方通过 nRTS 高电平通知发送方暂停发送，低电平通知发送，发送方通过读取 nCTS 高电平得知暂停发送，低电平可以发送。</p> <p><strong>串口状态</strong></p> <p>在对数据进行发送和接收的时候，要检查USART的状态，只有等到数据发送或接收完毕之后才能进行下一帧数据的发送或接收。</p> <p>串口的状态可以通过状态寄存器 USART_SR 读取。</p> <p>当数据从 TDR 装入发送寄存器中后，即设置发送空标志 TXE，TXE 标志一般用于单缓冲区（非DMA），当数据从移位寄存器中移出并且
+停止位也发送完成标志 TC，TC 标志一般多用于多缓冲区（DMA）。</p> <p>当数据从接受移位寄存器中装入 RDR 时，硬件设置为非空标志 RXNE。</p> <p><strong>寄存器</strong></p> <p>状态寄存器 USART_SR：</p> <p><code>TXE</code>:发送数据寄存器空 (Transmit data register empty)</p> <p>0：数据还没有被转移到移位寄存器；1：数据已经被转移到移位寄存器。注意：单缓冲器传输n中使用该位。</p> <p><code>TC</code>：发送完成 (Transmission complete)</p> <p>0：发送还未完成；1：发送完成。</p> <p>数据寄存器里面有数据时，TXE就会由硬件自动置0，而TC不会，TC 是判断移位寄存器的。</p> <p>TXE是TDR寄存器数据转移到移位寄存器后置位；TC是在TXE置位后，并且数据帧传输完成；</p> <p><code>RXNE</code>：读数据寄存器非空 (Read data register not empty)</p> <p>0：数据没有收到；1：收到数据，可以读出。</p> <p><code>IDLE</code>：监测到总线空闲 (IDLE line detected)</p> <p>0：没有检测到空闲总线；1：检测到空闲总线。注意：IDLE位不会再次被置高直到RXNE位被置起(即又检测到一次空闲总线)</p> <p>数据寄存器 USART_DR</p> <p>包含了发送或接收的数据。由于它是由两个寄存器组成的，一个给发送用(TDR)，一个给接收用(RDR)，该寄存器兼具读和写的功能。</p> <p>发送时，把TDR内容转移到发送移位寄存器，由发送移位寄存器一位一位发出；接收时，把收到的每一位保存到接收移位寄存器然后再转移到RDR。</p> <p><strong>实例</strong></p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stddef.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">usart1_init</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> baud<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 使能 GPIOA 和 USART1 时钟。</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOA <span class="token operator">|</span> RCC_APB2Periph_USART1<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+
+    <span class="token comment">// 配置 PA9 为复用推挽输出。</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_9<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_AF_PP<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Speed <span class="token operator">=</span> GPIO_Speed_50MHz<span class="token punctuation">;</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span><span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 配置 PA10 为输入浮空。</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_10<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IN_FLOATING<span class="token punctuation">;</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span><span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 配置 USART1</span>
+    USART_InitTypeDef USART_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 波特率</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_BaudRate <span class="token operator">=</span> baud<span class="token punctuation">;</span>
+    <span class="token comment">// 收发模式</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_Mode <span class="token operator">=</span> USART_Mode_Rx <span class="token operator">|</span> USART_Mode_Tx<span class="token punctuation">;</span>
+    <span class="token comment">// 停止位一位</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_StopBits <span class="token operator">=</span> USART_StopBits_1<span class="token punctuation">;</span>
+    <span class="token comment">// 奇校验</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_Parity <span class="token operator">=</span> USART_Parity_Odd<span class="token punctuation">;</span>
+    <span class="token comment">// 数据位 8 位</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_WordLength <span class="token operator">=</span> USART_WordLength_9b<span class="token punctuation">;</span>
+    <span class="token comment">// 无流控</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_HardwareFlowControl <span class="token operator">=</span> USART_HardwareFlowControl_None<span class="token punctuation">;</span>
+    <span class="token comment">// 初始化串口</span>
+    <span class="token function">USART_Init</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>USART_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 使能串口</span>
+    <span class="token function">USART_Cmd</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 发送一个字节。</span>
+<span class="token keyword">void</span> <span class="token function">usart1_putchar</span><span class="token punctuation">(</span><span class="token class-name">uint8_t</span> ch<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 等待发送数据寄存器为空。</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">USART_GetFlagStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_FLAG_TXE<span class="token punctuation">)</span> <span class="token operator">==</span> RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">USART_SendData</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 发送一个字符串。</span>
+<span class="token keyword">void</span> <span class="token function">usart1_putstr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">uint8_t</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 等待发送数据寄存器为空。</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">USART_GetFlagStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_FLAG_TXE<span class="token punctuation">)</span> <span class="token operator">==</span> RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>str <span class="token operator">!=</span> <span class="token char">'\0'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">USART_SendData</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> <span class="token operator">*</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        str<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token comment">// 等待发送完成。</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">USART_GetFlagStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_FLAG_TC<span class="token punctuation">)</span> <span class="token operator">==</span> RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">uint8_t</span> <span class="token function">usart1_getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 等待有数据可读。</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">USART_GetFlagStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_FLAG_RXNE<span class="token punctuation">)</span> <span class="token operator">==</span> RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 读取数据。</span>
+    <span class="token keyword">return</span> <span class="token function">USART_ReceiveData</span><span class="token punctuation">(</span>USART1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// main.c</span>
+
+<span class="token function">usart1_init</span><span class="token punctuation">(</span><span class="token number">115200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">usart1_putstr</span><span class="token punctuation">(</span><span class="token string">&quot;你好，世界！\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">uint8_t</span> ch<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>true<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ch <span class="token operator">=</span> <span class="token function">usart1_getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">==</span><span class="token char">'0'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">pb4_high</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token function">pb4_low</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">usart1_putchar</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br></div></div><h3 id="_4-2-中断"><a href="#_4-2-中断" class="header-anchor">#</a> 4.2 中断</h3> <p>CPU执行程序时，由于发生了某种随机的事件(外部或内部)，引起CPU暂时中断正在运行的程序，转去执行一段特殊的服务程序(中断服务子程序或中断处理程序)，以处理该事件，该事件处理完后又返回被中断的程序继续执行，这一过程称为中断。</p> <p>中断进入，由硬件完成。每条机器指令执行完毕时，机器会检查有没有中断产生，如果没有就继续执行下一条指令，如果有中断产生，就保存现场（一些寄存器的值），然后按这个中断的向量表位置找到它的中断处理函数，并跳转执行。</p> <p>中断处理，由软件实现。程序员实现中断处理程序。</p> <p>中断退出，由软件完成。中断处理函数结束时，编译器会自动添加代码，恢复现场（恢复进入中断时保存的寄存器值），从中断返回到原来被中断的位置，继续执行。</p> <p>硬件保存现场，软件恢复现场。</p> <h3 id="_4-3-nvic"><a href="#_4-3-nvic" class="header-anchor">#</a> 4.3 NVIC</h3> <p>NVIC和SCB都是内核组件，其说明在Cortex-M3内核编程手册中。</p> <ul><li>NVIC ：嵌套向量中断控制器，用于总体管理异常</li> <li>Cortex-M3内核支持256个中断，其中包含了16个内核中断和240个外部中断，并且具有256级的可编程中断设置。</li> <li>STM32F1并没有使用Cortex-M3内核的全部东西，而是只用了它的一部分。</li> <li>STM32F10x总共有76个中断</li> <li>STM32F10x的76个中断里面，包括16个内核中断和60个可屏蔽中断。</li> <li>16 个可编程优先级（使用了 4 位中断优先级）</li></ul> <p>Cortex-M3 共有 16 + 240 = 256 个中断，并且有 256 个中断优先级（使用 8 个位表示）</p> <p>STM32F1 系列只有 16 + 60 = 76 个中断，只有 16 级中优先级（使用 8 个位中的 [7:4] 4 个位）</p> <p>优先级数值越小级别越高，数值越大级别越低。</p> <p><strong>中断管理</strong></p> <p>对每个中断设置一个抢占优先级和一个响应优先级值。分组配置是在寄存器SCB-&gt;AIRCR中配置。</p> <p>一般情况下，系统代码执行过程中，只设置一次中断优先级分组（只执行一次设置），比如分组2，设置好分组之后一般不会再改变分组。随意改变分组会导致中断管理混乱，程序出现意想不到的执行结果。</p> <p>抢占优先级 &amp; 响应优先级区别：</p> <ul><li>高优先级的抢占优先级是可以打断正在进行的低抢占优先级中断的。</li> <li>抢占优先级相同的中断，高响应优先级不可以打断低响应优先级的中断。</li> <li>抢占优先级相同的中断，当两个中断同时发生的情况下，哪个响应优先级高，哪个先执行。</li> <li>如果两个中断的抢占优先级和响应优先级都是一样的话，则看哪个中断先发生就先执行；</li></ul> <p>例：</p> <p>假定设置中断优先级组为2，然后设置中断3(RTC中断)的抢占优先级为2，响应优先级为1。  中断6（外部中断0）的抢占优先级为3，响应优先级为0。中断7（外部中断1）的抢占优先级为2，响应优先级为0。</p> <p>中断7&gt;中断3&gt;中断6。</p> <p><strong>中断分组</strong></p> <ul><li>第0组：所有4位用于指定响应优先级</li> <li>第1组：最高1位用于指定抢占式优先级，最低3位用于指定响应优先级</li> <li>第2组：最高2位用于指定抢占式优先级，最低2位用于指定响应优先级</li> <li>第3组：最高3位用于指定抢占式优先级，最低1位用于指定响应优先级</li> <li>第4组：所有4位用于指定抢占式优先级</li></ul> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// nvic 初始化</span>
+<span class="token keyword">void</span> <span class="token function">NVIC_Init</span><span class="token punctuation">(</span>NVIC_InitTypeDef<span class="token operator">*</span> NVIC_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// nvic 中断分组</span>
+<span class="token keyword">void</span> <span class="token function">NVIC_PriorityGroupConfig</span><span class="token punctuation">(</span><span class="token class-name">uint32_t</span> NVIC_PriorityGroup<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// usart 中断配置</span>
+<span class="token keyword">void</span> <span class="token function">USART_ITConfig</span><span class="token punctuation">(</span>USART_TypeDef<span class="token operator">*</span> USARTx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> USART_IT<span class="token punctuation">,</span> FunctionalState NewState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// usart 中断标志获取</span>
+ITStatus <span class="token function">USART_GetITStatus</span><span class="token punctuation">(</span>USART_TypeDef<span class="token operator">*</span> USARTx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> USART_IT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// usart 中断标志清除</span>
+<span class="token keyword">void</span> <span class="token function">USART_ClearITPendingBit</span><span class="token punctuation">(</span>USART_TypeDef<span class="token operator">*</span> USARTx<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> USART_IT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>注意中断服务函数名必须与.s启动文件中中断向量表（位于启动汇编文件）中的相同，可将函数写在
+<code>stm32f10x_it.c</code> 文件中。</p> <p>中断函数注意：</p> <ul><li>没有参数</li> <li>没有返回值</li> <li>名称必须与中断向量表中完全相同</li></ul> <p>中断处理函数要快速处理退出，因此不要进行以下工作：</p> <ul><li>不要进行大量的浮点运算</li> <li>不要休眠</li> <li>不要进行输入输出操作（可能造成阻塞或休眠）</li></ul> <p>示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 全局区默认初始化为 0</span>
+<span class="token keyword">volatile</span> <span class="token class-name">uint8_t</span> usart1_recv<span class="token punctuation">[</span>RECV_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>   <span class="token comment">//&lt; 缓冲区</span>
+<span class="token keyword">volatile</span> <span class="token class-name">size_t</span> usart1_recv_index<span class="token punctuation">;</span>         <span class="token comment">//&lt; usart1 向缓冲区放数据的坐标</span>
+
+<span class="token keyword">void</span> <span class="token function">usart1_it_init</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> baud<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 使能 GPIOA 和 USART1 时钟。</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOA <span class="token operator">|</span> RCC_APB2Periph_USART1<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+
+    <span class="token comment">// 配置 PA9 为复用推挽输出。</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_9<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_AF_PP<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Speed <span class="token operator">=</span> GPIO_Speed_50MHz<span class="token punctuation">;</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span><span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 配置 PA10 为输入浮空。</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_10<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IN_FLOATING<span class="token punctuation">;</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span><span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 配置 USART1</span>
+    USART_InitTypeDef USART_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 波特率</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_BaudRate <span class="token operator">=</span> baud<span class="token punctuation">;</span>
+    <span class="token comment">// 收发模式</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_Mode <span class="token operator">=</span> USART_Mode_Rx <span class="token operator">|</span> USART_Mode_Tx<span class="token punctuation">;</span>
+    <span class="token comment">// 停止位一位</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_StopBits <span class="token operator">=</span> USART_StopBits_1<span class="token punctuation">;</span>
+    <span class="token comment">// 奇校验</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_Parity <span class="token operator">=</span> USART_Parity_Odd<span class="token punctuation">;</span>
+    <span class="token comment">// 数据位 8 位</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_WordLength <span class="token operator">=</span> USART_WordLength_9b<span class="token punctuation">;</span>
+    <span class="token comment">// 无流控</span>
+    USART_InitStructure<span class="token punctuation">.</span>USART_HardwareFlowControl <span class="token operator">=</span> USART_HardwareFlowControl_None<span class="token punctuation">;</span>
+    <span class="token comment">// 初始化串口</span>
+    <span class="token function">USART_Init</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>USART_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//USART 串口中断配置</span>
+    <span class="token comment">// 使能数据就绪可读中断。</span>
+    <span class="token function">USART_ITConfig</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_IT_RXNE<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 使能检测到空闲线路中断。</span>
+    <span class="token function">USART_ITConfig</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_IT_IDLE<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 使能串口</span>
+    <span class="token function">USART_Cmd</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// NVIC 配置</span>
+    NVIC_InitTypeDef NVIC_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 中断通道为 串口 1 中断</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannel <span class="token operator">=</span> USART1_IRQn<span class="token punctuation">;</span>
+    <span class="token comment">// 设置抢占优先级</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelPreemptionPriority <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置响应优先级</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelSubPriority <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token comment">// 使能 NVIC</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+
+    <span class="token comment">// 初始化 NVIC</span>
+    <span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>NVIC_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 中断函数</span>
+
+<span class="token comment">// usart1 中断处理函数</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;system/usart_it.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;system/remap.h&quot;</span></span>
+<span class="token keyword">void</span> <span class="token function">USART1_IRQHandler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">volatile</span> <span class="token class-name">int32_t</span> temp<span class="token punctuation">;</span>
+    <span class="token comment">// 判断中断标志</span>
+    <span class="token comment">// 如果是数据就绪可读标志</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">USART_GetITStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_IT_RXNE<span class="token punctuation">)</span> <span class="token operator">==</span> SET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 缓冲区满了下标就置 0。</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>usart1_recv_index <span class="token operator">&gt;=</span> RECV_SIZE<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            usart1_recv_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        usart1_recv<span class="token punctuation">[</span>usart1_recv_index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">USART_ReceiveData</span><span class="token punctuation">(</span>USART1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        usart1_recv_index<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token comment">// 对中断标志位清零。</span>
+        <span class="token function">USART_ClearITPendingBit</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_IT_RXNE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span> <span class="token keyword">else</span>
+        <span class="token comment">// 如果检测到空闲线路。</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">USART_GetITStatus</span><span class="token punctuation">(</span>USART1<span class="token punctuation">,</span> USART_IT_IDLE<span class="token punctuation">)</span> <span class="token operator">==</span> SET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 读取写入的字符串</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strncmp</span><span class="token punctuation">(</span>usart1_recv<span class="token punctuation">,</span> <span class="token string">&quot;on&quot;</span><span class="token punctuation">,</span>usart1_recv_index<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">pa15_high</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strncmp</span><span class="token punctuation">(</span>usart1_recv<span class="token punctuation">,</span> <span class="token string">&quot;off&quot;</span><span class="token punctuation">,</span>usart1_recv_index<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">pa15_low</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            usart1_recv_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment">// 对空闲中断标志位清零。</span>
+        <span class="token comment">//USART_ClearITPendingBit(USART1, USART_IT_IDLE); // 这条语句无效。</span>
+        temp <span class="token operator">=</span> USART1<span class="token operator">-&gt;</span>SR<span class="token punctuation">;</span>
+        temp <span class="token operator">=</span> USART1<span class="token operator">-&gt;</span>DR<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br></div></div><h3 id="_4-4-exti"><a href="#_4-4-exti" class="header-anchor">#</a> 4.4 EXTI</h3> <p><strong>外部中断/事件控制器</strong></p> <p>stm32f103rct6 有19个能产生事件/中断请求的边沿检测器。每个输入线可以独立地配置输入类型(脉冲或挂起)和对应的触发事件(上升沿或下降沿或者双边沿都触发)。每个输入线都可以独立地被屏蔽。挂起寄存器保持着状态线的中断请求。</p> <ul><li>EXTI线0~15：对应外部IO口的输入中断。</li> <li>EXTI线16连接到PVD输出</li> <li>EXTI线17连接到RTC闹钟事件</li> <li>EXTI线18连接到USB唤醒事件</li></ul> <p>一条中断线的在同一时间只能被一个IO口映射：</p> <p>GPIOx.0映射到EXTI0，GPIOx.1映射到EXTI1，……，GPIOx.15映射到EXTI15</p> <p><strong>外部中断配置一般步骤</strong></p> <ol><li>使能AFIO时钟： <code>RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);</code></li> <li>初始化IO口为输入。<code>GPIO_Init();</code></li> <li>设置IO口与中断线的映射关系。<code>void GPIO_EXTILineConfig();</code></li> <li>初始化线上中断，设置触发条件等。<code>EXTI_Init();</code></li> <li>配置中断分组（NVIC），并使能中断。<code>NVIC_Init();</code></li> <li>编写中断服务函数。<code>EXTIx_IRQHandler();</code></li> <li>清除中断标志位<code>EXTI_ClearITPendingBit();</code></li></ol> <p>例子：</p> <p>红外计数器：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">counter_sensor_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 使能 GPIOB 时钟和 AFIO 时钟。</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOB <span class="token operator">|</span> RCC_APB2Periph_AFIO<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// PB3 设置为浮空输入。</span>
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_3<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IN_FLOATING<span class="token punctuation">;</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOB<span class="token punctuation">,</span> <span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// AFIO 外部中断引脚选择 3 号</span>
+    <span class="token comment">// 现在 PB3 引脚的电平信号可以顺利通过 AFIO 进入到 EXTI 电路了。（EXTI3）</span>
+    <span class="token function">GPIO_EXTILineConfig</span><span class="token punctuation">(</span>GPIO_PortSourceGPIOB<span class="token punctuation">,</span> GPIO_PinSource3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    EXTI_InitTypeDef EXTI_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 外部中断引脚是 Pin3</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Line <span class="token operator">=</span> EXTI_Line3<span class="token punctuation">;</span>
+    <span class="token comment">// 下降沿触发</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Trigger <span class="token operator">=</span> EXTI_Trigger_Falling<span class="token punctuation">;</span>
+    <span class="token comment">// 使能中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_LineCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+    <span class="token comment">// 中断类型：中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Mode <span class="token operator">=</span> EXTI_Mode_Interrupt<span class="token punctuation">;</span>
+    <span class="token function">EXTI_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>EXTI_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// NVIC 配置</span>
+    NVIC_InitTypeDef NVIC_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 指定通道为 3</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannel <span class="token operator">=</span> EXTI3_IRQn<span class="token punctuation">;</span>
+    <span class="token comment">// 使能通道</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+    <span class="token comment">// 设置抢占优先级 1</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelPreemptionPriority <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置响应优先级 1</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelSubPriority <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>NVIC_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 红外计数器中断处理</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;drivers/rgb_led.h&quot;</span></span>
+<span class="token keyword">void</span> <span class="token function">EXTI3_IRQHandler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">red_toggle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 清除中断标志位。</span>
+    <span class="token function">EXTI_ClearITPendingBit</span><span class="token punctuation">(</span>EXTI_Line3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><h2 id="_5-day5"><a href="#_5-day5" class="header-anchor">#</a> 5 day5</h2> <h3 id="_5-1-定时器"><a href="#_5-1-定时器" class="header-anchor">#</a> 5.1 定时器</h3> <p>stm32f103rc 有 8 个定时器，4个通用定时器（TIM2，TIM3，TIM4，TIM5），2 个高级控制定时器（TIM1，TIM8），2 个基本定时器（TIM6，TIM7）</p> <p><img src="/fs/4.png" alt=""></p> <h3 id="_5-2-基本定时器"><a href="#_5-2-基本定时器" class="header-anchor">#</a> 5.2 基本定时器</h3> <p>基本定时器TIM6和TIM7各包含一个16位自动装载计数器，由各自的可编程预分频器驱动。它们可以作为通用定时器提供时间基准，特别地可以为数模转换器(DAC)提供时钟。实际上，它们在芯片内部直接连接到DAC并通过触发输出直接驱动DAC。这2个定时器是互相独立的，不共享任何资源。</p> <p>TIM6 和 TIM7 是一个 16 位的只能向上计数的定时器，只能定时，没有外部 IO。</p> <p>只有大容量的 stm32f101xx 和 stmf103 产品才有基本定时器。</p> <p>基本定时器使用内部时钟源，向上计数，可用于定时，主要用于驱动 DAC。</p> <p>只需配置预分频和周期。</p> <p>观察时钟树，TIM234567 的频率是 72MHz。</p> <p>基本定时器是 APB1 总线上的外设，APB1 总线是 2 分频 AHB 总线的，
+因此它的频率 = fPCLK1 * 2 = 36MHz * 2 = 72MHz</p> <p><img src="/fs/5.png" alt=""></p> <p>时钟源(TIMxCLK)</p> <p>定时器时钟 TIMxCLK，即内部时钟 CK_INT，经 APB1 预分频器后分频提供，如果APB1 预分频系数等于 1，则频率不变，否则频率乘以 2，库函数中 APB1 预分频的系数是 2，即 PCLK1=36M，所以定时器时钟 TIMxCLK=36*2=72M。</p> <p>计数器时钟(CK_CNT)</p> <p>定时器时钟经过 PSC 预分频器之后，即 CK_CNT，用来驱动计数器计数。PSC 是一个16 位的预分频器，可以对定时器时钟 TIMxCLK 进行 1~65536 之间的任何一个数进行分频。具体计算方式为：CK_CNT=TIMxCLK/(PSC+1)。</p> <p>计数器(CNT)</p> <p>计数器 CNT 是一个 16 位的计数器，只能往上计数，最大计数值为 65535。当计数达到自动重装载寄存器的时候产生更新事件，并清零从头开始计数。计数器从0开始计数至arr（重装载）值，产生溢出事件。</p> <p>自动重装载寄存器(ARR)</p> <p>自动重装载寄存器 ARR 是一个 16 位的寄存器，这里面装着计数器能计数的最大数值。当计数到这个值的时候，如果使能了中断的话，定时器就产生溢出中断。</p> <p><strong>基本定时器编程</strong></p> <p>查询参考手册可得知，基本定时器的时基单元包含：</p> <ul><li>计数器寄存器(TIMx_CNT)</li> <li>预分频寄存器(TIMx_PSC)</li> <li>自动重装载寄存器(TIMx_ARR)</li></ul> <p>时钟源经过预分频器分频后才是定时器时钟（可实现 1 ~ 65536 分频）。</p> <p>自动重装载定时器，就是定时器周期。在事件生成时更新到影子寄存器。可设置范围为 0 至 65535。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span>
+<span class="token punctuation">{</span>
+  <span class="token class-name">uint16_t</span> TIM_Prescaler<span class="token punctuation">;</span> 		 <span class="token comment">//预分频系数 PSC</span>
+  <span class="token class-name">uint16_t</span> TIM_CounterMode<span class="token punctuation">;</span>		<span class="token comment">//计数模式</span>
+  <span class="token class-name">uint16_t</span> TIM_Period<span class="token punctuation">;</span>			<span class="token comment">//定时器周期 ARR，自动重装载</span>
+  <span class="token class-name">uint16_t</span> TIM_ClockDivision<span class="token punctuation">;</span> 	<span class="token comment">//外部输入时钟分频</span>
+  <span class="token class-name">uint8_t</span> TIM_RepetitionCounter<span class="token punctuation">;</span> <span class="token comment">//重复计数，高级计时器才需要配置</span>
+<span class="token punctuation">}</span> TIM_TimeBaseInitTypeDef<span class="token punctuation">;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>基本定时器只能向上计数，使用内部时钟源，只需要配置预分频系数和定时器周期。</p> <p>例，需要定时器每 1ms 中断一次，生成 1ms 的时钟。</p> <p>总线时钟最大为72MHz，体现在16位的定时器上的效果就是从0计数到65535上溢只需要0.9毫秒。</p> <p>65536次 / 72Mhz = 0.91022...ms，定时器最大只能计 0.9 ms。</p> <p>如果我们需要更长时间的定时间隔，那么就需要预分频器对时钟进行分频处理，以降低定时器时钟（CK_CNT）的频率。</p> <p>通过配置预分频器，来获取想要的定时器时钟频率。</p> <p>如将时钟源进行 72 分频，则 72MHz / 72 = 1MHz，每秒计数 1M次，每周期 1us，定时器最大能计时 65535 个周期， 65535 / 1M = 65.535 ms</p> <p>预分频器的工作的工作原理是，定时器时钟源每tick一次，预分频器计数器值+1，直到达到预分频器的设定值，然后再tick一次后计数器归零，同时，CNT计数器值+1。</p> <p>由此可以看出，因为达到最大值后还要再tick一次才归零，所以定时器时钟频率应该为Fosc/(PSC+ 1)。其中Fosc是定时器的时钟源。比如想对时钟源进行72分频，那么预分频器的值就应该设置为71。</p> <p>定时 1ms ，则设置：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>TIM_TimeBaseInitStructure<span class="token punctuation">.</span>TIM_Period    <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>     <span class="token comment">// 周期 ARR</span>
+TIM_TimeBaseInitStructure<span class="token punctuation">.</span>TIM_Prescaler <span class="token operator">=</span> <span class="token number">71</span><span class="token punctuation">;</span>       <span class="token comment">// 预分频 71，每周期 1us</span>
+<span class="token function">TIM_TimeBaseInit</span><span class="token punctuation">(</span>TIM6<span class="token punctuation">,</span> <span class="token operator">&amp;</span>TIM_TimeBaseInitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>定时器中断配置：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>  <span class="token operator">*</span>     @arg TIM_IT_Update<span class="token operator">:</span> TIM update Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_CC1<span class="token operator">:</span> TIM Capture Compare <span class="token number">1</span> Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_CC2<span class="token operator">:</span> TIM Capture Compare <span class="token number">2</span> Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_CC3<span class="token operator">:</span> TIM Capture Compare <span class="token number">3</span> Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_CC4<span class="token operator">:</span> TIM Capture Compare <span class="token number">4</span> Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_COM<span class="token operator">:</span> TIM Commutation Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_Trigger<span class="token operator">:</span> TIM Trigger Interrupt source
+  <span class="token operator">*</span>     @arg TIM_IT_Break<span class="token operator">:</span> TIM Break Interrupt source
+  <span class="token operator">*</span>   <span class="token operator">-</span> TIM6 and TIM7 can only generate an update interrupt<span class="token punctuation">.</span>
+  <span class="token operator">*</span>   <span class="token operator">-</span> TIM9<span class="token punctuation">,</span> TIM12 and TIM15 can have only TIM_IT_Update<span class="token punctuation">,</span> TIM_IT_CC1<span class="token punctuation">,</span>
+  <span class="token operator">*</span>      TIM_IT_CC2 or TIM_IT_Trigger<span class="token punctuation">.</span>
+  <span class="token operator">*</span>   <span class="token operator">-</span> TIM10<span class="token punctuation">,</span> TIM11<span class="token punctuation">,</span> TIM13<span class="token punctuation">,</span> TIM14<span class="token punctuation">,</span> TIM16 and TIM17 can have TIM_IT_Update or TIM_IT_CC1<span class="token punctuation">.</span>
+  <span class="token operator">*</span>   <span class="token operator">-</span> TIM_IT_Break is used only with TIM1<span class="token punctuation">,</span> TIM8 and TIM15<span class="token punctuation">.</span>
+  <span class="token operator">*</span>   <span class="token operator">-</span> TIM_IT_COM is used only with TIM1<span class="token punctuation">,</span> TIM8<span class="token punctuation">,</span> TIM15<span class="token punctuation">,</span> TIM16 and TIM17<span class="token punctuation">.</span>
+
+<span class="token comment">//TIM_IT_Update:更新中断，计数器向上溢出/向下溢出，计数器初始化(通过软件或者内部/外部触发)</span>
+<span class="token comment">//TIM_IT_CC1~4：都是捕获/比较中断，貌似都是平等的，即输入捕获，输出比较</span>
+<span class="token comment">//TIM_IT_Trigger：触发事件(计数器启动、停止、初始化或者由内部/外部触发计数)</span>
+<span class="token comment">//使用的时候都是调用函数TIM_ITConfig()来使能指定的中断类型，调用TIM_GetITStatus()函数来查看是否有中断发生，入口参数都是平等的。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>基本定时器只能生成更新中断。</p> <p>例子：</p> <p>定时器按键去抖：</p> <p><img src="/fs/6.png" alt=""></p> <p><code>key.h</code>:</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">_KEY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_KEY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
+<span class="token comment">// 按键按下则 key_flag &gt;&gt; 0 = 1</span>
+<span class="token comment">// 按键松开则 key_flag &gt;&gt; 1 = 1</span>
+<span class="token keyword">extern</span> <span class="token keyword">volatile</span> <span class="token class-name">uint8_t</span> key1_flag<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">key_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> bool <span class="token function">key_pressed</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span>  <span class="token comment">// _KEY_H</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><code>key.c</code>:</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;system/my_delay.h&quot;</span></span>
+
+<span class="token keyword">volatile</span> <span class="token class-name">uint8_t</span> key1_flag<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">key_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_GPIOA<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    GPIO_InitTypeDef GPIO_InitStructure<span class="token punctuation">;</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Mode <span class="token operator">=</span> GPIO_Mode_IPU<span class="token punctuation">;</span>   <span class="token comment">//&lt; 上拉输入</span>
+    GPIO_InitStructure<span class="token punctuation">.</span>GPIO_Pin <span class="token operator">=</span> GPIO_Pin_0<span class="token punctuation">;</span>   <span class="token comment">//&lt; PA0</span>
+    <span class="token function">GPIO_Init</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> <span class="token operator">&amp;</span>GPIO_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 中断配置</span>
+    <span class="token function">RCC_APB2PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB2Periph_AFIO<span class="token punctuation">,</span>ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// NVIC 初始化</span>
+    NVIC_InitTypeDef NVIC_InitStructure<span class="token punctuation">;</span>
+
+    <span class="token comment">// EXTI 0</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannel <span class="token operator">=</span> EXTI0_IRQn<span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelPreemptionPriority <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelSubPriority <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+
+    <span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>NVIC_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// EXTI Config</span>
+    <span class="token function">GPIO_EXTILineConfig</span><span class="token punctuation">(</span>GPIO_PortSourceGPIOA<span class="token punctuation">,</span> GPIO_PinSource0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    EXTI_InitTypeDef EXTI_InitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 外部中断引脚是 Pin0</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Line <span class="token operator">=</span> EXTI_Line0<span class="token punctuation">;</span>
+    <span class="token comment">// 双边沿触发</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Trigger <span class="token operator">=</span> EXTI_Trigger_Rising_Falling<span class="token punctuation">;</span>
+    <span class="token comment">// 使能中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_LineCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+    <span class="token comment">// 中断类型：中断</span>
+    EXTI_InitStructure<span class="token punctuation">.</span>EXTI_Mode <span class="token operator">=</span> EXTI_Mode_Interrupt<span class="token punctuation">;</span>
+    <span class="token function">EXTI_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>EXTI_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 按下，松开 返回 true</span>
+bool <span class="token function">key_pressed</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 定时器实现消抖</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>key1_flag <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">0x1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 等待到按键松开</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>key1_flag <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token number">0x1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 清 0</span>
+        key1_flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br></div></div><p><code>tim.h</code> 和 <code>tim.c</code></p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">_TIM_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">_TIM_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
+<span class="token comment">// 基本定时器</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">tim7_init</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> period<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> prescaler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">tim7_start</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> period<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">tim7_end</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span>  <span class="token comment">// _TIM_H</span></span>
+
+<span class="token comment">// tim.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;stm32f10x.h&quot;</span></span>
+
+<span class="token keyword">extern</span> <span class="token keyword">void</span> <span class="token function">tim7_end</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">tim7_init</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> period<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> prescaler<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// NVIC 初始化</span>
+    NVIC_InitTypeDef NVIC_InitStructure<span class="token punctuation">;</span>
+
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannel <span class="token operator">=</span> TIM7_IRQn<span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelPreemptionPriority <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelSubPriority <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    NVIC_InitStructure<span class="token punctuation">.</span>NVIC_IRQChannelCmd <span class="token operator">=</span> ENABLE<span class="token punctuation">;</span>
+
+    <span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>NVIC_InitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 使能 TIM7 时钟 APB1</span>
+    <span class="token function">RCC_APB1PeriphClockCmd</span><span class="token punctuation">(</span>RCC_APB1Periph_TIM7<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 时基单元初始化（计数器寄存器（固定向上）、预分频寄存器、自动重装载寄存器）</span>
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure<span class="token punctuation">;</span>
+    <span class="token comment">// 定时器周期</span>
+    TIM_TimeBaseInitStructure<span class="token punctuation">.</span>TIM_Period <span class="token operator">=</span>      period<span class="token punctuation">;</span>
+    <span class="token comment">// 定时器预分频器设置</span>
+    TIM_TimeBaseInitStructure<span class="token punctuation">.</span>TIM_Prescaler <span class="token operator">=</span>   prescaler<span class="token punctuation">;</span>
+    <span class="token function">TIM_TimeBaseInit</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> <span class="token operator">&amp;</span>TIM_TimeBaseInitStructure<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// TIM7 中断配置</span>
+    <span class="token keyword">void</span> <span class="token function">tim7_end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">tim7_start</span><span class="token punctuation">(</span><span class="token class-name">uint16_t</span> period<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 设置周期</span>
+    TIM7<span class="token operator">-&gt;</span>ARR <span class="token operator">=</span> period<span class="token punctuation">;</span>
+    <span class="token comment">// 开启中断</span>
+    <span class="token function">TIM_ITConfig</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> TIM_IT_Update<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 使能 TIM7 定时器</span>
+    <span class="token function">TIM_Cmd</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> ENABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">tim7_end</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 失能中断</span>
+    <span class="token function">TIM_ITConfig</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> TIM_IT_Update<span class="token punctuation">,</span> DISABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// TIM 7 失能</span>
+    <span class="token function">TIM_Cmd</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span>DISABLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br></div></div><p>中断处理函数：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;drivers/key.h&quot;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;system/tim.h&quot;</span></span>
+<span class="token keyword">void</span> <span class="token function">EXTI0_IRQHandler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>SET <span class="token operator">==</span> <span class="token function">EXTI_GetITStatus</span><span class="token punctuation">(</span>EXTI_Line0<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 屏蔽 EXTI0 中断，按键中断</span>
+        EXTI<span class="token operator">-&gt;</span>IMR <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 对于 EXTI 中断必须手动清除中断标志</span>
+        <span class="token comment">// void EXTI_ClearITPendingBit(uint32_t EXTI_Line)</span>
+        <span class="token function">EXTI_ClearITPendingBit</span><span class="token punctuation">(</span>EXTI_Line0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 下降沿，按键按下</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GPIO_ReadInputDataBit</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> GPIO_Pin_0<span class="token punctuation">)</span> <span class="token operator">==</span> Bit_RESET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 标志位</span>
+            key1_flag <span class="token operator">|=</span> <span class="token number">0x1u</span><span class="token punctuation">;</span>
+            <span class="token comment">// 定时器消抖动 5ms</span>
+            <span class="token function">tim7_start</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span>
+        <span class="token comment">// 上升沿，按键松开</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">GPIO_ReadInputDataBit</span><span class="token punctuation">(</span>GPIOA<span class="token punctuation">,</span> GPIO_Pin_0<span class="token punctuation">)</span> <span class="token operator">==</span> Bit_SET<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                key1_flag <span class="token operator">|=</span> <span class="token number">0x1u</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token comment">// 定时器消抖动 5ms</span>
+                <span class="token function">tim7_start</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">TIM7_IRQHandler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//usart1_it_putchar('S');</span>
+    <span class="token comment">// 是更新中断</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">TIM_GetITStatus</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> TIM_IT_Update<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 关闭定时器</span>
+        <span class="token function">tim7_end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 开启 EXTI0 中断，按键中断</span>
+        EXTI<span class="token operator">-&gt;</span>IMR <span class="token operator">|=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// 清除 TIM7 中断标志位</span>
+        <span class="token function">TIM_ClearITPendingBit</span><span class="token punctuation">(</span>TIM7<span class="token punctuation">,</span> TIM_IT_Update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//usart1_it_putchar('E');</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><h3 id="_5-3-通用定时器"><a href="#_5-3-通用定时器" class="header-anchor">#</a> 5.3 通用定时器</h3> <p>TIM2~TIM5 都是通用定时器</p> <p>时基单元包含：
+● 计数器寄存器(TIMx_CNT)
+● 预分频器寄存器 (TIMx_PSC)
+● 自动装载寄存器 (TIMx_ARR)</p> <p>TIMx_ARR 用于将计数值（即周期）装载到 TIMx_CNT</p> <p>TIMx_CNT 与 TIMx_CCRy 的值进行比较，用于 输出比较 和 PWM 模式。</p> <p>PWM 输出时需要进行时基单元初始化和输出比较初始化。</p> <p><strong>主要特性</strong></p> <p>4 个时钟源</p> <p>16位向上、向下、向上/向下自动装载计数器，
+16位可编程(可以实时修改)预分频器，计数器时钟频率的分频系数为1～65535之间的任意数值。</p> <p>多达 4 个独立通道，可用于：</p> <p>— 输入捕获
+— 输出比较
+— PWM 生成（边沿和中心对齐模式）
+— 单脉冲模式输出</p> <p>使用外部信号控制定时器和定时器互连的同步电路。</p> <p>如下事件发生时产生中断/DMA（6个独立的IRQ/DMA请求生成器）：</p> <p>— 更新：计数器向上溢出/向下溢出，计数器初始化(通过软件或者内部/外部触发)
+— 触发事件(计数器启动、停止、初始化或者由内部/外部触发计数)
+— 输入捕获
+— 输出比较</p> <p>支持针对定位的增量(正交)编码器和霍尔传感器电路</p> <p>触发输入作为外部时钟或者按周期的电流管理</p> <p><strong>通用定时器的应用</strong></p> <p>STM32 的通用定时器可以被用于：测量输入信号的脉冲长度(输入捕获)或者产生输出波形(输出比较和 PWM)等。</p> <p>使用定时器预分频器和 RCC 时钟控制器预分频器，脉冲长度和波形周期可以在几个微秒到几个毫秒间调整。STM32 的每个通用定时器都是完全独立的，没有互相共享的任何资源。</p> <p><strong>计数模式</strong></p> <p>通用定时器可以向上计数、向下计数、向上向下双向计数模式。</p> <ol><li>向上计数模式：计数器从0计数到自动加载值(TIMx_ARR)，然后重新从0开始计数并且产生一个计数器溢出事件。</li> <li>向下计数模式：计数器从自动装入的值(TIMx_ARR)开始向下计数到0，然后从自动装入的值重新开始，并产生一个计数器向下溢出事件。</li> <li>中央对齐模式（向上/向下计数）：计数器从0开始计数到自动装入的值-1，产生一个计数器溢出事件，然后向下计数到1并且产生一个计数器溢出事件；然后再从0开始重新计数。</li></ol> <p><strong>时钟来源</strong></p> <p>定时器的时钟来源有 4 个：</p> <ol><li>内部时钟（CK_INT）</li> <li>外部时钟模式 1：外部输入脚（TIx）</li> <li>外部时钟模式 2：外部触发输入（ETR）</li> <li>内部触发输入（ITRx） ：使用 A 定时器作为 B 定时器的预分频器（A 为 B 提供时钟） 。</li></ol> <p>这些时钟，具体选择哪个可以通过 TIMx_SMCR 寄存器的相关位来设置。这里的 CK_INT时钟是从 APB1
+倍频的来的，除非 APB1 的时钟分频数设置为 1（一般都不会是 1） ，否则通用定时器 TIMx 的时钟是
+APB1 时钟的 2 倍，当 APB1 的时钟不分频的时候，通用定时器 TIMx的时钟就等于 APB1 的时钟。
+这里还要注意的就是高级定时器的时钟不是来自 APB1，而是来自 APB2 的。</p> <p><strong>定时器中断配置</strong></p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">//使能定时器时钟。</span>
+<span class="token function">RCC_APB1PeriphClockCmd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//初始化定时器，配置ARR,PSC。</span>
+<span class="token function">TIM_TimeBaseInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//开启定时器中断，配置NVIC。</span>
+<span class="token function">NVIC_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//使能定时器。</span>
+<span class="token function">TIM_Cmd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//编写中断服务函数。</span>
+<span class="token function">TIMx_IRQHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_5-4-pwm-脉冲宽度调制"><a href="#_5-4-pwm-脉冲宽度调制" class="header-anchor">#</a> 5.4 PWM 脉冲宽度调制</h3> <p>PWM是Pulse Width Modulation的缩写，意思是脉冲宽度调制，简称脉宽调制，是利用微处理器的数字
+输出来对模拟电路进行控制的一种非常有效的技术，广泛应用在从测量、通信到功率控制与变换的许多领域中。
+脉冲宽度调制的一个优点是从处理器到被控系统信号都是数字形式的，无需进行数模转换。</p> <p>PWM是一种对模拟信号电平进行数字编码的方法，其根据相应载荷的变化来调制晶体管栅极或基极的偏置，来实现开关稳压电源输出晶体管或晶体管导通时间的改变，这种方式能使电源的输出电压在工作条件变化时保持恒定，是利用微处理器的数字输出来对模拟电路进行控制的一种非常有效的技术。通过高分辨率计数器的使用，脉冲宽度或方波的占空比被调制用来对一个具体模拟信号的电平进行编码。 PWM信号仍然是数字的，因为在给定的任何时刻，满幅值的直流供电要么完全有(ON)，要么完全无(OFF)。电压或电流源是以一种通(ON)或断(OFF)的重复脉冲序列被加到模拟负载上去的。通的时候即是直流供电被加到负载上的时候，断的时候即是供电被断开的时候。只要带宽足够，任何模拟值都可以使用PWM进行编码。
+多数负载(无论是电感性负载还是电容性负载)需要的调制频率高于10Hz，通常调制频率为1kHz到200kHz之间。</p> <p>定时器时钟分频因子 ClockDivision 是决定数字滤波器采样频率的参数，之后在使用输入捕获滤波器时候
+这些参数会被用到，可以根据硬件情况配置滤波。</p> <p>CCMR2 寄存器的 OC3M[2:0] 配置输出比较模式：</p> <p>110：PWM模式1－ 在向上计数时，一旦TIMx_CNT&lt; TIMx_CCR3时通道3为有效电平，否则为无效电平；
+在向下计数时，一旦TIMx_CNT&gt;TIMx_CCR3时通道3为无效电平(OC3REF=0)，否则为有效电平(OC3REF=1)。</p> <p>111：PWM模式2－ 在向上计数时，一旦TIMx_CNT&lt; TIMx_CCR3时通道3为无效电平，否则为有效电平；
+在向下计数时，一旦TIMx_CNT&gt;TIMx_CCR3时通道3为有效电平，否则为无效电平。</p> <p>TIMx_CCER 中的 CC3P 决定有效电平为高还是低：</p> <p>0：OC3高电平有效</p> <p>1：OC3低电平有效</p> <div class="language- extra-class"><pre><code>               CC3P  有效电平   TIMx_CNT&lt;TIMx_CCR3  TIMx_CNT&gt;=TIMx_CCR3
+</code></pre></div><p>PWM模式1向上计数    0      高             高                  低
+1      低             低                  高
+PWM模式1向下计数    0      高             高                  低
+1      低             低                  高
+PWM模式2向上计数    0      高             低                  高
+1      低             高                  低
+PWM模式2向下计数    0      高             低                  高
+1      低             高                  低</p> <h3 id="_5-5-dma-控制器"><a href="#_5-5-dma-控制器" class="header-anchor">#</a> 5.5 DMA 控制器</h3> <p>专门用搬运数据的片上外设</p> <ol><li>不需要CPU的干预可以实现数据的快速移动</li> <li>字节（8bit） 半字（16bit） 全字（32bit）</li> <li>实现内存到内存的数据搬运</li></ol> <p>DMA1 有 7 个通道，DMA2 有 5 个通道。</p> <p>数据宽度要对齐。</p> <p>共有四个软件优先级：很高、高、中等和低，在软件优先级相同时，采用硬件优先级：通道1优先于通道2，依此类推</p> <p>可在内存和外设间传输，也可以在内存与内存间传输，但不能在外设和外设间传输。</p> <p>可编程的数据传输数目：最大为65536。这里不是指字节数，而是以数据宽度为单位的数目。
+如，数据宽度为 半字，则最大字节为 65536 * 2。</p> <p>数据宽度：字节、半字、字。</p> <p>注意修改 CNDTR 前必须关闭通道。</p> <h2 id="_6-day-6"><a href="#_6-day-6" class="header-anchor">#</a> 6 day 6</h2> <h3 id="_6-1-adc"><a href="#_6-1-adc" class="header-anchor">#</a> 6.1 ADC</h3></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/emebedded/stm32/stdlib.html" class="prev">
+        stm32 标准固件库
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.a9cbc012.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/35.ed09c55f.js" defer></script>
+  </body>
+</html>

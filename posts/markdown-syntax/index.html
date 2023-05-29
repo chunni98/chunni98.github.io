@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Markdown 语法测试 - Chunni&#39;s blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Markdown 语法测试 - Chunni&#39;s Blog</title><link rel="icon" type="image/png" href=/img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="前言 1 基本语法 1.1 标题 1.2 段落 1.3 换行 1.4 强调 1.5 引用 1.6 列表 1.7 代码 1.8 分割线 1.9 链接 1.10 图片 1.11 转义字符 1.12 内嵌 HTML 标签 2 扩展语法 2.1 表格 2.2 脚注 2.3 标题编号 2.4 todo list 2.5 其他 前言 前前后后搭建博客也有很多次了，静态网站生成器用过 hexo，vuepress，hugo，还是觉得 hugo 最好用：速度快、安装方便、跨平台、热更新，最重要的是使用起来比较简单。
 之前使用 hugo 搭建博客，主题用过 even ，但感觉用的人太多了，用过时间比较久的是 loveit ，是个很不错的主题，中文文档也很全，使用起来很方便，但是现在我想要更简洁一点的主题，王垠 的博客主题我就觉得很不错，还有偶然间发现的无求备斋笔记 ，本来这次搭建博客是想用 无求备斋笔记 的样式，可是这个主题是基于 jekyll 的，我尝试用了用 jekyll ，感觉不太好用，不如 hugo，等以后有时间研究下怎么写主题，然后把它转换成 hugo 的模板吧，现在懒得折腾。在 github 上找了两个比较喜欢的主题：Fuji 和 Archie，最终我选择了Archie，因为它看起来更简洁一些。" />
 	<meta property="og:image" content=""/>
@@ -22,8 +22,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.40ca3a860425083862b7ebd55447caec5c4384573f0cb098b8d06a91e8dace2e.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://chunni98.github.io/css/main.d902908ac6e0fab67957de5db5aea1b6455b19ae2ca98eac4c95a4a0fdc02238.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://chunni98.github.io/css/dark.c95c5dcf5f32f8b67bd36f7dab66680e068fce2b303087294114aabf7a7c080b.css"  disabled />
+	
+
+	
+	
+
+	
 	
 	
 	
@@ -31,7 +37,7 @@
 <body>
         <div class="content"><header>
 	<div class="main">
-		<a href="https://chunni98.github.io/">Chunni&#39;s blog</a>
+		<a href="https://chunni98.github.io/">Chunni&#39;s Blog</a>
 	</div>
 	<nav>
 		
@@ -47,7 +53,7 @@
 		
 		<a href="/about">About</a>
 		
-		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
 		<script src="https://chunni98.github.io/js/themetoggle.js"></script>
 		
 	</nav>
@@ -355,10 +361,13 @@
 			
 			
 		</div>
-	</article>
+		</article>
 </main>
 <footer>
-  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" title="GitHub"><i data-feather="github"></i></a><a class="soc" href="https://space.bilibili.com/11612100" title="bilibili"><i data-feather="link"></i></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" title="douban"><i data-feather="link"></i></a></div>
+  <div style="display:flex"><a class="soc" href="https://github.com/chunni98" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://space.bilibili.com/11612100" rel="me" title="bilibili"><i data-feather="link"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.douban.com/people/spring-soil/?_i=6342304DLydoCo" rel="me" title="douban"><i data-feather="link"></i></a>
+    <a class="border"></a></div>
   <div class="footer-info">
     2023  © 春泥 |  <a
       href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>

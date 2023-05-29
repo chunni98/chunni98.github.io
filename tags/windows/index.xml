@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Chunni&#39;s Blog</title>
+    <link>https://chunni98.github.io/tags/windows/</link>
+    <description>Recent content in windows on Chunni&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>© 春泥</copyright>
+    <lastBuildDate>Mon, 29 May 2023 13:11:13 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows 包管理 winget 初体验</title>
+      <link>https://chunni98.github.io/posts/how-to-use-winget/</link>
+      <pubDate>Mon, 29 May 2023 13:11:13 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/how-to-use-winget/</guid>
+      <description>1 前言 2 简介 3 安装 4 使用 4.1 查看帮助 4.2 实践：安装 PowerToys、坚果云 4.3 更新 5 注意事项 5.1 下载速度慢 5.2 安装和卸载 5.3 官方存储库 5.4 安装/升级脚本 参考 1 前言 以前使用过 windows 平台的包管理 scoop 和 chocolatey，但是使用体验并不好，最终还是回归到「官网下载」-&amp;gt; 「安装」 的流程。
+今天了解到了微软自家的包管理工具 winget，觉得很有趣，就短暂地试用了下，下面是使用记录。
+2 简介 Windows 程序包管理器是一个综合的程序包管理器解决方案，由一个命令行工具和一组用于在 Windows 10 和 Windows 11 上安装应用程序的服务组成。
+程序包管理器是一个用于自动安装、升级、配置和使用软件的系统或工具集。 大多数程序包管理器都是设计用于发现和安装开发人员工具。
+用户可以在 Windows 10 和 Windows 11 计算机上使用 winget 命令行工具来发现、安装、升级、删除和配置应用程序。 此工具是 Windows 程序包管理器服务的客户端接口。
+3 安装 打开「命令提示符」窗口，按下 win+r，输入 cmd。
+输入 winget --version，如果已安装，会显示 winget 的版本信息，如我的 cmd 显示：</description>
+    </item>
+    
+  </channel>
+</rss>
