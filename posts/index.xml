@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>© 春泥</copyright>
-    <lastBuildDate>Mon, 29 May 2023 13:11:13 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 May 2023 11:55:21 +0800</lastBuildDate><atom:link href="https://chunni98.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows Terminal 美化</title>
+      <link>https://chunni98.github.io/posts/beautify-windows-terminal/</link>
+      <pubDate>Wed, 31 May 2023 11:55:21 +0800</pubDate>
+      
+      <guid>https://chunni98.github.io/posts/beautify-windows-terminal/</guid>
+      <description>前言 1 powershell7 1.1 简介 1.2 安装 2 starship 2.1 简介 2.2 安装 2.3 个性化配置 3 其他 3.1 安装 gsudo 3.2 在包含 C 语言文件的路径下打开 powershell 会出现警告 参考 前言 windows11 作为我当下最常用的操作系统，很多时候需要在 windows11 上进行娱乐、开发等工作。
+为了优化开发体验，对 windows terminal 做一些优化和美化，下面是详细步骤。
+1 powershell7 1.1 简介 PowerShell 7 是专为云、本地和混合环境设计的，它包含增强功能和新功能。
+与 Windows PowerShell 并行安装和运行 提升了与现有 Windows PowerShell 模块的兼容性 新语言功能（如三元运算符和 ForEach-Object -Parallel） 提高了性能 基于 SSH 的远程处理 跨平台互操作性 支持 Docker 容器
+&amp;ndash; Microsoft
+1.2 安装 直接使用 winget 安装：</description>
+    </item>
+    
     <item>
       <title>windows 包管理 winget 初体验</title>
       <link>https://chunni98.github.io/posts/how-to-use-winget/</link>
