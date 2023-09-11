@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>glibc 学习 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/28.f263b4e2.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/22.56e55e5c.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/24.b38bddd1.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/26.add4feed.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/35.0ba44a34.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/64.7770e824.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/c/" aria-current="page" class="sidebar-link">C Program Language</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>inbox</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/c-style.html" class="sidebar-link">1 简易 C 语言编程规范</a></li><li><a href="/wiki/c/learn-c.html" class="sidebar-link">2 C 语言拾遗</a></li><li><a href="/wiki/c/ccollections.html" class="sidebar-link">3 c 问题集</a></li><li><a href="/wiki/c/json-c.html" class="sidebar-link">4 json-c 库使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/kandrc/" class="sidebar-heading clickable"><span>K&amp;R C</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/glibc/" class="sidebar-heading clickable router-link-active open"><span>glibc 学习</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/glibc/learn-glibc01.html" class="sidebar-link">glibc 学习（一）I/O</a></li><li><a href="/wiki/c/glibc/learn-glibc02.html" class="sidebar-link">glibc 学习（二）时间</a></li><li><a href="/wiki/c/glibc/learn-glibc03.html" class="sidebar-link">glibc 学习（三）线程</a></li><li><a href="/wiki/c/glibc/learn-glibc04.html" class="sidebar-link">glibc 学习（四）原子操作</a></li><li><a href="/wiki/c/glibc/learn-glibc05.html" class="sidebar-link">glibc 学习（五）数学库</a></li><li><a href="/wiki/c/glibc/learn-glibc06.html" class="sidebar-link">glibc 学习（六）stdlib</a></li><li><a href="/wiki/c/glibc/learn-glibc07.html" class="sidebar-link">glibc 学习（七）字符串处理</a></li><li><a href="/wiki/c/glibc/learn-glibctemp.html" aria-current="page" class="active sidebar-link">glibc 学习</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#assert-h" class="sidebar-link">assert.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#ctypes-h" class="sidebar-link">ctypes.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#errno-h" class="sidebar-link">errno.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#float-h" class="sidebar-link">float.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#inttypes-h" class="sidebar-link">inttypes.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#limits-h" class="sidebar-link">limits.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#locale-h" class="sidebar-link">locale.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#signal-h" class="sidebar-link">signal.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#stdint" class="sidebar-link">stdint</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibctemp.html#stddef-h" class="sidebar-link">stddef.h</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="assert-h"><a href="#assert-h" class="header-anchor">#</a> assert.h</h2> <p>assert.h头文件定义了宏assert()，用于在运行时确保程序符合指定条件，如果不符合，就报错终止运行。这个宏常常被称为“断言”。</p> <p>使用 assert() 有几个好处：它不仅能自动标识文件和出问题的行号，还有一种无需更改代码就能开启或关闭assert()的机制。如果已经确认程序没有问题，不需要再做断言，
+就在<code>#include &lt;assert.h&gt;</code>语句的前面，定义一个宏 NDEBUG。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">assert</span><span class="token punctuation">(</span>PI <span class="token operator">&gt;</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+z <span class="token operator">=</span> x <span class="token operator">*</span> x <span class="token operator">-</span> y <span class="token operator">*</span> y<span class="token punctuation">;</span>
+<span class="token function">assert</span><span class="token punctuation">(</span>z <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>assert()的缺点是，因为引入了额外的检查，增加了程序的运行时间。</p> <p>C11 引入了静态断言static_assert()，用于在编译阶段进行断言判断。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">static_assert</span><span class="token punctuation">(</span>constant<span class="token operator">-</span>expression<span class="token punctuation">,</span> string<span class="token operator">-</span>literal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>static_assert()接受两个参数，第一个参数constant-expression是一个常量表达式，第二个参数string-literal是一个提示字符串。如果第一个参数的值为false，会产生一条编译错误，第二个参数就是错误提示信息。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">static_assert</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&quot;64-bit code generation is not supported.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>static_assert()只在编译阶段运行，无法获得变量的值。如果对变量进行静态断言，就会导致编译错误。
+static_assert()的好处是，尽量在编译阶段发现错误，避免运行时再报错，节省开发时间。
+static_assert()不会生成可执行代码，所以不会造成任何运行时的性能损失。</p> <h2 id="ctypes-h"><a href="#ctypes-h" class="header-anchor">#</a> ctypes.h</h2> <p>定义了一系列字符处理函数的原型。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 参数类型为int，而不是char，因为它们允许 EOF 作为参数。</span>
+<span class="token function">isalnum</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为字母数字
+<span class="token function">isalpha</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为字母
+<span class="token function">isdigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为数字
+<span class="token function">isxdigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为十六进制数字符
+<span class="token function">islower</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为小写字母
+<span class="token function">isupper</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为大写字母
+<span class="token function">isblank</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为标准的空白字符（包含空格、水平制表符或换行符）
+<span class="token function">isspace</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为空白字符（空格、换行符、换页符、回车符、垂直制表符、水平制表符等）
+<span class="token function">iscntrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为控制字符，比如 Ctrl <span class="token operator">+</span> B
+<span class="token function">isprint</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为可打印字符
+<span class="token function">isgraph</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为空格以外的任意可打印字符
+<span class="token function">ispunct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：是否为标点符号（除了空格、字母、数字以外的可打印字符）
+<span class="token function">tolower</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：如果参数是大写字符，返回小写字符，否则返回原始参数。
+<span class="token function">toupper</span><span class="token punctuation">(</span><span class="token punctuation">)</span>：如果参数是小写字符，返回大写字符，否则返回原始参数。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 下面是一个例子，用户输入一个字符，程序判断是否为英文字母。</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;ctype.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">char</span> ch <span class="token operator">=</span> <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isalpha</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;it is an alpha character.\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;it is not an alpha character.\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 将字符转为大写</span>
+    ch <span class="token operator">=</span> <span class="token function">toupper</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="errno-h"><a href="#errno-h" class="header-anchor">#</a> errno.h</h2> <p>C 标准库的 errno.h 头文件定义了正整数变量 errno，它是通过系统调用设置的，在错误事件中的某些库函数表明了什么发生了错误。该宏扩展为类型为 int 的可更改的左值，因此它可以被一个程序读取和修改。</p> <p>在程序启动时，errno 设置为零，C 标准库中的特定函数修改它的值为一些<strong>非零值</strong>以表示某些类型的错误。您也可以在适当的时候修改它的值或重置为零。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+errno <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>errno <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">&quot;sqrt error; program terminated.\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">exit</span><span class="token punctuation">(</span>EXIT_FAILURE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>errno <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span><span class="token function">strerror</span><span class="token punctuation">(</span>errno<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="float-h"><a href="#float-h" class="header-anchor">#</a> float.h</h2> <p>C 标准库的 float.h 头文件包含了一组与浮点值相关的依赖于平台的常量。这些常量是由 ANSI C 提出的，这让程序更具有可移植性。</p> <p><strong>这些宏定义了最大的浮点值</strong></p> <p><code>FLT_MAX</code></p> <p><code>DBL_MAX</code></p> <p><code>LDBL_MAX</code></p> <p><strong>这些宏定义了最小的浮点值</strong></p> <p><code>FLT_MIN</code></p> <p><code>DBL_MIN</code></p> <p><code>LDBL_MIN</code></p> <p><strong>浮点数范围</strong></p> <p>两个浮点数只要进行比较时，它们的差值，只需要在-EPS ~ EPS的精度范围内，那么便认定两个数相等。</p> <p>浮点数本身存储的时候，在计算不尽的时候，会采用“四舍五入”或者其他策略。</p> <p>DBL_EPSILON 和 FLT_EPSILON 分别是双精度浮点数和单精度浮点数的精度。</p> <p><code>FLT_EPSILON</code></p> <p><code>DBL_EPSILON</code></p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;float.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;The maximum value of float = %.10e\n&quot;</span><span class="token punctuation">,</span> FLT_MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;The minimum value of float = %.10e\n&quot;</span><span class="token punctuation">,</span> FLT_MIN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;The number of digits in the number = %.10e\n&quot;</span><span class="token punctuation">,</span> FLT_MANT_DIG<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 比较两个浮点数是否相等。</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">fabs</span><span class="token punctuation">(</span>a <span class="token operator">-</span> b<span class="token punctuation">)</span> <span class="token operator">&lt;</span> FLT_EPSILON<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h2 id="inttypes-h"><a href="#inttypes-h" class="header-anchor">#</a> inttypes.h</h2> <p>为 stdint.h 定义的四类整数类型，提供了printf()和scanf()的占位符，提供整数输入的各种进制转换的宏。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;inttypes.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">int_least16_t</span> x <span class="token operator">=</span> <span class="token number">3490</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;The value is %&quot;</span> PRIdLEAST16 <span class="token string">&quot;!\n&quot;</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>下面是其它的原始占位符对应的占位符。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token operator">%</span>i：PRIin PRIiLEASTn PRIiFASTn PRIiMAX
+<span class="token operator">%</span>o：PRIon PRIoLEASTn PRIoFASTn PRIoMAX
+<span class="token operator">%</span>u：PRIun PRIuLEASTn PRIuFASTn PRIuMAX
+<span class="token operator">%</span>x：PRIxn PRIxLEASTn PRIxFASTn PRIxMAX
+<span class="token operator">%</span>X：PRIXn PRIXLEASTn PRIXFASTn PRIXMAX
+
+PRIxPTR <span class="token comment">// uintptr_t</span>
+PRIuPTR <span class="token comment">// ptrdiff_t</span>
+
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token punctuation">)</span>的占位符规则也与之类似。
+
+<span class="token operator">%</span>d：SCNdn SCNdLEASTn SCNdFASTn SCNdMAX
+<span class="token operator">%</span>i：SCNin SCNiLEASTn SCNiFASTn SCNiMAX
+<span class="token operator">%</span>o：SCNon SCNoLEASTn SCNoFASTn SCNoMAX
+<span class="token operator">%</span>u：SCNun SCNuLEASTn SCNuFASTn SCNuMAX
+<span class="token operator">%</span>x：SCNxn SCNxLEASTn SCNxFASTn SCNxMAX
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;inttypes.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;a=%&quot;</span>PRIu64<span class="token string">&quot;\n&quot;</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h2 id="limits-h"><a href="#limits-h" class="header-anchor">#</a> limits.h</h2> <p>提供了用来定义各种整数类型（包括字符类型）取值范围的宏。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>CHAR_BIT：每个字符包含的二进制位数。
+SCHAR_MIN：<span class="token keyword">signed</span> <span class="token keyword">char</span> 类型的最小值。
+SCHAR_MAX：<span class="token keyword">signed</span> <span class="token keyword">char</span> 类型的最大值。
+UCHAR_MAX：unsiged <span class="token keyword">char</span> 类型的最大值。
+CHAR_MIN：<span class="token keyword">char</span> 类型的最小值。
+CHAR_MAX：<span class="token keyword">char</span> 类型的最大值。
+MB_LEN_MAX：多字节字符最多包含的字节数。
+SHRT_MIN：<span class="token keyword">short</span> <span class="token keyword">int</span> 类型的最小值。
+SHRT_MAX：<span class="token keyword">short</span> <span class="token keyword">int</span> 类型的最大值。
+USHRT_MAX：<span class="token keyword">unsigned</span> <span class="token keyword">short</span> <span class="token keyword">int</span> 类型的最大值。
+INT_MIN：<span class="token keyword">int</span> 类型的最小值。
+INT_MAX：<span class="token keyword">int</span> 类型的最大值。
+UINT_MAX：<span class="token keyword">unsigned</span> <span class="token keyword">int</span> 类型的最大值。
+LONG_MIN：<span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最小值。
+LONG_MAX：<span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最大值。
+ULONG_MAX：<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最大值。
+LLONG_MIN：<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最小值。
+LLONG_MAX：<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最大值。
+ULLONG_MAX：<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> 类型的最大值。
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">INT_MAX <span class="token operator">&lt;</span> <span class="token number">100000</span></span></span>
+  <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">error</span> <span class="token expression"><span class="token keyword">int</span> type is too small</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">// 可以使用limit.h里面的宏，为类型别名选择正确的底层类型。</span>
+<span class="token comment">// 如果整数类型的最大值（INT_MAX）不小于100000，那么类型别名Quantity指向int，否则就指向long int。</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">INT_MAX <span class="token operator">&gt;=</span> <span class="token number">100000</span></span></span>
+  <span class="token keyword">typedef</span> <span class="token keyword">int</span> Quantity<span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+  <span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">int</span> Quantity<span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><h2 id="locale-h"><a href="#locale-h" class="header-anchor">#</a> locale.h</h2> <p>程序的本地化设置，主要影响以下的行为：</p> <p>数字格式
+货币格式
+字符集
+日期和时间格式</p> <p>它设置了以下几个宏。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>LC_COLLATE  <span class="token comment">//影响字符串比较函数strcoll()和strxfrm()。</span>
+LC_CTYPE <span class="token comment">//影响字符处理函数的行为。</span>
+LC_MONETARY <span class="token comment">//影响货币格式。</span>
+LC_NUMERIC  <span class="token comment">//影响printf()的数字格式。</span>
+LC_TIME <span class="token comment">//影响时间格式strftime()和wcsftime()。</span>
+LC_ALL  <span class="token comment">//将以上所有类别设置为给定的语言环境。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 设置当前的地区</span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">setlocale</span><span class="token punctuation">(</span><span class="token keyword">int</span> category<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> locale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//第一个参数表示影响范围，如果值为前面五个表示类别的宏之一，则只影响该宏对应的类别，如果值为</span>
+<span class="token comment">// LC_ALL，则影响所有类别。第二个参数通常只为&quot;C&quot;（正常模式）或&quot;&quot;（本地模式）。</span>
+
+<span class="token comment">//任意程序开始时，都隐含下面的调用。</span>
+
+<span class="token function">setlocale</span><span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span> <span class="token string">&quot;C&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//下面的语句将格式本地化。</span>
+<span class="token function">setlocale</span><span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//第二个参数也可以设为当前系统支持的某种格式。</span>
+<span class="token function">setlocale</span><span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span> <span class="token string">&quot;en_US.UTF-8&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// setlocale()的返回值是一个字符串指针，表示已经设置好的格式。如果调用失败，则返回空指针 NULL。</span>
+<span class="token keyword">char</span> <span class="token operator">*</span>loc<span class="token punctuation">;</span>
+
+loc <span class="token operator">=</span> <span class="token function">setlocale</span><span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 输出 Starting locale: C</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Starting locale: %s\n&quot;</span><span class="token punctuation">,</span> loc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+loc <span class="token operator">=</span> <span class="token function">setlocale</span><span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 输出 Native locale: Chinese (Simplified)_China.936</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Native locale: %s\n&quot;</span><span class="token punctuation">,</span> loc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>zh-Hans：中文（简体）
+zh-CN：中文（中国）</p> <p>打印系统当前的属性值：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;locale.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">setlocale</span> <span class="token punctuation">(</span>LC_ALL<span class="token punctuation">,</span><span class="token string">&quot;zh_CN&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">lconv</span> <span class="token operator">*</span> lc<span class="token punctuation">;</span>
+    lc<span class="token operator">=</span><span class="token function">localeconv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;decimal_point: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>decimal_point<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;thousands_sep: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>thousands_sep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;grouping: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>grouping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_curr_symbol: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_curr_symbol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;currency_symbol: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>currency_symbol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;mon_decimal_point: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>mon_decimal_point<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;mon_thousands_sep: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>mon_thousands_sep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;mon_grouping: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>mon_grouping<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;positive_sign: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>positive_sign<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;negative_sign: %s\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>negative_sign<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;frac_digits: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>frac_digits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;p_cs_precedes: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>p_cs_precedes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;n_cs_precedes: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>n_cs_precedes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;p_sep_by_space: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>p_sep_by_space<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;n_sep_by_space: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>n_sep_by_space<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;p_sign_posn: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>p_sign_posn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;n_sign_posn: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>n_sign_posn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_frac_digits: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_frac_digits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_p_cs_precedes: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_p_cs_precedes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_n_cs_precedes: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_n_cs_precedes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_p_sep_by_space: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_p_sep_by_space<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_n_sep_by_space: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_n_sep_by_space<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_p_sign_posn: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_p_sign_posn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span> <span class="token punctuation">(</span><span class="token string">&quot;int_n_sign_posn: %d\n&quot;</span><span class="token punctuation">,</span>lc<span class="token operator">-&gt;</span>int_n_sign_posn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h2 id="signal-h"><a href="#signal-h" class="header-anchor">#</a> signal.h</h2> <h3 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h3> <p>signal.h提供了信号（即异常情况）的处理工具。所谓“信号”（signal），可以理解成系统与程序之间的
+短消息，主要用来表示运行时错误，或者发生了异常事件。</p> <p>头文件signal.h定义了一系列宏，表示不同的信号。</p> <ul><li>SIGABRT：异常中止（可能由于调用了 abort() 方法）。</li> <li>SIGFPE：算术运算发生了错误（可能是除以 0 或者溢出）。</li> <li>SIGILL：无效指令。</li> <li>SIGINT：中断。</li> <li>SIGSEGV：无效内存访问。</li> <li>SIGTERM：终止请求。</li></ul> <p><strong>POSIX</strong></p> <ul><li>SIGQUIT：退出</li> <li>SIGKILL：kill，不能被捕获或者忽略</li></ul> <p>上面每个宏的值都是一个正整数常量。</p> <h3 id="signal"><a href="#signal" class="header-anchor">#</a> signal()</h3> <p>头文件signal.h还定义了一个signal()函数，用来指定某种信号的处理函数。</p> <p><code>signal(SIGINT, handler);</code></p> <p>signal()接受两个参数，第一个参数是某种信号的宏，第二个参数是处理这个信号的函数指针handler。</p> <p>信号处理函数handler接受一个 int 类型的参数，表示信号类型。它的原型如下。</p> <p><code>void (*func)(int);</code></p> <p>handler函数体内部可以根据这个整数，判断到底接受到了哪种信号，因为多个信号可以共用同一个处理函数。一旦处理函数执行完成，程序会从信号发生点恢复执行。但是，如果遇到 SIGABRT 信号，处理函数执行完成，系统会让程序中止。</p> <p>当系统向程序发送信号时，程序可以忽略信号，即不指定处理函数。</p> <p>signal()的返回值是前一个处理函数的指针，常常把它保存在变量之中，当新的处理函数执行完，再恢复以前的处理函数。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>orig_handler<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+orig_handler <span class="token operator">=</span> <span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// SIGINT 信号发生之后</span>
+<span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> orig_handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>上面示例中，signal()为信号SIGINT指定了新的处理函数handler，把原来的处理函数保存在变量orig_handler里面。等到handler这个函数用过之后，再恢复原来的处理函数。</p> <h3 id="信号相关的宏"><a href="#信号相关的宏" class="header-anchor">#</a> 信号相关的宏</h3> <p>signal.h还提供了信号相关的宏。</p> <p>（1）SIG_DFL</p> <p>SIG_DFL 表示默认的处理函数。</p> <p><code>signal(SIGINT, SIG_DFL);</code></p> <p>上面示例中，SIGINT 的处理函数是默认处理函数，由当前实现决定。</p> <p>（2）SIG_IGN</p> <p>SIG_IGN 表示忽略该信号。</p> <p><code>signal(SIGINT, SIG_IGN);</code></p> <p>上面示例表示不对 SIGINT 信号进行处理。由于程序运行时按下 Ctrl + c 是发出 SIGINT 信号，所以使用该语句后，程序无法用 Ctrl + c 终止。</p> <p>（3）SIG_ERR</p> <p>SIG_ERR 是信号处理函数发生错误时，signal()的返回值。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> handler<span class="token punctuation">)</span> <span class="token operator">==</span> SIG_ERR<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">&quot;signal(SIGINT, handler) failed&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>上面示例可以判断handler处理 SIGINT 时，是否发生错误。</p> <h3 id="raise"><a href="#raise" class="header-anchor">#</a> raise()</h3> <p>raise()函数用来在程序中发出信号。</p> <p><code>int raise(int sig);</code></p> <p>它接受一个信号值作为参数，表示发出该信号。它的返回值是一个整数，可以用来判断信号发出是否成功，0 表示成功，非 0 表示失败。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> sig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Handler called for signal %d\n&quot;</span><span class="token punctuation">,</span> sig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">signal</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">raise</span><span class="token punctuation">(</span>SIGINT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>上面示例中，raise()触发 SIGINT 信号，导致 handler 函数执行。</p> <h2 id="stdint"><a href="#stdint" class="header-anchor">#</a> stdint</h2> <p><strong>固定宽度的整数类型</strong></p> <p><code>stdint.h</code> 定义了一些固定宽度的整数类型别名，主要有下面三类。</p> <p>宽度完全确定的整数 intN_t，比如 int32_t。</p> <p>宽度不小于某个大小的整数 int_leastN_t，比如 int_least8_t。</p> <p>宽度不小于某个大小、并且处理速度尽可能快的整数 int_fastN_t，比如 int_fast64_t。</p> <p>上面所有类型都是有符号的，类型名前面可以加一个前缀u，表示无符号类型，比如 uint16_t。</p> <ul><li>int8_t（可选） uint8_t（可选）</li> <li>int16_t（可选） uint16_t（可选）</li> <li>int32_t（可选） uint32_t（可选）</li> <li>int64_t（可选） uint64_t（可选）</li></ul> <p>uintptr_t 指针，intptr_t 可以安全地在 <code>void*</code> 和 整数之间转换。</p> <p><strong>固定宽度的整数常量</strong></p> <p>以下两个类型表示当前系统可用的最大宽度整数。</p> <p>intmax_t，uintmax_t</p> <p><strong>固定宽度的整数极限值</strong></p> <p>下面一些宏代表了固定宽度的整数最大值和最小值。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code>INT8_MAX INT8_MIN UINT8_MAX
+INT16_MAX INT16_MIN UINT16_MAX
+INT32_MAX INT32_MIN UINT32_MAX
+INT64_MAX INT64_MIN UINT64_MAX
+INT_LEAST8_MAX INT_LEAST8_MIN UINT_LEAST8_MAX
+INT_LEAST16_MAX INT_LEAST16_MIN UINT_LEAST16_MAX
+INT_LEAST32_MAX INT_LEAST32_MIN UINT_LEAST32_MAX
+INT_LEAST64_MAX INT_LEAST64_MIN UINT_LEAST64_MAX
+INT_FAST8_MAX INT_FAST8_MIN UINT_FAST8_MAX
+INT_FAST16_MAX INT_FAST16_MIN UINT_FAST16_MAX
+INT_FAST32_MAX INT_FAST32_MIN UINT_FAST32_MAX
+INT_FAST64_MAX INT_FAST64_MIN UINT_FAST64_MAX
+INTMAX_MAX INTMAX_MIN UINTMAX_MAX
+<span class="token comment">// 注意，所有无符号整数类型的最小值都为0，所以没有对应的宏。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="stddef-h"><a href="#stddef-h" class="header-anchor">#</a> stddef.h</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token class-name">ptrdiff_t</span> <span class="token comment">// uintptr_t 的差。</span>
+<span class="token class-name">size_t</span>    <span class="token comment">// sizeof 的结果</span>
+<span class="token class-name">wchar_t</span>   <span class="token comment">// 宽字符类型</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NULL</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">offsetof</span><span class="token expression"><span class="token punctuation">(</span>type<span class="token punctuation">,</span> member<span class="token operator">-</span>designator<span class="token punctuation">)</span></span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/c/glibc/learn-glibc07.html" class="prev">
+        glibc 学习（七）字符串处理
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/28.f263b4e2.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>glibc 学习（二）时间 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/22.56e55e5c.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/24.b38bddd1.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/26.add4feed.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/28.f263b4e2.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/35.0ba44a34.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/64.7770e824.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/c/" aria-current="page" class="sidebar-link">C Program Language</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>inbox</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/c-style.html" class="sidebar-link">1 简易 C 语言编程规范</a></li><li><a href="/wiki/c/learn-c.html" class="sidebar-link">2 C 语言拾遗</a></li><li><a href="/wiki/c/ccollections.html" class="sidebar-link">3 c 问题集</a></li><li><a href="/wiki/c/json-c.html" class="sidebar-link">4 json-c 库使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/kandrc/" class="sidebar-heading clickable"><span>K&amp;R C</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/glibc/" class="sidebar-heading clickable router-link-active open"><span>glibc 学习</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/glibc/learn-glibc01.html" class="sidebar-link">glibc 学习（一）I/O</a></li><li><a href="/wiki/c/glibc/learn-glibc02.html" aria-current="page" class="active sidebar-link">glibc 学习（二）时间</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc02.html#_2-1-基础知识" class="sidebar-link">2.1 基础知识</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc02.html#_2-2-api" class="sidebar-link">2.2 API</a></li></ul></li><li><a href="/wiki/c/glibc/learn-glibc03.html" class="sidebar-link">glibc 学习（三）线程</a></li><li><a href="/wiki/c/glibc/learn-glibc04.html" class="sidebar-link">glibc 学习（四）原子操作</a></li><li><a href="/wiki/c/glibc/learn-glibc05.html" class="sidebar-link">glibc 学习（五）数学库</a></li><li><a href="/wiki/c/glibc/learn-glibc06.html" class="sidebar-link">glibc 学习（六）stdlib</a></li><li><a href="/wiki/c/glibc/learn-glibc07.html" class="sidebar-link">glibc 学习（七）字符串处理</a></li><li><a href="/wiki/c/glibc/learn-glibctemp.html" class="sidebar-link">glibc 学习</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_2-1-基础知识"><a href="#_2-1-基础知识" class="header-anchor">#</a> 2.1 基础知识</h2> <h3 id="_2-1-1-时间值"><a href="#_2-1-1-时间值" class="header-anchor">#</a> 2.1.1 时间值</h3> <p>Unix 时间戳，亦称为 Unix 时间、Posix 时间，该值是自协调世界时（Cordinated Universal Time, UTC）1970 年 1 月 1 日 00:00:00 这个特定时间以来所经过的秒数累计值（早期手册称 UTC 为 格林尼治标准时间）。</p> <p>日历时间包括时间和日期。</p> <p>系统基本数据类型 <code>time_t</code> 一般是32位或64位整数类型的别名，具体类型取决于当前系统。如果是32位带符号整数，time_t 可以表示的时间到 2038年1月19日03:14:07 UTC 为止；如果是32位无符号整数，则表示到2106年。如果是64位带符号整数，可以表示-2930亿年到+2930亿年的时间范围。</p> <p><code>time_t</code> 如果是负数，表示协调世界时之前的时间。</p> <p>在 shell 中使用 <code>date</code> 命令即可显示当前日期、时间：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token variable">$date</span>
+<span class="token number">2023</span>年 03月 <span class="token number">24</span>日 星期五 <span class="token number">15</span>:35:33 CST
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>使用 <code>cal</code> 显示日历：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ <span class="token function">cal</span>
+      三月 <span class="token number">2023</span>
+日 一 二 三 四 五 六
+          <span class="token number">1</span>  <span class="token number">2</span>  <span class="token number">3</span>  <span class="token number">4</span>
+ <span class="token number">5</span>  <span class="token number">6</span>  <span class="token number">7</span>  <span class="token number">8</span>  <span class="token number">9</span> <span class="token number">10</span> <span class="token number">11</span>
+<span class="token number">12</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">15</span> <span class="token number">16</span> <span class="token number">17</span> <span class="token number">18</span>
+<span class="token number">19</span> <span class="token number">20</span> <span class="token number">21</span> <span class="token number">22</span> <span class="token number">23</span> <span class="token number">24</span> <span class="token number">25</span>
+<span class="token number">26</span> <span class="token number">27</span> <span class="token number">28</span> <span class="token number">29</span> <span class="token number">30</span> <span class="token number">31</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>unix/linux 和其他操作系统的区别：</p> <ol><li>以协调同一时间而非本地时间计时。</li> <li>可自动进行转换，如变换到夏令时。</li> <li>将时间和日期作为一个量值保存。</li></ol> <h2 id="_2-2-api"><a href="#_2-2-api" class="header-anchor">#</a> 2.2 API</h2> <h3 id="_2-2-1-time"><a href="#_2-2-1-time" class="header-anchor">#</a> 2.2.1 time()</h3> <p>函数原型：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+
+<span class="token class-name">time_t</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token class-name">time_t</span> <span class="token operator">*</span>tloc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//      tloc:       输出参数，如果非空，时间值也会存放在 *tloc 中。</span>
+<span class="token comment">//      返回值:      成功返回从 1970 年 1 月 1日 00:00:00 起到当前的秒数。</span>
+<span class="token comment">//                  失败返回 -1，并设置错误码 errno。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">time_t</span> now <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;now: %ld\n&quot;</span><span class="token punctuation">,</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_2-2-2-ctime-已弃用"><a href="#_2-2-2-ctime-已弃用" class="header-anchor">#</a> 2.2.2 ctime() （已弃用）</h3> <p>用来将 <code>time_t</code> 类型的值直接输出为人类可读的格式。</p> <p>函数原型：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">ctime</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">time_t</span><span class="token operator">*</span> timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//          timer:  time_t 指针</span>
+<span class="token comment">//          返回值：类似Www Mmm dd hh:mm:ss yyyy\n\0 的字符串。包含换行符和字符串终止符。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">time_t</span> now <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span><span class="token function">ctime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 输出结果：Fri Mar 24 16:26:22 2023</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="_2-2-3-struct-tm"><a href="#_2-2-3-struct-tm" class="header-anchor">#</a> 2.2.3 struct tm</h3> <p><code>struct tm</code> 是一个用来保存时间的各个组成部分的结构。</p> <p>定义在 <code>/usr/include/i386-linux-gnu/bits/types/struct_tm.h</code> 中：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code> <span class="token comment">/* ISO C `broken-down time' structure.  */</span>
+<span class="token keyword">struct</span> <span class="token class-name">tm</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> tm_sec<span class="token punctuation">;</span>           <span class="token comment">/* 秒数 [0-60] (1 leap second) */</span>
+  <span class="token keyword">int</span> tm_min<span class="token punctuation">;</span>           <span class="token comment">/* 分钟 [0-59] */</span>
+  <span class="token keyword">int</span> tm_hour<span class="token punctuation">;</span>          <span class="token comment">/* 小时 [0-23] */</span>
+  <span class="token keyword">int</span> tm_mday<span class="token punctuation">;</span>          <span class="token comment">/* 月份的天数 [1-31] */</span>
+  <span class="token keyword">int</span> tm_mon<span class="token punctuation">;</span>           <span class="token comment">/* 月份 [0-11] */</span>
+  <span class="token keyword">int</span> tm_year<span class="token punctuation">;</span>          <span class="token comment">/* 举例 1900 的年数  */</span>
+  <span class="token keyword">int</span> tm_wday<span class="token punctuation">;</span>          <span class="token comment">/* 星期几 [0, 6],星期天 用 0 表示*/</span>
+  <span class="token keyword">int</span> tm_yday<span class="token punctuation">;</span>          <span class="token comment">/* 一年的第几天*/</span>
+   <span class="token keyword">int</span> tm_isdst<span class="token punctuation">;</span>        <span class="token comment">/* 是否采用夏令时，1 采用，0 未采用■[-1/0/1]*/</span>
+
+ <span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">ifdef</span><span class="token expression">»__USE_MISC</span></span>
+   <span class="token keyword">long</span> <span class="token keyword">int</span> tm_gmtoff<span class="token punctuation">;</span>      <span class="token comment">/* Seconds east of UTC.  */</span>
+   <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>tm_zone<span class="token punctuation">;</span>     <span class="token comment">/* Timezone abbreviation.  */</span>
+ <span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">else</span></span>
+   <span class="token keyword">long</span> <span class="token keyword">int</span> __tm_gmtoff<span class="token punctuation">;</span>    <span class="token comment">/* Seconds east of UTC.  */</span>
+   <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>__tm_zone<span class="token punctuation">;</span>   <span class="token comment">/* Timezone abbreviation.  */</span>
+ <span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">endif</span></span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// struct timespec 最高精确度是纳秒。</span>
+<span class="token keyword">struct</span> <span class="token class-name">timespec</span> <span class="token punctuation">{</span>
+  <span class="token class-name">time_t</span> tv_sec<span class="token punctuation">;</span>   <span class="token comment">// 秒数</span>
+  <span class="token keyword">long</span>   tv_nsec<span class="token punctuation">;</span>  <span class="token comment">// 纳秒</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// struct timeval最高精确度是微秒。</span>
+<span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token punctuation">{</span>
+<span class="token class-name">time_t</span> tv_sec<span class="token punctuation">;</span> <span class="token comment">// seconds</span>
+<span class="token keyword">long</span> tv_usec<span class="token punctuation">;</span> <span class="token comment">// microseconds</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><p>秒可以超过 59 的理由是可以表示闰秒。除了 <code>tm_mday</code> 其他字段都以 0 开始。</p> <h3 id="_2-2-4-localtime-gmtime"><a href="#_2-2-4-localtime-gmtime" class="header-anchor">#</a> 2.2.4 localtime(),gmtime()</h3> <p>这两个函数可以将 <code>time_t</code>类型的时间 转换成 <code>struct tm</code>结构。</p> <p>函数原型：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span><span class="token function">gmtime</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">time_t</span> <span class="token operator">*</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//              timer:  指向要转换的 time_t 对象</span>
+<span class="token comment">//              返回值:  成功返回一个指向 struct tm 结构的指针，其他返回 NULL。</span>
+
+<span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span><span class="token function">localtime</span>  <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">time_t</span> <span class="token operator">*</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//                  timer: 指向要转换的 time_t 对象</span>
+<span class="token comment">//                  返回值: 成功指向 struct tm 结构的指针，失败返回 NULL。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><code>localtime()</code> 和 <code>gmtime()</code> 的区别：</p> <p><code>gmtime()</code> 将 <code>time_t</code> 得到的秒数转换成一个 协调统一时间（UTC 时间）的 <code>struct tm</code> 结构体。</p> <p><code>localtime()</code> 是将时区考虑在内了，转出的当前时区的本地时间。</p> <h3 id="_2-2-5-asctime-已弃用"><a href="#_2-2-5-asctime-已弃用" class="header-anchor">#</a> 2.2.5 asctime() （已弃用）</h3> <p>用来将 <code>struct tm</code> 结构，直接输出为人类可读的格式。</p> <p>函数原型：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">asctime</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>tm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// tm: struct tm 对象</span>
+            <span class="token comment">// 返回值：输出人类可读的格式，自动在行尾添加换行符，失败返回 NULL。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">time_t</span> now <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span><span class="token function">ctime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>t <span class="token operator">=</span> <span class="token function">gmtime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>y <span class="token operator">=</span> <span class="token function">localtime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d:%d:%d\n&quot;</span><span class="token punctuation">,</span>t<span class="token operator">-&gt;</span>tm_hour<span class="token punctuation">,</span>t<span class="token operator">-&gt;</span>tm_min<span class="token punctuation">,</span>t<span class="token operator">-&gt;</span>tm_sec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span><span class="token function">asctime</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d:%d:%d\n&quot;</span><span class="token punctuation">,</span>y<span class="token operator">-&gt;</span>tm_hour<span class="token punctuation">,</span>y<span class="token operator">-&gt;</span>tm_min<span class="token punctuation">,</span>y<span class="token operator">-&gt;</span>tm_sec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span><span class="token function">asctime</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> EXIT_SUCCESS<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 运行结果：</span>
+Sun Mar <span class="token number">26</span> <span class="token number">15</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">39</span> <span class="token number">2023</span>
+<span class="token number">15</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">39</span>
+Sun Mar <span class="token number">26</span> <span class="token number">15</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">39</span> <span class="token number">2023</span>
+<span class="token number">15</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">39</span>
+Sun Mar <span class="token number">26</span> <span class="token number">15</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">39</span> <span class="token number">2023</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="_2-2-6-mktime"><a href="#_2-2-6-mktime" class="header-anchor">#</a> 2.2.6 mktime()</h3> <p><code>mktime()</code> 函数用于把一个 <code>struct tm</code> 结构转换为 <code>time_t</code> 值。</p> <p>函数原型：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token class-name">time_t</span> <span class="token function">mktime</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>tm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//          tm: struct tm 对象</span>
+<span class="token comment">//          返回值：time_t 时间值，失败返回 -1，并设置错误码</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_2-2-7-strftime"><a href="#_2-2-7-strftime" class="header-anchor">#</a> 2.2.7 strftime()</h3> <p>类似 <code>printf()</code> ，通过可用的多个参数来定制产生的字符串。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token class-name">size_t</span> <span class="token function">strftime</span><span class="token punctuation">(</span> <span class="token keyword">char</span> <span class="token operator">*</span>restrict str<span class="token punctuation">,</span> <span class="token class-name">size_t</span> count<span class="token punctuation">,</span>
+                 <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>restrict format<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>restrict time <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                 <span class="token comment">// str: 目标字符串的指针</span>
+                 <span class="token comment">// count: 目标字符串可以接受的最大长度</span>
+                 <span class="token comment">// format: 格式字符串</span>
+                 <span class="token comment">// time: struct tm 结构</span>
+                 <span class="token comment">// 返回值: 若有空间，返回存入数组的字符数，否则返回 0。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>37 种 ISO C 规定的转换说明：</p> <p><img src="/linux/strftime%E8%BD%AC%E6%8D%A2%E8%AF%B4%E6%98%8E.png" alt=""></p> <p>使用示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token class-name">time_t</span> t<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">tm</span> <span class="token operator">*</span>tmp<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buf1<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buf2<span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token function">time</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp <span class="token operator">=</span> <span class="token function">localtime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strftime</span><span class="token punctuation">(</span>buf1<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;time and date: %r, %a %b %d, %Y&quot;</span><span class="token punctuation">,</span>tmp<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;buffer length 16 is too small\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span>buf1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strftime</span><span class="token punctuation">(</span>buf2<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buf2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;time and date: %r, %a %b %d, %Y&quot;</span><span class="token punctuation">,</span>tmp<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;buffer length 64 is too small\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span>buf2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> EXIT_SUCCESS<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>运行结果：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ ./a.out
+buffer length <span class="token number">16</span> is too small
+<span class="token function">time</span> and date: 03:35:26 PM, Sun Mar <span class="token number">26</span>, <span class="token number">2023</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_2-2-8-clock"><a href="#_2-2-8-clock" class="header-anchor">#</a> 2.2.8 clock()</h3> <p>clock() 函数返回从程序开始执行到当前的 CPU 时钟周期。一个时钟周期等于 CPU 频率的倒数，比如 CPU 的频率如果是 1G Hz，表示1秒内时钟信号可以变化 10<sup>9</sup> 次，那么每个时钟周期就是 10<sup>-9</sup> 秒。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token class-name">clock_t</span> <span class="token function">clock</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//      返回值：成功返回 cpu 时间周期</span>
+<span class="token comment">//             失败返回 -1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>为了把这个值转换为秒，应该把它除以常量 <code>CLOCKS_PER_SEC</code>（每秒的时钟周期），这个常量也由time.h定义。</p> <p>示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token class-name">clock_t</span> start <span class="token operator">=</span> <span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 执行某些操作</span>
+<span class="token class-name">clock_t</span> end <span class="token operator">=</span> <span class="token function">clock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">long</span> <span class="token keyword">double</span> seconds <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span><span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">/</span> CLOCKS_PER_SEC<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="_2-2-9-difftime"><a href="#_2-2-9-difftime" class="header-anchor">#</a> 2.2.9 difftime()</h3> <p>用来计算两个时间之间的差异。Unix 系统上，直接相减两个 time_t 值，就可以得到相差的秒数，但是为了程序的可移植性，最好还是使用这个函数。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">double</span> <span class="token function">difftime</span><span class="token punctuation">(</span> <span class="token class-name">time_t</span> time1<span class="token punctuation">,</span> <span class="token class-name">time_t</span> time2 <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>difftime()函数接受两个 time_t 类型的时间作为参数，计算 time1 - time2 的差，并把结果转换为秒。</p> <p>注意它的返回值是 double 类型。</p> <p>使用示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">struct</span> <span class="token class-name">tm</span> time_a <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>tm_year<span class="token operator">=</span><span class="token number">82</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_mon<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_mday<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_hour<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_min<span class="token operator">=</span><span class="token number">00</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_sec<span class="token operator">=</span><span class="token number">04</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_isdst<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">struct</span> <span class="token class-name">tm</span> time_b <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span>tm_year<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_mon<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_mday<span class="token operator">=</span><span class="token number">15</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_hour<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_min<span class="token operator">=</span><span class="token number">27</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_sec<span class="token operator">=</span><span class="token number">00</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span>tm_isdst<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token class-name">time_t</span> cal_a <span class="token operator">=</span> <span class="token function">mktime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>time_a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">time_t</span> cal_b <span class="token operator">=</span> <span class="token function">mktime</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>time_b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">double</span> diff <span class="token operator">=</span> <span class="token function">difftime</span><span class="token punctuation">(</span>cal_b<span class="token punctuation">,</span> cal_a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">double</span> years <span class="token operator">=</span> diff <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">/</span> <span class="token number">24</span> <span class="token operator">/</span> <span class="token number">365.2425</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 输出 1217996816.000000 seconds (38.596783 years) between events</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%f seconds (%f years) between events\n&quot;</span><span class="token punctuation">,</span> diff<span class="token punctuation">,</span> years<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><p>上面示例中，折算年份时，为了尽量准确，使用了一年的准确长度 365.2425 天，这样可以抵消闰年的影响。</p> <p>各个时间函数的关系：</p> <p><img src="/linux/%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt=""></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/c/glibc/learn-glibc01.html" class="prev">
+        glibc 学习（一）I/O
+      </a></span> <span class="next"><a href="/wiki/c/glibc/learn-glibc03.html">
+        glibc 学习（三）线程
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/22.56e55e5c.js" defer></script>
+  </body>
+</html>

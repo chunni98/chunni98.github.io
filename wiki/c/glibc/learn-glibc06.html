@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>glibc 学习（六）stdlib | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/26.add4feed.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/22.56e55e5c.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/24.b38bddd1.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/28.f263b4e2.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/35.0ba44a34.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/64.7770e824.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/c/" aria-current="page" class="sidebar-link">C Program Language</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>inbox</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/c-style.html" class="sidebar-link">1 简易 C 语言编程规范</a></li><li><a href="/wiki/c/learn-c.html" class="sidebar-link">2 C 语言拾遗</a></li><li><a href="/wiki/c/ccollections.html" class="sidebar-link">3 c 问题集</a></li><li><a href="/wiki/c/json-c.html" class="sidebar-link">4 json-c 库使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/kandrc/" class="sidebar-heading clickable"><span>K&amp;R C</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/glibc/" class="sidebar-heading clickable router-link-active open"><span>glibc 学习</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/glibc/learn-glibc01.html" class="sidebar-link">glibc 学习（一）I/O</a></li><li><a href="/wiki/c/glibc/learn-glibc02.html" class="sidebar-link">glibc 学习（二）时间</a></li><li><a href="/wiki/c/glibc/learn-glibc03.html" class="sidebar-link">glibc 学习（三）线程</a></li><li><a href="/wiki/c/glibc/learn-glibc04.html" class="sidebar-link">glibc 学习（四）原子操作</a></li><li><a href="/wiki/c/glibc/learn-glibc05.html" class="sidebar-link">glibc 学习（五）数学库</a></li><li><a href="/wiki/c/glibc/learn-glibc06.html" aria-current="page" class="active sidebar-link">glibc 学习（六）stdlib</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_1-宏" class="sidebar-link">1 宏</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_2-abs-labs-llabs" class="sidebar-link">2 abs()，labs()，llabs()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_3-div-ldiv-lldiv" class="sidebar-link">3 div，ldiv，lldiv</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_4-字符串转数值" class="sidebar-link">4 字符串转数值</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_5-rand" class="sidebar-link">5 rand()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_6-srand" class="sidebar-link">6 srand()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_7-abort" class="sidebar-link">7 abort()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_8-exit-quick-exit-exit" class="sidebar-link">8 exit()，quickexit()，Exit()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_9-atexit-at-quick-exit" class="sidebar-link">9 atexit()，atquickexit()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_10-getenv" class="sidebar-link">10 getenv()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_11-system" class="sidebar-link">11 system()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_12-内存管理" class="sidebar-link">12 内存管理</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_13-qsort" class="sidebar-link">13 qsort()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#_14-bsearch" class="sidebar-link">14 bsearch()</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc06.html#多字节字符函数" class="sidebar-link">多字节字符函数</a></li></ul></li><li><a href="/wiki/c/glibc/learn-glibc07.html" class="sidebar-link">glibc 学习（七）字符串处理</a></li><li><a href="/wiki/c/glibc/learn-glibctemp.html" class="sidebar-link">glibc 学习</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-宏"><a href="#_1-宏" class="header-anchor">#</a> 1 宏</h2> <div class="language-c line-numbers-mode"><pre class="language-c"><code>EXIT_SUCCESS <span class="token comment">//函数运行成功时的退出状态。</span>
+EXIT_FAILURE <span class="token comment">// 函数运行错误时的退出状态。</span>
+RAND_MAX <span class="token comment">// rand() 函数可以返回的最大值。</span>
+MB_CUR_MAX  <span class="token comment">//当前语言环境中，多字节字符占用的最大字节数。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="_2-abs-labs-llabs"><a href="#_2-abs-labs-llabs" class="header-anchor">#</a> 2 abs()，labs()，llabs()</h2> <p>这三个函数用于计算整数的绝对值。abs()用于 int 类型，labs()用于 long int 类型，llabs()用于 long long int 类型。</p> <p>fabs() 定义在 <code>math.h</code> 中。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 输出 |-2| = 2</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;|-2| = %d\n&quot;</span><span class="token punctuation">,</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 输出 |4|  = 4</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;|4|  = %d\n&quot;</span><span class="token punctuation">,</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="_3-div-ldiv-lldiv"><a href="#_3-div-ldiv-lldiv" class="header-anchor">#</a> 3 div，ldiv，lldiv</h2> <p>这三个函数用来计算两个参数的商和余数。div()用于 int 类型的相除，ldiv()用于 long int 类型的相除，lldiv()用于 long long int 类型的相除。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> quot<span class="token punctuation">,</span> rem<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token class-name">div_t</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+  <span class="token keyword">long</span> <span class="token keyword">int</span> quot<span class="token punctuation">,</span> rem<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token class-name">ldiv_t</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+  <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> quot<span class="token punctuation">,</span> rem<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token class-name">lldiv_t</span><span class="token punctuation">;</span>
+
+
+<span class="token class-name">div_t</span> d <span class="token operator">=</span> <span class="token function">div</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 输出 64 / -7 = -9</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;64 / -7 = %d\n&quot;</span><span class="token punctuation">,</span> d<span class="token punctuation">.</span>quot<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 输出 64 % -7 = 1</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;64 %% -7 = %d\n&quot;</span><span class="token punctuation">,</span> d<span class="token punctuation">.</span>rem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h2 id="_4-字符串转数值"><a href="#_4-字符串转数值" class="header-anchor">#</a> 4 字符串转数值</h2> <h3 id="_4-1-a-系列函数"><a href="#_4-1-a-系列函数" class="header-anchor">#</a> 4.1 a 系列函数</h3> <ul><li>atoi()：ASCII to int，字符串转成 int 类型。</li> <li>atof()：字符串转成 double 类型。</li> <li>atol()：字符串转成 long int 类型。</li> <li>atoll()：字符串转成 long long int 类型。</li></ul> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">int</span> <span class="token function">atoi</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> nptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">double</span> <span class="token function">atof</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> nptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">atol</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> nptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">atoll</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> nptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">atoi</span><span class="token punctuation">(</span><span class="token string">&quot;3490&quot;</span><span class="token punctuation">)</span>   <span class="token comment">// 3490</span>
+<span class="token function">atof</span><span class="token punctuation">(</span><span class="token string">&quot;3.141593&quot;</span><span class="token punctuation">)</span>   <span class="token comment">// 3.141593</span>
+<span class="token comment">// 如果参数是数字开头的字符串，atoi()会只转换数字部分，</span>
+<span class="token comment">// 比如atoi(&quot;42regular&quot;)会返回整数42。</span>
+<span class="token comment">// 如果首字符不是数字，比如“hello world”，则会返回0。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="_4-2-str-系列函数"><a href="#_4-2-str-系列函数" class="header-anchor">#</a> 4.2 str 系列函数</h3> <ul><li>strtof()：字符串转成 float 类型。</li> <li>strtod()：字符串转成 double 类型。</li> <li>strtold()：字符串转成 long double 类型。</li></ul> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">float</span> <span class="token function">strtof</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">double</span> <span class="token function">strtod</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">long</span> <span class="token keyword">double</span> <span class="token function">strtold</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>它们都接受两个参数，第一个参数是需要转换的字符串，第二个参数是一个指针，指向原始字符串里面无法转换的部分。</p> <ul><li>nptr：待转换的字符串（起首的空白字符会被忽略）。</li> <li>endprt：一个指针，指向不能转换部分的第一个字符。</li></ul> <p>如果字符串可以完全转成数值，该指针指向字符串末尾的终止符 <code>\0</code>。
+这个参数如果设为 NULL，就表示不需要处理字符串剩余部分。
+它们的返回值是已经转换后的数值。如果字符串无法转换，则返回0。
+如果转换结果发生溢出，errno 会被设置为 ERANGE。
+如果值太大（无论是正数还是负数），函数返回HUGE_VAL；如果值太小，函数返回零。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">char</span> <span class="token operator">*</span>inp <span class="token operator">=</span> <span class="token string">&quot;   123.4567abdc&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> <span class="token operator">*</span>badchar<span class="token punctuation">;</span>
+
+<span class="token keyword">double</span> val <span class="token operator">=</span> <span class="token function">strtod</span><span class="token punctuation">(</span>inp<span class="token punctuation">,</span> <span class="token operator">&amp;</span>badchar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%f\n&quot;</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 123.456700</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span> badchar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// abdc</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">*</span>endptr <span class="token operator">==</span> <span class="token char">'\0'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 完全转换</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 存在无法转换的字符</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>如果不关心没有转换的部分，则可以将 endptr 设置为 NULL。</p> <p>这些函数还可以将字符串转换为特殊值 Infinity 和 NaN。
+如果字符串包含 INF 或 INFINITY（大写或小写皆可），
+则将转换为 Infinity；如果字符串包含 NAN，则将返回 NaN。</p> <h3 id="_4-3-str-系列函数-正数转换"><a href="#_4-3-str-系列函数-正数转换" class="header-anchor">#</a> 4.3 str 系列函数（正数转换）</h3> <ul><li>strtol()：字符串转成 long int 类型。</li> <li>strtoll()：字符串转成 long long int 类型。</li> <li>strtoul()：字符串转成 unsigned long int 类型。</li> <li>strtoull()：字符串转成 unsigned long long int 类型。</li></ul> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">strtol</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr<span class="token punctuation">,</span>
+  <span class="token keyword">int</span> base
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">strtoll</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr<span class="token punctuation">,</span>
+  <span class="token keyword">int</span> base
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">strtoul</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr<span class="token punctuation">,</span>
+  <span class="token keyword">int</span> base
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span> <span class="token keyword">int</span> <span class="token function">strtoull</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> restrict nptr<span class="token punctuation">,</span>
+  <span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span> restrict endptr<span class="token punctuation">,</span> <span class="token keyword">int</span> base
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>它们接受三个参数。</p> <p>（1）nPtr：待转换的字符串（起首的空白字符会被忽略）。</p> <p>（2）endPrt：一个指针，指向不能转换部分的第一个字符。如果字符串可以完全转成数值，该指针指向字符串末尾的终止符\0。这个参数如果设为 NULL，就表示不需要处理字符串剩余部分。</p> <p>（3）base：待转换整数的进制。这个值应该是2到36之间的整数，代表相应的进制，如果是特殊值0，表示让函数根据数值的前缀，自己确定进制，即如果数字有前缀0，则为八进制，如果数字有前缀0x或0X，则为十六进制。</p> <p>它们的返回值是转换后的数值，如果转换不成功，返回0。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 十进制转换</span>
+<span class="token keyword">char</span><span class="token operator">*</span> s <span class="token operator">=</span> <span class="token string">&quot;3490&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">strtoul</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%lu\n&quot;</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3490</span>
+
+
+<span class="token comment">// 十六进制转换</span>
+<span class="token keyword">char</span><span class="token operator">*</span> end<span class="token punctuation">;</span>
+
+<span class="token keyword">long</span> value <span class="token operator">=</span> <span class="token function">strtol</span><span class="token punctuation">(</span><span class="token string">&quot;0xff&quot;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>end<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%ld\n&quot;</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 255</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 无内容</span>
+
+value <span class="token operator">=</span> <span class="token function">strtol</span><span class="token punctuation">(</span><span class="token string">&quot;0xffxx&quot;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>end<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%ld\n&quot;</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 255</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\n&quot;</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// xx</span>
+
+<span class="token comment">// 转换二进制</span>
+<span class="token keyword">char</span><span class="token operator">*</span> s <span class="token operator">=</span> <span class="token string">&quot;101010&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">strtoul</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%lu\n&quot;</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 42</span>
+
+<span class="token comment">// 自定判断进制</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> string <span class="token operator">=</span> <span class="token string">&quot;-1234567abc&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span><span class="token operator">*</span> remainderPtr<span class="token punctuation">;</span>
+  <span class="token keyword">long</span> x <span class="token operator">=</span> <span class="token function">strtol</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span> <span class="token operator">&amp;</span>remainderPtr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s\&quot;%s\&quot;\n%s%ld\n%s\&quot;%s\&quot;\n&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;The original string is &quot;</span><span class="token punctuation">,</span>
+    string<span class="token punctuation">,</span>
+    <span class="token string">&quot;The converted value is &quot;</span><span class="token punctuation">,</span>
+    x<span class="token punctuation">,</span>
+    <span class="token string">&quot;The remainder of the original string is &quot;</span><span class="token punctuation">,</span>
+    remainderPtr
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h2 id="_5-rand"><a href="#_5-rand" class="header-anchor">#</a> 5 rand()</h2> <p>rand()函数用来生成 0～RAND_MAX 之间的随机整数。</p> <p>RAND_MAX是一个定义在stdlib.h里面的宏，通常等于 INT_MAX。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 原型</span>
+<span class="token keyword">int</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 示例</span>
+<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> （M <span class="token operator">-</span> N <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> N<span class="token punctuation">;</span>
+
+<span class="token comment">// 或者浮点数随机值</span>
+<span class="token comment">// 0 到 0.999999 之间的随机数</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;0 to 0.99999: %f\n&quot;</span><span class="token punctuation">,</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>RAND_MAX <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// n 到 m 之间的随机数：</span>
+<span class="token comment">// n + m * (rand() / (float)RAND_MAX)</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;10.5 to 15.7: %f\n&quot;</span><span class="token punctuation">,</span> <span class="token number">10.5</span> <span class="token operator">+</span> <span class="token number">5.2</span> <span class="token operator">*</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token keyword">float</span><span class="token punctuation">)</span>RAND_MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="_6-srand"><a href="#_6-srand" class="header-anchor">#</a> 6 srand()</h2> <p>rand()是伪随机数函数，为了增加随机性，必须在调用它之前，使用srand()函数重置一下种子值。</p> <p>srand()函数接受一个无符号整数（unsigned int）作为种子值，没有返回值。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">srand</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span> seed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 通常使用time(NULL)函数返回当前距离时间纪元的秒数，作为srand()的参数。</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;time.h&gt;</span></span>
+<span class="token function">srand</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>上面代码中，time()的原型定义在头文件time.h里面，返回值的类型是类型别名time_t，
+具体的类型与系统有关，所以要强制转换一下类型。time()的参数是一个指针，指向一个具体的 time_t
+类型的时间值，这里传入空指针NULL作为参数，由于 NULL 一般是0，所以也可以写成time(0)。</p> <h2 id="_7-abort"><a href="#_7-abort" class="header-anchor">#</a> 7 abort()</h2> <p>abort()用于不正常地终止一个正在执行的程序。使用这个函数的目的，主要是它会触发 SIGABRT 信号，开发者可以在程序中为这个信号设置一个处理函数。</p> <p><code>void abort(void);</code></p> <p>该函数没有参数。</p> <h2 id="_8-exit-quick-exit-exit"><a href="#_8-exit-quick-exit-exit" class="header-anchor">#</a> 8 exit()，quick_exit()，_Exit()</h2> <p>这三个函数都用来退出当前正在执行的程序。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">exit</span><span class="token punctuation">(</span><span class="token keyword">int</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">quick_exit</span><span class="token punctuation">(</span><span class="token keyword">int</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">_Exit</span><span class="token punctuation">(</span><span class="token keyword">int</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>它们都接受一个整数，表示程序的退出状态，0 是正常退出，非零值表示发生错误，可以使用宏 <code>EXIT_SUCCESS</code>和<code>EXIT_FAILURE</code>当作参数。它们本身没有返回值。</p> <p>它们的区别是，退出时所做的清理工作不同。exit()是正常退出，系统会做完整的清理，比如更新所有文件流，并且删除临时文件。quick_exit()是快速退出，系统的清理工作稍微少一点。_Exit()是立即退出，不做任何清理工作。</p> <p>下面是一些用法示例。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">exit</span><span class="token punctuation">(</span>EXIT_SUCCESS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">quick_exit</span><span class="token punctuation">(</span>EXIT_FAILURE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">_Exit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="_9-atexit-at-quick-exit"><a href="#_9-atexit-at-quick-exit" class="header-anchor">#</a> 9 atexit()，at_quick_exit()</h2> <p>atexit()用来登记当前程序退出时（调用exit()或main()正常退出），所要执行的其他函数。</p> <p>at_quick_exit()则是登记使用quick_exit()方法退出当前程序时，所要执行的其他函数。</p> <p>exit()只能触发atexit()登记的函数，quick_exit()只能触发at_quick_exit()登记的函数。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">int</span> <span class="token function">atexit</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>func<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">at_quick_exit</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>func<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+它们的参数是要执行的函数地址，即函数名。它们的返回值都是调用成功时返回<span class="token number">0</span>，调用失败时返回非零值。
+
+下面是一个例子。
+
+<span class="token keyword">void</span> <span class="token function">sign_off</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">too_bad</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+  <span class="token function">atexit</span><span class="token punctuation">(</span>sign_off<span class="token punctuation">)</span><span class="token punctuation">;</span>　　 <span class="token comment">/* 注册 sign_off()函数 */</span>
+
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">&quot;Enter an integer:&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">&quot;That's no integer!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">atexit</span><span class="token punctuation">(</span>too_bad<span class="token punctuation">)</span><span class="token punctuation">;</span>　<span class="token comment">/* 注册 too_bad()函数 */</span>
+    <span class="token function">exit</span><span class="token punctuation">(</span>EXIT_FAILURE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d is %s.\n&quot;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token punctuation">(</span>n <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">&quot;even&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;odd&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">sign_off</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">&quot;sign_off&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">too_bad</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">&quot;too bad&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+上面示例中，用户输入失败时，会调用<span class="token function">sign_off</span><span class="token punctuation">(</span><span class="token punctuation">)</span>和<span class="token function">too_bad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>函数；但是输入成功时只会调用<span class="token function">sign_off</span><span class="token punctuation">(</span><span class="token punctuation">)</span>。因为只有输入失败时，才会进入<span class="token keyword">if</span>语句登记<span class="token function">too_bad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>。
+
+另外，如果有多条<span class="token function">atexit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>语句，函数退出时最先调用的，是最后一个登记的函数。
+
+<span class="token function">atexit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>登记的函数（如上例的sign_off和too_bad）应该不带任何参数且返回类型为<span class="token keyword">void</span>。通常，这些函数会执行一些清理任务，例如删除临时文件或重置环境变量。
+
+<span class="token function">at_quick_exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span>也是同样的规则，下面是一个例子。
+
+<span class="token keyword">void</span> <span class="token function">exit_handler_1</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;1\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">exit_handler_2</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;2\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">at_quick_exit</span><span class="token punctuation">(</span>exit_handler_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">at_quick_exit</span><span class="token punctuation">(</span>exit_handler_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">quick_exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+执行上面的示例，命令行会先输出<span class="token number">2</span>，再输出<span class="token number">1</span>。
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br></div></div><h2 id="_10-getenv"><a href="#_10-getenv" class="header-anchor">#</a> 10 getenv()</h2> <p>getenv()用于获取环境变量的值。环境变量是操作系统提供的程序之外的一些环境参数。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">getenv</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+它的参数是一个字符串，表示环境变量名。返回值也是一个字符串，表示环境变量的值。如果指定的环境变量不存在，则返回 <span class="token constant">NULL</span>。
+
+下面是输出环境变量$PATH的值的例子。
+
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;PATH is %s\n&quot;</span><span class="token punctuation">,</span> <span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">&quot;PATH&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="_11-system"><a href="#_11-system" class="header-anchor">#</a> 11 system()</h2> <p>system()</p> <p>system()函数用于执行外部程序。它会把它的参数字符串传递给操作系统，让操作系统的命令处理器来执行。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">system</span><span class="token punctuation">(</span> <span class="token keyword">char</span> <span class="token keyword">const</span> <span class="token operator">*</span> command <span class="token punctuation">)</span><span class="token punctuation">;</span>
+这个函数的返回值因编译器而异。但是标准规定，如果 <span class="token constant">NULL</span> 作为参数，表示询问操作系统，是否有可用的命令处理器，如果有的话，返回一个非零值，否则返回零。
+
+下面是执行ls命令的例子。
+
+<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">&quot;ls -l&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="_12-内存管理"><a href="#_12-内存管理" class="header-anchor">#</a> 12 内存管理</h2> <p>stdlib.h 提供了一些内存操作函数，下面几个函数详见《内存管理》一章，其余在本节介绍。</p> <ul><li>malloc()：分配内存区域</li> <li>calloc()：分配内存区域。</li> <li>realloc()：调节内存区域大小。</li> <li>free()：释放内存区域。</li></ul> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token function">aligned_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+很多系统有内存对齐的要求，即内存块的大小必须是某个值（比如<span class="token number">64</span>字节）的倍数，这样有利于提高处理速度。<span class="token function">aligned_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>就用于分配满足内存对齐要求的内存块，它的原型如下。
+
+<span class="token keyword">void</span><span class="token operator">*</span> <span class="token function">aligned_alloc</span><span class="token punctuation">(</span><span class="token class-name">size_t</span> alignment<span class="token punctuation">,</span> <span class="token class-name">size_t</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+它接受两个参数。
+
+alignment：整数，表示内存对齐的单位大小，一般是<span class="token number">2</span>的整数次幂（<span class="token number">2</span>、<span class="token number">4</span>、<span class="token number">8</span>、<span class="token number">16</span>……）。
+size：整数，表示内存块的大小。
+分配成功时，它返回一个无类型指针，指向新分配的内存块。分配失败时，返回 <span class="token constant">NULL</span>。
+
+<span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">aligned_alloc</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+上面示例中，<span class="token function">aligned_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>分配的内存块，单位大小是<span class="token number">64</span>字节，要分配的字节数是<span class="token number">256</span>字节。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="_13-qsort"><a href="#_13-qsort" class="header-anchor">#</a> 13 qsort()</h2> <p>qsort()用来快速排序一个数组。它对数组成员的类型没有要求，任何类型数组都可以用这个函数排序。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token function">qsort</span><span class="token punctuation">(</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>base<span class="token punctuation">,</span>
+  <span class="token class-name">size_t</span> nmemb<span class="token punctuation">,</span>
+  <span class="token class-name">size_t</span> size<span class="token punctuation">,</span>
+  <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>compar<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+该函数接受四个参数。
+
+base：指向要排序的数组开始位置的指针。
+nmemb：数组成员的数量。
+size：数组每个成员占用的字节长度。
+compar：一个函数指针，指向一个比较两个成员的函数。
+比较函数compar将指向数组两个成员的指针作为参数，并比较两个成员。如果第一个参数小于第二个参数，该函数应该返回一个负值；如果两个函数相等，返回<span class="token number">0</span>；如果第一个参数大于第二个参数，应该返回一个正数。
+
+下面是一个用法示例。
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">compar</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span><span class="token operator">*</span> elem0<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span><span class="token operator">*</span> elem1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">*</span> x <span class="token operator">=</span> elem0<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">*</span> y <span class="token operator">=</span> elem1<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token operator">*</span>x <span class="token operator">-</span> <span class="token operator">*</span>y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">14</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">qsort</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> compar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">9</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d &quot;</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">putchar</span><span class="token punctuation">(</span><span class="token char">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+执行上面示例，会输出排序好的数组“<span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">6</span> <span class="token number">8</span> <span class="token number">10</span> <span class="token number">13</span> <span class="token number">14</span> <span class="token number">17</span>”。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h2 id="_14-bsearch"><a href="#_14-bsearch" class="header-anchor">#</a> 14 bsearch()</h2> <p>bsearch()使用二分法搜索，在数组中搜索一个值。它对数组成员的类型没有要求，任何类型数组都可以用这个函数搜索值。</p> <p>注意，该方法只对已经排序好的数组有效。</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">bsearch</span><span class="token punctuation">(</span>
+  <span class="token keyword">const</span> <span class="token keyword">void</span><span class="token operator">*</span> key<span class="token punctuation">,</span>
+  <span class="token keyword">const</span> <span class="token keyword">void</span><span class="token operator">*</span> base<span class="token punctuation">,</span>
+  <span class="token class-name">size_t</span> nmemb<span class="token punctuation">,</span>
+  <span class="token class-name">size_t</span> size<span class="token punctuation">,</span>
+  <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span>compar<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+这个函数接受<span class="token number">5</span>个参数。
+
+key：指向要查找的值的指针。
+base：指向数组开始位置的指针，数组必须已经排序。
+nmemb：数组成员的数量。
+size：数组每个成员占用的字节长度。
+compar：指向一个将待查找值与其他值进行比较的函数的指针。
+比较函数compar将待查找的值作为第一个参数，将要比较的值作为第二个参数。如果第一个参数小于第二个参数，该函数应该返回一个负值；如果两个参数相等，返回<span class="token number">0</span>；如果第一个参数大于第二个参数，返回一个正值。
+
+如果找到待查找的值，<span class="token function">bsearch</span><span class="token punctuation">(</span><span class="token punctuation">)</span>返回指向该值的指针，如果找不到，返回 <span class="token constant">NULL</span>。
+
+下面是一个用法示例。
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">compar</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">*</span> k <span class="token operator">=</span> key<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">*</span> v <span class="token operator">=</span> value<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token operator">*</span>k <span class="token operator">-</span> <span class="token operator">*</span>v<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">47</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">int</span><span class="token operator">*</span> r<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> key<span class="token punctuation">;</span>
+
+  key <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span> <span class="token comment">// 包括在数组中</span>
+  r <span class="token operator">=</span> <span class="token function">bsearch</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>key<span class="token punctuation">,</span> a<span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> compar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Found %d\n&quot;</span><span class="token punctuation">,</span> <span class="token operator">*</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  key <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>  <span class="token comment">// 不包括在数组中</span>
+  r <span class="token operator">=</span> <span class="token function">bsearch</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>key<span class="token punctuation">,</span> a<span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> compar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Didn't find 30\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+执行上面的示例，会输出下面的结果。
+
+Found <span class="token number">12</span>
+Didn't find <span class="token number">30</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><h2 id="多字节字符函数"><a href="#多字节字符函数" class="header-anchor">#</a> 多字节字符函数</h2> <p>stdlib.h 提供了下面的函数，用来操作多字节字符。</p> <ul><li>mblen()：多字节字符的字节长度。</li> <li>mbtowc()：将多字节字符转换为宽字符。</li> <li>wctomb()：将宽字符转换为多字节字符。</li> <li>mbstowcs()：将多字节字符串转换为宽字符串。</li> <li>wcstombs()：将宽字符串转换为多字节字符串。</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/c/glibc/learn-glibc05.html" class="prev">
+        glibc 学习（五）数学库
+      </a></span> <span class="next"><a href="/wiki/c/glibc/learn-glibc07.html">
+        glibc 学习（七）字符串处理
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/26.add4feed.js" defer></script>
+  </body>
+</html>

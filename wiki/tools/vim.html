@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vim | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/64.7770e824.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/22.56e55e5c.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/24.b38bddd1.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/26.add4feed.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/28.f263b4e2.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/35.0ba44a34.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/tools/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/tools/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vim</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/tools/vim.html#_0-约定" class="sidebar-link">0 约定</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/tools/vim.html#_1-vimtutor" class="sidebar-link">1 vimtutor</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-1-移动光标" class="sidebar-link">1.1 移动光标</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-2-vim-的进入和退出" class="sidebar-link">1.2 VIM 的进入和退出</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-3-文本编辑之删除" class="sidebar-link">1.3 文本编辑之删除</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-4-文本编辑之插入" class="sidebar-link">1.4 文本编辑之插入</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-5-文本编辑之添加" class="sidebar-link">1.5 文本编辑之添加</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-6-编辑文件" class="sidebar-link">1.6 编辑文件</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-7-删除类命令" class="sidebar-link">1.7 删除类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-8-更多删除类命令" class="sidebar-link">1.8 更多删除类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-9-关于命令和对象" class="sidebar-link">1.9 关于命令和对象</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-10-使用计数指定动作" class="sidebar-link">1.10 使用计数指定动作</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-11-使用计数以删除更多" class="sidebar-link">1.11 使用计数以删除更多</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-12-操作整行" class="sidebar-link">1.12 操作整行</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-13-撤销类命令" class="sidebar-link">1.13 撤销类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-14-置入类命令" class="sidebar-link">1.14 置入类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-15-替换类命令" class="sidebar-link">1.15 替换类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-16-更改类命令" class="sidebar-link">1.16 更改类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-17-使用-c-更改更多" class="sidebar-link">1.17 使用 C 更改更多</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-18-定位及文件状态" class="sidebar-link">1.18 定位及文件状态</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-19-搜索类命令" class="sidebar-link">1.19 搜索类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-20-配对括号的查找" class="sidebar-link">1.20 配对括号的查找</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-21-替换命令" class="sidebar-link">1.21 替换命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-22-执行外部命令的方法" class="sidebar-link">1.22 执行外部命令的方法</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-23-关于保存文件的更多信息" class="sidebar-link">1.23 关于保存文件的更多信息</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-24-具有选择性的保存命令" class="sidebar-link">1.24 具有选择性的保存命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-25-提取和合并文件" class="sidebar-link">1.25 提取和合并文件</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-26-打开类命令" class="sidebar-link">1.26 打开类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-26-附加类命令" class="sidebar-link">1.26 附加类命令</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-27-置换命令的另外一个版本" class="sidebar-link">1.27 置换命令的另外一个版本</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-28-复制粘贴文本" class="sidebar-link">1.28 复制粘贴文本</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-29-设置类命令的选项" class="sidebar-link">1.29 设置类命令的选项</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-30-获取帮助信息" class="sidebar-link">1.30 获取帮助信息</a></li><li class="sidebar-sub-header"><a href="/wiki/tools/vim.html#_1-31-命令补全功能" class="sidebar-link">1.31 命令补全功能</a></li></ul></li><li><a href="/wiki/tools/vim.html#_2-vim-学习笔记" class="sidebar-link">2 Vim 学习笔记</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/wiki/tools/vim.html#inbox" class="sidebar-link">inbox</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>非常感谢 vimtutor，帮我快速入门 vim，同时感谢以下在网上分享学习资源的好心人：</p> <ul><li><a href="https://www.zhihu.com/column/learn-vim" target="_blank" rel="noopener noreferrer">YYQ-VIM 学习笔记<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://coolshell.cn/articles/5426.html" target="_blank" rel="noopener noreferrer">Coolshell-简明vim练级攻略<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.csdn.net/saying0101_0010_0000/article/details/114528186" target="_blank" rel="noopener noreferrer">Easwy-Vim 实用技巧<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.easwy.com/archives/advanced-vim-skills-catalog/" target="_blank" rel="noopener noreferrer">Easwy-Vim 使用进阶<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://www.jianshu.com/p/793f7ce26281" target="_blank" rel="noopener noreferrer">jinbo-.vimrc 实用配置<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="#">像 IDE 一样使用 vim</a></li> <li><a href="#">易水博客</a></li> <li><a href="https://keelii.com/2016/06/13/awsome-window-vimrc" target="_blank" rel="noopener noreferrer">可能是 windows 下最漂亮的 Gvim<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="_0-约定"><a href="#_0-约定" class="header-anchor">#</a> 0 约定</h2> <p><code>&lt;KEY&gt;</code> -- 按下 <code>KEY</code> 键</p> <p><code>C-r</code> -- 同时按下 <code>Ctrl</code> 键和 <code>r</code> 键。</p> <h2 id="_1-vimtutor"><a href="#_1-vimtutor" class="header-anchor">#</a> 1 vimtutor</h2> <h3 id="_1-1-移动光标"><a href="#_1-1-移动光标" class="header-anchor">#</a> 1.1 移动光标</h3> <p><code>h</code> -- 左移，<code>l</code> -- 右移，<code>k</code> -- 上移，<code>j</code> -- 下移</p> <p><strong>提示</strong>: <code>&lt;ESC&gt;</code> 返回正常模式（Normal）</p> <h3 id="_1-2-vim-的进入和退出"><a href="#_1-2-vim-的进入和退出" class="header-anchor">#</a> 1.2 VIM 的进入和退出</h3> <p>Normal 模式下，<code>:q!&lt;回车&gt;</code> 丢弃所有改动退出。</p> <h3 id="_1-3-文本编辑之删除"><a href="#_1-3-文本编辑之删除" class="header-anchor">#</a> 1.3 文本编辑之删除</h3> <p>Normal 模式下，<code>x</code> -- 删除光标所在位置的字符。</p> <h3 id="_1-4-文本编辑之插入"><a href="#_1-4-文本编辑之插入" class="header-anchor">#</a> 1.4 文本编辑之插入</h3> <p>Normal 模式下，<code>i</code> -- 进入 Insert 模式。</p> <h3 id="_1-5-文本编辑之添加"><a href="#_1-5-文本编辑之添加" class="header-anchor">#</a> 1.5 文本编辑之添加</h3> <p>Normal 模式下，<code>A</code> -- 光标移动到行尾之后，进入 Insert 模式。</p> <h3 id="_1-6-编辑文件"><a href="#_1-6-编辑文件" class="header-anchor">#</a> 1.6 编辑文件</h3> <p>命令行中输入：<code>vim [filename]&lt;回车&gt;</code> -- 编辑文件 <code>filename</code> 。</p> <p>Normal 模式下，<code>:wq&lt;回车&gt;</code> -- 保存并退出。</p> <h3 id="_1-7-删除类命令"><a href="#_1-7-删除类命令" class="header-anchor">#</a> 1.7 删除类命令</h3> <p>Normal 模式下，<code>dw</code> -- 从光标位置删除到到下一个 <code>word</code> 起始处前。</p> <p><code>word</code> -- 不被空格分隔的连续字母或连续标点符号。</p> <h3 id="_1-8-更多删除类命令"><a href="#_1-8-更多删除类命令" class="header-anchor">#</a> 1.8 更多删除类命令</h3> <p>Normal 模式下，<code>d$</code> -- 从当前光标删除到行末。</p> <h3 id="_1-9-关于命令和对象"><a href="#_1-9-关于命令和对象" class="header-anchor">#</a> 1.9 关于命令和对象</h3> <p>许多改变文本的命令都由一个操作符和一个动作构成。</p> <p>Normal 模式下，修改命令格式是：</p> <p><code>operator [number] motion</code></p> <ul><li><code>operator</code>: 操作符，代表要做的事情，如 d 代表删除。</li> <li><code>[number]</code>: 可选的数字，代表动作重复的次数。</li> <li><code>motion</code>: 动作，代表所操作的文本上的移动，例如 <code>w</code> 代表单词（word），<code>$</code> 代表行末等等。</li></ul> <p>使用删除操作符 d 的删除命令的格式如下：</p> <p><code>d motion</code></p> <p>其中：</p> <p><code>d</code> - 删除操作符。</p> <p><code>motion</code> - 操作符的操作对象(在下面列出)。</p> <p>一个简短的动作列表：</p> <p><code>w</code> - 从当前光标当前位置直到下一个单词起始处，不包括它的第一个字符。</p> <p><code>e</code> - 从当前光标当前位置直到单词末尾，包括最后一个字符。</p> <p><code>$</code> - 从当前光标当前位置直到当前行末，包括最后一个字符。</p> <p>因此输入 <code>de</code> 会从当前光标位置删除到单词末尾。</p> <h3 id="_1-10-使用计数指定动作"><a href="#_1-10-使用计数指定动作" class="header-anchor">#</a> 1.10 使用计数指定动作</h3> <p><strong>在动作前输入数字会使它重复那么多次。</strong></p> <p><code>0</code> -- 移动光标到行首。</p> <p><code>2w</code> -- 光标向前移动两个单词。</p> <p><code>3e</code> -- 光标向前移动到第三个单词的末尾。</p> <h3 id="_1-11-使用计数以删除更多"><a href="#_1-11-使用计数以删除更多" class="header-anchor">#</a> 1.11 使用计数以删除更多</h3> <p><strong>使用操作符时输入数字可以使它重复那么多次。</strong></p> <p>上面已经提到过删除操作符和动作的组合，您可以在组合中动作之前插入一个数字以删除更多：
+<code>d number(数字) motion</code></p> <p>输入 <code>d2w</code> 以删除两个大写字母单词。</p> <h3 id="_1-12-操作整行"><a href="#_1-12-操作整行" class="header-anchor">#</a> 1.12 操作整行</h3> <p><code>dd</code> -- 删除光标所在行整行。</p> <p><code>2dd</code> -- 删除两行。</p> <h3 id="_1-13-撤销类命令"><a href="#_1-13-撤销类命令" class="header-anchor">#</a> 1.13 撤销类命令</h3> <p><code>u</code> -- 撤销最后执行的命令，可以撤销掉 <code>U</code>。</p> <p><code>U</code> -- 撤销对整行的修改。</p> <p><code>C-r</code> -- 恢复之前的撤销命令，revoer。</p> <h3 id="_1-14-置入类命令"><a href="#_1-14-置入类命令" class="header-anchor">#</a> 1.14 置入类命令</h3> <p><code>p</code> -- 将最后一次删除的内容置于光标后。</p> <p><code>dd</code> 删除整行后，会将改行保存到 <code>Vim</code> 的寄存器中。</p> <h3 id="_1-15-替换类命令"><a href="#_1-15-替换类命令" class="header-anchor">#</a> 1.15 替换类命令</h3> <p>输入 r 和一个字符替换光标所在位置的字符。</p> <h3 id="_1-16-更改类命令"><a href="#_1-16-更改类命令" class="header-anchor">#</a> 1.16 更改类命令</h3> <p>改变文本直到一个单词的末尾，请输入 <code>ce</code>。</p> <p><code>cw</code> 效果类似 <code>dw</code> + <code>i</code>。</p> <h3 id="_1-17-使用-c-更改更多"><a href="#_1-17-使用-c-更改更多" class="header-anchor">#</a> 1.17 使用 C 更改更多</h3> <p>更改类操作符可以与删除中使用的同样的动作配合使用。</p> <p>更改类操作符的工作方式跟删除类是一致的。操作格式是：</p> <p><code>c [number] motion</code></p> <p>动作参数(motion)也是一样的，比如 <code>w</code> 代表单词，<code>$</code> 代表行末等等。</p> <h3 id="_1-18-定位及文件状态"><a href="#_1-18-定位及文件状态" class="header-anchor">#</a> 1.18 定位及文件状态</h3> <p><code>C-g</code> -- 显示当前编辑文件中的当前光标所在行位置以及文件状态信息。</p> <p><code>[num] G</code> -- 直接跳转到文件中某一指定行，默认最后一行。</p> <p><code>gg</code> -- 跳转到文件第一行。</p> <h3 id="_1-19-搜索类命令"><a href="#_1-19-搜索类命令" class="header-anchor">#</a> 1.19 搜索类命令</h3> <p>输入 <code>/</code> 加上一个字符串可以用以在当前文件中查找该字符串。</p> <p>支持正则表达式。</p> <p>要查找同上一次的字符串，只需要按 <code>n</code> 键。要向相反方向查找同上一次的字符串，请输入大写 <code>N</code> 即可。</p> <p>想逆向查找字符串，请使用 <code>?</code> 代替 <code>/</code> 进行。</p> <p>要回到之前的位置按 <code>C-o</code> 。重复按可以回退更多步。<code>C-i</code> 会跳转到较新的位置。</p> <p>如果查找已经到达文件末尾，查找会自动从文件头部继续查找，</p> <h3 id="_1-20-配对括号的查找"><a href="#_1-20-配对括号的查找" class="header-anchor">#</a> 1.20 配对括号的查找</h3> <p>输入 <code>%</code> 可以查找配对的括号。</p> <h3 id="_1-21-替换命令"><a href="#_1-21-替换命令" class="header-anchor">#</a> 1.21 替换命令</h3> <p><code>:s/old/new/g</code> 可以替换 <code>old</code> 为 <code>new</code>，替换全行。</p> <p><code>:s/old/new&lt;回车&gt;</code> 只改变光标所在行的第一个匹配串。</p> <p><code>:#,#s/old/new/g</code> <code>#,#</code> 代表替换操作的若干行中首尾两行的行号。</p> <p><code>:%s/old/new/g</code> 替换整个文件中的每个匹配串。</p> <p><code>:%s/old/new/gc</code> 替换整个文件中的所有匹配串，并且提示是否进行替换。</p> <h3 id="_1-22-执行外部命令的方法"><a href="#_1-22-执行外部命令的方法" class="header-anchor">#</a> 1.22 执行外部命令的方法</h3> <p>输入 <code>:! &lt;command&gt;</code> 可以执行该外部命令 <code>command</code>。</p> <p>所有的 <code>:</code> 命令都必须以敲 <code>&lt;Enter&gt;</code> 结束。</p> <h3 id="_1-23-关于保存文件的更多信息"><a href="#_1-23-关于保存文件的更多信息" class="header-anchor">#</a> 1.23 关于保存文件的更多信息</h3> <p>要将对文件的改动保存到文件中，请输入 <code>:w FILENAME</code> 。</p> <h3 id="_1-24-具有选择性的保存命令"><a href="#_1-24-具有选择性的保存命令" class="header-anchor">#</a> 1.24 具有选择性的保存命令</h3> <p>要保存文件的部分内容，请输入 <code>v motion :w FILENAME</code></p> <p>如 <code>:'&lt;,'&gt;w TEST</code> 可将选中的内容保存到新文件 TEST 中。</p> <h3 id="_1-25-提取和合并文件"><a href="#_1-25-提取和合并文件" class="header-anchor">#</a> 1.25 提取和合并文件</h3> <p>要向当前文件中插入另外的文件的内容，<code>:r FILENAME</code></p> <p>如：<code>r !ls</code> 将把 <code>ls</code> 命令的输出放置到光标所在位置下面。</p> <h3 id="_1-26-打开类命令"><a href="#_1-26-打开类命令" class="header-anchor">#</a> 1.26 打开类命令</h3> <p>输入 <code>o</code> 将在光标的下方打开新的一行并进入插入模式。(open)</p> <p><code>O</code> 将在光标上方打开新的一行。（大写）</p> <h3 id="_1-26-附加类命令"><a href="#_1-26-附加类命令" class="header-anchor">#</a> 1.26 附加类命令</h3> <p>输入 <code>a</code> 将可在光标之后插入文本。</p> <h3 id="_1-27-置换命令的另外一个版本"><a href="#_1-27-置换命令的另外一个版本" class="header-anchor">#</a> 1.27 置换命令的另外一个版本</h3> <p><code>R</code> 连续替换多个字符。</p> <h3 id="_1-28-复制粘贴文本"><a href="#_1-28-复制粘贴文本" class="header-anchor">#</a> 1.28 复制粘贴文本</h3> <p>使用 <code>y</code> 复制文本，使用 <code>p</code> 粘贴文本。</p> <p><code>yw</code> 复制一个单词。</p> <p><code>ye</code></p> <p><code>y$</code></p> <h3 id="_1-29-设置类命令的选项"><a href="#_1-29-设置类命令的选项" class="header-anchor">#</a> 1.29 设置类命令的选项</h3> <p><code>/word\c</code> 搜索 <code>word</code> 时大小写不敏感。</p> <p><code>:set ic</code> 临时设置忽略大小写敏感。</p> <p><code>set hlsearch</code> 搜索时高亮匹配项。</p> <p><code>set nohlsearch</code> 移除高亮显示。</p> <p><code>set incsearch</code> 增量搜索。</p> <h3 id="_1-30-获取帮助信息"><a href="#_1-30-获取帮助信息" class="header-anchor">#</a> 1.30 获取帮助信息</h3> <ul><li><code>&lt;F1&gt;</code> 键</li> <li>输入 <code>:help&lt;Enter&gt;</code></li></ul> <p><code>C-w C-w</code> 在不同窗口间跳转。</p> <p>例：</p> <p><code>:help w</code></p> <p><code>help c_CTRL_D</code></p> <p><code>help user-manual</code></p> <h3 id="_1-31-命令补全功能"><a href="#_1-31-命令补全功能" class="header-anchor">#</a> 1.31 命令补全功能</h3> <p><code>C-d</code> 显示可能的命令列表。</p> <p><code>&lt;TAB&gt;</code> 可以进行命令行补全。</p> <p><code>:set nocp</code> 确保 <code>Vim</code> 不是在兼容模式下运行。</p> <p><code>help user-manual</code> 阅读 <code>Vim</code> 的用户手册。</p> <h2 id="_2-vim-学习笔记"><a href="#_2-vim-学习笔记" class="header-anchor">#</a> 2 Vim 学习笔记</h2> <h2 id="inbox"><a href="#inbox" class="header-anchor">#</a> inbox</h2> <p><code>:w Filename</code> <strong>visual</strong> 模式下，将选中内容另存为。</p> <p>可视化模式下选择操作区域以后，
+按下 d会删除选择的区域，
+按下 y 会复制选择的区域，按下 p 会黏贴选择的区域。</p> <p>宏录制的录制操作</p> <p>先将光标移动到第一行，在普通模式下按下 q 键（宏录制是 q 键启动的）,在按一个 a （字母随意）,表示该宏注册为 a ，按下 I 在行首插入一个 tab 键，按下jj或者 <code>&lt;ESC&gt;</code>退出编辑模式,按下 j 将光标移动到下一行行首，最后按下 q 键完成录制操作（宏录制是 q 键结束的）。
+总结上面例子的操作流程：
+q → a → I → tab → jj → j → q
+上面的例子成功地把在行首插入 tab 的功能录制了下来，那么如何应用到其他行呢？</p> <p>宏录制的使用</p> <p>上述的例子，在正常模式下，按 @a执行宏录制的一系列动作，将会在第二行执行插入 tab 。
+@@ 是对上一次宏使用的重复操作。n@a 就会执行 n 次一系列的动作。使用宏录制可以一次执行一系列的操作，可以针对一些重复度较高的操作进行宏录制。</p> <p><code>vim file +</code> -- 打开文件，并定位到文件尾部。</p> <p><code>vaw</code></p> <p><code>viw</code></p> <p><code>vtw</code></p> <p>可视模式下选择文本对象，a 会选择区域结束标识，i 不会。</p> <p><code>;</code> f 的下一个</p> <p><code>,</code> f 的上一个</p> <p><code>*</code> -- 匹配光标当前所在单词，移动光标到下一个匹配单词。</p> <p><code>#</code> -- 匹配光标当前所在单词，移动光标到上一个匹配单词。</p> <p><code>[num]gt</code> 指定切换到某个标签页。</p> <p><code>gT</code></p> <p>vim path</p> <p><code>~/src/vim70/**</code> 在 所有子目录树中搜索。</p> <p>建议 使用 <code>set path+=</code> 而不是 <code>set path=</code></p> <p><code>S-k</code> 查看系统函数原型。</p> <p><code>C-f</code> <code>C-b</code> 翻页。 <code>b</code> back 到word 首。</p> <p><code>&lt;&lt;</code> 缩进</p> <p><code>&gt;&gt;</code> 缩进。</p> <p><code>tabnew file</code> tabpages 打开文件</p> <p>使用标签页代替 buffers</p> <p><code>:E</code> 打开文件夹</p> <p><code>c-w H J K L</code> 移动窗口</p> <p><code>c-w [num] &lt; &gt;</code> 调整窗口大小</p> <p><code>vim -O file file</code> 分屏打开多个文件。</p> <p><code>gf</code> 跳转到头文件，需要设置 path。</p> <p><code>c-w f</code> 新建窗口打开头文件</p> <p><code>c-w gf</code> 新建标签页打开头文件</p> <p><code>c-w ]</code> 新建窗口打开定义。</p> <p><code>g ]</code> 所有标签列表</p> <p><code>c-6</code> 返回上个缓冲区。</p> <p><code>[[</code> 向前寻找函数首括号。</p> <p><code>]]</code> 向后寻找函数括号首。</p> <p><code>vs</code></p> <p><code>sp</code></p> <p><code>f</code> 向前寻找。</p> <p><code>F</code> 向后寻找符号。</p> <p><code>M</code> 中间</p> <p><code>H</code> 首</p> <p><code>L</code> low</p> <p><code>gd</code></p> <p><code>gD</code> 跳转到符号定义</p> <p><code>g]</code> 跳转到定义，列出列表</p> <p><code>c-o</code> 光标历史位置往前调</p> <p><code>c-i</code> 光标历史位置往后调</p> <p><code>jumps</code> -- 打开跳转表
+- <code>C-o</code> -- 跳回到上一个位置。
+- <code>C-i</code> -- 跳转到下一个位置。</p> <p><code>c-t</code> 返回上一个标签</p> <p><code>c-6</code> 返回上个缓冲区</p> <p><code>dt字符</code> 删除到 字符前</p> <p><code>H</code> 画面最上方</p> <p><code>M</code> 画面中间</p> <p><code>L</code> 画面底部</p> <p>TODO: path，跳转，path 用于 <code>c-n</code> 查找，gf 查找。</p> <p>vim 的跟踪通常可以通过两种方式实现:</p> <p>tags: 通过 ctags 工具生成 tags 文件
+cscope 数据库: 通过 cscope 或 gtags-cscope 生成 cscope 数据库
+两种方法各有优缺点, 而且可以搭配使用, 并不冲突. 下面逐个介绍.</p> <p>TODO: ctags cscope</p> <p><a href="https://blog.easwy.com/archives/advanced-vim-skills-cscope/" target="_blank" rel="noopener noreferrer">vi/vim使用进阶: 程序员的利器 – cscope<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>建议安装 Universal Ctags，Exuberant Ctags 已停止更新</p> <p><code>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .</code> 为 C++ 生成 tags</p> <p><code>ctags -R --fields=+niazS --extra=+q --c++-kinds=+px --output-format=e-ctags</code></p> <p><code>--output-format=e-ctags</code> 仅 universal ctags 能加。</p> <p>-R: ctags 循环生成子目录的 tags</p> <p>--c++-kinds=+pxl: ctags 记录 c++ 文件中的函数声明和各种外部和前向声明 (l 表示记录局部变量, 可以认为是 local 的缩写)</p> <p>--fields=+iaS: ctags 要求描述的信息, 其中 i 表示如果有继承, 则标识出父类; a 表示如果元素是类成员的话, 要标明其调用权限 (即是 public 还是 private); S 表示如果是函数, 则标识函数的 signature.</p> <p>extra=+q: 强制要求 ctags 做如下操作: 如果某个语法元素是类的一个成员, ctags 默认会给其记录一行, 可以要求 ctags 对同一个语法元素再记一行, 这样可以保证在 VIM 中多个同名函数可以通过路径不同来区分.</p> <p>前半部分 ./.tags; 代表在文件的所在目录下查找名字为 .tags 的符号文件, 后面一个分号代表查找不到的话向上递归到父目录, 直到找到 tags 文件或者递归到了根目录还没找到; 逗号分隔的后半部分 tags 是指同时在 vim 的当前目录 (:pwd 命令返回的目录, 可以用 :cd .. 命令改变) 下面查找 tags 文件.</p> <p><code>g ]</code> 查看所有匹配的 tags，ctrl - t 退栈</p> <p><strong>gtags-cscope 使用：</strong></p> <p><a href="https://www.cnblogs.com/cascle/p/5148389.html" target="_blank" rel="noopener noreferrer">在Vim里使用gtags-cscope<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.cnblogs.com/kuang17/p/9449258.html" target="_blank" rel="noopener noreferrer">在Vim中使用gtags<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://zhuanlan.zhihu.com/p/36279445" target="_blank" rel="noopener noreferrer">Vim 8 中 C/C++ 符号索引：GTags 篇<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://forum.ubuntu.com.cn/viewtopic.php?t=343460" target="_blank" rel="noopener noreferrer">介绍一下gnu global，比cscope更方便更快速的索引工具<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>gtags 是 cscope 的替代品</p> <p>gtags, 全名为 gnu global, 是一个类似 cscope 的工具(不是 ctags 的替代品!), 也能提供源文件之间的交叉索引. 其独到之处在于, 当生成索引文件以后, 再修改整个项目里的一个文件, 然后增量索引的过程非常快.</p> <p>gtags 请自行编译安装。</p> <p>安装好以后, 有 global, gtags, gtags-cscope 三个命令. global 是查询, gtags 是生成索引文件, gtags-cscope 是与 cscope 一样的界面.</p> <p>gtags 环境配置
+gtags 是支持使用 ctags/universal-ctags 或者 pygments 来作为分析前端支持 50+ 种语言. 使用 ctags/universal-ctags 作为前端只能生成定义索引不能生成引用索引, 因此我们要安装 pygments , 保证你的 $PATH 里面有 python, 接着:</p> <p>pip install pygments
+保证在环境里里要设置过如下两个环境变量:</p> <p>export $GTAGSLABEL = 'native-pygments'
+export $GTAGSCONF = '/path/to/share/gtags/gtags.conf'
+第一个 GTAGSLABEL 告诉 gtags 默认 C/C++/Java 等六种原生支持的代码直接使用 gtags 本地分析器, 而其他语言使用 pygments 模块. 第二个环境变量必须设置, 否则会找不到 native-pygments 和 language map 的定义, Mac 下的路径为 /usr/local/share/gtags, 可以把它拷贝成 ~/.globalrc</p> <p>实际使用 pygments 时, gtags 会启动 python 运行名为 pygments_parser.py 的脚本, 通过管道和它通信, 完成源代码分析, 故需保证 gtags 能在 $PATH 里调用 python, 且这个 python 安装了 pygments 模块.</p> <p>gtags -v 遍历子目录, 从源码文件中提取符号, 这样就生成了整个目录的索引文件, 包括 GTAGS, GRTAGS, GPATH 三个数据库文件.</p> <p>GTAGS: 定义数据库
+GRTAGS: 引用数据库
+GPATH: 路径名数据库</p> <p>查询使用的命令是 global 和 gtags-cscope. 前者是命令行界面, 后者是与 cscope 兼容的 ncurses 界面. 这里就不多介绍了, 重点是如何在 vim 里查询:</p> <p>gtags-cscope 还有一个优点就是我后台更新了 gtags 数据库, 不需要像 cscope 一样调用 cs reset 重启 cscope 子进程, gtags-cscope 一旦连上永远不用重启, 不管你啥时候更新数据库, gtags-cscope 进程都能随时查找最新的符号.</p> <p><code>ln -s path</code> 然后 gtags 即可生成外部目录的 gtags</p> <p><a href="https://blog.csdn.net/aaaLG/article/details/121582514" target="_blank" rel="noopener noreferrer">gtags 详解<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>当我们更改了某个文件以后, 比如 project/subdir1/subdir2/file1.c, 想更新索引文件 (索引文件是 project/GTAGS), 只需这样:</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>$ <span class="token builtin class-name">cd</span> project/subdir1/subdir2/
+$ <span class="token function">vim</span> file1.c
+$ global <span class="token parameter variable">-u</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>global -u 这个命令会自动向上找到 <code>project/GTAGS</code>, 并更新其内容. 而 gtags 相对于 cscope 的优势就在这里: 增量更新单个文件的速度极快, 几乎是瞬间完成. 有了这个优势, 我们就可以增加一个 autocmd, 每次 :w 的时候自动更新索引文件.</p> <p>gtags -i 增量更新，推荐使用 global -u</p> <p>如果你索引C++代码， 运行 export GTAGSFORCECPP=1 使得global将 .h 文件当作C++文件。</p> <p><a href="https://docs.ctags.io/en/latest/man/ctags.1.html" target="_blank" rel="noopener noreferrer">Ctags 官方手册<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>cs add GTAGS
+cs find</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>
+
+
+cscope find 命令：
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><div class="language- extra-class"><pre><code>            0 或 s: 查找本符号
+            1 或 g: 查找本定义
+            2 或 d: 查找本函数调用的函数
+            3 或 c: 查找调用本函数的函数
+            4 或 t: 查找本字符串
+            6 或 e: 查找本 egrep 模式
+            7 或 f: 查找本文件
+            8 或 i: 查找包含本文件的文件
+</code></pre></div><div class="language- line-numbers-mode"><pre class="language-text"><code>
+
+如果你同时使用 cscope 和 ctags，:cstag 允许你在跳转前对两者都进行查询。例
+如，你可以选择先查询 cscope 数据库，如果无法找到匹配，再查询标签文件。这种做法
+的次序可以通过 csto 的值来调整。
+
+'csto' 的值决定 :cstag 命令查找的次序。如果 'csto' 被设为 0，cscope 数据库先
+被搜索，搜索失败的情况下在搜索标签文件。如果 'csto' 被设为 1，标签文件会在
+cscope 数据库之前被搜索。缺省值为 0。（实测为 1）
+
+在Linux用vim vi等编辑器编辑文件时，有时遇到突然崩溃或者没有反应时，在编辑文档的目录下就会出现一个交换文件即：.swp文件，这是一个隐藏文件，需要 ls -a 才能显示出来，可以利用vim工具重新恢复原来的文件
+vim -r filename 即可恢复到之前的编辑状态
+
+`C-x C-I` 让vim从被包含文件中提取补全项。
+
+`C-x C-f` -- 补全文件名。(filename)
+    - 如果当前光标下的文本不包含任何路径信息，那么将显示当前目录下的文件列表。
+    - 如果当前光标下的文本包含任何（绝对或相对）路径信息，那么将显示其指定目录下的文件列表。
+    - 如果当前光标下的文本包含唯一的路径信息（比如“~”），那么将自动转换为目录的完整名称。
+
+`C-N` CTRL-P一般的含义是向上，因此CTRL-P补全是向上查找以进行补全，而CTRL-N是向下查找以进行补全，在不同场合使用不同的快捷键可以加速补全的速度。
+
+`C-X C-P` 补全局部变量
+
+`C-X C-O` 智能补全 !智能补全不能对局部变量进行补全
+
+如果要支持C++的全能补全，需要到vim主页下载OmniCppComplete插件
+
+`:e` 编辑文件
+
+`ls` 查看缓冲区
+
+`:jumps` 查看跳转表，使用 `C-o` 跳转到下一个
+
+vim C++ 补全
+
+f{char}  :  正向移动到下一个{char}所在位置
+
+F{char}  :  反向移动到上一个{char}所在位置
+
+t{char}  :  正向移动到下一个{char}的前一个字符上
+
+T{char}  :  反向移动到上一个{char}的后一个字符上
+
+Vim会记录上一次执行的查找命令，再次查找时可以使用 ';' 命令来完成相同查找。如果查询跳过头了，可以使用 ',' 命令返回光标之前的位置。
+
+文本对象
+
+'i' 命令可以理解为 inside，即选中匹配符号之间不包含匹配符号的内容。而 'a' 则选中包含匹配项的内容。
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div><p>'a)' 或 'ab'  :  一对()
+'a}' 或 'aB'  :  一对{}
+a]  :  一对[]
+a&gt;  :  一对&lt;&gt;
+a'  :  一对''
+a&quot;  :  一对&quot;&quot;
+a`  :  一对``
+at  :  一对xml标签</p> <p>iw  :  当前单词
+aw  :  当前单词及一个空格
+iW  :  当前字符串
+aW  :  当前字符串及一个空格
+is  :  当前句子
+as  :  当前句子及一个空格
+ip  :  当前段落
+ap  :  当前段落及一个空行</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>
+`c-]` ctags 跳转定义
+
+`c-t` 返回。
+
+`gg=G` 调用 indent 格式化文件
+
+`=` 自动缩进
+
+`gU` 大写 `gu` 小写
+
+`g~` 大小写转换
+
+`ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .`
+
+ctags -R --c++-kinds=+px
+
+ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如上命令要求ctags记录c++文件中的函数声明和各种外部和前向声明。
+
+
+
+–fields=[+|-]flags
+–fields指定tags的可用扩展域（extension fields），以包含到tags入口。
+i:继承信息Inheritance information
+a：类成员的访问控制信息 Access (or export) of class members
+S： 常规签名信息，如原型或参数表 Signature of routine(e.g. prototype or parameter list)
+–extra=[+|-]flags
+指定是否包含某种扩展信息到tags入口。
+q：包含类成员信息（如c++,java,Eiffel)。
+但就算是C 语言的结构，也需要这两个参数设置才能获取成员信息。
+
+&quot; i 表示如果有继承，要标明父类；
+&quot; a 表示如果是类的成员，要标明其access属性（即是public的还是private的）；
+&quot; S 表示如果是函数，要标明函数的signature；
+&quot; K 表示要显示语法元素类型的全称；
+&quot; z 表示在显示语法元素的类型时，使用格式kind:type。
+
+ctags -R --fields=+aiKSz
+
+set tags= ./tags, tags, /usr/include/tags
+
+ctags在记录成员函数时，默认情况下tag的名字只包括该函数的名字，不包括类名，这样很多不同类但同名的函数所对应的tag名字都一样。于是在VIM中使用函数名来定位时就会出现很多选择，很麻烦。如果想用包括类名的函数全名进行定位，就得要求ctags记录全名。
+
+强制ctags给类的成员函数多记一行的命令为：
+
+ctags --extra=+q
+
+`Ctrl+]`           跳转到光标所在符号的定义。
+
+
+![ctags 使用详解](https://www.cnblogs.com/kelamoyujuzhen/p/11672005.html)
+
+
+
+set cino=:0g0t0(sus
+设定 C/C++ 风格自动缩进的选项，这里简要介绍一下这段代码里用到的选项的含义，cino 支持的选项还很多，更多选项请看用户手册。
+
+```c
+// :0
+//
+// switch 语句之下的 case 语句缩进 0 个空格，也就是说不缩进，与 switch 块平
+// 齐，使用这样风格：
+switch (x)
+{
+case 1:
+    a = b;
+    break;
+default:
+}
+
+// g0
+//
+// class、struct 等之下的访问权限控制语句，如 public、protected、private 等，
+// 相对 class、struct 等所在的块缩进 0 个空格，与 class 等块平齐，使用这样的
+// 风格：
+class foo
+{
+public:
+    int a;
+private:
+    int b;
+};
+
+// t0
+//
+// 如果函数返回值与函数名不在同一行，则返回值缩进 0 个空格，也就是说不缩进，如
+// 下所示：
+
+// set cino=t4
+    int
+func1()
+{
+}
+
+// set cino=t0
+int
+func()
+{
+}
+
+// (sus
+//
+// 当一对括号跨越多行时，其后的行缩进前面 sw 指定的距离，效果如下：
+int a = (1 + 2 + 3
+    + 4 + 5 + 6
+    + 7 + 8) * 9;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br></div></div><div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token operator">==</span><span class="token operator">==</span>命令模式<span class="token operator">==</span><span class="token operator">==</span>
+
+<span class="token operator">==</span>字符间<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> h	向左NUM个字符
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> l	向左NUM个字符
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> j	向左NUM个字符
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> k	向左NUM个字符
+
+<span class="token operator">==</span>单词间<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> w	下NUM个单词
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> e	当前或下NUM个单词词尾
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> b	当前或上NUM个单词词首
+
+<span class="token operator">==</span>页间<span class="token operator">==</span>
+H	页首
+M	页中
+L	页底
+zt	当前行移到顶
+zz	当前行移到中
+zb	当前行移到底
+
+<span class="token operator">==</span>行间、句间、段落间<span class="token operator">==</span>
+^	行首<span class="token punctuation">(</span>非空<span class="token punctuation">)</span>
+<span class="token number">0</span>	行首
+$	行尾
+NUM G	跳到NUM行
+G	尾行
+gg	首行
+<span class="token punctuation">(</span>	下一句
+<span class="token punctuation">)</span>	下一句
+<span class="token punctuation">{</span>	上一段
+<span class="token punctuation">}</span>	下一段
+
+<span class="token operator">==</span>翻屏快捷键<span class="token operator">==</span>
+Ctrl+f 向下一屏
+Ctrl+b 向上一屏
+Ctrl+d 向下半屏
+Ctrl+u 向上半屏
+
+<span class="token operator">==</span>字符操作<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> x	删除当前NUM个字符
+p	粘贴x删除的字符
+~	大小写转换
+gu	变小写
+gU	变大写
+J	删除当前行的换行符
+r	替换当前字符
+R	替换模式
+
+<span class="token operator">==</span>删除命令<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> d	删除命令<span class="token punctuation">(</span>结合下面使用<span class="token punctuation">)</span>,
+d$ 或 D	删到尾
+d0	删到头
+d^	删到头<span class="token punctuation">(</span>非空<span class="token punctuation">)</span>
+dw	删除当前字符
+de	后删单词
+db	前删单词
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> <span class="token function">dd</span>	删除NUM行
+
+<span class="token operator">==</span>删除命令<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> y	复制命令<span class="token punctuation">(</span>结合下面使用<span class="token punctuation">)</span>,
+y$	复制到尾
+y0	复制到头
+y^	复制到头<span class="token punctuation">(</span>非空<span class="token punctuation">)</span>
+yw	复制当前字符
+ye	复制后单词
+yb	复制前单词
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> yy	复制NUM行
+
+<span class="token operator">==</span>粘贴命令<span class="token operator">==</span>
+p	往后粘贴
+P	往前粘贴
+
+<span class="token operator">==</span>改变命令<span class="token operator">==</span>
+c	修改后进入插入模式<span class="token punctuation">(</span>下同<span class="token punctuation">)</span>
+c$ 或 C	删到尾
+c0	删到头
+c^	删到头<span class="token punctuation">(</span>非空<span class="token punctuation">)</span>
+cw	删除当前字符
+ce	后删单词
+cb	前删单词
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> cc	删除NUM行
+
+di<span class="token string">&quot;	删除&quot;</span> <span class="token string">&quot; 之间内容&quot;</span>
+yi<span class="token punctuation">(</span>	复制<span class="token punctuation">(</span> <span class="token punctuation">)</span> 之间内容
+vi<span class="token punctuation">[</span>	选中<span class="token punctuation">[</span> <span class="token punctuation">]</span> 之间内容
+dtCHAR	删除之后直到CHAR字符
+ytCHAR	复制之后直到CHAR字符
+<span class="token operator">==</span>查找<span class="token operator">==</span>
+/PATTERN	向下查找
+?PATTERN	向上查找
+n	查找方向<span class="token punctuation">(</span>对查找结果<span class="token punctuation">)</span>
+N	查找反向<span class="token punctuation">(</span>对查找结果<span class="token punctuation">)</span>
+<span class="token operator">==</span>撤消更改<span class="token operator">==</span>
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> u	撤消NUM次
+U	撤消行的所有更改
+Ctrl + r	重做
+<span class="token punctuation">[</span>NUM<span class="token punctuation">]</span> <span class="token builtin class-name">.</span>	重复前一个/NUM个操作
+<span class="token operator">==</span><span class="token operator">==</span>扩展命令模式<span class="token operator">==</span><span class="token operator">==</span>
+<span class="token operator">==</span>关闭文件<span class="token operator">==</span>
+:q	退出
+:q<span class="token operator">!</span>	强制退出
+:wq	保存退出
+:x	保存退出
+ZZ	保存退出
+ZQ	不保存退出
+<span class="token operator">==</span>地址定界+COMMAND<span class="token operator">==</span>
+<span class="token operator">==</span>地址定界<span class="token operator">==</span>
+:start_pos,end_pos	地址定界
+:NUM	跳转到NUM行
+:NUM,+NUM	如:2,+3表示2,5行
+:.	当前行
+:$	最后行
+:%	全文
+/STR1/,/STR2/	从匹配到的STR1到STR2
+NUM,/STR/	从第NUM行到STR匹配行
+/STR/,$	从STR匹配行到结束
+<span class="token operator">==</span>COMMAND<span class="token operator">==</span>
+d	删除
+w FILE	选中范围保存到文件FILE
+r FILE	选中范围保存到指定FILE
+<span class="token operator">==</span>查找并替换<span class="token operator">==</span>
+格式: s/要查的内容/要替换的内容/修饰符
+I	忽略大小写
+g	每行替换1次
+gc	全部替换
+s/string1/string2/g
+s@string1@string2@gc
+s<span class="token comment">#string1#string2#i</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>选项配置说明
+
+选项书写格式	选项说明
+:se[t]	显示所有被改动的选项
+:se[t] all	显示所有非 termcap 选项
+:se[t] termcap	显示所有 termcap 选项
+:se[t] {option}	置位布尔选项(开启) 显示字符串或数值选项
+:se[t] no{option}	复位布尔选项(关闭)
+:se[t] inv{option}	逆转布尔选项的值
+:se[t] {option}={value}	将 {value} 附加到字符串选项里, {value} 加到数值选项上
+:se[t] {option}+={value}	将 {value} 附加到字符串选项里， {value} 加到数值选项上
+:se[t] {option}-={value}	从 {value} 从字符串选项里删除 ，数值选项里减去
+:se[t] {option}?	显示 {option} 的值
+:se[t] {option}&amp;	重置 {option} 为其缺省值
+:setl[ocal]	同 &quot;:set&quot; ，但对局部选项只设定局部值
+:setg[lobal]	同 &quot;:set&quot; ，但对局部选项设定其全局值
+:fix[del]	根据 't_kb' 的值设置 't_kD'
+:opt[ions]	打开一个新窗口，用来参看并设置选项，选项们以功能分组，有单行的解释，并有指向帮助的链接
+各选项的简短说明
+A
+选项全称	选项简称	选项说明
+aleph	al	Aleph 字母(希伯来语) 的 ASCII 代码
+allowrevins	ari	允许插入和命令行模式的 CTRL-_
+altkeymap	akm	缺省的第二语言(波斯语/希伯来语)
+ambiwidth	ambw	如何处理有多种宽度的 Unicode 字符
+antialias	anti	Mac OS X:用平滑反锯齿的字体
+autochdir	acd	根据当前窗口的文件切换目录
+arabic	arab	使用阿拉伯语为缺省的第二语言
+arabicshape	arshape	阿拉伯语的字型重整
+autoindent	ai	根据上一行决定新行的缩进
+autoread	ar	有 Vim 之外的改动时自动重读文件
+autowrite	aw	有改动时自动回写文件
+autowriteall	awa	类似于 'autowrite' ，但适用于更多命令
+B
+选项全称	选项简称	选项说明
+background	bg	&quot;dark&quot; 或 &quot;light&quot; ，用于色彩的高亮
+backspace	bs	在一行开关按退格键如何处理
+backup	bk	覆盖文件时保留备份文件
+backupcopy	bkc	文件备份使用复制而不是换名
+backupdir	bdir	备份文件使用的目录列表
+backupext	bex	备份文件使用的扩展名
+backupskip	bsk	匹配这些模式的文件不予备份
+balloondelay	bdlay	弹出气泡之前的延迟(以毫秒计)
+ballooneval	beval	打开气泡表达式求值功能
+balloonexpr	bexpr	计算气泡显示内容的表达式
+binary	bin	二进制方式读/写/编辑文件
+bioskey	biosk	MS-DOS ：用 bios 调用取得字符输入
+bomb		文件头附加字节顺序标记(Byte Order Mark)
+breakat	brk	可以在此断行的字符
+brosedir	bsdir	开始浏览文件的目录
+bufhidden	bh	缓冲区不再在窗口显示时的行为
+buflisted	bl	缓冲区是否显示在缓冲区列表中
+buftype	bt	缓冲区的特殊类型
+C
+选项全称	选项简称	选项说明
+casemap	cmp	指定字母大小写如何改变
+cdpath	cd	&quot;:cd&quot; 搜索的目录列表
+cedit		打开命令行窗口的键
+charconvert	ccv	完成字符编码转换的表达式
+cindent	cin	实现 C 程序的缩进
+cinkeys	cink	设置 'cindent' 时启动缩进的键
+cinoptions	cino	设置 'cindent' 时如何缩进
+cinwords	cinw	'si' 和 'cin' 在这些词后加入额外的缩进
+clipboard	cb	使用剪贴板作为无名的寄存器
+cmdheight	ch	命令行使用的行数
+cmdwinheight	cwh	命令行窗口的高度
+colorcolumn	cc	高亮指定列
+columns	co	显示屏幕的列数
+comments	com	可以开始注释行的模式
+commentstring	cms	注释的样板：用于折叠的标志
+compatible	cp	尽可能做到与 Vi 兼容
+complete	cpt	指定插入模式的自动补全如何工作
+completefunc	cfu	插入模式补全使用函数
+completeopt	cot	插入模式补全使用的选项
+concealcursor	cocu	是否隐藏光标所有行的可隐藏文本
+conceallevel	cole	是否显示可隐藏文本
+confirm	cf	询问如何处理未保存/只读的文件
+conskey	consk	直接从控制台读入键击(只限于 MS-DOS)
+copyindent	ci	使得 'autoindent' 使用已有的缩进结构
+cpoptions	cpo	设定 Vi-兼容的行为
+cryptmethod	cm	文件写入时所用的加密方法
+cscopepathcomp	cspc	显示路径多少部分
+cscopeprg	csprg	执行 cscope 的命令
+cscopequickfix	csqf	用 quickfix 窗口得到 cscope 的结果
+cscoperelative	csre	用 cscope.out 路径目录名作为前缀
+cscopetag	cst	用 cscope 处理标签命令
+cscopetagorder	csto	决定 &quot;:cstag&quot; 的搜索顺序
+cscopeverbose	csverb	增加 cscope 数据库时给出消息
+cursorbind	crb	光标移动时同时在其他窗口移动
+sursorcolumn	cuc	高亮光标所在屏幕列
+cursorline	cul	高亮光标所在屏幕行
+D
+选项全称	选项简称	选项说明
+debug		设为 &quot;msg&quot; 可以看到所有错误消息
+define	def	查找宏定义所使用的模式
+delcombine	deco	在单独使用时删除组合用字符
+dictionary	dict	关键字自动补全所用的文件名
+diff		当前窗口使用 diff 模式
+diffexpr	dex	得到 diff 文件所用的表达式
+diffopt	dip	使用 diff 模式的选项
+digraph	dg	允许插入模式时输入二合字母
+directory	dir	交换文件所用的目录名列表
+display	dy	如何显示文本的标志位列表
+E
+选项全称	选项简称	选项说明
+eadirection	ead	'equalalways' 工作的方向
+edcompatible	ed	切换 &quot;:subsitute&quot; 命令的标志位
+encoding	enc	内部使用的编码方式
+endofline	eol	文件最后一行写入换行符` &lt;EOL&gt;`
+equalalways	ea	自动使所有窗口大小相同
+equalprg	ep	&quot;=&quot; 命令使用的外部命令
+errorbells	eb	有错误信息时响铃
+errorfile	ef	QuickFix 模式的错误文件名
+errorformat	efm	错误文件行格式的描述
+esckeys	ek	插入模式下识别功能键
+eventignore	ei	忽略的自动命令事件
+expandtab	et	键入 `&lt;Tab&gt;` 时使用空格
+exrc	ex	在当前目录里读入 .vimrc 和.exrc
+F
+选项全称	选项简称	选项说明
+fileencoding	fenc	多字节文本的文件编码
+fileencodings	fencs	参与自动检测的字符编码
+fileformat	ff	文件输入输出使用的格式
+fileformats	ffs	参与自动检测的 'fileformat' 的格式
+fileignorecase	fic	使用文件名时忽略大小写
+filetype	ft	自动命令使用的文件类型
+fillchars	fcs	显示特殊项目所使用的字符
+fkmap	fk	波斯键盘映射
+foldclose	fcl	当光标离开时关闭折叠
+foldcolumn	fdc	设定指示折叠的列宽度
+foldenable	fen	设置为显示所用打开的折叠
+foldexpr	fde	当 'foldmethod' 为 &quot;expr&quot; 时使用的表达式
+foldignore	fdi	当 'foldmethod' 为 &quot;indent&quot; 时忽略的行
+foldlevel	fdl	当折叠级别高于此值时关闭折叠
+foldlevelstart	fdls	开始编辑文件的 'foldlevel'
+foldmarker	fmr	当 'foldmethod' 为 &quot;marker&quot; 时的标志
+foldmethod	fdm	折叠的类型
+foldminlines	fml	折叠关闭所需的最少行数
+foldnestmax	fdn	最大折叠深度
+foldopen	fdo	打开折叠所使用的命令
+foldtext	fdt	显示关闭的折叠所用的表达式
+formatlistpat	flp	识别列表头部的模式
+formatoptions	fo	自动排版完成的方式
+formatprg	fp	&quot;gq&quot; 命令使用的外部程序
+formatexpr	fex	&quot;gp&quot; 命令使用的表达式
+fsync	fs	文件写回后是否激活 fsync()
+G
+选项全称	选项简称	选项说明
+gdefault	gd	缺省打开 &quot;:substitute&quot; 的 'g' 标志
+grepformat	gfm	'grepprg' 的输出格式
+grepprg	gp	&quot;:grep&quot; 使用的程序
+guicursor	gcr	GUI: 光标形状和闪烁的设置
+guifont	gfn	GUI: 使用的字体名
+guifontset	gfs	GUI: 使用的多字节字体名
+guifontwide	gfw	双倍宽度字符的字体名列表
+guiheadroom	ghr	GUI: 用于窗口装饰的像素空间
+guioptions	go	GUI: 使用的部件和选项
+guipty		GUI: &quot;:!&quot; 命令尝试仿终端
+guitablabel	gtl	GUI: 标签页定制的标签
+guitabtooltip	gtt	GUI: 标签页定制的工具提示
+H
+选项全称	选项简称	选项说明
+helpfile	hf	主帮助文件的完整路径名
+helpheight	hh	新帮助窗口的最小高度
+helplang	hlg	首选帮助语言
+hidden	hid	当缓冲区被放弃 (|abandon|) 时不挂载之
+highlight	hl	设置若干场合下的高亮模式
+hlsearch	hls	高亮最近的匹配搜索模式
+history	hi	记住的命令行的行数
+hkmap	hk	希伯来语的键盘映射
+hkmapp	hkp	希伯来语的音节 (phonetic) 键盘映射
+I
+选项全称	选项简称	选项说明
+icon		让 Vim 设定窗口图标的文本
+iconstring		Vim 图标文本所用的字符串
+ignorecase	ic	搜索模式时忽略大小写
+imactivatekey	imak	激活 X 输入方法 (X input method) 的键击
+imactivatefunc	imaf	激活/关闭 X 输入方法的函数
+imcmdline	imc	开始编辑命令行时使用 IM
+imdisable	imd	任何模式下不使用 IM
+iminsert	imi	插入模式下使用 :lmap 或 IM
+imsearch	ims	输入搜索模式时使用 :lmap 或 IM
+imstatusfunc	imsf	获得 X 输入方法的状态的函数
+include	inc	查找包含文件所使用的模式
+includeexpr	inex	处理包含文件行所使用的表达式
+incsearch	is	输入搜索模式时同时高亮部分的匹配
+indentexpr	inde	得到一行的缩进位置的表达多
+indentkeys	indk	使用 'indentexpr' 时启动缩进的键
+infercase	inf	关键字自动补全的匹配调整大小写
+insertmode	im	开始编辑文件时进入插入模式
+isfname	isf	文件和路径名可用的字符
+isident	isi	标识符可用的字符
+iskeyword	isk	关键字可用的字符
+isprint	isp	可显示的字符
+J
+选项全称	选项简称	选项说明
+joinspaces	js	连接命令在句号之后加两个空格
+K
+选项全称	选项简称	选项说明
+key		加密密钥
+keymap	kmp	键盘映射名
+keymodel	km	允许用键击开始/停止选择
+keywordprg	kp	&quot;K&quot; 命令所使用的程序
+L
+选项全称	选项简称	选项说明
+langmap	lmap	其他语言模式用的字母表字符
+langmenu	lm	菜单使用的语言
+laststatus	ls	当最近的窗口有状态行时提示
+lazyredraw	lz	执行宏时不重画
+linebreak	lbr	在空白处回绕长行
+lines		显示屏幕的行数
+linespace	lsp	字符之间的像素行数
+lisp		自动 lisp 缩进
+lispwords	lw	改变 lisp 缩进方式的单词
+list		显示` &lt;Tab&gt;` 和 `&lt;EOL&gt;`
+listchars	lcs	list 模式下显示用的字符
+loadplugins	lpl	启动时调入插件脚本
+M
+选项全称	选项简称	选项说明
+macatsui		Mac GUI: 使用 ATSUI 文本绘制
+magic		改变搜索模式所用的特殊字符
+makeef	mef	&quot;:make&quot; 所用的错误文件名
+makeprg	mp	&quot;:make&quot; 命令所用的程序
+matchpairs	mps	&quot;%&quot; 能匹配的字符对
+matchtime	mat	显示匹配括号的时间 (以十分之一秒计)
+maxcombine	mco	显示的最大组合用字符数
+maxfuncdepth	mfd	用户函数的最大递归深度
+maxmapdepth	mmd	映射的最大递归深度
+maxmem	mm	单个缓冲区可用的最大内存 (以千字节计)
+maxmempattern	mmp	模式匹配使用的最大内存 (以千字节计)
+maxmemtot	mmt	所有缓冲区可用的最大内存 (以千字节计)
+menuitems	mis	菜单可用的最大项目数
+mkspellmem	msm	在 |:mkspell| 压缩树前可用的内存
+modeline	ml	在文件开头或结尾识别模式行
+modelines	mls	模式行的检查行数
+modifiable	ma	可否修改文本
+modified	mod	缓冲区已被修改
+more		全屏显示时暂停列表
+mouse		允许使用鼠标
+mousefocus	mousef	键盘焦点追随鼠标点击
+mousehide	mh	输入时隐藏鼠标指针
+mousemodel	mousem	改变鼠标按钮的含义
+mouseshape	mouses	不同模式下改变鼠标指针的形状
+mousetime	moukset	鼠标双击之间的最大时间
+mzquantum	mzq	MzScheme 线程的轮询间隔
+N
+选项全称	选项简称	选项说明
+nrformats	nf	CTRL-A 命令识别的数字格式
+number	nu	行前显示行号
+numberwidth	nuw	行号使用的列数
+O
+选项全称	选项简称	选项说明
+omnifunc	ofu	文件类型特定补全使用的函数
+opendevice	odev	MS-Windows 上允许读/写设备
+operatorfunc	opfunc	|go@| 操作符调用的函数
+osfiletype	oft	不再支持
+P
+选项全称	选项简称	选项说明
+paragraphs	para	分隔段落的 nroff 宏
+paste		允许粘贴文本
+pastetoggle	pt	切换 'paste' 的键盘代码
+patchexpr	pex	用于给文件打补丁的表达式
+patchmode	pm	保留文件最老的版本
+path	pa	&quot;gf&quot; 等命令搜索用的目录列表
+preserveindent	pi	重排时保持原有的缩进结构
+previewheight	pvh	预览窗口的高度
+previewwindow	pvw	标识预览窗口
+printdevice	pdev	用于 :hardcopy 的打印机名
+printencoding	penc	用于打印的编码方式
+printexpr	pexpr	用于 :hardcopy 打印 PostScript 的表达式
+printfont	pfn	用于 :hardcopy 的字体名
+printheader	pheader	用于 :hardcopy 的页眉格式
+printmbcharset	pmbcs	用于 :hardcopy 的 CJK 字符集
+printmbfont	pmbfn	用于 :hardcopy 的 CJK 输出的字体名
+printoptions	popt	控制 :hardcopy 输出格式
+pumheight	ph	弹出窗口的最大高度
+Q
+选项全称	选项简称	选项说明
+quoteescape	qe	字符串里使用的转义字符
+R
+选项全称	选项简称	选项说明
+readonly	ro	禁止写入缓冲区
+redrawtime	rdt	'hlsearch' 和 |:match| 高度的超时
+regexpengine	re	使用的缺省正规表达式引擎
+relativenumber	rnu	每行前显示相对行号
+remap		允许映射可以递归调用
+report		报告行改变的行数下限
+restorescreen	rs	Win32: 退出时恢复屏幕
+revins	ri	字符插入会反向进行
+rightleft	rl	窗口为从右到左模式
+rightleftcmd	rlc	从右到左模式工作的编辑命令
+ruler	ru	标尺，在状态行里显示光标的行号和列号
+rulerformat	ruf	定制标尺格式
+runtimepath	rtp	用于运行时文件的目录列表
+S
+选项全称	选项简称	选项说明
+scroll	scr	用 CTRL-U 和 CTRL-O 滚动的行数
+scrollbind	scb	其他窗口滚动时滚动当前窗口
+scrolljump	sj	滚动所需的最少行数
+scrolloff	so	光标上下的最少行数
+scrollopt	sbo	'scrollbind' 的行为方式
+sections	sect	分隔小节的 nroff 宏
+secure		在当前目录下以安全模式读入 .vimrc
+selection	sel	使用何种选择方式
+selectmode	slm	何时使用选择模式而不是可视模式
+sessionoptions	ssop	:mksession 的选项
+shell	sh	使用外部命令的 shell 程序名字
+shellcmdflag	shcf	执行命令所使用的 shell 的参数
+shellpipe	sp	把 :make 结果输出到错误文件的字符串
+shellquote	shq	括起 shell 命令的字符
+shellredir	srr	把过滤命脉的输出存到暂时文件的字符串
+shellslash	ssl	shell 文件名使用正斜杠
+shelltemp	stmp	shell 命令是否使用临时文件
+shelltype	st	Amiga: 影响如何使用 shell
+shellxescape	sxe	'shellxquote' 为 ( 时使用的转义字符
+shellxquote	sxq	类似于 'shellquote'，但包括重定向
+shiftround	sr	缩进列数对齐到 shiftwidth 的整数倍
+shiftwidth	sw	(自动) 缩进使用的步进单位，以空白数目计
+shortmess	shm	缩短消息长度的标志位列表
+shortname	sn	非 MS-DOS: 文件名假定为 8.3字符
+showbreak	sbr	用于提示回绕行开始的字符串
+showcmd	sc	在状态行里显示 (部分) 命令
+showfulltag	sft	自动补全标签时显示完整的标签匹配模式
+showmatch	sm	插入括号时短暂跳转到匹配的括号
+showmode	smd	在状态行上显示当前模式的消息
+showtabline	stal	是否显示标签页行
+sidescroll	ss	横向滚动的最少列数
+sidescrolloff	siso	在光标左右最少出现列数
+smartcase	scs	模式中有大写字母时不忽略大小写
+smartindent	si	C 程序智能自动缩进
+smarttab	sta	插入 `&lt;Tab&gt;` 时使用 'shiftwidth'
+softtabstop	sts	编辑时 `&lt;Tab&gt;` 使用的空格数
+spell		打开拼写检查
+spellcapcheck	spc	定位句子尾部的模式
+spellfile	spf	|zg| 和 |zw| 保存单词的文件
+spelllang	spl	拼写检查使用的语言
+spellsuggest	sps	提供拼写校正建议的方法
+splitbelow	sb	分割窗口时新窗口在当前窗口之下
+splitright	spr	新窗口在当前窗口之右
+startofline	sol	命令移动光标到行的第一个非空白
+statusline	stl	状态行的定制格式
+suffixes	su	多个匹配所忽略的后缀
+suffixesadd	sua	搜索文件时附加的后缀
+swapfile	swf	缓冲区是否使用交换文件
+swapsync	sws	和交换文件同步的方式
+switchbuf	swb	设置切换到别的缓冲区时的行为
+synmaxcol	smc	寻找语法项目的最大列数
+syntax	syn	读入当前缓冲区的语法
+T
+选项全称	选项简称	选项说明
+tabstop	ts	`&lt;Tab&gt;` 在文件里使用的空格数
+tabline	tal	终端标签页行的定制格式
+tabpagemax	tpm	|-p| 和 &quot;tab all&quot; 的最大标签页数
+tagbsearch	tbs	标签文件里用二分法查找
+taglength	tl	标签里的有效字符数
+tagrelative	tr	标签文件里的文件名是相对路径
+tags	tag	标签命令使用的文件名列表
+tagstack	tgst	把标签推入标签栈
+term		终端名
+termbidi	tbidi	终端支持双向文本
+termencoding	tenc	终端使用的编码方式
+terse		简化部分消息
+textauto	ta	废止，用 'fileformats'
+textmode	tx	废止，用 'fileformat'
+textwidth	tw	插入文本的最大宽度
+thesaurus	tsr	关键字自动补全手忙脚乱的同义词字典
+tildeop	top	波浪命令 &quot;~&quot; 以操作符方式工作
+timeout	to	映射和键盘代码等待超时
+timeoutlen	tm	超时时间 (以毫秒计)
+title		让 Vim 设置窗口标题
+titlelen		用于窗口标题 'columns' 比例
+titleold		旧的标题，用于退出时恢复
+titlestring		用于 Vim 窗口标题的字符串
+toolbar	tb	GUI: 工具栏显示何种项目
+toolbariconsize	tbis	工具栏图标的大小 (只适用于 GTK 2)
+ttimeout		映射等待超时
+ttimeoutlen	ttm	键盘代码超时时间 (以毫秒计)
+ttybuiltin	tbi	在外部 termcap 之前先用内建的 termcap
+ttyfast	tf	指示一个快速的终端链接
+ttymouse	ttym	鼠标产生代码的类型
+ttyscroll	tsl	滚动的最大行数
+ttytype	tty	'term' 的别名
+U
+选项全称	选项简称	选项说明
+undodir	udir	保存撤销文件的位置
+undofile	udf	把撤销信息写入一个文件里
+undolevels	ul	最多可以撤销的改变个数
+undoreload	ur	保存缓冲区重载撤销的最大行数
+updatecount	uc	刷新交换文件所需的字符数
+updatetime	ut	刷新交换文件所需的毫秒数
+V
+选项全称	选项简称	选项说明
+verbose	vbs	给出详细信息
+verbosefile	vfile	消息写入的文件
+viewdir	vdir	:mkview 存储文件的所在目录
+viewoptions	vop	指定 :mkview 保存的内容
+viminfo	vi	启动和退出时使用 .viminfo 文件
+virtualedit	ve	何时使用虚拟编辑
+visualbell	vb	使用可视铃声而不是响铃
+W
+选项全称	选项简称	选项说明
+warn		当缓冲区改变时，对 shell 命令给出警告
+weirdinvert	wiv	用于有特殊反转方法的终端
+whichwrap	ww	允许指定键跨越行边界
+wildchar	wc	用于符扩展的命令行字符
+wildcharm	wcm	同 'wildchar'，但对映射情况也适用
+wildignore	wig	匹配这些模式的文件不会参与自动补全
+wildignorecase	wic	匹配文件名时忽略大小写
+wildmenu	wmnu	命令行自动补全所使用的菜单
+wildmode	wim	'wildchar' 命令行扩展所用的模式
+wildoptions	wop	指定如何完成命令行补全
+winaltkeys	wak	休时窗口系统处理 ALT 键
+window	wi	CTRL-F 和 CTRL-B 滚动的行数
+winheight	wh	当前窗口的最少行数
+winfixheight	wfh	打开/关闭窗口时保持窗口高度
+winfixwidth	wfw	打开/关闭窗口时保持窗口宽度
+winminheight	wmh	任何窗口的最少行数
+winminwidth	wmw	任何窗口的最少列数
+winwidth	wiw	当前窗口的最少列数
+wrap		长行回绕并在下一行继续
+wrapmargin	wm	使 (硬) 回绕开始的从右侧起算的字符数
+wrapscan	ws	搜索在文件尾折回文件头
+write		允许写入文件
+writeany	wa	写入文件不需 &quot;!&quot; 强制
+writebackup	wb	覆盖文件时建立备份
+writedelay	wd	每个字符延迟 (以毫秒计) (用于调试)
+Vim专业手册339页
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br><span class="line-number">233</span><br><span class="line-number">234</span><br><span class="line-number">235</span><br><span class="line-number">236</span><br><span class="line-number">237</span><br><span class="line-number">238</span><br><span class="line-number">239</span><br><span class="line-number">240</span><br><span class="line-number">241</span><br><span class="line-number">242</span><br><span class="line-number">243</span><br><span class="line-number">244</span><br><span class="line-number">245</span><br><span class="line-number">246</span><br><span class="line-number">247</span><br><span class="line-number">248</span><br><span class="line-number">249</span><br><span class="line-number">250</span><br><span class="line-number">251</span><br><span class="line-number">252</span><br><span class="line-number">253</span><br><span class="line-number">254</span><br><span class="line-number">255</span><br><span class="line-number">256</span><br><span class="line-number">257</span><br><span class="line-number">258</span><br><span class="line-number">259</span><br><span class="line-number">260</span><br><span class="line-number">261</span><br><span class="line-number">262</span><br><span class="line-number">263</span><br><span class="line-number">264</span><br><span class="line-number">265</span><br><span class="line-number">266</span><br><span class="line-number">267</span><br><span class="line-number">268</span><br><span class="line-number">269</span><br><span class="line-number">270</span><br><span class="line-number">271</span><br><span class="line-number">272</span><br><span class="line-number">273</span><br><span class="line-number">274</span><br><span class="line-number">275</span><br><span class="line-number">276</span><br><span class="line-number">277</span><br><span class="line-number">278</span><br><span class="line-number">279</span><br><span class="line-number">280</span><br><span class="line-number">281</span><br><span class="line-number">282</span><br><span class="line-number">283</span><br><span class="line-number">284</span><br><span class="line-number">285</span><br><span class="line-number">286</span><br><span class="line-number">287</span><br><span class="line-number">288</span><br><span class="line-number">289</span><br><span class="line-number">290</span><br><span class="line-number">291</span><br><span class="line-number">292</span><br><span class="line-number">293</span><br><span class="line-number">294</span><br><span class="line-number">295</span><br><span class="line-number">296</span><br><span class="line-number">297</span><br><span class="line-number">298</span><br><span class="line-number">299</span><br><span class="line-number">300</span><br><span class="line-number">301</span><br><span class="line-number">302</span><br><span class="line-number">303</span><br><span class="line-number">304</span><br><span class="line-number">305</span><br><span class="line-number">306</span><br><span class="line-number">307</span><br><span class="line-number">308</span><br><span class="line-number">309</span><br><span class="line-number">310</span><br><span class="line-number">311</span><br><span class="line-number">312</span><br><span class="line-number">313</span><br><span class="line-number">314</span><br><span class="line-number">315</span><br><span class="line-number">316</span><br><span class="line-number">317</span><br><span class="line-number">318</span><br><span class="line-number">319</span><br><span class="line-number">320</span><br><span class="line-number">321</span><br><span class="line-number">322</span><br><span class="line-number">323</span><br><span class="line-number">324</span><br><span class="line-number">325</span><br><span class="line-number">326</span><br><span class="line-number">327</span><br><span class="line-number">328</span><br><span class="line-number">329</span><br><span class="line-number">330</span><br><span class="line-number">331</span><br><span class="line-number">332</span><br><span class="line-number">333</span><br><span class="line-number">334</span><br><span class="line-number">335</span><br><span class="line-number">336</span><br><span class="line-number">337</span><br><span class="line-number">338</span><br><span class="line-number">339</span><br><span class="line-number">340</span><br><span class="line-number">341</span><br><span class="line-number">342</span><br><span class="line-number">343</span><br><span class="line-number">344</span><br><span class="line-number">345</span><br><span class="line-number">346</span><br><span class="line-number">347</span><br><span class="line-number">348</span><br><span class="line-number">349</span><br><span class="line-number">350</span><br><span class="line-number">351</span><br><span class="line-number">352</span><br><span class="line-number">353</span><br><span class="line-number">354</span><br><span class="line-number">355</span><br><span class="line-number">356</span><br><span class="line-number">357</span><br><span class="line-number">358</span><br><span class="line-number">359</span><br><span class="line-number">360</span><br><span class="line-number">361</span><br><span class="line-number">362</span><br><span class="line-number">363</span><br><span class="line-number">364</span><br><span class="line-number">365</span><br><span class="line-number">366</span><br><span class="line-number">367</span><br><span class="line-number">368</span><br><span class="line-number">369</span><br><span class="line-number">370</span><br><span class="line-number">371</span><br><span class="line-number">372</span><br><span class="line-number">373</span><br><span class="line-number">374</span><br><span class="line-number">375</span><br><span class="line-number">376</span><br><span class="line-number">377</span><br><span class="line-number">378</span><br><span class="line-number">379</span><br><span class="line-number">380</span><br><span class="line-number">381</span><br><span class="line-number">382</span><br><span class="line-number">383</span><br><span class="line-number">384</span><br><span class="line-number">385</span><br><span class="line-number">386</span><br><span class="line-number">387</span><br><span class="line-number">388</span><br><span class="line-number">389</span><br><span class="line-number">390</span><br><span class="line-number">391</span><br><span class="line-number">392</span><br><span class="line-number">393</span><br><span class="line-number">394</span><br><span class="line-number">395</span><br><span class="line-number">396</span><br><span class="line-number">397</span><br><span class="line-number">398</span><br><span class="line-number">399</span><br><span class="line-number">400</span><br><span class="line-number">401</span><br><span class="line-number">402</span><br><span class="line-number">403</span><br><span class="line-number">404</span><br><span class="line-number">405</span><br><span class="line-number">406</span><br><span class="line-number">407</span><br><span class="line-number">408</span><br><span class="line-number">409</span><br><span class="line-number">410</span><br><span class="line-number">411</span><br><span class="line-number">412</span><br><span class="line-number">413</span><br><span class="line-number">414</span><br><span class="line-number">415</span><br><span class="line-number">416</span><br><span class="line-number">417</span><br><span class="line-number">418</span><br><span class="line-number">419</span><br><span class="line-number">420</span><br><span class="line-number">421</span><br><span class="line-number">422</span><br><span class="line-number">423</span><br><span class="line-number">424</span><br><span class="line-number">425</span><br><span class="line-number">426</span><br><span class="line-number">427</span><br></div></div><p>为 vim 安装 dracula 后无法高亮函数，与 vscode 不一致，在网上查找解决方案：</p> <p>参考：</p> <ul><li>知乎： kevin bright Vim C/C++ 函数名，宏定义和变量的高亮</li> <li>invisprings.github.io Vim 函数高亮</li> <li>cnblogs VIM C 语言函数高亮</li></ul> <p>vim 默认无法高亮函数名，可修改 Vim\vim90\syntax\c.vim 文件
+在最后加入：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>syn match cFunctions &quot;\&lt;[a-zA-Z_][a-zA-Z_0-9]*\&gt;[^()]*)(&quot;me=e-2
+syn match cFunctions &quot;\&lt;[a-zA-Z_][a-zA-Z_0-9]*\&gt;\s*(&quot;me=e-1
+&quot;hi cFunctions guifg=green gui=bold cterm=None ctermfg=None
+hi cFunctions guifg=green
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>括号自动补全配置</strong></p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token keyword">function</span> CloseBracket<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token keyword">if</span> match<span class="token punctuation">(</span>getline<span class="token punctuation">(</span>line<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> + <span class="token number">1</span><span class="token punctuation">)</span>, <span class="token string">'\s*}'</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span>
+ <span class="token builtin class-name">return</span> <span class="token string">&quot;\&lt;CR&gt;}&quot;</span>
+ <span class="token keyword">else</span>
+ <span class="token builtin class-name">return</span> <span class="token string">&quot;\&lt;Esc&gt;j0f}a&quot;</span>
+ endif
+endf
+
+function<span class="token operator">!</span> AutoPair<span class="token punctuation">(</span>open, close<span class="token punctuation">)</span>
+        <span class="token builtin class-name">let</span> line <span class="token operator">=</span> getline<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> strlen<span class="token punctuation">(</span>line<span class="token punctuation">)</span> <span class="token operator">||</span> line<span class="token punctuation">[</span>col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> - <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">' '</span>
+                <span class="token builtin class-name">return</span> a:open.a:close.<span class="token string">&quot;\&lt;ESC&gt;i&quot;</span>
+        <span class="token keyword">else</span>
+                <span class="token builtin class-name">return</span> a:open
+        endif
+endf
+
+ function<span class="token operator">!</span> ClosePair<span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+         <span class="token keyword">if</span> getline<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span>col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> - <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> a:char
+                 <span class="token builtin class-name">return</span> <span class="token string">&quot;\&lt;Right&gt;&quot;</span>
+         <span class="token keyword">else</span>
+                 <span class="token builtin class-name">return</span> a:char
+         endif
+ endf
+
+ function<span class="token operator">!</span> SamePair<span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+         <span class="token builtin class-name">let</span> line <span class="token operator">=</span> getline<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+         <span class="token keyword">if</span> col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> strlen<span class="token punctuation">(</span>line<span class="token punctuation">)</span> <span class="token operator">||</span> line<span class="token punctuation">[</span>col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> - <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">' '</span>
+                 <span class="token builtin class-name">return</span> a:char.a:char.<span class="token string">&quot;\&lt;ESC&gt;i&quot;</span>
+         elseif line<span class="token punctuation">[</span>col<span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span> - <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> a:char
+                 <span class="token builtin class-name">return</span> <span class="token string">&quot;\&lt;Right&gt;&quot;</span>
+         <span class="token keyword">else</span>
+                 <span class="token builtin class-name">return</span> a:char
+         endif
+ endf
+
+inoremap <span class="token punctuation">(</span> <span class="token operator">&lt;</span>c-r<span class="token operator">&gt;=</span>AutoPair<span class="token punctuation">(</span><span class="token string">'('</span>, <span class="token string">')'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+inoremap <span class="token punctuation">)</span> <span class="token operator">&lt;</span>c-r<span class="token operator">&gt;=</span>ClosePair<span class="token punctuation">(</span><span class="token string">')'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+inoremap <span class="token punctuation">{</span> <span class="token punctuation">{</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>O
+<span class="token string">&quot;inoremap } &lt;c-r&gt;=ClosePair('}')&lt;CR&gt;
+inoremap } &lt;c-r&gt;=CloseBracket()&lt;CR&gt;
+inoremap [ &lt;c-r&gt;=AutoPair('[', ']')&lt;CR&gt;
+inoremap ] &lt;c-r&gt;=ClosePair(']')&lt;CR&gt;
+inoremap &quot;</span> <span class="token operator">&lt;</span>c-r<span class="token operator">&gt;=</span>SamePair<span class="token punctuation">(</span><span class="token string">'&quot;'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+inoremap <span class="token string">' &lt;c-r&gt;=SamePair(&quot;'</span>&quot;<span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+inoremap <span class="token variable"><span class="token variable">`</span> <span class="token operator">&lt;</span>c-r<span class="token operator">&gt;=</span>SamePair<span class="token punctuation">(</span>'<span class="token variable">`</span></span>'<span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div><p>参考： https://www.douban.com/note/299644770/?_i=1701686uJvjPfr</p> <p>https://www.cnblogs.com/huanlei/archive/2012/04/02/2430153.html</p> <p>https://segmentfault.com/a/1190000000640039</p> <p><code>:term</code> 打开 vim 内置终端</p> <p><code>exit</code> 退出终端</p> <p><code>c-w :hide</code> 隐藏终端。</p> <p><code>ls</code> 在缓冲区中找到，<code>:sp</code> <code>:bnum</code> 恢复终端。</p> <p><code>c-w :q!</code> 强制退出，但实际上还在缓冲区。</p> <p>折叠：</p> <p><code>Marker Fold</code></p> <p><code>set foldmethod=marker</code> 默认是 <code>{{{</code> 以及 <code>}}}</code></p> <div class="language-perl line-numbers-mode"><pre class="language-perl"><code><span class="token comment"># {{{</span>
+function do_something <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token comment"># }}}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>若设置为 手动折叠</p> <p><code>set foldmethod=manual</code></p> <p>手动建立折叠区块，zf 建立。</p> <p>可以利用 autocmd 加上 mkview loadview 储存手动建立的折叠区块，会被放到 <code>~/.vim/view</code> 里。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>autocmd BufWinLeave *.* silent mkview
+autocmd BufWinEnter *.* silent loadview
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><code>set equalprg=perltidy</code> 针对特定区域格式化程序，选择文件区块后，<code>=</code> 可使用 perltidy 程序来做格式化处理。</p> <p><code>autocmd Filetype perl :set equalprg=perltidy</code> 针对文件类型做 equalprg 设定。</p> <p><code>autocmd Filetype c :set equalprg=indent</code> c 语言使用外部的 GNU indent 做格式化处理</p> <p><code>autocmd Filetype sql :set equalprg=sql-beautify.pl</code> sql 格式化例子</p> <p><strong>QuickFix</strong></p> <p>填充quickfix列表的一些命令</p> <p>:make</p> <p>:grep</p> <p>:vimgrep</p> <p>:Ag</p> <p><code>:copen</code> 打开 quickfix 窗口。</p> <p><code>:cclose</code> 关闭 quickfix 窗口。</p> <p><code>:make</code> 默认 gnu-make，并把 make 执行结果 显示到 quickfix 中</p> <p><code>:grep</code>  默认 vimgrep</p> <p><a href="https://blog.easwy.com/archives/advanced-vim-skills-quickfix-mode/" target="_blank" rel="noopener noreferrer">vi/vim使用进阶: 剑不离手 – quickfix<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://blog.csdn.net/niuiic/article/details/115800729" target="_blank" rel="noopener noreferrer">vim quickfix——最灵活的quickfix<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://www.doc88.com/p-8778593994701.html" target="_blank" rel="noopener noreferrer">vim 能帮我们什么<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="http://blog.chinaunix.net/uid-20147410-id-311663.html" target="_blank" rel="noopener noreferrer">vim 对长行的处理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>用gVim来写文章，一个自然段就是一行，常常会碰到由于是文章的一段话，这一行字会特别长的情况，打开自动折行，要好几行甚至十多行才能显示完全。这这 种情况下，vim只会在在当前窗口下能把整个段落完全显示的时候，才将其显示；而在不能完整显示的情况，它会用@来代替，set display=lastline 让vim在当前窗口能显示这行字的多少就显示多少，而不是等整行字都能显示时才将其显示出来。
+另外还可以用gj和gk可以上下移动屏幕显示的一行。</p> <p>新的问题出现了：如果一行文本有几千汉字时，gVim的支持非常差，右边滚动条滚动和鼠标滚动毫不自然，有时很难凭借滚动来移动到自己想要到的位 置。如果用gj和gk来移动，尤如隔靴搔痒，gVim的高效性荡然无存。</p> <p>在模式行中加上set fo+=mM，然后就能自动对中文换行了，注意是真正的换行，不是折行，如果修改后可以用gq命令重新格式化，用起来相当方便。</p> <p><a href="https://www.cnblogs.com/AI-Algorithms/p/3774409.html" target="_blank" rel="noopener noreferrer">vim 格式化代码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>&quot; 采用 C 风格的缩进，适用于大多数语言
+&quot; 细节调整见下面的 <code>cinoptions</code>
+&quot; 你也可以尝试 smartindent 和 autoindent
+set cindent</p> <p>&quot; 细节调整，主要为了适应 Google C++ Style
+&quot; t0: 函数返回类型声明不缩进
+&quot; g0: C++ &quot;public:&quot; 等声明缩进一个字符
+&quot; h1: C++ &quot;public:&quot; 等声明后面的语句缩进一个字符
+&quot; N-s: C++ namespace 里不缩进
+&quot; j1: 合理的缩进 Java 或 C++ 的匿名函数，应该也适用于 JS
+(N 在没有结束的括号内，相对没有结束的括号所在行进行 N 个字符的缩
+进。对每一个额外没有结束的括号增加 'shiftwidth' 的缩进。如果 N
+为 0，或没有结束的括号是其所在行的首个非空白字符，和括号之后下一
+个非空白字符对齐。
+set cinoptions=t0,g1,h1,N-s,j1</p> <p><strong>cscope 函数跳转后返回,按ctrl+t 没有用?</strong></p> <p><code>set cscopetagorder=1</code></p> <p>因为默认使用 cscope 的数据库。</p> <p><code>:X</code> 文本加密</p> <p>vim -u 配置文件或gvim -U 配置文件。</p> <p><strong>normal命令</strong></p> <p>在~/.vim/ftplugin/ 目录下面找到特定语言对应的配置文件。
+比如在我的ubuntu下找到了~/.vim/ftplugin/cpp.vim ，在最后一行加上了</p> <p><code>:imap { {&lt;CR&gt;}&lt;ESC&gt;O</code></p> <p>这样对于所有的cpp 文件这个设置都会生效。但是如果是其它扩展名的文件则不生效。</p> <p>或者 /usr/share/vim/vim82/syntax/c.vim 中</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>syn match cFunctions &quot;\&lt;[a-zA-Z_][a-zA-Z_0-9]*\&gt;[^()]*)(&quot;me=e-2
+syn match cFunctions &quot;\&lt;[a-zA-Z_][a-zA-Z_0-9]*\&gt;\s*(&quot;me=e-1
+&quot;hi cFunctions guifg=green gui=bold cterm=None ctermfg=None
+hi cFunctions guifg=green
+
+function! ClosePair(char)
+        if getline('.')[col('.') - 1] == a:char
+                return &quot;\&lt;Right&gt;&quot;
+        else
+                return a:char
+        endif
+endf
+
+inoremap { {&lt;CR&gt;}&lt;ESC&gt;O
+inoremap } &lt;c-r&gt;=CloseBracket()&lt;CR&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p><img src="https://segmentfault.com/q/1010000010011493" alt="vim 如何对不同的语言采用不同的键映射"></p> <p>:Ex 开启目录浏览器，可以浏览当前目录下的所有文件，并可以选择
+:Sex 水平分割当前窗口，并在一个窗口中开启目录浏览器
+:Vex 垂直切割当前窗口
+:ls 显示当前buffer情况</p> <p><code>:term</code> vim 中打开内置终端。</p> <p><code>:shell</code> 当前目录调用命令终端</p> <p><code>zR</code> 打开所有折叠以及嵌套折叠</p> <p><code>zM</code> 关闭所有折叠以及嵌套折叠。</p> <p><code>w !sudo tee %</code> sudo 保存文件。</p> <p><code>Man</code> 命令带高亮和跳转。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>text-object
+
+动词 : c(hange) d(elete)
+副词 : i(nside) a(round) t(o) f(orward)
+名词 : w(ord) s(entence) p(aragraph) t(ag) ` ‘ “ [ ( {
+tag 是 markup 语言中的 tag，例如 &lt;h2&gt; hi &lt;/h2&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><code>ctags</code> 对 c++ 的支持：</p> <p><code>ctags -R --kinds-c++=+p --fields=+aiKSz --extra=+q --langmap=c++:+.inl .</code></p> <p>https://blog.csdn.net/superbobpig/article/details/2533904</p> <p><code>ctags -R --kinds-c++=+p --fields=+iaS --extra=+q --language-force=c++ .</code> 直接当作 c++ 文件处理</p> <p>https://blog.csdn.net/superbobpig/article/details/2533904</p> <p><code>ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q --exclude=lex.yy.cc --exclude=copy_lex.yy.cc</code></p> <p>原文链接：https://blog.csdn.net/ch122633/article/details/54348576</p> <p><code>ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f &lt;生成的tag文件名&gt; .</code></p> <p>https://timothyqiu.com/archives/using-omnicomplete-for-c-cplusplus-in-vim/</p> <p><a href="https://blog.csdn.net/duguteng/article/details/7417181" target="_blank" rel="noopener noreferrer">vim 中OmniCppComplete的安装和使用<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><code>c-e</code> 停止补全。</p> <p><code>c-y</code> 接受补全并停止。</p> <p>我常用的 ctags 命令：</p> <p><code>ctags -R --sort=yes --c++-kinds=+px --fields=+iaKSz --extras=+q</code></p> <p>接着，执行 ctags 生成标准库的标签文件：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd /usr/include/c++/4.8
+ctags -R --c++-kinds=+l+x+p --fields=+iaSl --extra=+q --language-force=c++ -f stdcpp.tags
+sudo ctags -R --sort=yes --c++-kinds=+px --fields=+iaKSz --extras=+q --language-force=C++ -f stdcpp.ctags
+然后，让 OmniCppComplete 成功识别标签文件中的标准库接口。C++ 标准库源码文件中使用了 _GLIBCXX_STD 名字空间
+（GNU C++ 标准库的实现是这样，如果你使用其他版本的标准库，需要自行查找对应的名字空间名称），
+标签文件里面的各个标签都嵌套在该名字空间下，所以，要让 OmniCppComplete 正确识别这些标签，
+必须显式告知 OmniCppComplete 相应的名字空间名称。在.vimrc中增加如下内容：
+
+let OmniCpp_DefaultNamespaces = [&quot;_GLIBCXX_STD&quot;]
+最后，在 VIM 中引入该标签文件。在 .vimrc 中增加如下内容：
+
+set tags+=/usr/include/c++/4.8/stdcpp.tags
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>-- <a href="https://github.com/yangyangwithgnu/use_vim_as_ide" target="_blank" rel="noopener noreferrer">像IDE 一样使用 Vim<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://timothyqiu.com/archives/using-omnicomplete-for-c-cplusplus-in-vim/" target="_blank" rel="noopener noreferrer">Vim 中使用 OmniComplete 为 C/C++ 自动补全<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><code>:find filename</code> 查找文件。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">2023/7/3 10:51:58</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/64.7770e824.js" defer></script>
+  </body>
+</html>

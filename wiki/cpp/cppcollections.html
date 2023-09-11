@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>c++ 问题集 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/35.0ba44a34.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/22.56e55e5c.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/24.b38bddd1.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/26.add4feed.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/28.f263b4e2.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/64.7770e824.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link router-link-active">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/cpp/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link router-link-active">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/cpp/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/cpp/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/cpp/" aria-current="page" class="sidebar-link">C++ Program Language</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>inbox</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/cpp/learn-cpp.html" class="sidebar-link">C++</a></li><li><a href="/wiki/cpp/learn-qt.html" class="sidebar-link">Qt</a></li><li><a href="/wiki/cpp/cppcollections.html" aria-current="page" class="active sidebar-link">c++ 问题集</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#std-cin-的返回值是什么" class="sidebar-link">std::cin 的返回值是什么？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#c-中子类重写父类的虚函数能改变其访问权限吗" class="sidebar-link">C++中子类重写父类的虚函数能改变其访问权限吗?</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#c-中应该怎么样在类内定义常量" class="sidebar-link">c++ 中应该怎么样在类内定义常量？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#函数名是函数的地址吗" class="sidebar-link">函数名是函数的地址吗？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#c-函数函数参数该用引用还是指针" class="sidebar-link">C++ 函数函数参数该用引用还是指针？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#在getline之前-如果用了cin输入-getline会无效。" class="sidebar-link">在getline之前，如果用了cin输入，getline会无效。</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#c-怎么进行输出格式化" class="sidebar-link">c++ 怎么进行输出格式化？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#派生类和基类有同名函数-派生类怎么调用基类的同名函数" class="sidebar-link">派生类和基类有同名函数，派生类怎么调用基类的同名函数？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#怎么在-main-函数之前执行语句" class="sidebar-link">怎么在 main 函数之前执行语句？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt-中为什么要引入-qvariant" class="sidebar-link">Qt 中为什么要引入 QVariant？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt6-中怎么替代-qt5-里的-exactmatch" class="sidebar-link">Qt6 中怎么替代 Qt5 里的 exactMatch() ？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#函数参数中的数组变量会退化为指针。" class="sidebar-link">函数参数中的数组变量会退化为指针。</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#为什么需要仿函数" class="sidebar-link">为什么需要仿函数？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#push-back-和-emplace-back-有什么区别" class="sidebar-link">pushback 和 emplaceback 有什么区别？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#array、vector、数组有什么异同" class="sidebar-link">array、vector、数组有什么异同？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#map-使用-需要-value-有默认构造函数" class="sidebar-link">map 使用 [] 需要 value 有默认构造函数</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#该不该写默认构造函数" class="sidebar-link">该不该写默认构造函数？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#模板类怎么进行前向引用" class="sidebar-link">模板类怎么进行前向引用？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qstring-和-qbytearray-有什么区别" class="sidebar-link">QString 和 QByteArray 有什么区别？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#tls-是什么" class="sidebar-link">TLS  是什么？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt-无法连接-ssl-动态库" class="sidebar-link">Qt 无法连接 ssl 动态库</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt是事件驱动的-这句话该怎么理解呢" class="sidebar-link">Qt是事件驱动的，这句话该怎么理解呢？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt事件是由谁接收的" class="sidebar-link">Qt事件是由谁接收的？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#事件处理的流程是什么样的" class="sidebar-link">事件处理的流程是什么样的？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#qt-qnetworkaccessmanager出现sslhandshakefailederror-问题" class="sidebar-link">Qt QNetworkAccessManager出现SslHandshakeFailedError 问题</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#为什么不给你正常打印-unicode-字符" class="sidebar-link">为什么不给你正常打印 Unicode 字符？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#为什么-connect-中的-connect-存在问题" class="sidebar-link">为什么 connect 中的 connect 存在问题？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#四则运算符的重载为什么不能返回引用" class="sidebar-link">四则运算符的重载为什么不能返回引用？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#结构与联合有和区别" class="sidebar-link">结构与联合有和区别？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#形式参数中定义对象会调用什么构造函数" class="sidebar-link">形式参数中定义对象会调用什么构造函数？</a></li><li class="sidebar-sub-header"><a href="/wiki/cpp/cppcollections.html#模板类-函数的定义和实现" class="sidebar-link">模板类/函数的定义和实现</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/cpp/essential-cpp/" class="sidebar-heading clickable"><span>Essential CPP</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p><a href="https://blog.csdn.net/fl2011sx/article/details/126242703" target="_blank" rel="noopener noreferrer">C++ 的缺陷与思考<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="std-cin-的返回值是什么"><a href="#std-cin-的返回值是什么" class="header-anchor">#</a> std::cin 的返回值是什么？</h2> <p>std::cin 是对象，<code>operator &gt;&gt;()</code> 的返回值类型是 <code>istream&amp;</code> ，大多数情况下返回 std::cin
+的地址，遇到 EOF 时，返回 0。</p> <h2 id="c-中子类重写父类的虚函数能改变其访问权限吗"><a href="#c-中子类重写父类的虚函数能改变其访问权限吗" class="header-anchor">#</a> C++中子类重写父类的虚函数能改变其访问权限吗?</h2> <p>可以。</p> <h2 id="c-中应该怎么样在类内定义常量"><a href="#c-中应该怎么样在类内定义常量" class="header-anchor">#</a> c++ 中应该怎么样在类内定义常量？</h2> <p>类似 <code>static const int a = 5;</code>，只能定义基本类型。</p> <h2 id="函数名是函数的地址吗"><a href="#函数名是函数的地址吗" class="header-anchor">#</a> 函数名是函数的地址吗？</h2> <p>函数名并不是函数地址的代表，这种误解与数组名就是指针一样犯了相同的错误。函数名是函数实体的代表，
+不是地址的代表，当然，你马上就会有疑问，平时我们不都是把函数名作为函数的地址吗？
+是的，我可以告诉你，函数名可以作为函数的地址，但是，绝大多数人都忽略了一个条件，
+从函数到指针的隐式转换是函数名在表达式中的行为，就是说，这个转换仅在表达式中才会发生，
+这仅是函数名众多性质中的一个，而非本质，函数名的本质就是函数实体的代表。</p> <p>到了C++，由于C++规定，非静态成员函数的左值不可获得，因此非静态成员函数不存在隐式左值转换，
+即不存在像常规函数那样的从函数到指针的隐式转换，所以必须在非静态成员函数前使用&amp;操作符才能获得地址</p> <h2 id="c-函数函数参数该用引用还是指针"><a href="#c-函数函数参数该用引用还是指针" class="header-anchor">#</a> C++ 函数函数参数该用引用还是指针？</h2> <p>通常来说，对于简单类型的参数，可以使用值传递；对于需要修改实参的情况，可以使用指针传递或引用传递；
+对于需要在函数中创建新对象的情况，应该使用指针传递。</p> <p>参数可能为 <code>nullptr</code> 的和需要修改指针的才传递指针，否则都使用引用。</p> <p><a href="https://www.zhihu.com/question/31276547" target="_blank" rel="noopener noreferrer">设计C++函数传参时如何决定使用指针还是引用？<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="在getline之前-如果用了cin输入-getline会无效。"><a href="#在getline之前-如果用了cin输入-getline会无效。" class="header-anchor">#</a> 在getline之前，如果用了cin输入，getline会无效。</h2> <p>因为有一个回车键留在了缓冲区，而getline会直接使用这个缓冲区，geline 会读取空白符，所以就会读取 enter 回车并接收。</p> <p>解决办法是在getline之前用cin.ignore();</p> <p>cin.ignore()默认不给参数的话，默认参数为cin.ignore(1, EOF)，即把 EOF 前的 1 个字符清掉,没有遇到EOF就清掉一个字符然后结束。</p> <p>一般可以这样使用：<code>cin.ignore(1024, '\n');</code>，通常把第一个参数设置得足够大，这样实际上是为了只有第二个参数 <code>\n</code> 起作用，所以这一句就是把回车（包括回车）之前的所以字符从输入缓冲流中清除出去。</p> <p>char a = cin.get() 用来获取输入的第一个字符。</p> <p>cin.get(字符数组名,20)//20指的是输入字符串的个数</p> <p>getline(cin, xxx) 属于 string 流，cin.getline() 属于 istream 流。</p> <h2 id="c-怎么进行输出格式化"><a href="#c-怎么进行输出格式化" class="header-anchor">#</a> c++ 怎么进行输出格式化？</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iomanip&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">double</span> i <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">/</span> <span class="token number">3.0</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> you <span class="token operator">=</span> <span class="token number">200</span> <span class="token operator">/</span> <span class="token number">3.0</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl <span class="token operator">&lt;&lt;</span> you <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+
+	<span class="token comment">// fixed使用小数计数法(而不是科学计数法)显示浮点数</span>
+	<span class="token comment">// setprecision(4) 小数部分保留4位，最后一位四舍五入</span>
+    <span class="token comment">// setw() 设置输出的总宽度，通常用来对齐显示数据。</span>
+    <span class="token comment">// setfill() 数字本身宽度不够，用填充字符填充显示。</span>
+    <span class="token comment">// boolalpha 打印 true/false</span>
+    cout <span class="token operator">&lt;&lt;</span> fixed <span class="token operator">&lt;&lt;</span> <span class="token function">setprecision</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token function">setfill</span><span class="token punctuation">(</span><span class="token char">'0'</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+         <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl <span class="token operator">&lt;&lt;</span> you <span class="token operator">&lt;&lt;</span> boolalpha <span class="token operator">&lt;&lt;</span> <span class="token boolean">true</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+
+    cout<span class="token punctuation">.</span><span class="token function">precision</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="派生类和基类有同名函数-派生类怎么调用基类的同名函数"><a href="#派生类和基类有同名函数-派生类怎么调用基类的同名函数" class="header-anchor">#</a> 派生类和基类有同名函数，派生类怎么调用基类的同名函数？</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Man</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Person</span></span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Man man<span class="token punctuation">;</span>
+    <span class="token comment">// 这样调用。</span>
+    man<span class="token punctuation">.</span><span class="token class-name">Person</span><span class="token double-colon punctuation">::</span><span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="怎么在-main-函数之前执行语句"><a href="#怎么在-main-函数之前执行语句" class="header-anchor">#</a> 怎么在 main 函数之前执行语句？</h2> <p>C++ 中可以在全局变量的构造函数中实现：</p> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, world&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="qt-中为什么要引入-qvariant"><a href="#qt-中为什么要引入-qvariant" class="header-anchor">#</a> Qt 中为什么要引入 QVariant？</h2> <p>因为 C++ 禁止联合 union 包含具有非默认构造函数或析构函数的类型：</p> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">class</span> <span class="token class-name">Greeting</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> b<span class="token punctuation">;</span>
+    <span class="token function">Greeting</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">union</span> _uni <span class="token punctuation">{</span>
+    Greeting  s<span class="token punctuation">;</span>    <span class="token comment">// 错误</span>
+<span class="token punctuation">}</span>uni<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    uni u<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h2 id="qt6-中怎么替代-qt5-里的-exactmatch"><a href="#qt6-中怎么替代-qt5-里的-exactmatch" class="header-anchor">#</a> Qt6 中怎么替代 Qt5 里的 exactMatch() ？</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code>QRegularExpression <span class="token function">regExp</span><span class="token punctuation">(</span><span class="token class-name">QRegularExpression</span><span class="token double-colon punctuation">::</span><span class="token function">anchoredPattern</span><span class="token punctuation">(</span><span class="token function">QLatin1String</span><span class="token punctuation">(</span><span class="token string">&quot;(.+)_v(\\d+)&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+QRegularExpressionMatch ma <span class="token operator">=</span> regExp<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>xxx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>ma<span class="token punctuation">.</span><span class="token function">hasMatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><a href="https://stackoverflow.com/questions/68577160/port-qregexpexactmatch-in-qt6" target="_blank" rel="noopener noreferrer">Port QRegExp::exactMatch() in Qt6<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="函数参数中的数组变量会退化为指针。"><a href="#函数参数中的数组变量会退化为指针。" class="header-anchor">#</a> 函数参数中的数组变量会退化为指针。</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">void</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 等效于</span>
+
+<span class="token keyword">void</span> <span class="token function">bubble_sort</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>arr<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="为什么需要仿函数"><a href="#为什么需要仿函数" class="header-anchor">#</a> 为什么需要仿函数？</h2> <p>函数对象（仿函数）可以携带附加数据。</p> <p>如果编程者要将某种“操作”当做算法的参数，一般有两种方法：
+（1）一个办法就是先将该“操作”设计为一个函数，再将函数指针当做算法的一个参数。上面的实例就是该做法；
+（2）将该“操作”设计为一个仿函数（就语言层面而言是个 class），再以该仿函数产生一个对象，并以此对象作为算法的一个参数。</p> <p>很明显第二种方法会更优秀，因为第一种方法扩展性较差，当函数参数有所变化，则无法兼容旧的代码。在我们写代码时有时会发现有些功能代码，会不断地被使用。为了复用这些代码，实现为一个公共的函数是一个解决方法。不过函数用到的一些变量，可能是公共的全局变量。引入全局变量，容易出现同名冲突，不方便维护。</p> <p>例子：</p> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">IsGreaterThanThresholdFunctor</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+	<span class="token keyword">explicit</span> <span class="token function">IsGreaterThanThresholdFunctor</span><span class="token punctuation">(</span><span class="token keyword">int</span> t<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">threshold</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+	<span class="token keyword">bool</span> <span class="token keyword">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> num <span class="token operator">&gt;</span> threshold <span class="token operator">?</span> <span class="token boolean">true</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+	<span class="token keyword">const</span> <span class="token keyword">int</span> threshold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">RecallFunc</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>start<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>end<span class="token punctuation">,</span> IsGreaterThanThresholdFunctor myFunctor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>i <span class="token operator">=</span> start<span class="token punctuation">;</span> i <span class="token operator">!=</span> end <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		count <span class="token operator">=</span> <span class="token function">myFunctor</span><span class="token punctuation">(</span><span class="token operator">*</span>i<span class="token punctuation">)</span> <span class="token operator">?</span> count <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">:</span> count<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将判定的阈值也作为一个变量传入</span>
+    <span class="token comment">// 普通的函数指针则不能传入变量，只能使用局部变量或者全局变量</span>
+	<span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token function">RecallFunc</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> a <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token function">IsGreaterThanThresholdFunctor</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cout <span class="token operator">&lt;&lt;</span> result <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h2 id="push-back-和-emplace-back-有什么区别"><a href="#push-back-和-emplace-back-有什么区别" class="header-anchor">#</a> push_back 和 emplace_back 有什么区别？</h2> <p>emplace_back() 和 push_back() 的区别，就在于底层实现的机制不同。push_back() 向容器尾部
+添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中（如果是拷贝的话，
+事后会自行销毁先前创建的这个元素）；而 emplace_back() 在实现时，则是直接在容器尾部创建
+这个元素，省去了拷贝或移动元素的过程。</p> <p>使用emplace_back() 函数可以减少一次拷贝或移动构造的过程，提升容器插入数据的效率。</p> <h2 id="array、vector、数组有什么异同"><a href="#array、vector、数组有什么异同" class="header-anchor">#</a> array、vector、数组有什么异同？</h2> <p>共同点
+（1.）都和数组相似，都可以使用标准数组的表示方法来访问每个元素（array和vector都对下标运算符[ ]进行了重载）
+（2.）三者的存储都是连续的，可以进行随机访问
+不同点
+（0.）数组是不安全的，array和vector是比较安全的（有效的避免越界等问题）
+（1.）array对象和数组存储在相同的内存区域（栈）中，vector对象存储在自由存储区（堆）
+（2.）array可以将一个对象赋值给另一个array对象，但是数组不行
+（3.）vector属于变长的容器，即可以根据数据的插入和删除重新构造容器容量；但是array和数组属于定长容器
+（4.）vector和array提供了更好的数据访问机制，即可以使用front()和back()以及at()（at()可以避免a[-1]访问越界的问题）访问方式，使得访问更加安全。而数组只能通过下标访问，在写程序中很容易出现越界的错误
+（5.）vector和array提供了更好的遍历机制，即有正向迭代器和反向迭代器
+（6.）vector和array提供了size()和Empty()，而数组只能通过sizeof()/strlen()以及遍历计数来获取大小和是否为空
+（7.）vector和array提供了两个容器对象的内容交换，即swap()的机制，而数组对于交换只能通过遍历的方式逐个交换元素
+（8.）array提供了初始化所有成员的方法fill（）
+（9.）由于vector的动态内存变化的机制，在插入和删除时，需要考虑迭代的是否有效问题
+（10.）vector和array在声明变量后，在声明周期完成后，会自动地释放其所占用的内存。对于数组如果用 new[ ]/malloc 申请的空间，必须用对应的delete[ ]和free来释放内存。</p> <p><a href="https://blog.csdn.net/alidada_blog/article/details/83029438" target="_blank" rel="noopener noreferrer">【C++】array和vector，数组三者区别和联系<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="map-使用-需要-value-有默认构造函数"><a href="#map-使用-需要-value-有默认构造函数" class="header-anchor">#</a> map 使用 [] 需要 value 有默认构造函数</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;map&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">student</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span><span class="token operator">:</span>
+        string name<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+        <span class="token function">student</span><span class="token punctuation">(</span>string n<span class="token punctuation">,</span> <span class="token keyword">int</span> a<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token operator">-&gt;</span>name <span class="token operator">=</span> n<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token operator">-&gt;</span>age <span class="token operator">=</span> a<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> student<span class="token operator">&gt;</span> mp<span class="token punctuation">;</span>
+    <span class="token comment">// 运行时，下面的语句会报错，因为 student 没有默认构造函数。</span>
+    mp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">student</span><span class="token punctuation">(</span><span class="token string">&quot;jack&quot;</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mp<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">student</span><span class="token punctuation">(</span><span class="token string">&quot;kate&quot;</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> mp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><p>map 在编译阶段发现所对应的value不存在，会调用默认构造函数构造一个对象，如果没有，就会报错。</p> <h2 id="该不该写默认构造函数"><a href="#该不该写默认构造函数" class="header-anchor">#</a> 该不该写默认构造函数？</h2> <p>默认构造函数对于成员变量是自定义类型的，调用这个成员变量所在类的默认构造函数初始化，对于成员变量是基本类型的，C++没有规定（可以认为是随机值）。</p> <p>《More Effective C++》建议，尽量不提供默认构造函数。</p> <p>添加无意义的默认构造函数会影响效率。</p> <p>缺乏默认构造函数的缺点：</p> <ol><li>无法定义数组。</li> <li>不适用与许多基础模板容器类，如 map 的 <code>operator[]</code>，要求 value 必须有默认构造函数。</li> <li>虚基类如果没有默认构造函数，则子类无论距离多遥远，必须知道、提供虚基类的构造函数。</li></ol> <h2 id="模板类怎么进行前向引用"><a href="#模板类怎么进行前向引用" class="header-anchor">#</a> 模板类怎么进行前向引用？</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token keyword">typename</span> <span class="token class-name">Y</span><span class="token operator">&gt;</span> <span class="token keyword">class</span> <span class="token class-name">Map</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">namespace</span> std <span class="token punctuation">{</span>
+	<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">_Ty</span><span class="token operator">&gt;</span>
+	<span class="token keyword">class</span> <span class="token class-name">allocator</span><span class="token punctuation">;</span>
+	<span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">_Ty</span><span class="token punctuation">,</span> <span class="token keyword">class</span> <span class="token class-name">_Alloc</span> <span class="token operator">=</span> allocator<span class="token operator">&lt;</span>_Ty<span class="token operator">&gt;&gt;</span>
+	<span class="token keyword">class</span> <span class="token class-name">vector</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="qstring-和-qbytearray-有什么区别"><a href="#qstring-和-qbytearray-有什么区别" class="header-anchor">#</a> QString 和 QByteArray 有什么区别？</h2> <p>QString是专门用来处理字符串的，除了能处理ASCII编码字符，还包括各国语言的编码，
+默认情况下QString会把所有数据当做utf-8编码来处理。QByteArray只是单纯用来处理数据的，
+除了能处理ASCII编码字符，其它复杂的编码不能处理，直接以字节流的方式来对待。</p> <h2 id="tls-是什么"><a href="#tls-是什么" class="header-anchor">#</a> TLS  是什么？</h2> <p>传输层安全性协议（英语：Transport Layer Security，缩写作TLS），及其前身
+安全套接层（Secure Sockets Layer，缩写作SSL）是一种安全协议，目的是为互联网通信提供安全
+及数据完整性保障。网景公司（Netscape）在1994年推出首版网页浏览器，网景导航者时，推出HTTPS协议
+以SSL进行加密，这是SSL的起源。IETF将SSL进行标准化，1999年公布第一版TLS标准文件。随后又公布
+RFC 5246 （2008年8月）与RFC 6176（2011年3月）。在浏览器、邮箱、即时通信、VoIP、网络传真等应用程序中，
+广泛支持这个协议。主要的网站，如Google、Facebook等也以这个协议来创建安全连线，发送数据。
+目前已成为互联网上保密通信的工业标准。</p> <p>TLS 就是在数据到网络传输之前做了一层安全措施（加密），也就是安全传输层，Transport Layer Security。
+而它的前身SSL，对HTTP协议加了密，变成了HTTPS。</p> <p>http + ssl = https。</p> <h2 id="qt-无法连接-ssl-动态库"><a href="#qt-无法连接-ssl-动态库" class="header-anchor">#</a> Qt 无法连接 ssl 动态库</h2> <p>使用 Qt 进行 https 请求，运行时报错：qt.network.ssl: QSslSocket::connectToHostEncrypted: TLS initialization failed</p> <p>打印</p> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code>    <span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>
+        <span class="token class-name">QSslSocket</span><span class="token double-colon punctuation">::</span><span class="token function">sslLibraryBuildVersionNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment">// 返回编译时SSL(静态库)版本号</span>
+             <span class="token operator">&lt;&lt;</span> <span class="token class-name">QSslSocket</span><span class="token double-colon punctuation">::</span><span class="token function">sslLibraryBuildVersionString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment">// 返回编译时SSL(静态库)版本字符串</span>
+             <span class="token operator">&lt;&lt;</span> <span class="token class-name">QSslSocket</span><span class="token double-colon punctuation">::</span><span class="token function">sslLibraryVersionNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span>			<span class="token comment">// 返回运行时SSL库版本号</span>
+             <span class="token operator">&lt;&lt;</span> <span class="token class-name">QSslSocket</span><span class="token double-colon punctuation">::</span><span class="token function">sslLibraryVersionString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>		<span class="token comment">// 返回运行时SSL库版本字符串</span>
+             <span class="token operator">&lt;&lt;</span> <span class="token class-name">QSslSocket</span><span class="token double-colon punctuation">::</span><span class="token function">supportsSsl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>						<span class="token comment">// 返回是否支持SSL true支持/false不支持</span>
+<span class="token comment">// 打印结果：269488255 &quot;OpenSSL 1.1.1g  21 Apr 2020&quot; 0 &quot;&quot; false</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>可知：Qt 编译时提供了静态库，但是没有提供运行时链接的动态库。</p> <p><a href="https://blog.csdn.net/BadAyase/article/details/103905615" target="_blank" rel="noopener noreferrer">解决qt.network.ssl: QSslSocket::connectToHostEncrypted: TLS initialization failed<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>原因是：</p> <p>Qt二进制安装包包含了QtNetWork使用的OpenSSL库。不过，它不会自动部署到Qt构建的应用程序中。</p> <p>美国对软件出口有限制，而 OpenSSL 就是设计加密的开源软件，所以在某些地区使用的时候会有限制。</p> <p>解决方法是根据打印出来的编译时 ssl 库版本号区下载 ssl 源码自行编译后得到运行时库。</p> <p>或者直接安装 openssl 库，拷贝 libcrypto-1_1.dll 和libssl-1_1.dll 到运行目录。</p> <p><a href="https://blog.csdn.net/weixin_44916154/article/details/123362461" target="_blank" rel="noopener noreferrer">解决 QT 发送 HTTP 请求时遇到 qt.network.ssl: QSslSocket::connectToHostEncrypted: TLS initialization failed 问题<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="qt是事件驱动的-这句话该怎么理解呢"><a href="#qt是事件驱动的-这句话该怎么理解呢" class="header-anchor">#</a> Qt是事件驱动的，这句话该怎么理解呢？</h2> <p>Qt将系统产生的信号(软件中断)转换成Qt事件，并且将事件封装成类，所有的事件类都是由QEvent派生的，
+事件的产生和处理就是Qt程序的主轴，且伴随着整个程序的运行周期。因此我们说，Qt是事件驱动的。</p> <h2 id="qt事件是由谁接收的"><a href="#qt事件是由谁接收的" class="header-anchor">#</a> Qt事件是由谁接收的？</h2> <p>答：QObject！它是所有Qt类的基类！是Qt对象模型的核心！QObject类的三大核心功能其中之一
+就是：事件处理。QObject通过event()函数调用获取事件。
+所有的需要处理事件的类都必须继承自Qobject，可以通过重定义event()函数实现自定义事件处理或者将事件交给父类。</p> <h2 id="事件处理的流程是什么样的"><a href="#事件处理的流程是什么样的" class="header-anchor">#</a> 事件处理的流程是什么样的？</h2> <p>答：事件有别于信号的重要一点：事件是一个类对象具有特定的类型，事件
+多数情况下是被分发到一个队列中(事件队列)，当队列中有事件时就不停的将队列中的事件发送给
+QObject对象，当队列为空时就阻塞地等待事件，这个过程就是事件循环！</p> <p>QCoreApplication::exec()开启了这种循环，一直到QCoreApplication::exit()被调用才终止，
+所以说事件循环是伴随着Qt程序的整个运行周期。</p> <h2 id="qt-qnetworkaccessmanager出现sslhandshakefailederror-问题"><a href="#qt-qnetworkaccessmanager出现sslhandshakefailederror-问题" class="header-anchor">#</a> Qt QNetworkAccessManager出现SslHandshakeFailedError 问题</h2> <div class="language-cpp line-numbers-mode"><pre class="language-cpp"><code>QSslConfiguration config <span class="token operator">=</span> <span class="token class-name">QSslConfiguration</span><span class="token double-colon punctuation">::</span><span class="token function">defaultConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+config<span class="token punctuation">.</span><span class="token function">setProtocol</span><span class="token punctuation">(</span>QSsl<span class="token double-colon punctuation">::</span>AnyProtocol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+config<span class="token punctuation">.</span><span class="token function">setPeerVerifyMode</span><span class="token punctuation">(</span>QSslSocket<span class="token double-colon punctuation">::</span>VerifyNone<span class="token punctuation">)</span><span class="token punctuation">;</span>
+request<span class="token punctuation">.</span><span class="token function">setSslConfiguration</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><a href="https://zhuanlan.zhihu.com/p/355245557" target="_blank" rel="noopener noreferrer">Qt QNetworkAccessManager出现SslHandshakeFailedError<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="为什么不给你正常打印-unicode-字符"><a href="#为什么不给你正常打印-unicode-字符" class="header-anchor">#</a> 为什么不给你正常打印 Unicode 字符？</h2> <p>windows 平台使用 UTF-8 with BOM 格式编码，<code>*nix</code> 平台使用 UTF-8 格式。</p> <p>「UTF-8」和「带 BOM 的 UTF-8」的区别就是有没有 BOM。即文件开头有没有 U+FEFF。</p> <h2 id="为什么-connect-中的-connect-存在问题"><a href="#为什么-connect-中的-connect-存在问题" class="header-anchor">#</a> 为什么 connect 中的 connect 存在问题？</h2> <p>Lambda表达式的引用捕获是在被调用时复制，而值捕获是在Lambda表达式创建时就复制了，
+一定要注意创建和调用之间，被捕获值是否发生了改变。</p> <h2 id="四则运算符的重载为什么不能返回引用"><a href="#四则运算符的重载为什么不能返回引用" class="header-anchor">#</a> 四则运算符的重载为什么不能返回引用？</h2> <p>这四个操作符没有side effect，因此，它们必须构造一个对象作为返回值。</p> <p>静态对象的引用因为((a+b) == (c+d))会永远为true而导致错误，所以只能返回一个对象了。</p> <h2 id="结构与联合有和区别"><a href="#结构与联合有和区别" class="header-anchor">#</a> 结构与联合有和区别？</h2> <ul><li><p>结构和联合都是由多个不同的数据类型成员组成, 但在任何同一时刻, 联合中只存放了一个被选中的成员（所有成员共用一块地址空间）, 而结构的所有成员都存在（不同成员的存放地址不同）。</p></li> <li><p>对于联合的不同成员赋值, 将会对其它成员重写, 原来成员的值就不存在了, 而对于结构的不同成员赋值是互不影响的。</p></li></ul> <h2 id="形式参数中定义对象会调用什么构造函数"><a href="#形式参数中定义对象会调用什么构造函数" class="header-anchor">#</a> 形式参数中定义对象会调用什么构造函数？</h2> <p>如果参数是引用传递，则不会调用任何构造函数；如果是按值传递，则调用复制构造函数，按参数的值构造一个
+临时对象，这个临时对象仅仅在函数执行是存在，函数执行结束之后调用析构函数。</p> <h2 id="模板类-函数的定义和实现"><a href="#模板类-函数的定义和实现" class="header-anchor">#</a> 模板类/函数的定义和实现</h2> <p>模板类/函数的定义和实现不能分开写。因为实现文件不会生成模板函数的实例化模板函数，链接会出错。</p> <p>template 处理的任何东西都意味着编译器当时不为它分配空间，知道模板实例被告知。</p> <p>最好的方法是在头文件实现。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">9/4/2023, 5:01:50 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/cpp/learn-qt.html" class="prev">
+        Qt
+      </a></span> <span class="next"><a href="/wiki/cpp/essential-cpp/essential-cpp-01.html">
+        Essential CPP 1
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/35.0ba44a34.js" defer></script>
+  </body>
+</html>

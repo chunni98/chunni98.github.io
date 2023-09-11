@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>glibc 学习（四）原子操作 | CS Wiki</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="shachi 的 CS 知识库">
+    
+    <link rel="preload" href="/wiki/assets/css/0.styles.40ef89a5.css" as="style"><link rel="preload" href="/wiki/assets/js/app.2a1474e9.js" as="script"><link rel="preload" href="/wiki/assets/js/2.4b7299de.js" as="script"><link rel="preload" href="/wiki/assets/js/24.b38bddd1.js" as="script"><link rel="prefetch" href="/wiki/assets/js/10.03de17b9.js"><link rel="prefetch" href="/wiki/assets/js/11.fe7039be.js"><link rel="prefetch" href="/wiki/assets/js/12.9a888ea8.js"><link rel="prefetch" href="/wiki/assets/js/13.520d1a8a.js"><link rel="prefetch" href="/wiki/assets/js/14.84399abf.js"><link rel="prefetch" href="/wiki/assets/js/15.a2edb745.js"><link rel="prefetch" href="/wiki/assets/js/16.2d433591.js"><link rel="prefetch" href="/wiki/assets/js/17.d4de143e.js"><link rel="prefetch" href="/wiki/assets/js/18.a135b98c.js"><link rel="prefetch" href="/wiki/assets/js/19.7aee7d75.js"><link rel="prefetch" href="/wiki/assets/js/20.aa86a031.js"><link rel="prefetch" href="/wiki/assets/js/21.b260ee0b.js"><link rel="prefetch" href="/wiki/assets/js/22.56e55e5c.js"><link rel="prefetch" href="/wiki/assets/js/23.014c43a0.js"><link rel="prefetch" href="/wiki/assets/js/25.5db6c161.js"><link rel="prefetch" href="/wiki/assets/js/26.add4feed.js"><link rel="prefetch" href="/wiki/assets/js/27.31d56323.js"><link rel="prefetch" href="/wiki/assets/js/28.f263b4e2.js"><link rel="prefetch" href="/wiki/assets/js/29.7f5d8683.js"><link rel="prefetch" href="/wiki/assets/js/3.3ed400f8.js"><link rel="prefetch" href="/wiki/assets/js/30.31775b12.js"><link rel="prefetch" href="/wiki/assets/js/31.9103ea9d.js"><link rel="prefetch" href="/wiki/assets/js/32.edd6a0fb.js"><link rel="prefetch" href="/wiki/assets/js/33.b8c3f217.js"><link rel="prefetch" href="/wiki/assets/js/34.abfb1b31.js"><link rel="prefetch" href="/wiki/assets/js/35.0ba44a34.js"><link rel="prefetch" href="/wiki/assets/js/36.272006cf.js"><link rel="prefetch" href="/wiki/assets/js/37.44ebe121.js"><link rel="prefetch" href="/wiki/assets/js/38.9ee04478.js"><link rel="prefetch" href="/wiki/assets/js/39.1336e262.js"><link rel="prefetch" href="/wiki/assets/js/4.2e33d51d.js"><link rel="prefetch" href="/wiki/assets/js/40.5860466a.js"><link rel="prefetch" href="/wiki/assets/js/41.70d750c2.js"><link rel="prefetch" href="/wiki/assets/js/42.7250770c.js"><link rel="prefetch" href="/wiki/assets/js/43.6a65b888.js"><link rel="prefetch" href="/wiki/assets/js/44.e226b60d.js"><link rel="prefetch" href="/wiki/assets/js/45.0fa82f8b.js"><link rel="prefetch" href="/wiki/assets/js/46.993883c8.js"><link rel="prefetch" href="/wiki/assets/js/47.275dda70.js"><link rel="prefetch" href="/wiki/assets/js/48.320b458f.js"><link rel="prefetch" href="/wiki/assets/js/49.27719ba7.js"><link rel="prefetch" href="/wiki/assets/js/5.5b3fd24d.js"><link rel="prefetch" href="/wiki/assets/js/50.8e7c91ae.js"><link rel="prefetch" href="/wiki/assets/js/51.fec26815.js"><link rel="prefetch" href="/wiki/assets/js/52.84f8da37.js"><link rel="prefetch" href="/wiki/assets/js/53.002fdc3d.js"><link rel="prefetch" href="/wiki/assets/js/54.6a30aff4.js"><link rel="prefetch" href="/wiki/assets/js/55.a85f339a.js"><link rel="prefetch" href="/wiki/assets/js/56.fc3ea0fd.js"><link rel="prefetch" href="/wiki/assets/js/57.5540545b.js"><link rel="prefetch" href="/wiki/assets/js/58.12196dbc.js"><link rel="prefetch" href="/wiki/assets/js/59.27c4492d.js"><link rel="prefetch" href="/wiki/assets/js/6.3b848e60.js"><link rel="prefetch" href="/wiki/assets/js/60.7e5b795e.js"><link rel="prefetch" href="/wiki/assets/js/61.452a5dae.js"><link rel="prefetch" href="/wiki/assets/js/62.7f606440.js"><link rel="prefetch" href="/wiki/assets/js/63.c89c55d1.js"><link rel="prefetch" href="/wiki/assets/js/64.7770e824.js"><link rel="prefetch" href="/wiki/assets/js/7.1d469969.js"><link rel="prefetch" href="/wiki/assets/js/8.cf83701d.js"><link rel="prefetch" href="/wiki/assets/js/9.882e2e97.js">
+    <link rel="stylesheet" href="/wiki/assets/css/0.styles.40ef89a5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/wiki/" class="home-link router-link-active"><img src="/wiki/favicon.ico" alt="CS Wiki" class="logo"> <span class="site-name can-hide">CS Wiki</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/wiki/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/wiki/archives/" class="nav-link">
+  归档
+</a></div><div class="nav-item"><a href="/wiki/c/" class="nav-link router-link-active">
+  C
+</a></div><div class="nav-item"><a href="/wiki/cpp/" class="nav-link">
+  C++
+</a></div><div class="nav-item"><a href="/wiki/linux/" class="nav-link">
+  Linux
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机基础" class="dropdown-title"><span class="title">计算机基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机基础" class="mobile-dropdown-title"><span class="title">计算机基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          理论
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/data-structure/" class="nav-link">
+  数据结构
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机网络
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  计算机组成原理
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  操作系统
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  数据库
+</a></li><li class="dropdown-subitem"><a href="/wiki/c/glibc/.html#" class="nav-link">
+  编译原理
+</a></li></ul></li><li class="dropdown-item"><h4>
+          工具
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/wiki/tools/vim.html" class="nav-link">
+  Vim
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/Makefile.html" class="nav-link">
+  Makefile
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  shell
+</a></li><li class="dropdown-subitem"><a href="/wiki/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/git.html" class="nav-link">
+  git
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/gdb.html" class="nav-link">
+  gdb
+</a></li><li class="dropdown-subitem"><a href="/wiki/tools/CMake.html" class="nav-link">
+  CMake
+</a></li><li class="dropdown-subitem"><a href="https://github.com/chunni98/learn-python-with-lxf" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Python3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="嵌入式" class="dropdown-title"><span class="title">嵌入式</span> <span class="arrow down"></span></button> <button type="button" aria-label="嵌入式" class="mobile-dropdown-title"><span class="title">嵌入式</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/wiki/c/glibc/.html#" class="nav-link">
+  x86汇编
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/sqlite3.html" class="nav-link">
+  sqlite3
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/stm32/" class="nav-link">
+  stm32
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/collections.html" class="nav-link">
+  问题集
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/learn-arm.html" class="nav-link">
+  ARM 体系结构
+</a></li><li class="dropdown-item"><!----> <a href="/wiki/emebedded/driver/" class="nav-link">
+  Linux 内核驱动
+</a></li></ul></div></div><div class="nav-item"><a href="https://chunni98.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/wiki/c/" aria-current="page" class="sidebar-link">C Program Language</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>inbox</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/c-style.html" class="sidebar-link">1 简易 C 语言编程规范</a></li><li><a href="/wiki/c/learn-c.html" class="sidebar-link">2 C 语言拾遗</a></li><li><a href="/wiki/c/ccollections.html" class="sidebar-link">3 c 问题集</a></li><li><a href="/wiki/c/json-c.html" class="sidebar-link">4 json-c 库使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/kandrc/" class="sidebar-heading clickable"><span>K&amp;R C</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/wiki/c/glibc/" class="sidebar-heading clickable router-link-active open"><span>glibc 学习</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/wiki/c/glibc/learn-glibc01.html" class="sidebar-link">glibc 学习（一）I/O</a></li><li><a href="/wiki/c/glibc/learn-glibc02.html" class="sidebar-link">glibc 学习（二）时间</a></li><li><a href="/wiki/c/glibc/learn-glibc03.html" class="sidebar-link">glibc 学习（三）线程</a></li><li><a href="/wiki/c/glibc/learn-glibc04.html" aria-current="page" class="active sidebar-link">glibc 学习（四）原子操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc04.html#_1-概念" class="sidebar-link">1 概念</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc04.html#_2-stdatomic-h" class="sidebar-link">2 stdatomic.h</a></li><li class="sidebar-sub-header"><a href="/wiki/c/glibc/learn-glibc04.html#参考" class="sidebar-link">参考</a></li></ul></li><li><a href="/wiki/c/glibc/learn-glibc05.html" class="sidebar-link">glibc 学习（五）数学库</a></li><li><a href="/wiki/c/glibc/learn-glibc06.html" class="sidebar-link">glibc 学习（六）stdlib</a></li><li><a href="/wiki/c/glibc/learn-glibc07.html" class="sidebar-link">glibc 学习（七）字符串处理</a></li><li><a href="/wiki/c/glibc/learn-glibctemp.html" class="sidebar-link">glibc 学习</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-概念"><a href="#_1-概念" class="header-anchor">#</a> 1 概念</h2> <h3 id="_1-1-多核处理器的多线程同步"><a href="#_1-1-多核处理器的多线程同步" class="header-anchor">#</a> 1.1 多核处理器的多线程同步</h3> <p>在多核处理器或多个处理器的环境下，多线程同步则更为复杂。因为对于一般通用操作系统而言，
+核心A是不知道核心B正在处理啥的，尽管对于某些嵌入式实时操作系统（RTOS）而言，
+一个核心可以给另一个核心发送信号以通知某些事件，但这些均用于特定应用场景，而通用应用级操作系统
+不会采用这些同步手段，代价太高。正因为如此，在多核多处理器环境下，如果我们要对多线程所共享的一个
+对象的修改做到数据一致性，那么只能通过原子操作指令！</p> <p>为何原子操作能起作用？因为原子操作指令通过锁总线等手段，确保多线程对同一共享对象的读-修改-写是
+原子的。所谓“原子（atomic）”就是指，一组操作在执行时作为一个整体进行，而不会被打断。</p> <h3 id="_1-2-原子操作的种类"><a href="#_1-2-原子操作的种类" class="header-anchor">#</a> 1.2 原子操作的种类</h3> <p>随着科技的进步，现代多核处理器纷纷引入了无锁（Lock-Free）原子操作，比如
+比较与交换（Compare and Swap，简称CAS），
+加载时锁定/有条件存储（Load-locked Store-conditional，简称LL-SC）。
+x86处理器使用前者，Alpha、Power、MIPS、RISC-V、ARMv7、ARMv8等则使用后者，
+而从ARMv8.1开始也引入了CAS原子操作。</p> <h2 id="_2-stdatomic-h"><a href="#_2-stdatomic-h" class="header-anchor">#</a> 2 stdatomic.h</h2> <h3 id="_2-1-类型定义"><a href="#_2-1-类型定义" class="header-anchor">#</a> 2.1 类型定义</h3> <p>原子操作库在C11标准中属于可选库，对于一些低端的处理器，尤其像8位的单片机MCU那种完全不具备
+原子操作指令的系统环境，则可以不提供此库。因此C11标准引入了<code>__STDC_NO_ATOMICS__</code>这个
+预定义宏来指示当前系统环境下的C11编译器实现是否提供了原子操作标准库。如果定义了这个宏，
+则说明当前环境下的C11编译器实现没有支持原子操作的标准库。如果支持原子操作标准库，
+我们就能引入 <code>&lt;stdatomic.h&gt;</code> 这个头文件，这里面声明了所以能被当前C11编译器支持的原子类型
+以及原子操作函数接口。ubuntu 里的位置为：
+<code>/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdatomic.h</code>。</p> <p>为了能给程序员提供当前编译环境能支持何种原子操作，C11标准列出了以下这些与定义宏：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// 指示当前编译器能支持 _Bool 类型的无锁原子操作</span>
+ATOMIC_BOOL_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 signed char、unsigned char、以及char类型的无锁原子操作</span>
+ATOMIC_CHAR_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 char16_t 类型的无锁原子操作</span>
+ATOMIC_CHAR16_T_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 char32_t 类型的无锁原子操作</span>
+ATOMIC_CHAR32_T_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 wchar_t 类型的无锁原子操作</span>
+ATOMIC_WCHAR_T_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 short、unsigned short 类型的无锁原子操作</span>
+ATOMIC_SHORT_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 int、unsigned int 类型的无锁原子操作</span>
+ATOMIC_INT_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 long、unsigned long 类型的无锁原子操作</span>
+ATOMIC_LONG_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 long long、unsigned long long 类型的无锁原子操作</span>
+ATOMIC_LLONG_LOCK_FREE
+
+<span class="token comment">// 指示当前编译器能支持 ptrdiff_t、intptr_t、uintptr_t 类型的无锁原子操作</span>
+ATOMIC_POINTER_LOCK_FREE
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>有了这些预定义宏之后，我们就能判定在当前编译环境下可用那些原子操作了。
+当然，如果当前编译环境能支持原子操作的话，那么它至少应该能支持 atomic_flag 类型。
+该类型是一个原子标志对象，用于flag test and set原子操作。
+如果当前的CPU不支持flag test and set，但支持SWAP，那么也可以用SWAP来实现该操作。
+此外，其他lock-free的原子操作也都能实现flag test and set，
+包括原子加法、原子逻辑操作、CAS等。因此 原子标志操作 属于整个原子操作中最最基本的操作方式。</p> <p>当前C11标准所提供支持的整数原子类型如下所示：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">_Bool</span><span class="token punctuation">)</span>              atomic_bool<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>               atomic_char<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">signed</span> <span class="token keyword">char</span><span class="token punctuation">)</span>        atomic_schar<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token punctuation">)</span>      atomic_uchar<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">short</span><span class="token punctuation">)</span>              atomic_short<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">short</span><span class="token punctuation">)</span>     atomic_ushort<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>                atomic_int<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span><span class="token punctuation">)</span>       atomic_uint<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span>               atomic_long<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span><span class="token punctuation">)</span>      atomic_ulong<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span>          atomic_llong<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span> <span class="token keyword">long</span><span class="token punctuation">)</span> atomic_ullong<span class="token punctuation">;</span>
+
+<span class="token comment">// 对于没有定义过char16_t的编译环境，</span>
+<span class="token comment">// 也可能会用 _Atomic(uint_least16_t) 类型来定义其相应的原子类型</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">char16_t</span><span class="token punctuation">)</span>            <span class="token class-name">atomic_char16_t</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 对于没有定义过char32_t的编译环境，</span>
+<span class="token comment">// 也可能会用 _Atomic(uint_least32_t) 类型来定义其相应的原子类型</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">char32_t</span><span class="token punctuation">)</span>            <span class="token class-name">atomic_char32_t</span><span class="token punctuation">;</span>
+
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">wchar_t</span><span class="token punctuation">)</span>            <span class="token class-name">atomic_wchar_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_least8_t</span><span class="token punctuation">)</span>       <span class="token class-name">atomic_int_least8_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_least8_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_uint_least8_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_least16_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_int_least16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_least16_t</span><span class="token punctuation">)</span>     <span class="token class-name">atomic_uint_least16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_least32_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_int_least32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_least32_t</span><span class="token punctuation">)</span>     <span class="token class-name">atomic_uint_least32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_least64_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_int_least64_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_least64_t</span><span class="token punctuation">)</span>     <span class="token class-name">atomic_uint_least64_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_fast8_t</span><span class="token punctuation">)</span>        <span class="token class-name">atomic_int_fast8_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_fast8_t</span><span class="token punctuation">)</span>       <span class="token class-name">atomic_uint_fast8_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_fast16_t</span><span class="token punctuation">)</span>       <span class="token class-name">atomic_int_fast16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_fast16_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_uint_fast16_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_fast32_t</span><span class="token punctuation">)</span>       <span class="token class-name">atomic_int_fast32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_fast32_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_uint_fast32_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">int_fast64_t</span><span class="token punctuation">)</span>       <span class="token class-name">atomic_int_fast64_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uint_fast64_t</span><span class="token punctuation">)</span>      <span class="token class-name">atomic_uint_fast64_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">intptr_t</span><span class="token punctuation">)</span>           <span class="token class-name">atomic_intptr_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uintptr_t</span><span class="token punctuation">)</span>          <span class="token class-name">atomic_uintptr_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">size_t</span><span class="token punctuation">)</span>             <span class="token class-name">atomic_size_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">ptrdiff_t</span><span class="token punctuation">)</span>          <span class="token class-name">atomic_ptrdiff_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">intmax_t</span><span class="token punctuation">)</span>           <span class="token class-name">atomic_intmax_t</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">_Atomic</span><span class="token punctuation">(</span><span class="token class-name">uintmax_t</span><span class="token punctuation">)</span>          <span class="token class-name">atomic_uintmax_t</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br></div></div><p>绝大部分处理器都没有提供针对浮点数的原子操作指令，因此C11标准也没有提供任何针对浮点数的原子类型！</p> <h3 id="_2-3-原子操作函数接口"><a href="#_2-3-原子操作函数接口" class="header-anchor">#</a> 2.3 原子操作函数接口</h3> <p>C11所提供的原子操作函数接口一般都有两个版本。第一个版本是不带有存储器次序参数的，
+第二个是带有存储器次序参数的，并且函数名也以 <code>_explicit</code> 结尾。</p> <p><strong>1. 原子标志相关操作</strong></p> <p>对于原子标志的相关操作，C11标准提供了初始化、标志测试与设置、标志清除这三个接口。
+原子标志 atomic_flag 对象本身只有两种状态（即只有两种取值），
+设置状态（编译器实现一般用 1 或 true 来表示）以及
+清零状态（编译器实现一般用 0 或 false 来表示）。</p> <p>C11标准为原子标志类型提供了一个用于初始化的宏—— ATOMIC_FLAG_INIT ，
+我们应该用这个宏对一个原子标志对象进行初始化，代码示例：</p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token keyword">volatile</span> atomic_flag g_flag <span class="token operator">=</span> ATOMIC_FLAG_INIT<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 这里展示了如何在函数内对已声明的g_flag进行初始化。</span>
+    <span class="token comment">// 由于atomic_flag通常被定义为一种结构体形式，</span>
+    <span class="token comment">// 而ATOMIC_FLAG_INIT则通常被定义为针对结构体atomic_flag的初始化器，</span>
+    <span class="token comment">// 即：{ ... } 的形式。</span>
+    <span class="token comment">// 因此我们这里使用C99标准所引入的匿名结构体对象的表示语法</span>
+    <span class="token comment">// 对g_flag进行初始化</span>
+    g_flag <span class="token operator">=</span> <span class="token punctuation">(</span>atomic_flag<span class="token punctuation">)</span>ATOMIC_FLAG_INIT<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>初始化之后，原子标志对象即处于“清零状态”。</p> <p><strong>2. 初始化原子变量（不保证原子性）</strong></p> <div class="language-c line-numbers-mode"><pre class="language-c"><code><span class="token comment">// C17 中被弃用</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">ATOMIC_VAR_INIT</span><span class="token expression"><span class="token punctuation">(</span>VALUE<span class="token punctuation">)</span>»■<span class="token punctuation">(</span>VALUE<span class="token punctuation">)</span></span></span>
+
+<span class="token comment">/* 初始化一个原子对象  */</span>
+<span class="token comment">// 接收一个参数，用于指定该原子对象的初始值。</span>
+<span class="token comment">// 必须注意的是，初始值的类型要与原子对象的整数类型相兼容。</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">atomic_init</span><span class="token expression"><span class="token punctuation">(</span>PTR<span class="token punctuation">,</span> VAL<span class="token punctuation">)</span>                           </span><span class="token punctuation">\</span>
+  <span class="token expression"><span class="token function">atomic_store_explicit</span> <span class="token punctuation">(</span>PTR<span class="token punctuation">,</span> VAL<span class="token punctuation">,</span> __ATOMIC_RELAXED<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ATOMIC_FLAG_INIT</span><span class="token expression">»■■■<span class="token punctuation">{</span> <span class="token number">0</span> <span class="token punctuation">}</span></span></span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p><strong>3. 操作原子变量（保证原子性）</strong></p> <h2 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h2> <ul><li><a href="https://github.com/zenny-chen/C11-atomic-operations-in-detail" target="_blank" rel="noopener noreferrer">C11 atomic operations in detail<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://www.jianshu.com/p/3e1f4785a521" target="_blank" rel="noopener noreferrer">C11 的原子操作<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://c-cpp.com/c/atomic" target="_blank" rel="noopener noreferrer">原子操作库<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/wiki/c/glibc/learn-glibc03.html" class="prev">
+        glibc 学习（三）线程
+      </a></span> <span class="next"><a href="/wiki/c/glibc/learn-glibc05.html">
+        glibc 学习（五）数学库
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/wiki/assets/js/app.2a1474e9.js" defer></script><script src="/wiki/assets/js/2.4b7299de.js" defer></script><script src="/wiki/assets/js/24.b38bddd1.js" defer></script>
+  </body>
+</html>
